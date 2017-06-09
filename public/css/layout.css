@@ -1,0 +1,200 @@
+/* global全域屬性 */
+/****************************************************/
+/* 字體用微軟正黑體
+參考:https://www.ptt.cc/bbs/Web_Design/M.1279032453.A.80B.html
+*/
+body {
+   font-family: '微軟正黑體', '新細明體', sans-serif;
+}
+main > .container {
+    padding: 90px 15px; /* 上,左 */
+}
+main {
+    min-height: 100vh;
+    /* 幹XD http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers */
+    overflow-x:hidden;
+    /*background-image:url('../img/home/spring.png');*/
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+}
+/****************************************************/
+
+/* 為了把footer sticky黏在最下面 全部都必要 */
+/****************************************************/
+html {
+    min-height: 100%;
+    position: relative;
+}
+body {
+    margin-bottom: 150px; /* 如果頁面空白,這兩個數值可以控制距離 */
+}
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 150px; /* 如果頁面空白,這兩個數值可以控制距離 */
+}
+/****************************************************/
+
+/* footer */
+/****************************************************/
+footer {
+  color: white; /* 字的顏色 */
+}
+footer h3 {
+  margin-bottom: 30px;
+}
+footer .footer-above {
+  padding-top: 50px;
+  background-color: #2C3E50; /* 背景色可以改 */
+}
+footer .footer-col {
+  margin-bottom: 50px;
+}
+footer .footer-below {
+  padding: 25px 0;
+  background-color: #233140;
+}
+.footer-ul {
+    list-style-type:none; /* 不要那顆圓形 */
+    padding-left:0px; /* 圓形那顆的去掉 */
+    margin-left:2px; /* 加了比較好看一點 */
+}
+.footer-ul li {
+    line-height:2em; /* 行距 */
+    font-size:1em; /* 超連結大小可以改 */
+}
+.footer-ul li a {
+    text-decoration: none; /* 不要底線 */
+    color:#a0a3a4;
+    transition: color 0.2s linear 0s, background 0.2s linear 0s;
+}
+.footer-ul li a:hover {
+    color:#ff670f;
+    transition: color 0.2s linear 0s, background 0.2s linear 0s;
+}
+/* 以下是footer的社交按扭區 */
+.btn-outline {
+  color: white;
+  font-size: 20px;
+  border: solid 2px white;
+  background: transparent;
+  transition: all 0.3s ease-in-out;
+  margin-top: 15px;
+}
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
+  color: #18BC9C;
+  background: white;
+  border: solid 2px white;
+}
+.btn-social {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border: 2px solid white;
+  border-radius: 100%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 45px;
+}
+/****************************************************/
+
+/* dropdown hover */
+/****************************************************/
+/* http://stackoverflow.com/questions/16214326/bootstrap-dropdown-with-hover */
+/* 淡入使用法:http://stackoverflow.com/questions/11679567/using-css-for-fade-in-effect-on-page-load */
+@media (min-width:990px){
+    li.mydropdown:hover > ul.dropdown-menu {
+        display: block;
+        margin-top: 0; /* remove the gap so it doesn't close */
+
+        -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein 1s; /* Firefox < 16 */
+        -ms-animation: fadein 1s; /* Internet Explorer */
+        -o-animation: fadein 1s; /* Opera < 12.1 */
+        animation: fadein 1s;
+     }
+     @keyframes fadein {
+         from { opacity: 0; }
+         to   { opacity: 1; }
+     }
+}
+/* dropdown hover時 有層透明的在上面 */
+ul.nav > li.mydropdown:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+/****************************************************/
+
+
+/* navbar */
+/****************************************************/
+/* navbar logo */
+.navbar-brand {
+  padding: 0px !important;
+}
+.navbar-brand > img {
+  height: 100%;
+  padding: 10px 15px 10px 15px;
+  width: auto;
+}
+/* 主要設定區 背景色 白字 */
+.navbar.navbar-ncufresh {
+  /*margin-bottom: 0;
+  border: 0;*/
+  font-size: 1.15em; /* 預設14px */
+  letter-spacing: 4px; /* 字的間距 */
+  opacity:0.9;
+
+  background-color: #212121;/*#20d4bb #00bfa5 */
+  color: #ffffff;
+}
+.navbar.navbar-ncufresh .navbar-form .form-group input.form-control::-moz-placeholder,
+.navbar.navbar-ncufresh .navbar-form input.form-control::-moz-placeholder {
+  color: #ffffff;
+}
+.navbar.navbar-ncufresh .navbar-form .form-group input.form-control:-ms-input-placeholder,
+.navbar.navbar-ncufresh .navbar-form input.form-control:-ms-input-placeholder {
+  color: #ffffff;
+}
+.navbar.navbar-ncufresh .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+.navbar.navbar-ncufresh .navbar-form input.form-control::-webkit-input-placeholder {
+  color: #ffffff;
+}
+/* 下拉式選單的圓角 */
+.navbar.navbar-ncufresh .dropdown-menu {
+  border-radius: 2px;
+}
+/* 下拉式header的顏色 */
+@media (max-width: 767px) {
+  .navbar.navbar-ncufresh .dropdown-menu .dropdown-header {
+    background-color: #4d5ec1;
+  }
+}
+/* 下拉式 li的顏色與大小 */
+.navbar.navbar-ncufresh .dropdown-menu li > a {
+  font-size: 16px;
+  padding: 13px 16px;
+}
+.navbar.navbar-ncufresh .dropdown-menu li > a:hover,
+.navbar.navbar-ncufresh .dropdown-menu li > a:focus {
+  color: #22ab82;
+  background-color: #eeeeee;
+}
+/* 下拉式 li 設成 active時的顏色 */
+.navbar.navbar-ncufresh .dropdown-menu .active > a {
+  background-color: #22ab82;
+  color: #ffffff;
+}
+.navbar.navbar-ncufresh .dropdown-menu .active > a:hover,
+.navbar.navbar-ncufresh .dropdown-menu .active > a:focus {
+  color: #22ab82;
+}
+/****************************************************/

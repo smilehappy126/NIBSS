@@ -83,10 +83,10 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/') }}">新增申請單</a>|
-                    <a href="{{ url('/') }}">借用狀況</a>|
-                    <a href="{{ url('/') }}">已歸還資料</a>|
-                    <a href="{{ url('/') }}">預約狀況</a>|
+                    <a href="{{ url('/create') }}">新增申請單</a>|
+                    <a href="{{ url('/borrow') }}">借用狀況</a>|
+                    <a href="{{ url('/return') }}">已歸還資料</a>|
+                    <a href="{{ url('/reserve') }}">預約狀況</a>|
                     <a href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                 </div>
             </div>

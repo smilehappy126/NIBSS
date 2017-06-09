@@ -21,13 +21,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('include/bootstrap-material/css/ripples.min.css') }}">
     {{-- iziModal.min.css --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('include/izimodal/css/iziModal.min.css') }}" media="screen">
-    {{--  網頁icon  --}}
-    <link rel="Shortcut Icon" type="image/x-icon" href="{{ asset('img//layouts/icon.ico') }}" />
 
     {{-- 個人Styles --}}
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/slide.css') }}">
-
     @yield('css')
 
 </head>
@@ -48,11 +44,7 @@
     <script src="{{ asset('include/bootstrap-material/js/material.min.js') }}"></script>
     <script src="{{ asset('include/bootstrap-material/js/ripples.min.js') }}"></script>
     <script src="{{ asset('include/izimodal/js/iziModal.min.js') }}"></script>
-    <script src="{{ asset('js/scroll.js') }}"></script>
-    <script src="{{ asset('js/jquery.transit.min.js') }}"></script>
-    <script src="{{ asset('js/slide.js') }}"></script>
-
-
+    <script src="{{ asset('js/layout.js') }}"></script>
     @yield('js')
 </body>
 </html>

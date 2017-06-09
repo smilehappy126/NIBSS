@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//新增申請單
+Route::get('/create', function () {
+    return view('button1_create.index');
+});
+//借用狀況
+Route::get('/borrow', function () {
+    return view('button2_borrow.index');
+});
+//已歸還資料
+Route::get('/return', function () {
+    return view('button3_return.index');
+});
+//預約狀況
+Route::get('/reserve', function () {
+    return view('button4_reserve.index');
+});
