@@ -35,33 +35,6 @@
 
 開始寫程式吧~~~
 
-
-# loader懶人包
-
-- 在content裡面加入
-
-`<?php
-    include("loader/loader.php");
- ?>`
- 
- - 在css裡面加入
- 
- `<link rel="stylesheet" href="{{ asset('loader/loader.css') }}" media="screen">`
- 
- - 在js裡面加入
- 
- `setTimeout(function(){
-    $('body').addClass('loaded');
-  }, 1500);`
-
-
-# slide in 懶人包
-
-### css 跟 js 我已經import在layout裡了 所以只要在你想要的element中加入
-
-`class = 'slideanim' `
-
-
 # 程式碼準則
 HTML:  
 屬性永遠使用雙引號，永遠別用單引號。  
