@@ -5,7 +5,16 @@
 @stop
 
 @section('content')
-借用狀況~
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+<div style="font-family: ">
+</body>
+</html>
 @endsection
 
 @section('js')
