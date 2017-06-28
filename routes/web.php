@@ -19,9 +19,8 @@ Route::get('/create', function () {
     return view('button1_create.index');
 });
 //借用狀況
-Route::get('/borrow', function () {
-    return view('button2_borrow.index');
-});
+Route::get('/borrow', 'BorrowController@index');
+
 //已歸還資料
 Route::get('/return', function () {
     return view('button3_return.index');
