@@ -26,7 +26,7 @@
 
 <div class="TopTitle">借用狀況</div>
 <div class="TableTop">
-	<table class="table">
+	<table class="table" style="table-layout: fixed;">
 	<tr><th>租借序號<th>租借日期<th>班級<th>申請人姓名<th>借用物品<th>數量<th>抵押證件<th>授課教室<th>授課教師<th>狀態	
 	</table>
 	@foreach($miss as $mis)
@@ -36,8 +36,8 @@
 	</head>
 	<body>
 	<div class="TableContent">
-	<table class="table">
-	<tr><td>{{$mis->id}}<td>{{$mis->created_at}}<td>{{$mis->class}}<td>{{$mis->name}}<td>{{$mis->item}}<td>{{$mis->itemnum}}<td>{{$mis->license}}<td>{{$mis->classroom}}<td>{{$mis->teacher}}<td>OK
+	<table class="table" style="table-layout: fixed; text-align: left">
+	<tr><td>{{$mis->id}}<td>{{$mis->date}}<td>{{$mis->class}}<td>{{$mis->name}}<td>{{$mis->item}}<td>{{$mis->itemnum}}<td>{{$mis->license}}<td>{{$mis->classroom}}<td>{{$mis->teacher}}<td>{{$mis->status}}
 	</table>
 	</div>
 

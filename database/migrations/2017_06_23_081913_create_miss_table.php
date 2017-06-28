@@ -16,14 +16,14 @@ class CreateMissTable extends Migration
         Schema::create('miss', function (Blueprint $table) {
             $table->increments('id');
             $table->string('class');
-            $table->highlight_string(str)('name');
-            $table->timestamps();
+            $table->string('name');
+            $table->date('date');            
             $table->string('item');
             $table->string('itemnum');
             $table->string('license');
             $table->string('classroom');
             $table->string('teacher');
-            
+            $table->string('status');
         });
     }
 
