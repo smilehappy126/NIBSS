@@ -23,9 +23,12 @@ Route::get('/borrow', function () {
     return view('button2_borrow.index');
 });
 //已歸還資料
-Route::get('/return', function () {
-    return view('button3_return.index');
-});
+// Route::get('/return', function () {
+//     return view('button3_return.index');
+// });
+
+Route::get('/return', 'returnController@index');
+
 //預約狀況
 Route::get('/reserve', function () {
     return view('button4_reserve.index');
