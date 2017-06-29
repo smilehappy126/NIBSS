@@ -18,6 +18,9 @@
 	font-size: 16px;
 	text-align: center;
 	}
+	.EditButton{
+	font-family: Microsoft JhengHei;
+	}
 	</style>
 	
 @stop
@@ -27,7 +30,7 @@
 <div class="TopTitle">借用狀況</div>
 <div class="TableTop">
 	<table class="table" style="table-layout: fixed;">
-	<tr><th>租借序號<th>租借日期<th>班級<th>申請人姓名<th>借用物品<th>數量<th>抵押證件<th>授課教室<th>授課教師<th>狀態	
+	<tr><th>租借序號<th>租借日期<th>班級<th>申請人姓名<th>借用物品<th>數量<th>抵押證件<th>授課教室<th>授課教師<th>狀態<th>編輯資料
 	</table>
 	@foreach($miss as $mis)
 	<!DOCTYPE html>
@@ -37,7 +40,8 @@
 	<body>
 	<div class="TableContent">
 	<table class="table" style="table-layout: fixed; text-align: left">
-	<tr><td>{{$mis->id}}<td>{{$mis->date}}<td>{{$mis->class}}<td>{{$mis->name}}<td>{{$mis->item}}<td>{{$mis->itemnum}}<td>{{$mis->license}}<td>{{$mis->classroom}}<td>{{$mis->teacher}}<td>{{$mis->status}}
+	<tr><td>{{$mis->id}}<td>{{$mis->date}}<td>{{$mis->class}}<td>{{$mis->name}}<td>{{$mis->item}}<td>{{$mis->itemnum}}<td>{{$mis->license}}<td>{{$mis->classroom}}<td>{{$mis->teacher}}<td>{{$mis->status}}<td><form action="{{ asset ('/borrow/.$mis->id') }}" method="post">
+	{{ csrf_field()}}<button class="EditButton" type="submit" id="edit-message-{{ $mis->id }}">編輯</button></form>
 	</table>
 	</div>
 

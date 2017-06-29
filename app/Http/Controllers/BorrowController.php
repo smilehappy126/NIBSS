@@ -14,6 +14,10 @@ class BorrowController extends Controller
 		return view('button2_borrow.index',['miss'=> $miss]);
 
 	}
-	
+	public function edit($id)
+	{
+        $mis=Miss::find($id);
+        return view('button2_borrow.edit',['mis'=>$mis]);
+	}
 	
 }

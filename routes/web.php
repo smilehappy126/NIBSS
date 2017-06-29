@@ -20,6 +20,7 @@ Route::get('/create', function () {
 });
 //借用狀況
 Route::get('/borrow', 'BorrowController@index');
+Route::post('/borrow/{id}','BorrowController@edit');
 
 //已歸還資料
 Route::get('/return', function () {
