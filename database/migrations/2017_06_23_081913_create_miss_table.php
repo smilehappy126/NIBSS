@@ -24,6 +24,7 @@ class CreateMissTable extends Migration
             $table->string('classroom');
             $table->string('teacher');
             $table->string('status');
+            $table->timestamps();
         });
     }
 
