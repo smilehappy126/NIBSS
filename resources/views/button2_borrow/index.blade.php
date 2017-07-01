@@ -38,7 +38,7 @@
 <div class="container">
 <div class="TopTitle">借用狀況</div>
 <div class="TableTop">
-	<table class="table" style="table-layout: fixed;">
+	<table class="table" style="table-layout: fixed;" border="5">
 	<tr><th>租借序號<th>租借日期<th>班級<th>申請人<th>借用物品<th>數量<th>抵押證件<th>授課教室<th>授課教師<th>狀態<th>編輯資料
 	</table>
 	@foreach($miss as $mis)
@@ -48,11 +48,13 @@
 	</head>
 	<body> -->
 	<div class="TableContent">
-	<table class="table" style="table-layout: fixed; text-align: left">
+	<table class="table" style="table-layout: fixed; text-align: left" border="2">
 	<tr><td>{{$mis->id}}<td>{{$mis->date}}<td>{{$mis->class}}<td>{{$mis->name}}<td>{{$mis->item}}<td>{{$mis->itemnum}}<td>{{$mis->license}}<td>{{$mis->classroom}}<td>{{$mis->teacher}}<td>{{$mis->status}}<td>
 	<button class="EditButton"  id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">編輯</button>
 	</table>
 	</div>
+
+
 
 	<!-- Modal -->
 	  <div class="modal fade" id="myModal{{$mis->id}}" role="dialog"  style="height: 600px;">
@@ -94,9 +96,10 @@
 	      
 	    </div>
 	  </div>
-	@endforeach
+
 	
 </div>
+@endforeach
 </div>
 @endsection
 
