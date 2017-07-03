@@ -54,9 +54,12 @@ Route::post('/borrow/update/{id}','BorrowController@update');
 	//透過名字尋找
 	Route::post('/borrow/searchName','BorrowController@searchName');
 //已歸還資料
-Route::get('/return', function () {
-    return view('button3_return.index');
-});
+// Route::get('/return', function () {
+//     return view('button3_return.index');
+// });
+
+Route::get('/return', 'returnController@index');
+
 //預約狀況
 Route::get('/reserve', function () {
     return view('button4_reserve.index');
