@@ -2,29 +2,11 @@
 @section('title', '編輯借用狀況')
 
 @section('css')
-<style type="text/css">
-.EditPage{
-font-family: Microsoft JhengHei;
-font-size: 30px;
-font-weight: bold;
-}
-.EditInfo{
-font-family: Microsoft JhengHei;
-font-size: 25px;
-}
-.Button{
-font-family: Microsoft JhengHei;
-font-size: 15px;
-font-weight: bold;
-height: 40px;
-width: 100px;
-}
 
-</style>
 @stop
 
 @section('content')
-<div class="container">
+<!-- <div class="container">
 <div class="EditPage">
 	租借詳細資料  <hr>
 	<div class="EditInfo">
@@ -47,26 +29,11 @@ width: 100px;
 </div>
 </div>
 </div>
-<!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+ -->
+@foreach($miss as $mis)
+ {{$mis->class}} <br>
+ {{$mis->name}}
+@endforeach
 
 @endsection
 

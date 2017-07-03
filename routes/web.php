@@ -51,7 +51,8 @@ Route::post('/borrow/update/{id}','BorrowController@update');
 	// Status排序
 	Route::get('/borrow/statusasc','BorrowController@statusasc');
 	Route::get('/borrow/statusdesc','BorrowController@statusdesc');
-
+	//透過名字尋找
+	Route::post('/borrow/searchName','BorrowController@searchName');
 //已歸還資料
 Route::get('/return', function () {
     return view('button3_return.index');

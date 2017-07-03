@@ -29,6 +29,17 @@ class BorrowController extends Controller
       $update->update(['status'=>$rep->status]);
       return redirect('/borrow');
 	}
+  
+  // 透過Name來搜尋
+  public function searchName(Request $rep)
+  {
+      $miss=Miss::where('name','=',$rep)
+                  ->get();
+      return view('button2_borrow.edit',['miss'=> $miss]);
+
+
+  }
+
   // ID排序
   public function idasc(){
     $miss=Miss::orderBy('id','asc')
