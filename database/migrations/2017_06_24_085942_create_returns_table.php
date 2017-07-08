@@ -15,14 +15,17 @@ class CreateReturnsTable extends Migration
     {
         Schema::create('returns', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->string('grade');
-            $table->string('mortgage');
+            $table->string('name');
+            $table->date('date');
             $table->string('borrow');
-            $table->dateTime('created_at');
+            $table->string('borrownum');
+            $table->string('mortgage');
             $table->string('classroom');
             $table->string('teacher');
             $table->string('status');
+            $table->timestamps();
+            
         });
     }
 
