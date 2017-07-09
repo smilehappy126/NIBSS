@@ -85,9 +85,13 @@ class WeekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Classroom $classrooms)
+    public function update(Request $request,Classroom $classroom)
     {
-        $classrooms->update(['word'=>$request->word]);
+
+        $classroom->word = $request->word;
+        $classroom->save();
+
+        
         return redirect('/newclassroom');
     }
 
@@ -101,7 +105,7 @@ class WeekController extends Controller
     {
         //
     }
-    public function new()
+    public function newPage()
     {
         $classrooms = Classroom::all();
         return view('button4_reserve.newclassroom',[
