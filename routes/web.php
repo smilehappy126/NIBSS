@@ -61,6 +61,13 @@ Route::post('/borrow/update/{id}','BorrowController@update');
 Route::get('/return', 'returnController@index');
 
 //預約狀況
-Route::get('/reserve', function () {
-    return view('button4_reserve.index');
-});
+Route::get('/reserve', 'WeekController@index');
+// 下一週路由
+Route::post('/goWeek', 'WeekController@show');
+
+//新增教室資料
+Route::post('/newclassroom','WeekController@store');
+Route::get('/newclassroom', 'WeekController@new');
+//修改教室資料
+Route::post('/newclassroom','WeekController@update');
+
