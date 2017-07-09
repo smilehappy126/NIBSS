@@ -90,6 +90,7 @@ class WeekController extends Controller
         $classroom->word = $request->word;
         $classroom->save();
         return redirect('/newclassroom');
+        // return $classroom->id;
     }
 
     /**
