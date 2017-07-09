@@ -68,7 +68,7 @@
     background-color: transparent;	
     }
     #content:hover{
-    background-color: #FF7744;
+    background-color: #CCBBFF;
     }
     .sortButton:hover{
     background-color: grey;
@@ -85,64 +85,65 @@
 <div class="container">
 <div class="TopTitle">借用狀況</div>
 <!-- 透過名字搜尋 -->
-<div class="search"><form action="{{ asset ('/borrow/searchName')}}" method="post" style="display: inline;">{{ csrf_field()}}<input class="form-inline" name="searchname" type="text"  placeholder="請輸入名字...." ><nobr><button class="searchButton" type="submit">搜尋</button></form></div>
+<div class="search"><form action="{{ asset ('/borrow/searchName')}}" method="post" style="display: inline;">{{ csrf_field()}}<input class="form-inline" name="searchname" id="searchname" type="text"  placeholder="請輸入名字...." value=""><nobr><button class="searchButton" id="searchButton" type="submit">搜尋</button></form></div>
 
 <!-- 表單的標頭 -->
 <div class="TableTop">
-	<table class="table" style="table-layout: fixed;" border="5">
+	<table class="table" style="table-layout: fixed; text-align: center;" border="3" >
 	<tr>
 	
 <!-- 序號 -->
-	<th>租借序號<br>
+	<th style="text-align: center;">租借序號<br>
     <form action="{{ asset ('/borrow/idasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	<form action="{{ asset ('/borrow/iddesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>   	    
 <!-- 日期 -->
-    <th>租借日期<br>
+    <th style="text-align: center;">租借日期<br>
     <form action="{{ asset ('/borrow/dateasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	<form action="{{ asset ('/borrow/datedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 班級 -->
-    <th>班級<br>
+    <th style="text-align: center;">班級<br>
     <form action="{{ asset ('/borrow/classasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	<form action="{{ asset ('/borrow/classdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 申請人 -->
-   	<th>申請人<br>
+   	<th style="text-align: center;">申請人<br>
     <form action="{{ asset ('/borrow/nameasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	<form action="{{ asset ('/borrow/namedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 借用物品-->
-   	<th>借用物品<br>
+   	<th style="text-align: center;">借用物品<br>
    	<form action="{{ asset ('/borrow/itemasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	<form action="{{ asset ('/borrow/itemdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 借用數量 -->
-   	<th>借用數量<br>
+   	<th style="text-align: center;">借用數量<br>
     <form action="{{ asset ('/borrow/itemnumasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	<form action="{{ asset ('/borrow/itemnumdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 抵押證件 -->
-   	<th>抵押證件<br>
+   	<th style="text-align: center;">抵押證件<br>
     <form action="{{ asset ('/borrow/licenseasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	<form action="{{ asset ('/borrow/licensedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 授課教室 -->
-   	<th>授課教室<br>
+   	<th style="text-align: center;">授課教室<br>
    	<form action="{{ asset ('/borrow/classroomasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	<form action="{{ asset ('/borrow/classroomdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 授課教室 -->
-   	<th>授課教師<br>
+   	<th style="text-align: center;">授課教師<br>
    	<form action="{{ asset ('/borrow/teacherasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	<form action="{{ asset ('/borrow/teacherdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 狀態 -->
-   	<th>狀態<br>
+   	<th style="text-align: center;">狀態<br>
    	<form action="{{ asset ('/borrow/statusasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	<form action="{{ asset ('/borrow/statusdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 編輯資料 -->
-   	<th>編輯資料
+   	<th style="text-align: center;">編輯資料
 	</tr></table>
 	
 	<!-- 表單內容 -->
 	@foreach($miss as $mis)
 	<div class="TableContent">
-	<table class="table" id="content" style="table-layout: fixed; text-align: left" border="2">
+	<table class="table" id="content" style="table-layout: fixed; text-align: center" >
 
 	<tr><td>{{$mis->id}}<td>{{$mis->date}}<td>{{$mis->class}}<td>{{$mis->name}}<td>{{$mis->item}}<td>{{$mis->itemnum}}<td>{{$mis->license}}<td>{{$mis->classroom}}<td>{{$mis->teacher}}<td>{{$mis->status}}<td>
-	<button class="EditButton"  id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">編輯</button>
+	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}"><span class="glyphicon glyphicon-pencil"></span> 編輯</a>
+	<!-- <button class="EditButton"  id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">編輯</button> -->
 	</table>
 	</div>
 
@@ -189,18 +190,27 @@
 	      
 	    </div>
 	  </div>
-
+	  
 	
 </div>
 @endforeach
+
+<button class="btn btn-primary" id="testbtn">test</button>
 </div>
+
 @endsection
 
 @section('js')
+<script>
 $(document).ready(function(){
+	$('#testbtn').on('click',function(){
+		// $('#searchname').attr('value','21313');
+		// console.log($('#searchname').attr('name'));
+		// console.log($('#searchname').val());
+		$('#searchButton').html("123");
+	});
+});
 
-
-}
-
+</script>
 @stop
 

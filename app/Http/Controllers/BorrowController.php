@@ -33,7 +33,7 @@ class BorrowController extends Controller
   // 透過Name來搜尋
   public function searchName(Request $rep)
   {
-      $miss=Miss::where('name','=',$rep)
+      $miss=Miss::where('name','=',$rep->searchname)
                   ->get();
       return view('button2_borrow.edit',['miss'=> $miss]);
 
