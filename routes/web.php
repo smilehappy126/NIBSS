@@ -59,6 +59,7 @@ Route::post('/borrow/update/{id}','BorrowController@update');
 // });
 
 Route::get('/return', 'returnController@index');
+Route::post('/return/update/{id}','returnController@update');
 
 //預約狀況
 Route::get('/reserve', 'WeekController@index');
