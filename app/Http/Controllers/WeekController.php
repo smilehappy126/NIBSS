@@ -19,7 +19,7 @@ class WeekController extends Controller
 
         return view('button4_reserve.index',[
                 'weekfirst' => $today,
-                'classrooms'=> $classrooms,          
+                'classrooms'=> $classrooms,
             ]);
     }
 
@@ -63,7 +63,7 @@ class WeekController extends Controller
 
         return view('button4_reserve.index',[
                 'weekfirst' => $request->weekfirst,
-                'classrooms'=> $classrooms,  
+                'classrooms'=> $classrooms,
             ]);
     }
 
@@ -85,9 +85,10 @@ class WeekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Classroom $classrooms)
+    public function update(Request $request,Classroom $classroom)
     {
-        $classrooms->update(['word'=>$request->word]);
+        $classroom->word = $request->word;
+        $classroom->save();
         return redirect('/newclassroom');
     }
 
@@ -101,11 +102,13 @@ class WeekController extends Controller
     {
         //
     }
-    public function new()
+
+    //取名注意！！！別取new
+    public function new111()
     {
         $classrooms = Classroom::all();
         return view('button4_reserve.newclassroom',[
-                'classrooms'=> $classrooms,          
+                'classrooms'=> $classrooms,
             ]);
     }
 }

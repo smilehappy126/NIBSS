@@ -68,7 +68,6 @@ Route::post('/goWeek', 'WeekController@show');
 
 //新增教室資料
 Route::post('/newclassroom','WeekController@store');
-Route::get('/newclassroom', 'WeekController@new');
+Route::get('/newclassroom', 'WeekController@new111');
 //修改教室資料
-Route::post('/newclassroom','WeekController@update');
-
+Route::post('/newclassroom/{classroom}','WeekController@update');
