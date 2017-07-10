@@ -87,8 +87,11 @@ class WeekController extends Controller
      */
     public function update(Request $request,Classroom $classroom)
     {
+
         $classroom->word = $request->word;
         $classroom->save();
+
+        
         return redirect('/newclassroom');
         // return $classroom->id;
     }
@@ -103,9 +106,7 @@ class WeekController extends Controller
     {
         //
     }
-
-    //取名注意！！！別取new
-    public function new111()
+    public function newPage()
     {
         $classrooms = Classroom::all();
         return view('button4_reserve.newclassroom',[
