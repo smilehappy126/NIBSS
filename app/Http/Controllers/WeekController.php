@@ -19,7 +19,7 @@ class WeekController extends Controller
 
         return view('button4_reserve.index',[
                 'weekfirst' => $today,
-                'classrooms'=> $classrooms,          
+                'classrooms'=> $classrooms,
             ]);
     }
 
@@ -63,7 +63,7 @@ class WeekController extends Controller
 
         return view('button4_reserve.index',[
                 'weekfirst' => $request->weekfirst,
-                'classrooms'=> $classrooms,  
+                'classrooms'=> $classrooms,
             ]);
     }
 
@@ -93,6 +93,7 @@ class WeekController extends Controller
 
         
         return redirect('/newclassroom');
+        // return $classroom->id;
     }
 
     /**
@@ -109,7 +110,7 @@ class WeekController extends Controller
     {
         $classrooms = Classroom::all();
         return view('button4_reserve.newclassroom',[
-                'classrooms'=> $classrooms,          
+                'classrooms'=> $classrooms,
             ]);
     }
 }

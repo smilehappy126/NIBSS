@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('include/bootstrap-material/fonts/family-roboto.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('include/bootstrap-material/fonts/family-material-icons.css') }}">
     {{-- Bootstrap Material Design --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('include/bootstrap-material/css/bootstrap-material-design.min.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('include/bootstrap-material/css/bootstrap-material-design.min.css') }}"> -->
     <link rel="stylesheet" type="text/css" href="{{ asset('include/bootstrap-material/css/ripples.min.css') }}">
     {{-- iziModal.min.css --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('include/izimodal/css/iziModal.min.css') }}" media="screen">

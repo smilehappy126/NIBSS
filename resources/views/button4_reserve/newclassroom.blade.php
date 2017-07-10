@@ -28,7 +28,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <textarea  class="form-control" rows="5" name="word"> {{ $classroom->word }}  </textarea>
+        <textarea  class="form-control" rows="5" name="word">{{ $classroom->word }}</textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -44,7 +44,7 @@
   @endforeach
   
 
- <form action="{{ asset('/newclassroom') }}" method="POST">
+ <form action="{{ asset('/newclassroom') }}" method="post">
  	    {{ csrf_field() }}
     <div class="form-group">
        <label for="classid">教室名稱或編號:</label>
