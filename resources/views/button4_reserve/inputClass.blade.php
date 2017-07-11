@@ -7,13 +7,6 @@
 @section('content')
 
 <div class="container">
-<button type="button" class="btn btn-link">
-<a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
-</button>
-
-<button type="button" class="btn btn-link">
-<a href="{{ asset('/inputClass') }}"><div>新增課程資訊</div></a>
-</button>
 
 @foreach ($classrooms as $classroom)
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{ $classroom->roomname }}">{{ $classroom->roomname }}</button>
@@ -33,16 +26,12 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <a href="{{ asset('/reserve/'.$classroom->roomname ) }}"  method="post">
-       {{ csrf_field() }}
-          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button></a>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
         </div>
       </div>
     </div>
   </div>
 @endforeach
-
-
 
 <?php
     $date =  new DateTime($weekfirst);
@@ -54,13 +43,13 @@
 <div class="row">
   
 
-  <form action="{{ asset('/goWeek') }}" method="post" class="col col-md-2"> 
+  <form action="{{ asset('/goWeek2') }}" method="post" class="col col-md-2"> 
   {{ csrf_field() }}
     <input type="hidden" value="{{ date('Y-m-d',$pre) }}" name="weekfirst">
     <button type="submit" class="btn btn-primary" name=""><<上一週>></button>
   </form>
 
-  <form action="{{ asset('/goWeek') }}" method="post" class="col col-md-offset-8 col-md-1"> 
+  <form action="{{ asset('/goWeek2') }}" method="post" class="col col-md-offset-8 col-md-1"> 
     {{ csrf_field() }}
       <input type="hidden" value="{{date('Y-m-d',$next)}}" name="weekfirst" >
       <button type="submit" class="btn btn-primary" name=""><<下一週>></button>
@@ -308,11 +297,9 @@
     
   </table>
   </div>
+
 @endsection
 
 @section('js')
-<script>
 
-  </script>
-  
 @stop

@@ -67,6 +67,17 @@ class WeekController extends Controller
             ]);
     }
 
+    public function show2(Request $request)
+
+    {
+
+        $classrooms = Classroom::all();
+
+        return view('button4_reserve.inputClass',[
+                'weekfirst' => $request->weekfirst,
+                'classrooms'=> $classrooms,
+            ]);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -106,11 +117,29 @@ class WeekController extends Controller
     {
         //
     }
-    public function newPage()
+
+    //取名注意！！！別取new
+    public function newClassroomPage()
     {
         $classrooms = Classroom::all();
         return view('button4_reserve.newclassroom',[
                 'classrooms'=> $classrooms,
             ]);
     }
+
+    public function inputClassPage()
+    {
+        $classrooms = Classroom::all();
+        $today = date( 'Y-m-d', strtotime( 'monday this week' ) );
+        return view('button4_reserve.inputClass',[
+                'weekfirst' => $today,
+                'classrooms'=> $classrooms,
+            ]);
+    }
+        public function classroomrefresh()
+    {
+        return redirect('/newclassroom');
+        // return $classroom->id;
+    }
+
 }
