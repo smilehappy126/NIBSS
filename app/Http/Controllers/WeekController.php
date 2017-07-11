@@ -98,8 +98,11 @@ class WeekController extends Controller
      */
     public function update(Request $request,Classroom $classroom)
     {
+
         $classroom->word = $request->word;
         $classroom->save();
+
+        
         return redirect('/newclassroom');
         // return $classroom->id;
     }
