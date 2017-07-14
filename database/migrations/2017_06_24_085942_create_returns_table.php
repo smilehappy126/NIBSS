@@ -18,6 +18,7 @@ class CreateReturnsTable extends Migration
             $table->string('grade');
             $table->string('name');
             $table->date('date');
+            $table->date('returntime');
             $table->string('borrow');
             $table->string('borrownum');
             $table->string('mortgage');
