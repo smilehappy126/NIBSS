@@ -127,16 +127,10 @@ class WeekController extends Controller
     public function inputClassPage()
     {
         $classrooms = Classroom::all();
-        $today = date( 'Y-m-d', strtotime( 'monday this week' ) );
         return view('button4_reserve.inputClass',[
-                'weekfirst' => $today,
                 'classrooms'=> $classrooms,
             ]);
     }
-        public function classroomrefresh()
-    {
-        return redirect('/newclassroom');
-        // return $classroom->id;
-    }
+
 
 }

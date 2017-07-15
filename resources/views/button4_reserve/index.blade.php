@@ -33,8 +33,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <a href="{{ asset('/reserve/'.$classroom->roomname ) }}"  method="post">
-       {{ csrf_field() }}
           <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button></a>
         </div>
       </div>

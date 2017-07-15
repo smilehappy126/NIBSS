@@ -63,8 +63,6 @@ Route::post('/return/update/{id}','returnController@update');
 
 //預約狀況
 Route::get('/reserve', 'WeekController@index');
-//預約狀況的教室名稱路由
-Route::post('/reserve/{classroom}', 'WeekController@classroomrefresh');
 // 下一週路由
 Route::post('/goWeek', 'WeekController@show');
 //新增課表內的內容的下一週路由
@@ -77,4 +75,6 @@ Route::post('/newclassroom/{classroom}','WeekController@update');
 
 //新增課表內的內容
 Route::get('/inputClass', 'WeekController@inputClassPage');
+//新增教室內容資料
+Route::post('/inputClass','CourseController@store');
 
