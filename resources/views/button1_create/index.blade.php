@@ -12,10 +12,10 @@
 <h2>資管系器材租借申請單</h2>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Step1 借用人資料</a></li>
-    <li><a data-toggle="tab" href="#menu1">Step2 借用項目</a></li>
-    <li><a data-toggle="tab" href="#menu2">Step3 確認</a></li>
-    <li><a data-toggle="tab" href="#menu3">Step4 完成借用</a></li>
+    <li class="active" id=L1><a>Step1 借用人資料</a></li>
+    <li id=L2><a>Step2 借用項目</a></li>
+    <li id=L3><a>Step3 確認</a></li>
+    <li id=L4><a>Step4 完成借用</a></li>
 </ul>
 
 <div class="tab-content" >
@@ -23,7 +23,7 @@
         <div class="col-xs-6 col-sm-4">
             <div class="form-group">
                 <label for="name"><h2>姓名（必填）：</h2></label>
-                <input type="text" class="form-control" placeholder="" required="required">
+                <input type="text" class="form-control"  required="required" id="username">
             </div>             
 
             <label for="name" id=class><h2>班級：</h2></label>
@@ -51,8 +51,8 @@
                 </select>          
             
             <div class="form-group">
-                <label for="name"><h2>電話（必填）：</h2></label>
-                <input type="text" class="form-control" placeholder="" required="required">
+                <label for="name" id="phone"><h2>電話（必填）：</h2></label>
+                <input type="text" class="form-control"  required="required" id="phone">
             </div>  
             
             <label for="name" id=documents><h2>證件：</h2></label>
@@ -79,11 +79,11 @@
 
             <div class="form-group">
                 <label for="name"><h2>授課老師：</h2></label>
-                <input type="text" class="form-control" placeholder=""></h2>
+                <input type="text" class="form-control" placeholder="">
             </div>         
             
             <div align="middle">
-            <a data-toggle="tab" href="#menu1" class="btn btn-primary" role="button">下一步</a>
+            <a data-toggle="tab" class="btn btn-primary" role="button" onclick="next()" id="b1">下一步</a>
             </div>
         </div>  
     </div>  
@@ -91,12 +91,11 @@
 
     <div id="menu1" class="tab-pane fade">
         <div class="borrow">
-            <button type="button" class="btn btn-primary">
-            <span calss="glyphicon glyphicon-plus"></span>點此新增申請單
-            </button>
-        
-        <p><h2>借用項目：</h2>
-            <select name="equipment" class="form-group" width: 'auto' >
+            <button type="button" class="btn btn-primary" onclick="appendForm()">點此新增申請單</button>
+    
+        <div id=myForm1>
+        <h2>借用項目：</h2>
+            <select name="equipment" class="form-group" width="auto" >
                     <option value="" disabled selected></option>
                     <optgroup label="鑰匙">
                         <option value="鑰匙I1-223">鑰匙I1-223</option>
@@ -130,10 +129,10 @@
                         <option value="推車">推車</option>
                         <option value="IRS">IRS</option>
                     </optgroup>
-            </select>
+            </select>    
         
         <h2>借用數量：</h2>
-            <select name="number" class="form-group" width: 'auto' >
+            <select name="number" class="form-group" width="auto" >
                 <option value="" disabled selected></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -143,14 +142,14 @@
             </select>
         
         <h2>備份鑰匙：</h2>
-            <select name="spare_key" class="form-group" width: 'auto' >
+            <select name="spare_key" class="form-group" width="auto" >
                 <option value="" disabled selected></option>
                 <option value="備鑰">備鑰</option>
                 <option value="服務學習鑰匙">服務學習鑰匙</option>  
             </select>
         
         <h2>器材編號：</h2>
-            <select name="eq_number" class="form-group" width: 'auto' >
+            <select name="eq_number" class="form-group" width="auto" >
                 <option value="" disabled selected></option>
                 <option value="A">A</option>
                 <option value="B">B</option>
@@ -168,28 +167,27 @@
                 <option value="編號10">編號10</option> 
                 <option value="編號11">編號11</option>
             </select>           
-        </p>
             <div id="application">
-            <a data-toggle="tab" href="#menu2" class="btn btn-primary" role="button">確定</a>
+                <a data-toggle="tab" class="btn btn-primary" role="button" onclick="confirm()" id="b2">確定</a>
             </div>
+        </div>             
         </div>
     </div>
     
-    
 
     <div id="menu2" class="tab-pane fade">
-        <div>
+        <div id="confirm"></div>
+<!--
             <h2>
             借用項目為：<div class="display1"></div>
             借用數量為：<div class="display2"></div>
             備鑰為：<div class="display3"></div>
             編號為：<div class="display4"></div>
             </h2>
-        <a data-toggle="tab" href="#menu3" class="btn btn-primary" role="submit">送出申請</a>    
-
-
+-->
+        <div>
+        <a data-toggle="tab" class="btn btn-primary" role="submit" onclick="send()" id="b3">送出申請</a>
         </div>
-    
     </div>
     
 
@@ -206,28 +204,70 @@
 
 @section('js')
 
- <script language="JavaScript" type="text/javascript">
-        $(document).ready(function(){
-            $(".add").click(function(){
-                $(".borrow").append("<input name='class"+q+"'>");//待補完新增功能
-                q++;
-  });
-});
-</script>
+<script language="JavaScript" type="text/javascript">  
+    
+    
+    function next() {
+    
+    var $name = document.getElementById("username").value ;
+    var $phone = document.getElementById("phone").value ;
+        if($name == "" || $phone == "")
+        {
+            alert("姓名與電話不可空白！");  
+        }
+        
+        else{
+            $("#L1").removeClass("active");
+            $("#L2").addClass("active");
+            $('#b1').attr('href','#menu1');
+        }
+    }
 
-<script language="JavaScript" type="text/javascript">
-    $(function(){
-    var $s1 = $('select[name="equipment"]');//目前只能抓取第一筆借用資料
-    var $s2 = $('select[name="number"]');
-    var $s3 = $('select[name="spare_key"]');
-    var $s4 = $('select[name="eq_number"]'); 
-        $("#application").click(function(){
-        $( ".display1" ).text($s1.val());
-        $( ".display2" ).text($s2.val());
-        $( ".display3" ).text($s3.val());
-        $( ".display4" ).text($s4.val());
-  });
-        });
+    var formCount = 1;
+    
+    function appendForm() {
+        //複製myForm1表單，更改id變成myForm2,myForm3...
+        $("#myForm1").clone()
+                    .attr("id","myForm" + (formCount+=1)) //寫formCount++會出錯@@
+                    .insertAfter($("[id^=myForm]:last"));
+
+//        window.alert("現在的formCount: " + formCount);
+    } 
+    
+    var $s1, $s2, $s3, $s4; 
+    
+    function confirm(){
+
+        for(var i = 1; i<=formCount; i++){
+            $s1 = $("#myForm"+i).find("select[name='equipment']").val();
+            $s2 = $("#myForm"+i).find("select[name='number']").val();
+            $s3 = $("#myForm"+i).find("select[name='spare_key']").val();
+            $s4 = $("#myForm"+i).find("select[name='eq_number']").val();
+            $("#confirm").append("<h2>借用項目" + i + ": </h2>" + "項目: " + $s1 + "<br>")
+                        .append("數量: " + $s2 + "<br>")
+                        .append("備鑰: " + $s3 + "<br>")
+                        .append("編號: " + $s4 + "<br>");    
+
+        }
+        $("#L2").removeClass("active");
+        $("#L3").addClass("active");
+        $('#b2').attr('href','#menu2');
+
+    }
+
+    function send(){
+
+        if($s1 == "" || $s2 == "" || $s3 == "" || $s4 == "")
+        {
+            alert("無效的申請單！");  
+        }
+        
+        else{
+            $("#L3").removeClass("active");
+            $("#L4").addClass("active");
+            $('#b3').attr('href','#menu3');
+        }
+    }
 </script>
 
 
