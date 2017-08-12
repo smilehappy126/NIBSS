@@ -10,6 +10,8 @@
   
 
 <h2>資管系器材租借申請單</h2>
+<form action="{{ asset('/create') }}" method="post">
+    {{ csrf_field() }}
 
 <ul class="nav nav-tabs">
     <li class="active" id=L1><a>Step1 借用人資料</a></li>
@@ -22,50 +24,50 @@
     <div id="home" class="tab-pane fade in active" >
         <div class="col-xs-6 col-sm-4">
             <div class="form-group">
-                <label for="name"><h2>姓名（必填）：</h2></label>
-                <input type="text" class="form-control"  required="required" id="username">
+                <label><h2>姓名（必填）：</h2></label>
+                <input type="text" class="form-control"  required="required" id="username" name="username">
             </div>             
 
             <label for="name" id=class><h2>班級：</h2></label>
-                <select class="form-control" >
+                <select class="form-control" name="class">
                     <option value="" disabled selected></option>
-                    <option>1A</option>
-                    <option>1B</option>
-                    <option>2A</option>
-                    <option>2B</option>
-                    <option>3A</option>
-                    <option>3B</option>
-                    <option>4A</option>
-                    <option>4B</option>
-                    <option>碩一</option>
-                    <option>碩二</option>
-                    <option>碩專一</option>
-                    <option>碩專二</option>
-                    <option>博一</option>
-                    <option>博二</option>
-                    <option>博三</option>
-                    <option>博四</option>
-                    <option>博五</option>
-                    <option>博六</option>
-                    <option>博七</option>
+                    <option value="1A">1A</option>
+                    <option value="1B">1B</option>
+                    <option value="2A">2A</option>
+                    <option value="2B">2B</option>
+                    <option value="3A">3A</option>
+                    <option value="3B">3B</option>
+                    <option value="4A">4A</option>
+                    <option value="4B">4B</option>
+                    <option value="碩一">碩一</option>
+                    <option value="碩二">碩二</option>
+                    <option value="碩專一">碩專一</option>
+                    <option value="碩專二">碩專二</option>
+                    <option value="博一">博一</option>
+                    <option value="博二">博二</option>
+                    <option value="博三">博三</option>
+                    <option value="博四">博四</option>
+                    <option value="博五">博五</option>
+                    <option value="博六">博六</option>
+                    <option value="博七">博七</option>
                 </select>          
             
             <div class="form-group">
-                <label for="name" id="phone"><h2>電話（必填）：</h2></label>
-                <input type="text" class="form-control"  required="required" id="phone">
+                <label><h2>電話（必填）：</h2></label>
+                <input type="text" class="form-control"  required="required" id="phone" name="phone">
             </div>  
             
             <label for="name" id=documents><h2>證件：</h2></label>
-                <select class="form-control">
+                <select class="form-control" name="license">
                     <option value="" disabled selected></option>
-                    <option>身分證</option>
-                    <option>學生證</option>
-                    <option>健保卡</option>
-                    <option>駕照</option>
+                    <option value="身分證">身分證</option>
+                    <option value="學生證">學生證</option>
+                    <option value="健保卡">健保卡</option>
+                    <option value="駕照">駕照</option>
                 </select>
             
             <label for="name" id=classroom><h2>授課教室：</h2></label>
-                <select class="form-control">
+                <select class="form-control" name="classroom">
                     <option value="" disabled selected></option>
                     <option>I1-223</option>
                     <option>I1-002</option>
@@ -78,8 +80,8 @@
                 </select>
 
             <div class="form-group">
-                <label for="name"><h2>授課老師：</h2></label>
-                <input type="text" class="form-control" placeholder="">
+                <label><h2>授課老師：</h2></label>
+                <input type="text" class="form-control" placeholder="" name="teacher">
             </div>         
             
             <div align="middle">
@@ -95,7 +97,7 @@
     
         <div id=myForm1>
         <h2>借用項目：</h2>
-            <select name="equipment" class="form-group" width="auto" >
+            <select class="form-group" width="auto" name="equipment">
                     <option value="" disabled selected></option>
                     <optgroup label="鑰匙">
                         <option value="鑰匙I1-223">鑰匙I1-223</option>
@@ -132,7 +134,7 @@
             </select>    
         
         <h2>借用數量：</h2>
-            <select name="number" class="form-group" width="auto" >
+            <select class="form-group" width="auto" name="number">
                 <option value="" disabled selected></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -142,14 +144,14 @@
             </select>
         
         <h2>備份鑰匙：</h2>
-            <select name="spare_key" class="form-group" width="auto" >
+            <select class="form-group" width="auto" name="spare_key">
                 <option value="" disabled selected></option>
                 <option value="備鑰">備鑰</option>
                 <option value="服務學習鑰匙">服務學習鑰匙</option>  
             </select>
         
         <h2>器材編號：</h2>
-            <select name="eq_number" class="form-group" width="auto" >
+            <select class="form-group" width="auto" name="eq_number">
                 <option value="" disabled selected></option>
                 <option value="A">A</option>
                 <option value="B">B</option>
@@ -198,7 +200,8 @@
         </div>
     </div>
 
-
+</div>
+</form>
 
 @endsection
 
@@ -256,17 +259,9 @@
     }
 
     function send(){
-
-        if($s1 == "" || $s2 == "" || $s3 == "" || $s4 == "")
-        {
-            alert("無效的申請單！");  
-        }
-        
-        else{
             $("#L3").removeClass("active");
             $("#L4").addClass("active");
             $('#b3').attr('href','#menu3');
-        }
     }
 </script>
 
