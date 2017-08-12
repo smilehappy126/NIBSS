@@ -12,6 +12,7 @@ class returnController extends Controller
   {
     $res = return1::where('status','=','已歸還')->orderBy('date','desc')->get();
     return view('button3_return.index',['res'=> $res]);
+    
   }
 
 
@@ -21,7 +22,7 @@ class returnController extends Controller
       $update->update(['grade'=>$rep->grade]);
       $update->update(['name'=>$rep->name]);
       $update->update(['date'=>$rep->date]);
-      $update->update(['returntime'=>$rep->returntime]);
+      $update->update(['updated_at'=>$rep->updated_at]);
       $update->update(['borrow'=>$rep->borrow]);
       $update->update(['borrownum'=>$rep->borrownum]);
       $update->update(['mortgage'=>$rep->mortgage]);
@@ -32,8 +33,5 @@ class returnController extends Controller
       return redirect('/return');
 	}
 
-  
-  
-  
 
 }

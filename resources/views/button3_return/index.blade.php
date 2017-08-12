@@ -68,7 +68,16 @@
     <tr> 
      <td> {{$re->id}} </td>
      <td> {{$re->date}}</td>
-     <td> {{$re->returntime}}</td>
+     <td>
+      <?php
+       if ($re->status == "已歸還") 
+       $re->timestamps = false;
+       $re->save();
+       if ($re->status == "借用中")
+       $re->timestamps=ture;
+      ?>
+          {{$re->updated_at}}
+     </td>
      <td> {{$re->grade}}</td>
      <td> {{$re->name}}</td>   
      <td> {{$re->borrow}}</td>
@@ -102,7 +111,7 @@
     <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
     <tr><th>租借序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $re->id}}"> </th></tr>
     <tr><th>租借日期 : </th><th> <input  class="form-control" type="date" name="date" value="{{ $re->date }}"></th></tr>
-    <tr><th>歸還日期 : </th><th> <input  class="form-control" type="date" name="returntime" value="{{ $re->returntime }}"></th></tr>
+    <tr><th>歸還日期 : </th><th> <input  class="form-control" type="timestamp" disabled value="{{ $re->updated_at }}"></th></tr>
     <tr><th>班級 :</th> <th><input  class="form-control" type="text" name="grade" value="{{ $re->grade }}"></th></th>
     <tr><th>申請人 :</th><th> <input  class="form-control" type="text" name="name" value="{{ $re->name }}"></th></tr>   
     <tr><th>借用物品 :</th> <th> <input  class="form-control" type="text" name="borrow" value="{{ $re->borrow }}"> </th></tr>

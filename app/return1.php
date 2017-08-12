@@ -8,23 +8,22 @@ class return1 extends Model
 {
     protected $table='returns';
 
-    protected $fillable = ['grade','name','date','returntime','mortgage','borrow','borrownum','classroom','teacher','status'];
+    protected $fillable = ['grade','name','updated_at','date','returntime','mortgage','borrow','borrownum','classroom','teacher','status'];
+
     public function table()
     {
         return $this->belongsTo(table::class);
+        
     }
 
-   /* public $timestamps = false;
+   
+    
 
-
-    protected function getDateFormat()
+    public function setUpdatedAtAttribute()
 
     {
-    	@if ($res=return1::where('status','=','已歸還'))
-                echo strtotime(date('Y-d-m'));
-                @else
+         $timestamps = false ;
+    }
 
-        @endif
-                
-    }*/
+   
 }
