@@ -13,8 +13,9 @@ class ApplicationController extends Controller
        return view('button1_create.index');//
  	}
  	public function store(Request $request)
- 	{
-    $application = new application;
+ 	{	
+   	$application = new Application;
+    $application->name = $request->username;
     $application->class = $request->class;
     $application->item = $request->equipment;
     $application->itemnum = $request->number;
@@ -22,7 +23,7 @@ class ApplicationController extends Controller
     $application->classroom = $request->classroom;
     $application->teacher = $request->teacher;
     $application->save();
-    return redirect('/');
+    return redirect('/create');
      //
  	}
 }
