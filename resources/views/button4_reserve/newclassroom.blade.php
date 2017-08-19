@@ -10,15 +10,16 @@
   @foreach ($classrooms as $classroom)
     <div class="panel panel-default">
        <div class="panel-heading">{{ $classroom->roomname }}</div>
-       <div class="panel-body">{{ $classroom->word }}  <img src="{{ $classroom->imgurl }}" height="200" width="400">
+       <div class="panel-body">{{ $classroom->word }}  <img src="{{ $classroom->imgurl }}" height="200" width="400"> 
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
            修改
         </button>
 
+
  <div class="modal fade" id="editModal{{$classroom->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    <form action="{{ asset('/newclassroom/'.$classroom->id ) }}"  method="post">
+    <form action="{{ asset('/newclassroom/'.$classroom->id) }}" method="post">
        {{ csrf_field() }}
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{ $classroom->roomname }}</h5>
@@ -40,12 +41,8 @@
 
        </div>
     </div>
-    <!-- <form action="{{ asset('newclassroom/'.$classroom->roomname.'/edit') }}" method="GET">
-       <button type="submit" id="edit-classroom-{{ $classroom->roomname }}">
-           修改
-        </button>
-    </form>	 -->
   @endforeach
+  
 
  <form action="{{ asset('/newclassroom') }}" method="post">
  	    {{ csrf_field() }}
