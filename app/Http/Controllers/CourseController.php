@@ -71,13 +71,11 @@ class CourseController extends Controller
         $today = date( 'Y-m-d', strtotime( 'monday this week' ) );
         $classrooms = Classroom::all();
         
-        $courses = Course::all();
 
         return view('button4_reserve.index',[
                 'weekfirst' => $today,
                 'classrooms'=> $classrooms,
-                'currentClass'=> $roomname,
-                'courses'=> $courses
+                'currentClass'=> $roomname,              
             ]);
 
     }
