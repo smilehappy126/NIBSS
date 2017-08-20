@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
 use Illuminate\Http\Request;
+use App\Course;
+
+//Controller好像要寫在一起，不同Controller同時return相同view會有問題
+//測試中...把部分WeekController東西移來這裡
+use App\Classroom;
+
 
 class CourseController extends Controller
 {
+     
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
+        //
     }
 
     /**
@@ -52,11 +58,31 @@ class CourseController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show($roomname)
     {
         //
+//        $data['fuck'] = $roomname;
+//        return View::make('simple', $data);
+//        return $roomname;
+//        return view('button4_reserve.index', [
+//                'currentClass'=>$roomname
+//            ]);
+
+        $today = date( 'Y-m-d', strtotime( 'monday this week' ) );
+        $classrooms = Classroom::all();
+        
+        $courses = Course::all();
+
+        return view('button4_reserve.index',[
+                'weekfirst' => $today,
+                'classrooms'=> $classrooms,
+                'currentClass'=> $roomname,
+                'courses'=> $courses
+            ]);
+
     }
 
+    
     /**
      * Show the form for editing the specified resource.
      *
