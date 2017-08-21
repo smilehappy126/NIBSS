@@ -206,7 +206,7 @@ $(document).ready(function(){
 	$('#testbtn').on('click',function(){
 		// $('#searchname').attr('value','21313');
 		// console.log($('#searchname').attr('name'));
-		// console.log($('#searchname').val());
+		console.log($('#searchname').val());
 		$('#searchButton').html("123");
 	});
 });
