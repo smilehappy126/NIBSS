@@ -55,10 +55,10 @@ class WeekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    //下一週路由
     public function show(Request $request)
-
     {
-
         $classrooms = Classroom::all();
 
         return view('button4_reserve.index',[
@@ -66,11 +66,10 @@ class WeekController extends Controller
                 'classrooms'=> $classrooms,
             ]);
     }
+    
 
     public function show2(Request $request)
-
     {
-
         $classrooms = Classroom::all();
 
         return view('button4_reserve.inputClass',[
@@ -78,6 +77,7 @@ class WeekController extends Controller
                 'classrooms'=> $classrooms,
             ]);
     }
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -130,16 +130,10 @@ class WeekController extends Controller
     public function inputClassPage()
     {
         $classrooms = Classroom::all();
-        $today = date( 'Y-m-d', strtotime( 'monday this week' ) );
         return view('button4_reserve.inputClass',[
-                'weekfirst' => $today,
                 'classrooms'=> $classrooms,
             ]);
     }
-        public function classroomrefresh()
-    {
-        return redirect('/newclassroom');
-        // return $classroom->id;
-    }
+
 
 }

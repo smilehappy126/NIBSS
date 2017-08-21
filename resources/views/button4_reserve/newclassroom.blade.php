@@ -69,4 +69,7 @@
 @endsection
 
 @section('js')
+
+
+
 @stop
