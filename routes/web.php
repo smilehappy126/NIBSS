@@ -21,6 +21,7 @@ Route::get('/create', function () {
 //借用狀況
 Route::get('/borrow', 'BorrowController@index');
 Route::post('/borrow/update/{id}','BorrowController@update');
+
 // ID排序
 Route::get('/borrow/idasc','BorrowController@idasc');
 Route::get('/borrow/iddesc','BorrowController@iddesc');
@@ -58,7 +59,10 @@ Route::post('/borrow/searchName','BorrowController@searchName');
 //     return view('button3_return.index');
 // });
 
+
+//已歸還資料
 Route::get('/return', 'returnController@index');
+//編輯資料
 Route::post('/return/update/{id}','returnController@update');
 
 

@@ -7,5 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class return1 extends Model
 {
     protected $table='returns';
-    protected $fillable = ['name','grade','mortgage','borrow','classroom','teacher'];
+
+    protected $fillable = ['grade','name','updated_at','date','returntime','mortgage','borrow','borrownum','classroom','teacher','status'];
+
+    public function table()
+    {
+        return $this->belongsTo(table::class);
+        
+    }
+
+   
+    
+
+    public function setUpdatedAtAttribute()
+
+    {
+         $timestamps = false ;
+    }
+
+   
 }

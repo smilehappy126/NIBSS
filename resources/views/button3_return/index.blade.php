@@ -10,7 +10,12 @@
     }
     .TableTop{
     font-family:  Microsoft JhengHei;
-    font-size: 20px;
+    font-size: 18px;
+    text-align: center;
+    }
+    .TableContent{
+    font-family:  Microsoft JhengHei;
+    font-size: 13px;
     text-align: center;
     }
     .EditButton{
@@ -22,9 +27,6 @@
     color:#7D26CD;
     text-align:center;
     text-decoration:underline;
-    }
-    #content:hover{
-    background-color: #FF7744;
     }
     .EditPage{
     font-family: Microsoft JhengHei;
@@ -42,11 +44,12 @@
 <br>
 
     <!-- 表單的標頭 -->
-    <div class="container">
-    <table class="table " style="table-layout: fixed;" >  
+    <div class="TableTop">
+    <table class="table " style="text-align: center ; table-layout: fixed" >  
       <tr>
         <th style=" text-align: center;">租借序號</th>
         <th style=" text-align: center;">租借日期</th>
+        <th style=" text-align: center;">歸還日期</th>
         <th style=" text-align: center;">班級</th>
         <th style=" text-align: center;">申請人</th>
         <th style=" text-align: center;">借用物品</th>
@@ -62,8 +65,19 @@
     @foreach($res as $re)
     <div class="TableContent">
     <table class="table table-hover" id="content" style="table-layout: fixed; text-align: center;">
+    <tr> 
      <td> {{$re->id}} </td>
      <td> {{$re->date}}</td>
+     <td>
+      <?php
+       if ($re->status == "已歸還") 
+       $re->timestamps = false;
+       $re->save();
+       if ($re->status == "借用中")
+       $re->timestamps=ture;
+      ?>
+          {{$re->updated_at}}
+     </td>
      <td> {{$re->grade}}</td>
      <td> {{$re->name}}</td>   
      <td> {{$re->borrow}}</td>
@@ -72,13 +86,13 @@
      <td> {{$re->classroom}}</td>
      <td> {{$re->teacher}}</td>
      <td> {{$re->status}}</td>
-     <td><button class="EditButton" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">編輯</button></td>
+     <td><a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}"><span class="glyphicon glyphicon-pencil"></span> 編輯</a></td>
     </tr>   
     </table>
     </div>
 
     <!-- Modal 浮現式視窗-->
-      <div class="modal fade" id="myModal{{$re->id}}" role="dialog"  style="height: 600px;">
+      <div class="modal fade" id="myModal{{$re->id}}" role="dialog" style="height: 600px;">
         <div class="modal-dialog" >
         
           <!-- Modal content-->
@@ -95,16 +109,19 @@
     <div class="EditInfo">
     <!-- Modal中顯示的表格 -->
     <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
-    <tr><th>序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $re->id}}"> </th></tr>
-    <tr><th>日期 : </th><th> <input  class="form-control" type="date" name="date" value="{{ $re->date }}"></th></tr>
-    <tr><th>年級 :</th> <th><input  class="form-control" type="text" name="grade" value="{{ $re->grade }}"></th></th>
-    <tr><th>姓名 :</th><th> <input  class="form-control" type="text" name="name" value="{{ $re->name }}"></th></tr>   
+    <tr><th>租借序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $re->id}}"> </th></tr>
+    <tr><th>租借日期 : </th><th> <input  class="form-control" type="date" name="date" value="{{ $re->date }}"></th></tr>
+    <tr><th>歸還日期 : </th><th> <input  class="form-control" type="timestamp" disabled value="{{ $re->updated_at }}"></th></tr>
+    <tr><th>班級 :</th> <th><input  class="form-control" type="text" name="grade" value="{{ $re->grade }}"></th></th>
+    <tr><th>申請人 :</th><th> <input  class="form-control" type="text" name="name" value="{{ $re->name }}"></th></tr>   
     <tr><th>借用物品 :</th> <th> <input  class="form-control" type="text" name="borrow" value="{{ $re->borrow }}"> </th></tr>
     <tr><th>借用數量 :</th><th><input  class="form-control" type="number" name="borrownum" value="{{ $re->borrownum }}"></th></tr>
     <tr><th>抵押證件 :</th><th> <input  class="form-control" type="text" name="mortgage" value="{{ $re->mortgage }}"></th></tr>
     <tr><th>授課教室 :</th><th> <input  class="form-control" type="text" name="classroom" value="{{ $re->classroom }}"></th></tr>
     <tr><th>授課教師 :</th><th> <input  class="form-control" type="text" name="teacher" value="{{ $re->teacher }}"></th></tr>
-    <tr><th>狀態 :</th><th> <input  class="form-control" type="text" name="status" value="{{ $re->status }}"></th></tr>
+    <tr><th>狀態 :</th><td> <select class= "form-control" name="status" value="{{ $re->teacher }}" >
+                                        <option value="已歸還">已歸還</option>
+                                        <option value="借用中">借用中</option>                                          </select> </th></tr>
     </table>
      </div>
     </div>
@@ -120,6 +137,7 @@
     @endforeach
   </div>
 @endsection
+
 
 @section('js')
 
