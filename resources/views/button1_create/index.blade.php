@@ -166,10 +166,10 @@
                 <option value="編號10">編號10</option> 
                 <option value="編號11">編號11</option>
             </select>           
-            <div>
+        </div>
+        <div>
                 <a data-toggle="tab" class="btn btn-primary" role="button" onclick="confirm()" id="b2">確定</a>
-            </div>
-        </div>             
+            </div>             
         </div>
     </div>
     
