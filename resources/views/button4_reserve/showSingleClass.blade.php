@@ -6,15 +6,31 @@
 @section('content')
 
 <?php
-$date = new DateTime($weekfirst);
+$date = new DateTime($thisMonday);
 $dateString = $date->format('Y-m-d');
 
 $pre = strtotime('previous monday', strtotime($dateString));
 $next = strtotime('next monday', strtotime($dateString)); 
+$preString = date('Y-m-d',$pre);
+$nextString = date('Y-m-d',$next);
 
-echo "主畫面<br>";
-echo "請先選擇教室<br>";
-echo "(可在思考此處畫面設計)";
+
+////test字串方式比對weekFirst時間(格式: XXXX-XX-XX)
+//if($dateString == "2017-08-21"){
+//    echo "The Mondays` date are same. Working.<br>";
+//}else{
+//    echo "Something Wrong.<br>";
+//}
+
+
+echo "本週一: ", $dateString;
+echo "<br>";
+echo "上週一: ", $preString;
+echo "<br>";
+echo "下週一: ", $nextString;
+
+echo "<br>";
+echo "現在所在教室: ", $currentClass;
 
 
 ?>
@@ -67,25 +83,15 @@ echo "(可在思考此處畫面設計)";
 
     @endforeach
 
-<!--
-    上一週/下一週按鈕
+    <!--上一週/下一週按鈕-->
     <div class="row">
+        
+        <a href="{{ asset('/reserve/'.$currentClass.'/'.$preString) }}" class="btn btn-primary col col-md-offset-1 col-md-1"><<上一週</a>
 
-        <form action="{{ asset('/goWeek') }}" method="post" class="col col-md-2">
-            {{ csrf_field() }}
-            <input type="hidden" value="{{ date('Y-m-d',$pre) }}" name="weekfirst">
-            <button type="submit" class="btn btn-primary" name="test"><<上一週>></button>
-            
-        </form>
-
-        <form action="{{ asset('/goWeek') }}" method="post" class="col col-md-offset-8 col-md-1">
-            {{ csrf_field() }}
-            <input type="hidden" value="{{date('Y-m-d',$next)}}" name="weekfirst">
-            <button type="submit" class="btn btn-primary" name="test"><<下一週>></button>
-            
-        </form>
+        <a href="{{ asset('/reserve/'.$currentClass.'/'.$nextString) }}" class="btn btn-primary col col-md-offset-8 col-md-1">下一週>></a>
+        
     </div>
--->
+
 
 
     <table BORDER="5" align=center width="1200" height="800" class="table table-bordered" style="border:8px #00BBFF groove;">
@@ -292,21 +298,34 @@ echo "(可在思考此處畫面設計)";
         </tr>
     </table>
 
+<ul>
+@foreach ($results as $course)
+    <ul>
+        <h1>{{$course->teacher}}</h1>
+        <li>{{$course->roomname}}, {{$course->content}},
+         {{$course->classTime}}, {{$course->weekFirst}}
+        </li>
+    </ul>
+@endforeach
+</ul>
+
+
+
 
 </div>
 
 <!--點選課表格子Modal-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade" id="cellModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Test Modal</h4>
+                <h4 class="modal-title" id="myModalLabel">課程資訊</h4>
             </div>
             <div class="modal-body">
-                <p id="modalContent"></p>
+                <p id="cellModalContent"></p>
                 <hr>
-                <div>時間: <p id="time">XX節~XX節</p></div>
+                <div>時間: <p id="cellModalTime"></p></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -316,13 +335,16 @@ echo "(可在思考此處畫面設計)";
     </div>
 </div>
 
+<!--modal 要放哪: 放div container外面-->
+<!--div container好像沒包好?? 包好包滿才能work-->
+
 @endsection 
 
 @section('js')
 
 <script language="JavaScript" type="text/javascript">
 
-
+    
 var currentClass;   
     
 $( document ).ready(function() {
@@ -336,6 +358,32 @@ $( document ).ready(function() {
         
     });
     
+
+    //在對應的格子顯示撈出之內容
+    @foreach ($results as $course)
+
+        @if ($course->weekFirst == $dateString)
+            $("#{{$course->classTime}}").html("<p>{{$course->content}}</p><p>{{$course->teacher}}</p>");
+        @endif
+    
+    @endforeach
+    
+
+    
+    // 按下課表內格子顯示Modal   
+    $(".Curriculum").click(function() {
+
+        var myContent = $(this).html(); // .text()
+
+        $("#cellModalContent").html(myContent);
+        $("#cellModalTime").text(this.id);
+//        $("#modalContent").append("<br>id: " + this.id);//this.id即該格id
+        
+        $("#cellModal").modal("show");
+
+    });
+    
+
 });
 
 

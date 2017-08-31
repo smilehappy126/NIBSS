@@ -58,26 +58,45 @@ class CourseController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
+    
+    //預約狀況(點選教室後)
     public function show($roomname)
     {
-        //
-//        $data['fuck'] = $roomname;
-//        return View::make('simple', $data);
-//        return $roomname;
-//        return view('button4_reserve.index', [
-//                'currentClass'=>$roomname
-//            ]);
-
-        $today = date( 'Y-m-d', strtotime( 'monday this week' ) );
+        $thisMonday = date( 'Y-m-d', strtotime( 'monday this week' ) );
         $classrooms = Classroom::all();
         
+        $courses = Course::where('roomname', '=', $roomname)->get();
 
-        return view('button4_reserve.index',[
-                'weekfirst' => $today,
+        return view('button4_reserve.showSingleClass',[
+                'thisMonday' => $thisMonday,
                 'classrooms'=> $classrooms,
-                'currentClass'=> $roomname,              
+                'currentClass'=> $roomname,    
+                'results'=> $courses
             ]);
+        
+        // 舊東東捨不得丟
+        //        $data['fuck'] = $roomname;
+        //        return View::make('simple', $data);
+        //        return $roomname;
+        //        return view('button4_reserve.index', [
+        //                'currentClass'=>$roomname
+        //            ]);
 
+    }
+    
+    //(點選上下一週後)
+    public function showOtherWeek($roomname, $weekfirst)
+    {  
+        $classrooms = Classroom::all();
+        
+        $courses = Course::where('roomname', '=', $roomname)->get();
+
+        return view('button4_reserve.showSingleClass',[
+                'thisMonday' => $weekfirst,
+                'classrooms'=> $classrooms,
+                'currentClass'=> $roomname,    
+                'results'=> $courses
+            ]);
     }
 
     

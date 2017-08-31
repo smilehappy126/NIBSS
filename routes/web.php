@@ -88,15 +88,14 @@ Route::post('/return/update/{id}','returnController@update');
 
 
 
-//預約狀況(主畫面，請先選擇教室)
+//預約狀況(主畫面，請先選擇教室，可再思考畫面設計)
 Route::get('/reserve', 'WeekController@index');
+
 //預約狀況(點選教室後)
-//Route::get('/reserve/{roomname}', 'WeekController@index');
 Route::get('/reserve/{roomname}', 'CourseController@show');
 
-
-//下一週路由
-Route::post('/goWeek', 'WeekController@show');
+//(點選上下一週後)
+Route::get('/reserve/{roomname}/{weekfirst}', 'CourseController@showOtherWeek');
 
 
 //新增教室資料
