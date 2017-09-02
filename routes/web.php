@@ -15,9 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 //新增申請單
-Route::get('/create', function () {
-    return view('button1_create.index');
-});
+Route::get('/create', 'ApplicationController@index');
+Route::post('/create','ApplicationController@store');
 //借用狀況
 Route::get('/borrow', 'BorrowController@index');
 Route::post('/borrow/update/{id}','BorrowController@update');

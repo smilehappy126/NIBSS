@@ -25,36 +25,55 @@
                         <input type="text" class="form-control"  required="required" id="username" name="username">
                 </div>             
 
-                <label><h2>班級：</h2></label>
-                    <select class="form-control" name="class">
-                        <option value="" disabled selected></option>
-                        <option value="1A">1A</option>
-                        <option value="1B">1B</option>
-                        <option value="2A">2A</option>
-                        <option value="2B">2B</option>
-                        <option value="3A">3A</option>
-                        <option value="3B">3B</option>
-                        <option value="4A">4A</option>
-                        <option value="4B">4B</option>
-                        <option value="碩一">碩一</option>
-                        <option value="碩二">碩二</option>
-                        <option value="碩專一">碩專一</option>
-                        <option value="碩專二">碩專二</option>
-                        <option value="博一">博一</option>
-                        <option value="博二">博二</option>
-                        <option value="博三">博三</option>
-                        <option value="博四">博四</option>
-                        <option value="博五">博五</option>
-                        <option value="博六">博六</option>
-                        <option value="博七">博七</option>
-                    </select>          
+<h2>資管系器材租借申請單</h2>
+<form action="{{ asset('/create') }}" method="post">
+    {{ csrf_field() }}
+
+<ul class="nav nav-tabs">
+    <li class="active" id=L1><a>Step1 借用人資料</a></li>
+    <li id=L2><a>Step2 借用項目</a></li>
+    <li id=L3><a>Step3 確認</a></li>
+    <li id=L4><a>Step4 完成借用</a></li>
+</ul>
+
+<div class="tab-content" >
+    <div id="home" class="tab-pane fade in active" >
+        <div class="col-xs-6 col-sm-4">
+            <div class="form-group">
+                <label><h2>姓名（必填）：</h2></label>
+                <input type="text" class="form-control"  required="required" id="username" name="username">
+            </div>             
+
+            <label for="name" id=class><h2>班級：</h2></label>
+                <select class="form-control" name="class">
+                    <option value="" disabled selected></option>
+                    <option value="1A">1A</option>
+                    <option value="1B">1B</option>
+                    <option value="2A">2A</option>
+                    <option value="2B">2B</option>
+                    <option value="3A">3A</option>
+                    <option value="3B">3B</option>
+                    <option value="4A">4A</option>
+                    <option value="4B">4B</option>
+                    <option value="碩一">碩一</option>
+                    <option value="碩二">碩二</option>
+                    <option value="碩專一">碩專一</option>
+                    <option value="碩專二">碩專二</option>
+                    <option value="博一">博一</option>
+                    <option value="博二">博二</option>
+                    <option value="博三">博三</option>
+                    <option value="博四">博四</option>
+                    <option value="博五">博五</option>
+                    <option value="博六">博六</option>
+                    <option value="博七">博七</option>
+                </select>          
             
             <div class="form-group">
                 <label><h2>電話（必填）：</h2></label>
                 <input type="text" class="form-control"  required="required" id="phone" name="phone">
             </div>  
             
-                <label><h2>證件：</h2></label>
+            <label for="name" id=documents><h2>證件：</h2></label>
                 <select class="form-control" name="license">
                     <option value="" disabled selected></option>
                     <option value="身分證">身分證</option>
@@ -63,7 +82,7 @@
                     <option value="駕照">駕照</option>
                 </select>
             
-                <label><h2>授課教室：</h2></label>
+            <label for="name" id=classroom><h2>授課教室：</h2></label>
                 <select class="form-control" name="classroom">
                     <option value="" disabled selected></option>
                     <option value="I1-223">I1-223</option>
@@ -92,7 +111,7 @@
         <div class="borrow">
             <button type="button" class="btn btn-primary" onclick="appendForm()">點此新增申請單</button>
     
-        <div id="myForm1">
+        <div id=myForm1>
         <h2>借用項目：</h2>
             <select class="form-group" width="auto" name="equipment">
                     <option value="" disabled selected></option>
@@ -166,18 +185,26 @@
                 <option value="編號10">編號10</option> 
                 <option value="編號11">編號11</option>
             </select>           
-        </div>
-        <div>
+            <div id="application">
                 <a data-toggle="tab" class="btn btn-primary" role="button" onclick="confirm()" id="b2">確定</a>
-            </div>             
+            </div>
+        </div>             
         </div>
     </div>
     
-</form>
+
     <div id="menu2" class="tab-pane fade">
         <div id="confirm"></div>
+<!--
+            <h2>
+            借用項目為：<div class="display1"></div>
+            借用數量為：<div class="display2"></div>
+            備鑰為：<div class="display3"></div>
+            編號為：<div class="display4"></div>
+            </h2>
+-->
         <div>
-        <button type="submit"  class="btn btn-primary" onclick="send()" id="b3" form="form5">送出申請</button>
+        <a data-toggle="tab" class="btn btn-primary" role="submit" onclick="send()" id="b3">送出申請</a>
         </div>
     </div>
     
@@ -188,8 +215,9 @@
             <h2>您已完成預約！</h2>
         </div>
     </div>
+
 </div>
-</div>
+</form>
 
 @endsection
 
@@ -213,6 +241,7 @@
             $('#b1').attr('href','#menu1');
         }
     }
+
     var formCount = 1;
     
     function appendForm() {
@@ -244,12 +273,12 @@
         $('#b2').attr('href','#menu2');
 
     }
+
     function send(){
             $("#L3").removeClass("active");
             $("#L4").addClass("active");
             $('#b3').attr('href','#menu3');
     }
-    
 </script>
 
 
