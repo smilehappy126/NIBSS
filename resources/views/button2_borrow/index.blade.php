@@ -138,6 +138,7 @@
 	
 	<!-- 表單內容 -->
 	@foreach($miss as $mis)
+	@if (count($mis)>=1)
 	<div class="TableContent">
 	<table class="table" id="content" style="table-layout: fixed; text-align: center" >
 
@@ -193,24 +194,31 @@
 	  
 	
 </div>
+
+@else
+<h1>查無此資料!!!</h1>
+
+@endif
 @endforeach
 
-<button class="btn btn-primary" id="testbtn">test</button>
+<form action="{{ asset('/borrow') }}" method="get">
+<button class="btn btn-primary" id="testbtn">重新整理</button>
+</form>
 </div>
 
 @endsection
 
 @section('js')
-<script>
+<!-- <script>
 $(document).ready(function(){
 	$('#testbtn').on('click',function(){
-		// $('#searchname').attr('value','21313');
-		// console.log($('#searchname').attr('name'));
+		$('#searchname').attr('value','21313');
+		console.log($('#searchname').attr('name'));
 		console.log($('#searchname').val());
 		$('#searchButton').html("123");
 	});
 });
 
-</script>
+</script> -->
 @stop
 

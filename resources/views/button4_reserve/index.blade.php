@@ -1,318 +1,377 @@
-@extends('layouts.layout')
-@section('title', '預約狀況')
-@section('css')
-
-@stop
+@extends('layouts.layout') 
+@section('title', '預約狀況') 
+@section('css') 
+@stop 
 
 @section('content')
 
-<div class="container">
-<button type="button" class="btn btn-link">
-<a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
-</button>
-
-<button type="button" class="btn btn-link">
-<a href="{{ asset('/inputClass') }}"><div>新增課程資訊</div></a>
-</button>
-
-@foreach ($classrooms as $classroom)
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{ $classroom->roomname }}">{{ $classroom->roomname }}</button>
-   
-   <div class="modal fade" id="{{ $classroom->roomname }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{ $classroom->roomname }}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            {{ $classroom->word }}
-          <img id="image" src="{{$classroom->imgurl}}" height="200" width="400">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <a href="{{ asset('/reserve/'.$classroom->roomname ) }}"  method="post">
-       {{ csrf_field() }}
-          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button></a>
-        </div>
-      </div>
-    </div>
-  </div>
-@endforeach
-
-
-
 <?php
-    $date =  new DateTime($weekfirst);
-    $pre = strtotime('previous monday', strtotime($date->format('Y-m-d')));
-    $next = strtotime('next monday', strtotime($date->format('Y-m-d')));
-    
+$date = new DateTime($weekfirst);
+$dateString = $date->format('Y-m-d');
+
+$pre = strtotime('previous monday', strtotime($dateString));
+$next = strtotime('next monday', strtotime($dateString)); 
+
+
+//test字串方式比對weekFirst時間(格式: XXXX-XX-XX)
+if($dateString == "2017-08-14"){
+    echo "The Mondays` date are same. Working.<br>";
+}else{
+    echo "Something Wrong.<br>";
+}
+echo $dateString;
+
+echo "<br>";
+//echo $currentClass;
+
+
 ?>
 
-<div class="row">
-  
+<div class="container">
 
-  <form action="{{ asset('/goWeek') }}" method="post" class="col col-md-2"> 
-  {{ csrf_field() }}
-    <input type="hidden" value="{{ date('Y-m-d',$pre) }}" name="weekfirst">
-    <button type="submit" class="btn btn-primary" name=""><<上一週>></button>
-  </form>
+    <!--新增教室資料按鈕-->
+    <button type="button" class="btn btn-link">
+        <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
+    </button>
 
-  <form action="{{ asset('/goWeek') }}" method="post" class="col col-md-offset-8 col-md-1"> 
-    {{ csrf_field() }}
-      <input type="hidden" value="{{date('Y-m-d',$next)}}" name="weekfirst" >
-      <button type="submit" class="btn btn-primary" name=""><<下一週>></button>
-    </form>
+    <!--新增課程資訊按鈕-->
+    <button type="button" class="btn btn-link">
+        <a href="{{ asset('/inputClass') }}"><div>新增課程資訊</div></a>
+    </button>
+    
+    
+
+    <!--教室按鈕-->
+    @foreach ($classrooms as $classroom)
+<!--
+    <button id="{{ $classroom->roomname }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#classModal{{ $classroom->roomname }}">
+        <a href="{{ asset('/reserve/017') }}">{{ $classroom->roomname }}</a>
+    </button>
+-->
+<!--classModal先不顯示，等跳轉之後再顯示-->
+    <a href="{{ asset('/reserve/' . $classroom->roomname ) }}" class="btn btn-primary classBtn" id="{{ $classroom->roomname }}">{{ $classroom->roomname }}</a>
+
+<!--   classModal   -->
+    <div class="modal fade" id="classModal{{ $classroom->roomname }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ $classroom->roomname }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ $classroom->word }}
+                    <img id="image" src="{{$classroom->imgurl}}" height="200" width="400">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @endforeach
+
+    <!--上一週/下一週按鈕-->
+    <div class="row">
+
+        <form action="{{ asset('/goWeek') }}" method="post" class="col col-md-2">
+            {{ csrf_field() }}
+            <input type="hidden" value="{{ date('Y-m-d',$pre) }}" name="weekfirst">
+            <button type="submit" class="btn btn-primary" name="test"><<上一週>></button>
+            
+        </form>
+
+        <form action="{{ asset('/goWeek') }}" method="post" class="col col-md-offset-8 col-md-1">
+            {{ csrf_field() }}
+            <input type="hidden" value="{{date('Y-m-d',$next)}}" name="weekfirst">
+            <button type="submit" class="btn btn-primary" name="test"><<下一週>></button>
+            
+        </form>
+    </div>
+
+
+    <table BORDER="5" align=center width="1200" height="800" class="table table-bordered" style="border:8px #00BBFF groove;">
+
+        <tr style="font-weight:bold;" id="monitor">
+            <td> </td>
+            <td>時間</td>
+
+            <td>
+                星期一 <br>
+                <?php
+                echo $date->format('Y-m-d');
+                $date->add(new DateInterval('P1D'));
+                ?>
+            </td>
+            <td>
+                星期二 <br>
+                <?php
+                echo $date->format('Y-m-d');
+                $date->add(new DateInterval('P1D'));
+                ?>
+            </td>
+            <td>
+                星期三 <br>
+                <?php
+                echo $date->format('Y-m-d');
+                $date->add(new DateInterval('P1D'));
+                ?>
+            </td>
+            <td>
+                星期四 <br>
+                <?php
+                echo $date->format('Y-m-d');
+                $date->add(new DateInterval('P1D'));
+                ?>
+            </td>
+            <td>
+                星期五 <br>
+                <?php
+                echo $date->format('Y-m-d');
+                $date->add(new DateInterval('P1D'));
+                ?>
+            </td>
+            <td>
+                星期六 <br>
+                <?php
+                echo $date->format('Y-m-d');
+                $date->add(new DateInterval('P1D'));
+                ?>
+            </td>
+            <td>
+                星期日 <br>
+                <?php
+                echo $date->format('Y-m-d');
+                // $date->add(new DateInterval('P1D'));
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;"><font size="3">1</td>
+            <td>0800 至 0850</td>
+            <td class="Curriculum" id="Mon_1"></td>
+            <td class="Curriculum" id="Tue_1"></td>
+            <td class="Curriculum" id="Wed_1"></td>
+            <td class="Curriculum" id="Thu_1"></td>
+            <td class="Curriculum" id="Fri_1"></td>
+            <td class="Curriculum" id="Sat_1"></td>
+            <td class="Curriculum" id="Sun_1"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;"><font size="3">2</td>
+            <td>0900 至 0950</td>
+            <td class="Curriculum" id="Mon_2"></td>
+            <td class="Curriculum" id="Tue_2"></td>
+            <td class="Curriculum" id="Wed_2"></td>
+            <td class="Curriculum" id="Thu_2"></td>
+            <td class="Curriculum" id="Fri_2"></td>
+            <td class="Curriculum" id="Sat_2"></td>
+            <td class="Curriculum" id="Sun_2"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;"><font size="3">3</td>
+            <td>1000 至 1050</td>
+            <td class="Curriculum" id="Mon_3"></td>
+            <td class="Curriculum" id="Tue_3"></td>
+            <td class="Curriculum" id="Wed_3"></td>
+            <td class="Curriculum" id="Thu_3"></td>
+            <td class="Curriculum" id="Fri_3"></td>
+            <td class="Curriculum" id="Sat_3"></td>
+            <td class="Curriculum" id="Sun_3"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;"><font size="3">4</td>
+            <td>1100 至 1150</td>
+            <td class="Curriculum" id="Mon_4"></td>
+            <td class="Curriculum" id="Tue_4"></td>
+            <td class="Curriculum" id="Wed_4"></td>
+            <td class="Curriculum" id="Thu_4"></td>
+            <td class="Curriculum" id="Fri_4"></td>
+            <td class="Curriculum" id="Sat_4"></td>
+            <td class="Curriculum" id="Sun_4"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;"><font size="3">午休</td>
+            <td>1200 至 1250</td>
+            <td class="Curriculum" id="Mon_noon"></td>
+            <td class="Curriculum" id="Tue_noon"></td>
+            <td class="Curriculum" id="Wed_noon"></td>
+            <td class="Curriculum" id="Thu_noon"></td>
+            <td class="Curriculum" id="Fri_noon"></td>
+            <td class="Curriculum" id="Sat_noon"></td>
+            <td class="Curriculum" id="Sun_noon"></td>
+        </tr>
+
+        <tr>
+            <td style="font-weight:bold;"><font size="3">5</td>
+            <td>1300 至 1350</td>
+            <td class="Curriculum" id="Mon_5"></td>
+            <td class="Curriculum" id="Tue_5"></td>
+            <td class="Curriculum" id="Wed_5"></td>
+            <td class="Curriculum" id="Thu_5"></td>
+            <td class="Curriculum" id="Fri_5"></td>
+            <td class="Curriculum" id="Sat_5"></td>
+            <td class="Curriculum" id="Sun_5"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;"><font size="3">6</td>
+            <td>1400 至 1450</td>
+            <td class="Curriculum" id="Mon_6"></td>
+            <td class="Curriculum" id="Tue_6"></td>
+            <td class="Curriculum" id="Wed_6"></td>
+            <td class="Curriculum" id="Thu_6"></td>
+            <td class="Curriculum" id="Fri_6"></td>
+            <td class="Curriculum" id="Sat_6"></td>
+            <td class="Curriculum" id="Sun_6"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;"><font size="3">7</td>
+            <td>1500 至 1550</td>
+            <td class="Curriculum" id="Mon_7"></td>
+            <td class="Curriculum" id="Tue_7"></td>
+            <td class="Curriculum" id="Wed_7"></td>
+            <td class="Curriculum" id="Thu_7"></td>
+            <td class="Curriculum" id="Fri_7"></td>
+            <td class="Curriculum" id="Sat_7"></td>
+            <td class="Curriculum" id="Sun_7"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;"><font size="3">8</td>
+            <td>1600 至 1650</td>
+            <td class="Curriculum" id="Mon_8"></td>
+            <td class="Curriculum" id="Tue_8"></td>
+            <td class="Curriculum" id="Wed_8"></td>
+            <td class="Curriculum" id="Thu_8"></td>
+            <td class="Curriculum" id="Fri_8"></td>
+            <td class="Curriculum" id="Sat_8"></td>
+            <td class="Curriculum" id="Sun_8"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;"><font size="3">9</td>
+            <td>1700 至 1750</td>
+            <td class="Curriculum" id="Mon_9"></td>
+            <td class="Curriculum" id="Tue_9"></td>
+            <td class="Curriculum" id="Wed_9"></td>
+            <td class="Curriculum" id="Thu_9"></td>
+            <td class="Curriculum" id="Fri_9"></td>
+            <td class="Curriculum" id="Sat_9"></td>
+            <td class="Curriculum" id="Sun_9"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;"><font size="3">A</td>
+            <td>1800 至 1850</td>
+            <td class="Curriculum" id="Mon_A"></td>
+            <td class="Curriculum" id="Tue_A"></td>
+            <td class="Curriculum" id="Wed_A"></td>
+            <td class="Curriculum" id="Thu_A"></td>
+            <td class="Curriculum" id="Fru_A"></td>
+            <td class="Curriculum" id="Sat_A"></td>
+            <td class="Curriculum" id="Sun_A"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;">
+                <font size="3">B</td>
+            <td>1900 至 1950</td>
+            <td class="Curriculum" id="Mon_B"></td>
+            <td class="Curriculum" id="Tue_B"></td>
+            <td class="Curriculum" id="Wed_B"></td>
+            <td class="Curriculum" id="Thu_B"></td>
+            <td class="Curriculum" id="Fri_B"></td>
+            <td class="Curriculum" id="Sat_B"></td>
+            <td class="Curriculum" id="Sun_B"></td>
+        </tr>
+        <tr>
+            <td style="font-weight:bold;">
+                <font size="3">C</td>
+            <td>2000 至 2050</td>
+            <td class="Curriculum" id="Mon_C"></td>
+            <td class="Curriculum" id="Tue_C"></td>
+            <td class="Curriculum" id="Wed_C"></td>
+            <td class="Curriculum" id="Thu_C"></td>
+            <td class="Curriculum" id="Fri_C"></td>
+            <td class="Curriculum" id="Sat_C"></td>
+            <td class="Curriculum" id="Sun_C"></td>
+        </tr>
+    </table>
+
+
 </div>
 
-  <table BORDER="5" align=center width="1200" height="800" class="table table-bordered" style="border:8px #00BBFF groove;">
+<!--點選課表格子Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Test Modal</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalContent"></p>
+                <hr>
+                <div>時間: <p id="time">XX節~XX節</p></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <tr style="font-weight:bold;" id="monitor">
-      <td> </td>
-    <td>時間</td>
-    
-    <td>
-    星期一 <br>
-    <?php
-      echo $date->format('Y-m-d');
-      $date->add(new DateInterval('P1D'));
-    ?>
-    </td>
-    <td>
-    星期二 <br>
-    <?php
-      echo $date->format('Y-m-d');
-      $date->add(new DateInterval('P1D'));
-    ?>
-    </td>
-    <td>
-    星期三 <br>
-    <?php
-      echo $date->format('Y-m-d');
-      $date->add(new DateInterval('P1D'));
-    ?>
-    </td>
-    <td>
-    星期四 <br>
-    <?php
-      echo $date->format('Y-m-d');
-      $date->add(new DateInterval('P1D'));
-    ?>
-    </td>
-    <td>
-    星期五 <br>
-    <?php
-      echo $date->format('Y-m-d');
-      $date->add(new DateInterval('P1D'));
-    ?>
-    </td>
-    <td>
-    星期六 <br>
-    <?php
-      echo $date->format('Y-m-d');
-      $date->add(new DateInterval('P1D'));
-    ?>
-    </td>
-    <td>
-    星期日 <br>
-    <?php
-      echo $date->format('Y-m-d');
-      // $date->add(new DateInterval('P1D'));
-    ?>
-    </td>
-    
-    
+<!--modal 要放哪: 放div container外面-->
+<!--div container好像沒包好?? 包好包滿才能work-->
 
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">1</td>
-    <td>0800
-至
-0850</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">2</td>
-    <td>
-0900
-至
-0950</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">3</td>
-    <td>
-1000
-至
-1050</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">4</td>
-    <td>
-1100
-至
-1150</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">午休</td>
-    <td>
-1200
-至
-1250</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-
-  <tr>
-  <td style="font-weight:bold;"><font size="3">5</td>
-    <td>1300
-至
-1350</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">6</td>
-    <td>1400
-至
-1450</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">7</td>
-    <td>1500
-至
-1550</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">8</td>
-  <td>
-1600
-至
-1650</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">9</td>
-    <td>
-1700
-至
-1750</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-
-  <tr>
-  <td style="font-weight:bold;"><font size="3">A</td>
-    <td>1800
-至
-1850
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">B</td>
-    <td>1900
-至
-1950</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  <td style="font-weight:bold;"><font size="3">C</td>
-    <td>2000
-至
-2050</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-  
-    
-  </table>
-  </div>
-@endsection
+@endsection 
 
 @section('js')
-<script>
 
-  </script>
-  
+<script language="JavaScript" type="text/javascript">
+
+//    要寫n百個? 別鬧了
+//     $("#Mon-1").click(function() {
+//
+//         alert("Click func success!");
+//
+//         var className = $("#Mon-1").text();
+//         alert(className); 
+//     });
+
+
+//js是client端，換頁面變數就被清掉了
+var currentClass;   
+    
+$( document ).ready(function() {
+    
+    // alert現在的教室
+    $(".classBtn").click(function() {
+
+        currentClass = this.id;
+        
+        alert("你按下了" + currentClass);
+        
+//        $(".currentClass_goWeek").val(currentClass);
+//        alert("Send value to 上/下一周button: " + $(".currentClass_goWeek").val());
+
+    });
+
+    // 按下課表內格子顯示Modal   
+    $(".Curriculum").click(function() {
+
+        var myContent = $(this).text();
+
+        $("#modalContent").text(myContent);
+        $("#modalContent").append("<br>id: " + this.id);//this.id 就是該格id
+        $("#myModal").modal("show");
+
+    });
+    
+});
+
+
+</script>
+
 @stop

@@ -8,6 +8,22 @@
 
 <div class="container">
   
+    <h2>資管系器材租借申請單</h2>
+    <form action="{{ asset('/create') }}" method="post" id="form5">
+        {{ csrf_field() }}
+        <ul class="nav nav-tabs">
+            <li class="active" id="L1"><a>Step1 借用人資料</a></li>
+            <li id="L2"><a>Step2 借用項目</a></li>
+            <li id="L3"><a>Step3 確認</a></li>
+            <li id="L4"><a>Step4 完成借用</a></li>
+        </ul>
+    <div class="tab-content" >
+        <div id="home" class="tab-pane fade in active" >
+            <div class="col-xs-6 col-sm-4">
+                <div class="form-group">
+                    <label><h2>姓名（必填）：</h2></label>
+                        <input type="text" class="form-control"  required="required" id="username" name="username">
+                </div>             
 
 <h2>資管系器材租借申請單</h2>
 <form action="{{ asset('/create') }}" method="post">
@@ -69,14 +85,14 @@
             <label for="name" id=classroom><h2>授課教室：</h2></label>
                 <select class="form-control" name="classroom">
                     <option value="" disabled selected></option>
-                    <option>I1-223</option>
-                    <option>I1-002</option>
-                    <option>I1-017</option>
-                    <option>I1-105</option>
-                    <option>I1-107</option>
-                    <option>I1-404</option>
-                    <option>I-314</option>
-                    <option>I-315</option>
+                    <option value="I1-223">I1-223</option>
+                    <option value="I1-002">I1-002</option>
+                    <option value="I1-017">I1-017</option>
+                    <option value="I1-105">I1-105</option>
+                    <option value="I1-107">I1-107</option>
+                    <option value="I1-404">I1-404</option>
+                    <option value="I1-314">I-314</option>
+                    <option value="I1-315">I-315</option>
                 </select>
 
             <div class="form-group">

@@ -18,13 +18,14 @@ class CreateReturnsTable extends Migration
             $table->string('grade');
             $table->string('name');
             $table->date('date');
+            $table->timestamp('updated_at');
             $table->string('borrow');
             $table->string('borrownum');
             $table->string('mortgage');
             $table->string('classroom');
             $table->string('teacher');
             $table->string('status');
-            $table->timestamps();
+            
             
         });
     }
