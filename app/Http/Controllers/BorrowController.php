@@ -35,7 +35,12 @@ class BorrowController extends Controller
   {
       $miss=Miss::where('name','=',$rep->searchname)
                   ->get();
-      return view('button2_borrow.index',['miss'=> $miss]);
+      if (count($miss)>=1) {
+        return view('button2_borrow.index',['miss'=> $miss]);
+      } else if (count($miss)<1){
+        return view('button2_borrow.fail',['miss'=> $miss]);
+      }
+      // return view('button2_borrow.index',['miss'=> $miss]);
   }
 
   // ID排序

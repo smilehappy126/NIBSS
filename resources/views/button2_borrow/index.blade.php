@@ -138,7 +138,7 @@
 	
 	<!-- 表單內容 -->
 	@foreach($miss as $mis)
-	@if (count($mis)>=1)
+	
 	<div class="TableContent">
 	<table class="table" id="content" style="table-layout: fixed; text-align: center" >
 
@@ -195,10 +195,7 @@
 	
 </div>
 
-@else
-<h1>查無此資料!!!</h1>
 
-@endif
 @endforeach
 
 <form action="{{ asset('/borrow') }}" method="get">
