@@ -14,11 +14,11 @@ class ApplicationController extends Controller
  	}
  	public function store(Request $request)
  	{	
-   	$application = new Application;
+    $application = new Application;
     $application->name = $request->username;
     $application->class = $request->class;
-    $application->item = $request->equipment;
-    $application->itemnum = $request->number;
+    $application->item = ($request['equipment']);
+    $application->itemnum = ($request['number']);
     $application->license = $request->license;
     $application->classroom = $request->classroom;
     $application->teacher = $request->teacher;

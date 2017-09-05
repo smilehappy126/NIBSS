@@ -26,7 +26,7 @@
                 </div>             
 
                 <label><h2>班級：</h2></label>
-                    <select class="form-control" name="class">
+                    <select class="form-control" id="class" name="class">
                         <option value="" disabled selected></option>
                         <option value="1A">1A</option>
                         <option value="1B">1B</option>
@@ -202,9 +202,10 @@
     
     var $name = document.getElementById("username").value ;
     var $phone = document.getElementById("phone").value ;
-        if($name == "" || $phone == "")
+    var $class = document.getElementById("class").value ;
+        if($name == "" || $phone == "" || $class == "")
         {
-            alert("姓名與電話不可空白！");  
+            alert("尚有資料未填！");  
         }
         
         else{
@@ -239,15 +240,24 @@
                         .append("編號: " + $s4 + "<br>");    
 
         }
+        if($s1 == null || $s2 == null || $s3 == null || $s4 == null)
+        {
+            alert("尚有資料未填！");  
+        }
+        else{
+
         $("#L2").removeClass("active");
         $("#L3").addClass("active");
         $('#b2').attr('href','#menu2');
+        }        
+
 
     }
     function send(){
             $("#L3").removeClass("active");
             $("#L4").addClass("active");
             $('#b3').attr('href','#menu3');
+        
     }
     
 </script>
