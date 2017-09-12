@@ -94,7 +94,7 @@
     
         <div id="myForm1">
         <h2>借用項目：</h2>
-            <select class="form-group" width="auto" name="equipment">
+            <select class="form-group" width="auto" name="equipment[]">
                     <option value="" disabled selected></option>
                     <optgroup label="鑰匙">
                         <option value="鑰匙I1-223">鑰匙I1-223</option>
@@ -131,7 +131,7 @@
             </select>    
         
         <h2>借用數量：</h2>
-            <select class="form-group" width="auto" name="number">
+            <select class="form-group" width="auto" name="number[]">
                 <option value="" disabled selected></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -173,14 +173,14 @@
         </div>
     </div>
     
-</form>
+
     <div id="menu2" class="tab-pane fade">
         <div id="confirm"></div>
         <div>
         <button type="submit"  class="btn btn-primary" onclick="send()" id="b3" form="form5">送出申請</button>
         </div>
     </div>
-    
+</form>    
 
     
     <div id="menu3" class="tab-pane fade">
@@ -219,7 +219,7 @@
     function appendForm() {
         //複製myForm1表單，更改id變成myForm2,myForm3...
         $("#myForm1").clone()
-                    .attr("id","myForm" + (formCount+=1)) //寫formCount++會出錯@@
+                    .attr("id","myForm" + (formCount+=1))
                     .insertAfter($("[id^=myForm]:last"));
 
 //        window.alert("現在的formCount: " + formCount);
@@ -230,8 +230,8 @@
     function confirm(){
 
         for(var i = 1; i<=formCount; i++){
-            $s1 = $("#myForm"+i).find("select[name='equipment']").val();
-            $s2 = $("#myForm"+i).find("select[name='number']").val();
+            $s1 = $("#myForm"+i).find("select[name='equipment[]']").val();
+            $s2 = $("#myForm"+i).find("select[name='number[]']").val();
             $s3 = $("#myForm"+i).find("select[name='spare_key']").val();
             $s4 = $("#myForm"+i).find("select[name='eq_number']").val();
             $("#confirm").append("<h2>借用項目" + i + ": </h2>" + "項目: " + $s1 + "<br>")
