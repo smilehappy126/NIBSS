@@ -13,16 +13,29 @@ class ApplicationController extends Controller
        return view('button1_create.index');//
  	}
  	public function store(Request $request)
- 	{
-    $application = new application;
+ 	{	   
+    $eq = array();
+    $num = array();
+    
+    $eq = $request->equipment;
+    $num =$request->number;
+
+    /*$str_eq = json_encode($eq);
+    $str_num = json_encode($num);*/
+    $str_eq = join(" , ",$eq);
+    $str_num = join(" , ",$num);
+
+    
+    $application = new Application;
+    $application->name = $request->username;
     $application->class = $request->class;
-    $application->item = $request->equipment;
-    $application->itemnum = $request->number;
+    $application->item =  $str_eq;
+    $application->itemnum = $str_num;
     $application->license = $request->license;
     $application->classroom = $request->classroom;
     $application->teacher = $request->teacher;
     $application->save();
-    return redirect('/');
+    return redirect('/create');
      //
  	}
 }
