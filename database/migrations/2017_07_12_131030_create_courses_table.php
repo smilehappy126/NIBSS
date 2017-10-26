@@ -18,7 +18,8 @@ class CreateCoursesTable extends Migration
             $table->timestamps();
             $table->string('roomname');
             $table->string('weekFirst');
-            $table->string('classTime');
+            $table->string('start_classTime');
+            $table->string('end_classTime');
             $table->string('teacher');
             $table->string('content');
         });

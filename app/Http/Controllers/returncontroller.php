@@ -12,7 +12,6 @@ class returnController extends Controller
   {
     $res = return1::where('status','=','已歸還')->orderBy('date','desc')->get();
     return view('button3_return.index',['res'=> $res]);
-    
   }
 
 

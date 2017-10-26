@@ -12,17 +12,9 @@ $dateString = $date->format('Y-m-d');
 $pre = strtotime('previous monday', strtotime($dateString));
 $next = strtotime('next monday', strtotime($dateString)); 
 
-
-//test字串方式比對weekFirst時間(格式: XXXX-XX-XX)
-if($dateString == "2017-08-14"){
-    echo "The Mondays` date are same. Working.<br>";
-}else{
-    echo "Something Wrong.<br>";
-}
-echo $dateString;
-
-echo "<br>";
-//echo $currentClass;
+echo "主畫面<br>";
+echo "請先選擇教室<br>";
+echo "(可在思考此處畫面設計)";
 
 
 ?>
@@ -75,7 +67,8 @@ echo "<br>";
 
     @endforeach
 
-    <!--上一週/下一週按鈕-->
+<!--
+    上一週/下一週按鈕
     <div class="row">
 
         <form action="{{ asset('/goWeek') }}" method="post" class="col col-md-2">
@@ -92,6 +85,7 @@ echo "<br>";
             
         </form>
     </div>
+-->
 
 
     <table BORDER="5" align=center width="1200" height="800" class="table table-bordered" style="border:8px #00BBFF groove;">
@@ -322,51 +316,22 @@ echo "<br>";
     </div>
 </div>
 
-<!--modal 要放哪: 放div container外面-->
-<!--div container好像沒包好?? 包好包滿才能work-->
-
 @endsection 
 
 @section('js')
 
 <script language="JavaScript" type="text/javascript">
 
-//    要寫n百個? 別鬧了
-//     $("#Mon-1").click(function() {
-//
-//         alert("Click func success!");
-//
-//         var className = $("#Mon-1").text();
-//         alert(className); 
-//     });
-
-
-//js是client端，換頁面變數就被清掉了
-var currentClass;   
-    
 $( document ).ready(function() {
     
-    // alert現在的教室
+    /* alert進入的教室 */
     $(".classBtn").click(function() {
-
-        currentClass = this.id;
         
-        alert("你按下了" + currentClass);
+        var classroomBtn;// 所在教室
+        classroomBtn = this.id;
         
-//        $(".currentClass_goWeek").val(currentClass);
-//        alert("Send value to 上/下一周button: " + $(".currentClass_goWeek").val());
-
-    });
-
-    // 按下課表內格子顯示Modal   
-    $(".Curriculum").click(function() {
-
-        var myContent = $(this).text();
-
-        $("#modalContent").text(myContent);
-        $("#modalContent").append("<br>id: " + this.id);//this.id 就是該格id
-        $("#myModal").modal("show");
-
+        alert("你進入了 " + classroomBtn + " 教室頁面");
+        
     });
     
 });

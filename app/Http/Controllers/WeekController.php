@@ -12,6 +12,7 @@ class WeekController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         $today = date( 'Y-m-d', strtotime( 'monday this week' ) );
@@ -56,27 +57,12 @@ class WeekController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    //下一週路由
+
     public function show(Request $request)
     {
-        $classrooms = Classroom::all();
-
-        return view('button4_reserve.index',[
-                'weekfirst' => $request->weekfirst,
-                'classrooms'=> $classrooms,
-            ]);
+        
     }
     
-
-    public function show2(Request $request)
-    {
-        $classrooms = Classroom::all();
-
-        return view('button4_reserve.inputClass',[
-                'weekfirst' => $request->weekfirst,
-                'classrooms'=> $classrooms,
-            ]);
-    }
     
     /**
      * Show the form for editing the specified resource.
