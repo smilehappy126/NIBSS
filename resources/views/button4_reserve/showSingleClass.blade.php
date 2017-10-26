@@ -23,13 +23,13 @@ $nextString = date('Y-m-d',$next);
 //}
 
 
-echo "本週一: ", $dateString;
-echo "<br>";
-echo "上週一: ", $preString;
-echo "<br>";
-echo "下週一: ", $nextString;
-
-echo "<br>";
+//echo "本週一: ", $dateString;
+//echo "<br>";
+//echo "上週一: ", $preString;
+//echo "<br>";
+//echo "下週一: ", $nextString;
+//
+//echo "<br>";
 echo "現在所在教室: ", $currentClassroom;
 
 
@@ -895,6 +895,7 @@ echo "現在所在教室: ", $currentClassroom;
                         <br>
                         <label>該週週一: {{$thisMonday}}</label>
                         <input name="weekFirst" value="{{$thisMonday}}" hidden>
+                        <p id="errorMessage" style="color:red;"></p>
                     </div> 
             </div>
             <div class="modal-footer">
@@ -1165,7 +1166,9 @@ $( document ).ready(function() {
             selected(".select_start", start);
             selected(".select_end", end);
         }
-
+        
+        //清空#errorMessage
+        $("#errorMessage").text("");
         
         function selected(mClass,day) {
             $(mClass+" [value="+day+"]").prop('selected', true);
@@ -1297,36 +1300,40 @@ $( document ).ready(function() {
     /* form validation: 結束節次應大於起始節次 */
     // 但是對修改form沒用，why?
     $(".select_start").change(function(){
-        alert("select_start changed!");
+//        alert("select_start changed!");
         
         var index_start = classTime_array.indexOf($(".select_start option:selected").val());
         var index_end = classTime_array.indexOf($(".select_end option:selected").val());
         
-        alert("index_start: " + index_start);
-        alert("index_end: " + index_end);
+//        alert("index_start: " + index_start);
+//        alert("index_end: " + index_end);
         
         if(index_start > index_end){
-            alert("起始節次應早於結束節次");
+//            alert("起始節次應早於結束節次");
             $(".form_submit").prop('disabled', true);
+            $("#errorMessage").text("起始節次應早於結束節次");
         }else{
             $(".form_submit").prop('disabled', false);
+            $("#errorMessage").text("");
         }
         
     });
     $(".select_end").change(function(){
-        alert("select_end changed!");
+//        alert("select_end changed!");
         
         var index_start = classTime_array.indexOf($(".select_start option:selected").val());
         var index_end = classTime_array.indexOf($(".select_end option:selected").val());
         
-        alert("index_start: " + index_start);
-        alert("index_end: " + index_end);
+//        alert("index_start: " + index_start);
+//        alert("index_end: " + index_end);
         
         if(index_start > index_end){
-            alert("起始節次應早於結束節次");
+//            alert("起始節次應早於結束節次");
             $(".form_submit").prop('disabled', true);
+            $("#errorMessage").text("起始節次應早於結束節次");
         }else{
             $(".form_submit").prop('disabled', false);
+            $("#errorMessage").text("");
         }
         
     });
