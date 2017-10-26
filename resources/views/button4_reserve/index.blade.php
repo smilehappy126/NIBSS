@@ -13,8 +13,8 @@ $pre = strtotime('previous monday', strtotime($dateString));
 $next = strtotime('next monday', strtotime($dateString)); 
 
 echo "主畫面<br>";
-echo "請先選擇教室<br>";
-echo "(可在思考此處畫面設計)";
+echo "(請先選擇教室)<br>";
+//echo "(可在思考此處畫面設計)";
 
 
 ?>
@@ -26,10 +26,12 @@ echo "(可在思考此處畫面設計)";
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
     </button>
 
-    <!--新增課程資訊按鈕-->
+<!--
+    新增課程資訊按鈕
     <button type="button" class="btn btn-link">
         <a href="{{ asset('/inputClass') }}"><div>新增課程資訊</div></a>
     </button>
+-->
     
     
 
