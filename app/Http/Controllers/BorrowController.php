@@ -20,6 +20,7 @@ class BorrowController extends Controller
       $update= Miss::find($id);
       $update->update(['date'=>$rep->date]);
       $update->update(['class'=>$rep->class]);
+      $update->update(['phone'=>$rep->phone]);
       $update->update(['name'=>$rep->name]);
       $update->update(['item'=>$rep->item]);
       $update->update(['itemnum'=>$rep->itemnum]);
