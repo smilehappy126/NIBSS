@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Application;
+use App\Miss;
 //use App\Miss;
 class ApplicationController extends Controller
 	
@@ -17,8 +17,8 @@ class ApplicationController extends Controller
     $eq = array();
     $num = array();
     
-    $eq = $request->equipment;
-    $num =$request->number;
+    $eq = $request->item;
+    $num =$request->itemnum;
 
     /*$str_eq = json_encode($eq);
     $str_num = json_encode($num);*/
@@ -26,14 +26,16 @@ class ApplicationController extends Controller
     $str_num = join(" , ",$num);
 
     
-    $application = new Application;
-    $application->name = $request->username;
+    $application = new Miss;
+    $application->name = $request->name;
     $application->class = $request->class;
     $application->item =  $str_eq;
     $application->itemnum = $str_num;
     $application->license = $request->license;
     $application->classroom = $request->classroom;
     $application->teacher = $request->teacher;
+    $application->phone = $request->phone;
+    $application->status = '借用中';
     $application->save();
     return redirect('/create');
      //

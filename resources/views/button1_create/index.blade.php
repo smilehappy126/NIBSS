@@ -21,7 +21,7 @@
             <div class="col-xs-6 col-sm-4">
                 <div class="form-group">
                     <label><h2>姓名（必填）：</h2></label>
-                        <input type="text" class="form-control"  required="required" id="username" name="username">
+                        <input type="text" class="form-control"  required="required" id="username" name="name">
                 </div>             
 
                 <label><h2>班級（必選）：</h2></label>
@@ -93,7 +93,7 @@
         <h2><font color= red><所有項目請確實填寫！></font></h2>
         <div id="myForm1">
         <h2>借用項目：</h2>
-            <select class="form-group" width="auto" name="equipment[]">
+            <select class="form-group" width="auto" name="item[]">
                     <option value="" disabled selected></option>
                     <optgroup label="鑰匙">
                         <option value="鑰匙I1-223">鑰匙I1-223</option>
@@ -132,7 +132,7 @@
             </select>    
         
         <h2>借用數量：</h2>
-            <select class="form-group" width="auto" name="number[]">
+            <select class="form-group" width="auto" name="itemnum[]">
                 <option value="" disabled selected></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -224,8 +224,8 @@
         $("#confirm").append("<h2>借用者:" + $s5 + "</h2>")
         
         for(var i = 1; i<=formCount; i++){
-            $s1 = $("#myForm"+i).find("select[name='equipment[]']").val();
-            $s2 = $("#myForm"+i).find("select[name='number[]']").val();
+            $s1 = $("#myForm"+i).find("select[name='item[]']").val();
+            $s2 = $("#myForm"+i).find("select[name='itemnum[]']").val();
 
             $("#confirm").append("<h2>借用項目" + i + ": </h2>" + "項目: " + $s1 + "<br>")
                         .append("數量: " + $s2 + "<br>")
@@ -242,6 +242,9 @@
         $("#L3").addClass("active");
         $('#b2').attr('href','#menu2');
         }        
+        // $("#L2").removeClass("active");
+        // $("#L3").addClass("active");
+        // $('#b2').attr('href','#menu2');
 
 
     }
