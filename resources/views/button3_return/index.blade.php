@@ -52,6 +52,7 @@
         <th style=" text-align: center;">歸還日期</th>
         <th style=" text-align: center;">班級</th>
         <th style=" text-align: center;">申請人</th>
+        <th style=" text-align: center;">電話</th>
         <th style=" text-align: center;">借用物品</th>
         <th style=" text-align: center;">借用數量</th>
         <th style=" text-align: center;">抵押證件</th>
@@ -78,11 +79,12 @@
       ?>
           {{$re->updated_at}}
      </td>
-     <td> {{$re->grade}}</td>
-     <td> {{$re->name}}</td>   
-     <td> {{$re->borrow}}</td>
-     <td> {{$re->borrownum}}</td>
-     <td> {{$re->mortgage}}</td>
+     <td> {{$re->class}}</td>
+     <td> {{$re->name}}</td>
+     <td> {{$re->phone}}</td>   
+     <td> {{$re->item}}</td>
+     <td> {{$re->itemnum}}</td>
+     <td> {{$re->license}}</td>
      <td> {{$re->classroom}}</td>
      <td> {{$re->teacher}}</td>
      <td> {{$re->status}}</td>
@@ -112,11 +114,12 @@
     <tr><th>租借序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $re->id}}"> </th></tr>
     <tr><th>租借日期 : </th><th> <input  class="form-control" type="date" name="date" value="{{ $re->date }}"></th></tr>
     <tr><th>歸還日期 : </th><th> <input  class="form-control" type="timestamp" disabled value="{{ $re->updated_at }}"></th></tr>
-    <tr><th>班級 :</th> <th><input  class="form-control" type="text" name="grade" value="{{ $re->grade }}"></th></th>
-    <tr><th>申請人 :</th><th> <input  class="form-control" type="text" name="name" value="{{ $re->name }}"></th></tr>   
-    <tr><th>借用物品 :</th> <th> <input  class="form-control" type="text" name="borrow" value="{{ $re->borrow }}"> </th></tr>
-    <tr><th>借用數量 :</th><th><input  class="form-control" type="number" name="borrownum" value="{{ $re->borrownum }}"></th></tr>
-    <tr><th>抵押證件 :</th><th> <input  class="form-control" type="text" name="mortgage" value="{{ $re->mortgage }}"></th></tr>
+    <tr><th>班級 :</th> <th><input  class="form-control" type="text" name="class" value="{{ $re->class }}"></th></th>
+    <tr><th>申請人 :</th><th> <input  class="form-control" type="text" name="name" value="{{ $re->name }}"></th></tr>
+    <tr><th>電話 :</th><th> <input  class="form-control" type="text" name="phone" value="{{ $re->phone }}"></th></tr>   
+    <tr><th>借用物品 :</th> <th> <input  class="form-control" type="text" name="item" value="{{ $re->item }}"> </th></tr>
+    <tr><th>借用數量 :</th><th><input  class="form-control" type="number" name="itemnum" value="{{ $re->itemnum }}"></th></tr>
+    <tr><th>抵押證件 :</th><th> <input  class="form-control" type="text" name="license" value="{{ $re->license }}"></th></tr>
     <tr><th>授課教室 :</th><th> <input  class="form-control" type="text" name="classroom" value="{{ $re->classroom }}"></th></tr>
     <tr><th>授課教師 :</th><th> <input  class="form-control" type="text" name="teacher" value="{{ $re->teacher }}"></th></tr>
     <tr><th>狀態 :</th><td> <select class= "form-control" name="status" value="{{ $re->teacher }}" >
