@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    protected $fillable=['roomname','weekFirst','classTime','teacher','content'];
+    protected $fillable=['roomname','weekFirst','start_classTime','end_classTime','teacher','content'];
     
 }

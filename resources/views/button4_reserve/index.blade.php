@@ -322,17 +322,15 @@ echo "(可在思考此處畫面設計)";
 
 <script language="JavaScript" type="text/javascript">
 
-
-var currentClass;   
-    
 $( document ).ready(function() {
     
-    // alert現在的教室
+    /* alert進入的教室 */
     $(".classBtn").click(function() {
-
-        currentClass = this.id;
         
-        alert("你按下了" + currentClass);
+        var classroomBtn;// 所在教室
+        classroomBtn = this.id;
+        
+        alert("你進入了 " + classroomBtn + " 教室頁面");
         
     });
     

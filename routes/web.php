@@ -66,38 +66,24 @@ Route::get('/return', 'returnController@index');
 Route::post('/return/update/{id}','returnController@update');
 
 
-//old
-
-//預約狀況
-//Route::get('/reserve', 'WeekController@index');
-////下一週路由
-//Route::post('/goWeek', 'WeekController@show');
-////新增課表內的內容的下一週路由
-//Route::post('/goWeek2', 'WeekController@show2');
-//
-////新增教室資料
-//Route::post('/newclassroom','WeekController@store');
-//Route::get('/newclassroom', 'WeekController@newClassroomPage');
-////修改教室資料
-//Route::post('/newclassroom/{classroom}','WeekController@update');
-//
-////新增課表內的內容
-//Route::get('/inputClass', 'WeekController@inputClassPage');
-////新增教室內容資料
-//Route::post('/inputClass','CourseController@store');
-
 
 
 //預約狀況(主畫面，請先選擇教室，可再思考畫面設計)
 Route::get('/reserve', 'WeekController@index');
-
 //預約狀況(點選教室後)
 Route::get('/reserve/{roomname}', 'CourseController@show');
-
 //(點選上下一週後)
 Route::get('/reserve/{roomname}/{weekfirst}', 'CourseController@showOtherWeek');
 
 
+//新增課程資料
+Route::post('reserve/createCourse', 'CourseController@create');
+//更新課程資料
+Route::post('/reserve/updateCourse/{id}','CourseController@update');
+//刪除課程資料
+Route::delete('reserve/deleteCourse/{id}','CourseController@destroy');
+
+//以下尚未處理
 //新增教室資料
 Route::post('/newclassroom','WeekController@store');
 Route::get('/newclassroom', 'WeekController@newClassroomPage');
