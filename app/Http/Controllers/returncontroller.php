@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\return1;
+use App\Miss;
 use Illuminate\Http\Request;
 
 class returnController extends Controller
@@ -10,21 +10,22 @@ class returnController extends Controller
   
   public function index()
   {
-    $res = return1::where('status','=','已歸還')->orderBy('date','desc')->get();
+    $res = Miss::where('status','=','已歸還')->orderBy('date','desc')->get();
     return view('button3_return.index',['res'=> $res]);
   }
 
 
 	public function update(Request $rep, $id)
 	{
-      $update=return1::find($id);
-      $update->update(['grade'=>$rep->grade]);
+      $update=Miss::find($id);
+      $update->update(['class'=>$rep->class]);
       $update->update(['name'=>$rep->name]);
+      $update->update(['phone'=>$rep->phone]);
       $update->update(['date'=>$rep->date]);
       $update->update(['updated_at'=>$rep->updated_at]);
-      $update->update(['borrow'=>$rep->borrow]);
-      $update->update(['borrownum'=>$rep->borrownum]);
-      $update->update(['mortgage'=>$rep->mortgage]);
+      $update->update(['item'=>$rep->item]);
+      $update->update(['itemnum'=>$rep->itemnum]);
+      $update->update(['license'=>$rep->license]);
       $update->update(['classroom'=>$rep->classroom]);
       $update->update(['teacher'=>$rep->teacher]);
       $update->update(['status'=>$rep->status]);
