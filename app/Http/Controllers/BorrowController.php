@@ -10,7 +10,7 @@ class BorrowController extends Controller
         //
 	public function index()
 	{
-		$miss = Miss::where('status','=','借用中');
+		$miss = Miss::all();
 		return view('button2_borrow.index',['miss'=> $miss]);
 
 	}

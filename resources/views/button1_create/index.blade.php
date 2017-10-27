@@ -9,7 +9,8 @@
 <div class="container">
   
     <h2>資管系器材租借申請單</h2>
-    <form action="{{ asset('/create') }}" method="post" id="form5">
+    <!-- novalidate 解決 An invalid form control with name='' is not focusable. -->
+    <form action="{{ asset('/create') }}" method="post" id="form5" novalidate>
         {{ csrf_field() }}
         <ul class="nav nav-tabs">
             <li class="active" id="L1"><a>Step1 借用人資料</a></li>
@@ -46,12 +47,11 @@
                         <option value="博五">博五</option>
                         <option value="博六">博六</option>
                         <option value="博七">博七</option>
-                    </select>          
-            
-            <div class="form-group">
-                <label><h2>電話（必填）：</h2></label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="000 000 0000" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="10">
-            </div>  
+                    </select>
+                <div class="form-group">
+                    <label><h2>電話（必填）：</h2></label>
+                        <input type="text" class="form-control"  required="required" id="phone" name="phone" placeholder="000 000 0000" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="10">
+                </div>           
             
                 <label><h2>證件：（必填）</h2></label>
                 <select class="form-control" name="license">
@@ -153,6 +153,7 @@
         <div id="confirm"></div>
         <div>
         <a data-toggle="tab" class="btn btn-primary" role="button" onclick="Previous2()" id="B3">上一步</a>
+        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
         <button type="submit"  class="btn btn-primary" id="b3" form="form5">送出申請</button>
         </div>
     </div>
@@ -167,7 +168,7 @@
 </div>
 </div>
 
-@endsection
+
 
 @section('js')
 
@@ -180,7 +181,7 @@
     var $phone = document.getElementById("phone").value ;
     var $class = document.getElementById("class").value ;
     var $license = $("#form5").find("select[name='license']").val();
-        if($name == "" || $phone == "" || $class == "" || $license == null)
+        if($name == "" ||  $class == "" || $license == null)
         {
             alert("尚有資料未填！");  
         }
@@ -222,7 +223,6 @@
     function confirm(){
         $s5 = document.getElementById("username").value;
         $("#confirm").append("<h2>借用者:" + $s5 + "</h2>")
-        
         for(var i = 1; i<=formCount; i++){
             $s1 = $("#myForm"+i).find("select[name='item[]']").val();
             $s2 = $("#myForm"+i).find("select[name='itemnum[]']").val();
@@ -259,3 +259,4 @@
 
 
 @stop
+@endsection
