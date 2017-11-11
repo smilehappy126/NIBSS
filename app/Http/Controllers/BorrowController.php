@@ -92,6 +92,18 @@ class BorrowController extends Controller
     return view('button2_borrow.index',['miss'=> $miss]);
   }
 
+  // Phone排序
+  public function phoneasc(){
+    $miss=Miss::orderBy('phone','asc')
+                ->get();
+    return view('button2_borrow.index',['miss'=> $miss]);
+  }
+  public function phonedesc(){
+    $miss=Miss::orderBy('phone','desc')
+                ->get();
+    return view('button2_borrow.index',['miss'=> $miss]);
+  }
+
   // Item排序
   public function itemasc(){
     $miss=Miss::orderBy('item','asc')

@@ -110,8 +110,8 @@
    	<form action="{{ asset ('/borrow/namedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 電話 -->
    	<th style="text-align: center;">電話<br>
-    <form action="{{ asset ('/borrow/nameasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
-   	<form action="{{ asset ('/borrow/namedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+    <form action="{{ asset ('/borrow/phoneasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
+   	<form action="{{ asset ('/borrow/phonedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
 <!-- 借用物品-->
    	<th style="text-align: center;">借用物品<br>
    	<form action="{{ asset ('/borrow/itemasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
