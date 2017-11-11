@@ -76,6 +76,8 @@
     .searchButton:hover{
     background-color: grey;
     }
+    
+}
    
     </style>
 	
@@ -182,7 +184,8 @@
     <tr><th>抵押證件 :</th><th> <input  class="form-control" type="text" name="license" value="{{ $mis->license }}"></th></tr>
     <tr><th>授課教室 :</th><th> <input  class="form-control" type="text" name="classroom" value="{{ $mis->classroom }}"></th></tr>
     <tr><th>授課教師 :</th><th> <input  class="form-control" type="text" name="teacher" value="{{ $mis->teacher }}"></th></tr>
-    <tr><th>狀態 :</th><th> <input  class="form-control" type="text" name="status" value="{{ $mis->status }}"></th></tr>
+    <tr><th>狀態 :</th><th> <select class="form-control" name="status" value="{{ $mis->status }}"><option value="已歸還">已歸還</option>
+                                        <option value="借用中">借用中</option> </select></th></tr>
 </table>
 </div>
 	        </div>

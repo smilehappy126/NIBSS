@@ -58,13 +58,41 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
+           
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            .LoginPanel{
+                float: right;
+                position: absolute;
+                margin-right: 10px;
+                top: 700px;
+            }
+
+            .LoginButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 30px;
+                background-color: transparent;
+                width: 180px;
+                height: 80px;
+                border-radius: 20px;
+                border-width: 0px;
+                transition: 0.3s;
+            }
+
+            .LoginButton:hover{
+                background-color: #CCDDFF;
+                width:400px;
+                transition: 0.3s;
+
             }
         </style>
     </head>
     <body>
+        
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -76,18 +104,22 @@
                     @endif
                 </div>
             @endif
-
+            <div class="LoginPanel">
+        <button class="LoginButton">Login</button>
+        </div>
+        
+        
             <div class="content">
                 <div class="title m-b-md">
                     設備借用系統
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/create') }}">新增申請單</a>|
-                    <a href="{{ url('/borrow') }}">借用狀況</a>|
-                    <a href="{{ url('/return') }}">已歸還資料</a>|
-                    <a href="{{ url('/reserve') }}">預約狀況</a>|
-                    <a href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
+                    <a  href="{{ url('/create') }}">新增申請單</a>|
+                    <a  href="{{ url('/borrow') }}">借用狀況</a>|
+                    <a  href="{{ url('/return') }}">已歸還資料</a>|
+                    <a  href="{{ url('/reserve') }}">預約狀況</a>|
+                    <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                 </div>
             </div>
         </div>
