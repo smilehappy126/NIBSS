@@ -11,9 +11,10 @@
 |
 */
 //起始頁
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','LoginController@welcome');
+//登入驗證
+Route::get('/login','LoginController@index');
+
 //新增申請單
 Route::get('/create', 'ApplicationController@index');
 Route::post('/create','ApplicationController@store');
@@ -33,6 +34,9 @@ Route::get('/borrow/classdesc','BorrowController@classdesc');
 // Name排序
 Route::get('/borrow/nameasc','BorrowController@nameasc');
 Route::get('/borrow/namedesc','BorrowController@namedesc');
+// Phone排序
+Route::get('/borrow/phoneasc','BorrowController@phoneasc');
+Route::get('/borrow/phonedesc','BorrowController@phonedesc');
 // Item排序
 Route::get('/borrow/itemasc','BorrowController@itemasc');
 Route::get('/borrow/itemdesc','BorrowController@itemdesc');
