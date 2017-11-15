@@ -11,11 +11,11 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->delete;
+        DB::table('users')->truncate;
 
         User::create([
             'username' => 'admin',
             'email'    => 'admin@cc.ncu.edu.tw',
-            'password' => Hash::make('root'), 
+            'password' => Hash::make('root'),
         ]};
 }

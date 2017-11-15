@@ -32,6 +32,7 @@
 	font-family:  Microsoft JhengHei;
 	font-size: 20px;
 	text-align: center;
+	word-break: break-word;
 	}
 	.TableContent{
     font-family:  Microsoft JhengHei;
@@ -107,62 +108,74 @@
 <div class="container">
 	<div class="TopTitle">借用狀況</div>
 <!-- 透過名字搜尋 -->
-	<div class="search"><form action="{{ asset ('/borrow/searchName')}}" method="post" style="display: inline;">{{ csrf_field()}}<input class="form-inline" name="searchname" id="searchname" type="text"  placeholder="請輸入名字...." value=""><nobr><button class="searchButton" id="searchButton" type="submit">搜尋</button></form>
+	<div class="search"><form action="{{ asset ('/borrow/searchName')}}" method="post" style="display: inline;">{{ csrf_field()}}<input class="form-inline" name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  value="" ><nobr><button class="searchButton" id="searchButton" type="submit">搜尋</button></form>
 	</div>
 
 <!-- 表單的標頭 -->
 	<div class="TableTop">
-		<table class="table" style="table-layout: fixed; text-align: center;" >
-		<tr>
+		<table class="table" style="text-align: center; table-layout: fixed;">
+			<tr>
 	
 	<!-- 序號 -->
 		<th style="text-align: center;">租借序號<br>
  	 	   <form action="{{ asset ('/borrow/idasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
-   		   <form action="{{ asset ('/borrow/iddesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>   	    
+   		   <form action="{{ asset ('/borrow/iddesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+   		</th>   	    
 	<!-- 日期 -->
   		<th style="text-align: center;">租借日期<br>
    		   <form action="{{ asset ('/borrow/dateasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	       <form action="{{ asset ('/borrow/datedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+     	   </th>
 	<!-- 班級 -->
   	    <th style="text-align: center;">班級<br>
  	       <form action="{{ asset ('/borrow/classasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
        	   <form action="{{ asset ('/borrow/classdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+     	   </th>
 	<!-- 申請人 -->
    		<th style="text-align: center;">申請人<br>
     	   <form action="{{ asset ('/borrow/nameasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    		   <form action="{{ asset ('/borrow/namedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+     	   </th>
 	<!-- 電話 -->
    		<th style="text-align: center;">電話<br>
     	   <form action="{{ asset ('/borrow/phoneasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    		   <form action="{{ asset ('/borrow/phonedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+     	   </th>
 	<!-- 借用物品-->
    		<th style="text-align: center;">借用物品<br>
    		   <form action="{{ asset ('/borrow/itemasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	   	   <form action="{{ asset ('/borrow/itemdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+     	   </th>
 	<!-- 借用數量 -->
    		<th style="text-align: center;">借用數量<br>
     	   <form action="{{ asset ('/borrow/itemnumasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    		   <form action="{{ asset ('/borrow/itemnumdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+     	   </th>
 	<!-- 抵押證件 -->
    		<th style="text-align: center;">抵押證件<br>
     	   <form action="{{ asset ('/borrow/licenseasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    		   <form action="{{ asset ('/borrow/licensedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+     	   </th>
 	<!-- 授課教室 -->
    		<th style="text-align: center;">授課教室<br>
    		   <form action="{{ asset ('/borrow/classroomasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    		   <form action="{{ asset ('/borrow/classroomdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+     	   </th>
 	<!-- 授課教室 -->
    		<th style="text-align: center;">授課教師<br>
    		   <form action="{{ asset ('/borrow/teacherasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    		   <form action="{{ asset ('/borrow/teacherdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+     	   </th>
 	<!-- 狀態 -->
    		<th style="text-align: center;">狀態<br>
    		   <form action="{{ asset ('/borrow/statusasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	       <form action="{{ asset ('/borrow/statusdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
+     	   </th>
 	<!-- 編輯資料 -->
-   	 	<th style="text-align: center;">編輯資料
-	</tr></table>
-	
+   	 	<th style="text-align: center;">編輯資料</th>
+			</tr>
+		</table>
+	</div>
 	<!-- 表單內容 -->
 	@foreach($miss as $mis)
 	
@@ -225,9 +238,10 @@
 </div>
 
 
-@endforeach
 
-<form action="{{ asset('/borrow') }}" method="get">
+@endforeach
+<div style="text-align: center;">
+	<form action="{{ asset('/borrow') }}" method="get">
 <button class="resetButton" id="testbtn">重新整理</button>
 </form>
 </div>

@@ -13,7 +13,9 @@
 //起始頁
 Route::get('/','LoginController@welcome');
 //登入驗證
-Route::get('/login','LoginController@index');
+Route::post('/login','LoginController@login');
+//登入成功測試
+Route::post('/login/success','LoginController@loginauth');
 
 //新增申請單
 Route::get('/create', 'ApplicationController@index');

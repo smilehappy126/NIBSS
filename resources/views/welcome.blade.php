@@ -144,14 +144,14 @@
                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">登入 Login</h4>
                        </div>
-                       <form action=" {{ asset('/login')}}" method="get">  
+                       <form action=" {{ asset('/login/success')}}" method="post">  
                        <div class="modal-body">
                        
                               <p style="text-align: center; font-size: 25px; font-family: Microsoft JhengHei">帳號 : 
-                                {{ csrf_field() }} <input type="text" name="LoginAccount" value="" style="height: 30px; width: 150px;"></input>
+                                {{ csrf_field() }} <input type="text" name="LoginAccount" id="LoginAccount" value="" style="height: 30px; width: 150px;"></input>
                               </p>
                               <p style="text-align: center; font-size: 25px; font-family: Microsoft JhengHei">密碼 : 
-                                {{ csrf_field() }} <input type="password" name="LoginPassword" value="" style="height: 30px; width: 150px;"></input>
+                                {{ csrf_field() }} <input type="password" name="LoginPassword" id="LoginPassword" value="" style="height: 30px; width: 150px;"></input>
                               </p>
                        </div>
                        <div class="modal-footer">
