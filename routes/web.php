@@ -11,16 +11,17 @@
 |
 */
 //起始頁
-Route::get('/','LoginController@welcome');
+Route::get('/','MyLoginController@welcome');
 //登入驗證
-Route::post('/login','LoginController@login');
+// Route::get('/mylogin','MyLoginController@mylogin');
 //登入成功測試
-Route::post('/login/success','LoginController@loginauth');
+// Route::get('/login/success','MyLoginController@loginauth');
 
 //新增申請單
 Route::get('/create', 'ApplicationController@index');
 Route::post('/create','ApplicationController@store');
 //借用狀況
+
 Route::get('/borrow', 'BorrowController@index');
 Route::post('/borrow/update/{id}','BorrowController@update');
 
@@ -100,3 +101,9 @@ Route::get('/inputClass', 'WeekController@inputClassPage');
 //新增教室內容資料
 Route::post('/inputClass','CourseController@store');
 
+
+Auth::routes();
+// Login驗證
+Route::post('/loginNow', 'Auth\LoginController@login');
+
+Route::get('/home', 'MyLoginController@welcome')->name('home');

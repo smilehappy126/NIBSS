@@ -77,7 +77,7 @@
                 font-family: Microsoft JhengHei;
                 font-weight: bolder;
                 font-size: 30px;
-                background-color:#F0FFFF;
+                background-color:#B0C4DE;
                 width: 180px;
                 height: 80px;
                 border-radius: 100px;
@@ -89,31 +89,68 @@
 
             .LoginButton:hover{
                 background-color: #CCDDFF;
-                width:400px;
+                width:280px;
                 transition: 0.3s;
 
             }
+            .notice{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 50px;
+                
+            }
+            .LogoutButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 22px;
+                background-color:#B0C4DE;
+                width: 100px;
+                height: 40px;
+                border-radius: 100px;
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+
+            }
+
+            .LogoutButton:hover{
+                background-color: #CCDDFF;
+                width:150px;
+                transition: 0.3s;
+
+            }
+            
+            
             
         </style>
     </head>
     <body>
         
         <div class="flex-center position-ref full-height">
+            
+            <!-- Trigger the modal with a button -->
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        <form action=" {{ url('logout') }}" method="post" >{{ csrf_field() }} <button class="LogoutButton" type="submit">Logout </button></form>
                     @endif
                 </div>
             @endif
-            <!-- Trigger the modal with a button -->
+            
             <div class="LoginPanel">
+            @if (Route::has('login'))
+                @if(Auth::check())
+                  <label class="notice" >Welcome, {{ $users[0]->name }}</label> 
+                @endif
+            @endif
+                @unless(Auth::check())
                 <!-- Trigger the modal with a button -->
                 <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
+                @endunless
             </div>
+            
         
             <!-- 主選單 -->
             <div class="content">
@@ -144,19 +181,34 @@
                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">登入 Login</h4>
                        </div>
-                       <form action=" {{ asset('/login/success')}}" method="post">  
+                       <form action=" {{ asset('/loginNow') }} " method="post">  
                        <div class="modal-body">
-                       
-                              <p style="text-align: center; font-size: 25px; font-family: Microsoft JhengHei">帳號 : 
-                                {{ csrf_field() }} <input type="text" name="LoginAccount" id="LoginAccount" value="" style="height: 30px; width: 150px;"></input>
+                           <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                              <p align="center"><label class="LoginInput" for="email" style="text-align: center; font-size: 25px; font-family: Microsoft JhengHei; display:inline-block; "> 帳號:</label>
+                                {{ csrf_field() }} <input type="email" name="email" id="email"  value="{{ old('email') }}" style="height: 30px; width: 40%; display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required autofocus></input>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                               </p>
-                              <p style="text-align: center; font-size: 25px; font-family: Microsoft JhengHei">密碼 : 
-                                {{ csrf_field() }} <input type="password" name="LoginPassword" id="LoginPassword" value="" style="height: 30px; width: 150px;"></input>
+                           </div>
+                           <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                              <p align="center"><label class="LoginInput" for="password" style="text-align: center; font-size: 25px; font-family: Microsoft JhengHei; display:inline-block; "> 密碼:</label>
+                                {{ csrf_field() }} <input type="password" name="password" id="password"  value="" style="height: 30px; width: 40%; display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required></input>
+                                @if ($errors->has('LoginPassword'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                               </p>
+                           </div>
                        </div>
                        <div class="modal-footer">
+                              <div class="form-group">
                               <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Login</button>
                               <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                              </div>
                        </div>
                       
                        </form>
@@ -165,4 +217,9 @@
             </div>
         </div>
     </body>
+    <!-- Login Alert -->
+    <script type="text/javascript">
+       
+
+    </script>
 </html>

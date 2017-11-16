@@ -1,26 +1,14 @@
-@extends('layouts.layout')
-@section('title', '登入成功')
-@section('css')
-   <style type="text/css">
-    /*.cry{
-      text-align: center;
-      font-size: 100px;
-      font-family: Microsoft JhengHei; 
-    }   */
-
-   </style>
-@stop
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
-    
-<div class="cry">
-    少年 你登入成功了!!<br> 
-        你是 {{ $users[0]->name}}!
-    <div class="col-md-8 col-md-offset-2">
-    <div class="panel panel-default">
-    <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ asset('/login') }}">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Login</div>
+
+                <div class="panel-body">
+                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -41,7 +29,7 @@
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" value="{{ csrf_token() }}" required>
+                                <input id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -76,13 +64,6 @@
                 </div>
             </div>
         </div>
-</div>
-
-
-
+    </div>
 </div>
 @endsection
-
-@section('js')
-
-@stop

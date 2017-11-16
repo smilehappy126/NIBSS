@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 
-class LoginController extends Controller
+class MyLoginController extends Controller
 	
 {
  	public function welcome(){
@@ -27,19 +27,15 @@ class LoginController extends Controller
               
 
  	}
-    public function loginauth(Request $rep)
+    public function mylogin()
     {
-       $users=User::all();
-       if(Auth::attempt(array(['name'=>$rep->LoginAccount,'password'=>$rep->LoginPassword])))
-        {
-          return view('button2_borrow.success',['users'=>$users]);     
-        }
-        else
-       {
-           return view('welcome');
-       }
-
+        $users=Auth::user();
+        return view('button2_borrow.success',['users'=>$users]);
     }
+
+
+
+   
  	
 }
 

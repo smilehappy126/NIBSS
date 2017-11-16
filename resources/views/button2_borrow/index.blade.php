@@ -136,11 +136,15 @@
     	   <form action="{{ asset ('/borrow/nameasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    		   <form action="{{ asset ('/borrow/namedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
      	   </th>
+	@if (Route::has('login'))
+		@if (Auth::check())
 	<!-- 電話 -->
    		<th style="text-align: center;">電話<br>
     	   <form action="{{ asset ('/borrow/phoneasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    		   <form action="{{ asset ('/borrow/phonedesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
      	   </th>
+     	@endif
+    @endif
 	<!-- 借用物品-->
    		<th style="text-align: center;">借用物品<br>
    		   <form action="{{ asset ('/borrow/itemasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
@@ -171,10 +175,15 @@
    		   <form action="{{ asset ('/borrow/statusasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    	       <form action="{{ asset ('/borrow/statusdesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
      	   </th>
+	@if (Route::has('login'))
+		@if (Auth::check())
 	<!-- 編輯資料 -->
    	 	<th style="text-align: center;">編輯資料</th>
 			</tr>
-		</table>
+		
+		@endif
+    @endif
+    </table>
 	</div>
 	<!-- 表單內容 -->
 	@foreach($miss as $mis)
@@ -182,8 +191,29 @@
 	<div class="TableContent">
 		<table class="table" id="content" style="table-layout: fixed; text-align: center" >
 
-		<tr><td>{{$mis->id}}<td>{{$mis->date}}<td>{{$mis->class}}<td>{{$mis->name}}<td>{{$mis->phone}}<td>{{$mis->item}}<td>{{$mis->itemnum}}<td>{{$mis->license}}<td>{{$mis->classroom}}<td>{{$mis->teacher}}<td>{{$mis->status}}<td>
-		<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}"><span class="glyphicon glyphicon-pencil"></span> 編輯</a>
+		<tr>
+			<td>{{$mis->id}}</td>
+			<td>{{$mis->date}}</td>
+			<td>{{$mis->class}}</td>
+			<td>{{$mis->name}}</td>
+	@if (Route::has('login'))
+		@if (Auth::check())
+			<td>{{$mis->phone}}</td>
+		@endif
+    @endif
+			<td>{{$mis->item}}</td>
+			<td>{{$mis->itemnum}}</td>
+			<td>{{$mis->license}}</td>
+			<td>{{$mis->classroom}}</td>
+			<td>{{$mis->teacher}}</td>
+			<td>{{$mis->status}}</td>
+	@if (Route::has('login'))
+		@if (Auth::check())
+			<td>
+				 <a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}"><span class="glyphicon glyphicon-pencil"></span> 編輯</a></td>
+		@endif
+    @endif
+		</tr>
 	<!-- <button class="EditButton"  id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">編輯</button> -->
 		</table>
 	</div>
