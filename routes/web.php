@@ -13,7 +13,7 @@
 //起始頁
 Route::get('/','MyLoginController@welcome');
 //登入驗證
-// Route::get('/mylogin','MyLoginController@mylogin');
+Route::get('/mylogin','MyLoginController@mylogin');
 //登入成功測試
 // Route::get('/login/success','MyLoginController@loginauth');
 
@@ -105,5 +105,6 @@ Route::post('/inputClass','CourseController@store');
 Auth::routes();
 // Login驗證
 Route::post('/loginNow', 'Auth\LoginController@login');
+Route::get('/logout', 'MyLoginController@logout');
 
-Route::get('/home', 'MyLoginController@welcome')->name('home');
+Route::get('/home', 'MyLoginController@afterlogin')->name('home');

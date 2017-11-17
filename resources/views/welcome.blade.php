@@ -69,7 +69,14 @@
                 float: right;
                 position: absolute;
                 margin-right: 10px;
-                top: 700px;
+                top: 80%;
+            }
+            .ErrorMessages{
+                float: right;
+                position: absolute;
+                margin-right: 10px;
+                top: 800px;
+
             }
 
             .LoginButton{
@@ -130,15 +137,15 @@
         
         <div class="flex-center position-ref full-height">
             
-            <!-- Trigger the modal with a button -->
+            <!-- 登出按鈕 -->
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <form action=" {{ url('logout') }}" method="post" >{{ csrf_field() }} <button class="LogoutButton" type="submit">Logout </button></form>
+                        <form action=" {{ asset('/logout') }}" method="post" >{{ csrf_field() }} <button class="LogoutButton" type="submit">Logout </button></form>
                     @endif
                 </div>
             @endif
-            
+            <!-- 登入按鈕 -->
             <div class="LoginPanel">
             @if (Route::has('login'))
                 @if(Auth::check())
@@ -150,6 +157,22 @@
                 <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
                 @endunless
             </div>
+            <!-- 登入錯誤的系統提示 -->
+            <div class="ErrorMessages">
+            @if ($errors->has('email'))
+                <br>
+                <span class="help-block">
+                    <strong style="color:red;">{{ $errors->first('email') }} Please try again.</strong>
+                </span>
+            @elseif($errors->has('LoginPassword'))
+                <br>
+                <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+            @endif
+            
+            </div>
+            
             
         
             <!-- 主選單 -->
@@ -186,21 +209,21 @@
                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                               <p align="center"><label class="LoginInput" for="email" style="text-align: center; font-size: 25px; font-family: Microsoft JhengHei; display:inline-block; "> 帳號:</label>
                                 {{ csrf_field() }} <input type="email" name="email" id="email"  value="{{ old('email') }}" style="height: 30px; width: 40%; display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required autofocus></input>
-                                @if ($errors->has('email'))
+                                <!-- @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
+                                @endif -->
                               </p>
                            </div>
                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                               <p align="center"><label class="LoginInput" for="password" style="text-align: center; font-size: 25px; font-family: Microsoft JhengHei; display:inline-block; "> 密碼:</label>
                                 {{ csrf_field() }} <input type="password" name="password" id="password"  value="" style="height: 30px; width: 40%; display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required></input>
-                                @if ($errors->has('LoginPassword'))
+                                <!-- @if ($errors->has('LoginPassword'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
+                                @endif -->
                               </p>
                            </div>
                        </div>

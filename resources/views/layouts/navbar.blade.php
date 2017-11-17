@@ -67,7 +67,7 @@
         @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <form action=" {{ url('logout') }}" method="post" >{{ csrf_field() }} 
+                        <form action=" {{ asset('/logout') }}" method="post" >{{ csrf_field() }} 
                           <li style="right: 10px; bottom:6px; position: absolute;">
                             <a>
                               <button class="LogoutButton" type="submit">Logout </button>
