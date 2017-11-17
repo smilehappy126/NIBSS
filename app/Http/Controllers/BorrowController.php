@@ -10,7 +10,8 @@ class BorrowController extends Controller
         //
 	public function index()
 	{
-		$miss = Miss::all();
+		$miss = Miss::where('status','=','借用中')
+                  ->get();
 		return view('button2_borrow.index',['miss'=> $miss]);
 
 	}
@@ -46,120 +47,154 @@ class BorrowController extends Controller
 
   // ID排序
   public function idasc(){
-    $miss=Miss::orderBy('id','asc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('id','asc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   public function iddesc(){
-    $miss=Miss::orderBy('id','desc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('id','desc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   
   // Date排序
   public function dateasc(){
-    $miss=Miss::orderBy('date','asc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('date','asc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   public function datedesc(){
-    $miss=Miss::orderBy('date','desc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('date','desc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
 
   // Class排序
 	public function classasc(){
-    $miss=Miss::orderBy('class','asc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('class','asc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   public function classdesc(){
-    $miss=Miss::orderBy('class','desc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('class','desc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
 
   // Name排序
   public function nameasc(){
-    $miss=Miss::orderBy('name','asc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('name','asc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   public function namedesc(){
-    $miss=Miss::orderBy('name','desc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('name','desc')
+                ->get();
+    return view('button2_borrow.index',['miss'=> $miss]);
+  }
+
+  // Phone排序
+  public function phoneasc(){
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('phone','asc')
+                ->get();
+    return view('button2_borrow.index',['miss'=> $miss]);
+  }
+  public function phonedesc(){
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('phone','desc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
 
   // Item排序
   public function itemasc(){
-    $miss=Miss::orderBy('item','asc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('item','asc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   public function itemdesc(){
-    $miss=Miss::orderBy('item','desc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('item','desc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
 
   // Itemnum排序
   public function itemnumasc(){
-    $miss=Miss::orderBy('itemnum','asc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('itemnum','asc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   public function itemnumdesc(){
-    $miss=Miss::orderBy('itemnum','desc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('itemnum','desc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
 
   // License排序
   public function licenseasc(){
-    $miss=Miss::orderBy('license','asc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('license','asc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   public function licensedesc(){
-    $miss=Miss::orderBy('license','desc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('license','desc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
 
   // Classroom排序
   public function classroomasc(){
-    $miss=Miss::orderBy('classroom','asc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('classroom','asc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   public function classroomdesc(){
-    $miss=Miss::orderBy('classroom','desc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('classroom','desc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
 
   // Teacher排序
   public function teacherasc(){
-    $miss=Miss::orderBy('teacher','asc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('teacher','asc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   public function teacherdesc(){
-    $miss=Miss::orderBy('teacher','desc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('teacher','desc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
 
   // Status排序
   public function statusasc(){
-    $miss=Miss::orderBy('status','asc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('status','asc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
   public function statusdesc(){
-    $miss=Miss::orderBy('status','desc')
+    $miss=Miss::where('status','=','借用中')
+                ->orderBy('status','desc')
                 ->get();
     return view('button2_borrow.index',['miss'=> $miss]);
   }
