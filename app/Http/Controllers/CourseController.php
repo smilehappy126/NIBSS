@@ -20,7 +20,13 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        $today = date( 'Y-m-d', strtotime( 'monday this week' ) );
+        $classrooms = Classroom::all();
+
+        return view('button4_reserve.index',[
+                'weekfirst' => $today,
+                'classrooms'=> $classrooms,
+            ]);
     }
 
     /**
