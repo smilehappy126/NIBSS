@@ -901,11 +901,11 @@ echo "現在所在教室: ", $currentClassroom;
             <div class="modal-footer">
                 <div class="row">    
                     <div class="col-md-10">
-                    <button type="submit" class="btn btn-primary form_submit">儲存</button>
+                    <button class="btn btn-primary form_submit" type="submit">新增</button>
                     </div>
                     </form>
                     <div class="col-md-2">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -955,11 +955,11 @@ echo "現在所在教室: ", $currentClassroom;
             <div class="modal-footer">
                 <div class="row">    
                     <div class="col-md-10">
-                    <button type="submit" formaction="{{ asset('reserve/updateCourse/'.$course->id) }}" class="btn btn-primary form_submit">儲存</button>
+                    <button class="btn btn-primary form_submit" type="submit" formaction="{{ asset('reserve/updateCourse/'.$course->id) }}">儲存</button>
                     </div>
                     </form>
                     <div class="col-md-2">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

@@ -4,22 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Classroom;
+use App\Course;
 
-class WeekController extends Controller
+class LongcourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function index()
     {
-        $today = date( 'Y-m-d', strtotime( 'monday this week' ) );
         $classrooms = Classroom::all();
-
-        return view('button4_reserve.index',[
-                'weekfirst' => $today,
+        return view('button4_reserve.inputClass',[
                 'classrooms'=> $classrooms,
             ]);
     }
@@ -42,12 +39,7 @@ class WeekController extends Controller
      */
     public function store(Request $request)
     {
-        $classrooms = new Classroom;
-        $classrooms->roomname= $request->roomname;
-        $classrooms->word= $request->word;
-        $classrooms->imgurl= $request->imgurl;
-        $classrooms->save();
-        return redirect('/newclassroom');
+        //
     }
 
     /**
@@ -56,23 +48,20 @@ class WeekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
-
-    public function show(Request $request)
+    public function show($id)
     {
-        
+        //
     }
-    
-    
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request,Classroom $classrooms)
+    public function edit($id)
     {
-         //
+        //
     }
 
     /**
@@ -82,15 +71,9 @@ class WeekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Classroom $classroom)
+    public function update(Request $request, $id)
     {
-
-        $classroom->word = $request->word;
-        $classroom->save();
-
-        
-        return redirect('/newclassroom');
-        // return $classroom->id;
+        //
     }
 
     /**
@@ -103,23 +86,4 @@ class WeekController extends Controller
     {
         //
     }
-
-    //取名注意！！！別取new
-    public function newClassroomPage()
-    {
-        $classrooms = Classroom::all();
-        return view('button4_reserve.newclassroom',[
-                'classrooms'=> $classrooms,
-            ]);
-    }
-
-    public function inputClassPage()
-    {
-        $classrooms = Classroom::all();
-        return view('button4_reserve.inputClass',[
-                'classrooms'=> $classrooms,
-            ]);
-    }
-
-
 }
