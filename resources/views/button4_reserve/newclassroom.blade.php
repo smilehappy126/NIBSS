@@ -9,11 +9,19 @@
 
   @foreach ($classrooms as $classroom)
     <div class="panel panel-default">
-       <div class="panel-heading">{{ $classroom->roomname }}</div>
-       <div class="panel-body">{{ $classroom->word }}  <img src="{{ $classroom->imgurl }}" height="200" width="400"> 
+       <div class="panel-heading">{{ $classroom->roomname }}
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
            修改
         </button>
+       </div>
+       <div class="panel-body">{{ $classroom->word }}  <img src="{{ $classroom->imgurl }}" height="200" width="400"> 
+        <form action="{{ asset('/newclassroom/'.$classroom->id) }}" method="POST">
+            {!! csrf_field() !!}
+            {!! method_field('DELETE') !!}
+            <button type="submit"  id="{{ $classroom->id }}">
+                刪除
+            </button>
+        </form>
 
 
  <div class="modal fade" id="editModal{{$classroom->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
