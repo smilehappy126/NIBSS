@@ -41,13 +41,7 @@ class MyLoginController extends Controller
         Auth::logout();
         return redirect()->back();
     }
-    public function switch(){
-        return view('button2_borrow.MultiView');
-    }
-
-
-
-   
+     
  	
 }
 

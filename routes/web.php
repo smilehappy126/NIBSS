@@ -107,6 +107,5 @@ Auth::routes();
 
 Route::post('/loginNow', 'Auth\LoginController@login');
 Route::get('/logout', 'MyLoginController@logout');
-Route::get('/multiview','MyLoginController@switch');
-// Route::post('/register','Auth\RegisterController@create');
+
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');

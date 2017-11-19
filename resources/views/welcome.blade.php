@@ -298,9 +298,9 @@
                     <!-- Register Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                               <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <div id="RegisterPage">
-                               <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">註冊 Register</h4>
+                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">註冊 Register</h4>
                             </div>
                         </div> <!-- End of Modal Header -->
                          
