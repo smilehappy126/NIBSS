@@ -102,10 +102,11 @@ Route::get('/inputClass', 'LongcourseController@index');
 //新增教室內容資料
 //Route::post('/inputClass', 'LongcourseController@store');
 
-
-Auth::routes();
 // Login驗證
+Auth::routes();
+
 Route::post('/loginNow', 'Auth\LoginController@login');
 Route::get('/logout', 'MyLoginController@logout');
-
+Route::get('/multiview','MyLoginController@switch');
+// Route::post('/register','Auth\RegisterController@create');
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');

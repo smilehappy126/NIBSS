@@ -1,7 +1,27 @@
 @extends('layouts.layout')
 @section('title', '預約狀況')
 @section('css')
+<style type="text/css">
+            .EditButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 20px;
+                background-color: #B0C4DE;
+                width: 100px;
+                height: 30px;
+                border-radius: 50px;
+                border-width: 0px;
+                transition: 0.3s;
+            }
 
+            .EditButton:hover{
+                background-color: #CCDDFF;
+                width:150px;
+                transition: 0.3s;
+
+            }
+            </style>
 @stop
 
 @section('content')

@@ -75,7 +75,7 @@
                 float: right;
                 position: absolute;
                 margin-right: 10px;
-                top: 800px;
+                top: 70%;
 
             }
 
@@ -121,15 +121,31 @@
                 cursor: pointer;
 
             }
-
             .LogoutButton:hover{
                 background-color: #CCDDFF;
                 width:150px;
                 transition: 0.3s;
 
             }
-            
-            
+            .RegisterButton{
+                background-color: transparent;
+                transition: 0.3s;
+                width: 140px;
+                height: 20px;
+                border-radius: 100px;
+                cursor: pointer;
+                border-width: 0px;
+                font-size: 15px;
+                font-weight: bold;
+
+            }
+            .RegisterButton:hover{
+                background-color: #FF8888;
+                width: 160px;
+                height: 20px;
+                transition: 0.3s;
+            }
+                          
             
         </style>
     </head>
@@ -153,7 +169,7 @@
                 @endif
             @endif
                 @unless(Auth::check())
-                <!-- Trigger the modal with a button -->
+                <!-- Trigger the Login modal with a button -->
                 <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
                 @endunless
             </div>
@@ -193,56 +209,174 @@
             </div>
         </div>
         
-    
-        <!-- Modal -->
-        <div id="LoginModal" class="modal fade" role="dialog">
-             <div class="modal-dialog">
+        <!-- End of Content -->
+        
+        <!-- ↓↓↓ Modal Section ↓↓↓ -->
 
-        <!-- Modal content-->
-                   <div class="modal-content">
-                       <div class="modal-header">
-                               <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- Login Modal -->
+        <div id="LoginModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
+            <div class="modal-dialog">
+
+                    <!-- Login Modal content-->
+                    <div class="modal-content">
+                        <!-- Begin of Modal Header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="LoginPage">
                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">登入 Login</h4>
-                       </div>
-                       <form action=" {{ asset('/loginNow') }} " method="post">  
-                       <div class="modal-body">
-                           <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                              <p align="center"><label class="LoginInput" for="email" style="text-align: center; font-size: 25px; font-family: Microsoft JhengHei; display:inline-block; "> 帳號:</label>
-                                {{ csrf_field() }} <input type="email" name="email" id="email"  value="{{ old('email') }}" style="height: 30px; width: 40%; display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required autofocus></input>
-                                <!-- @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif -->
-                              </p>
-                           </div>
-                           <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                              <p align="center"><label class="LoginInput" for="password" style="text-align: center; font-size: 25px; font-family: Microsoft JhengHei; display:inline-block; "> 密碼:</label>
-                                {{ csrf_field() }} <input type="password" name="password" id="password"  value="" style="height: 30px; width: 40%; display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required></input>
-                                <!-- @if ($errors->has('LoginPassword'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif -->
-                              </p>
-                           </div>
-                       </div>
-                       <div class="modal-footer">
+                            </div>
+                        </div>
+                        <!-- End of Modal Header -->
+
+                        <!-- Begin of Modal Body -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form class="form-horizontal" action=" {{ asset('/loginNow') }} " method="post">
+                                    <!-- Login Email -->
+                                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                        <label class="col-md-4 control-label" for="email" style="font-weight: bold; "> E-Mail</label>{{ csrf_field() }} 
+                                                <div class="col-md-6">
+                                                <input class="LoginInput" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: 
+                                                inline-block; font-size : 15px;font-family: Microsoft JhengHei;
+                                                font-weight: bold;" required autofocus></input>
+                                                    <!-- @if ($errors->has('email'))
+                                                    <span class="help-block">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                    </span>
+                                                    @endif -->
+                                                </div> 
+                                            
+                                           
+                                    </div>
+                                    <!-- Login 密碼 -->
+                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
+                                        
+                                            
+                                                <label class="col-md-4 control-label" for="password" style="font-weight: bold;">密碼</label>{{ csrf_field() }} 
+                                                <div class="col-md-6">
+                                                <input type="password" name="password" id="password"  value="" style="display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required></input>
+                                                    <!-- @if ($errors->has('LoginPassword'))
+                                                        <span class="help-block">
+                                                        <strong>{{ $errors->first('password') }}</strong>
+                                                        </span>
+                                                    @endif -->
+                                                </div>
+                                            
+                                            <!-- 註冊按鈕 -->
+                                            <!-- Trigger the Register modal with a button -->
+                                                <br>
+                                    </div>
+                                    <!-- Register按鈕 -->
+                                    <div class="form-group" align="center">
+                                    <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
+                                    </div>    
+                                </div>    
+                            </div>
+
+                        <!--  End of Modal Body -->
+
+                        <!-- Begin of Modal Footer -->
+                        <div class="modal-footer">
                               <div class="form-group">
-                              <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Login</button>
+                                    <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Login</button>
+                                    <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                              </div>
+                        </div>
+                        <!-- End of Modal Footer -->
+                                </form>
+                    </div>
+                    <!-- End of Login Modal Conent -->
+            </div>
+        </div>        
+        <!-- End of Login Modal -->
+
+        <!-- Register Modal -->
+        <div id="RegisterModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
+            <div class="modal-dialog">
+
+                    <!-- Register Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                               <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="RegisterPage">
+                               <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">註冊 Register</h4>
+                            </div>
+                        </div> <!-- End of Modal Header -->
+                         
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                                     {{ csrf_field() }}
+                                     <!-- Register 姓名 -->
+                                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                        <label for="name" class="col-md-4 control-label">姓名</label>
+                                        <div class="col-md-6">
+                                            <input id="name" type="text" class="LoginInput" name="name" value="{{ old('name') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required autofocus>
+
+                                            @if ($errors->has('name'))
+                                               <span class="help-block">
+                                               <strong>{{ $errors->first('name') }}</strong>
+                                               </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <!-- Register E-Mail -->
+                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                        <label for="email" class="col-md-4 control-label">E-Mail</label>
+                                        <div class="col-md-6">
+                                            <input id="email" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+
+                                            @if ($errors->has('email'))
+                                                <span class="help-block">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <!-- Register 密碼 -->
+                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
+                                        <label for="password" class="col-md-4 control-label">密碼</label>
+                                        <div class="col-md-6">
+                                            <input id="password" type="password" class="LoginInput" name="password" style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            
+                                            @if ($errors->has('password'))
+                                                <span class="help-block">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <!-- Register 確認密碼 -->
+                                    <div class="form-group">
+                                        <label for="password-confirm" class="col-md-4 control-label">確認密碼</label>
+                                        <div class="col-md-6">
+                                            <input id="password-confirm" type="password" class="LoginInput" name="password_confirmation" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- End of Modal Body --> 
+                       
+                        <div class="modal-footer">
+                              <div class="form-group">
+                              <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Register</button>
                               <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
                               </div>
-                       </div>
-                      
-                       </form>
-                    </div>
-
+                        </div> 
+                        <!-- End of Modal Footer -->
+                                        </form>
+                    </div> 
+                    <!-- End of Register Modal Content -->
             </div>
         </div>
+        <!-- End of Register Modal -->
+            
     </body>
-    <!-- Login Alert -->
+    <!-- Switch Modal -->
     <script type="text/javascript">
-       
-
+      
+      
     </script>
 </html>
