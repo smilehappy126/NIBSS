@@ -180,9 +180,11 @@
      	   		</th>
 				@if (Route::has('login'))
 					@if (Auth::check())
+						@if( (Auth::user()->name)==='admin')
 				<!-- 編輯資料 -->
    	 			<th style="text-align: center;">編輯資料</th>
 			</tr> 
+						@endif
 					@endif
     			@endif
     	</table>
@@ -212,11 +214,13 @@
 				<td>{{$mis->status}}</td>
 				@if (Route::has('login'))
 					@if (Auth::check())
+						@if( (Auth::user()->name)==='admin')
 				<td>
 				 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
 				 		<span class="glyphicon glyphicon-pencil"></span> 編輯
 				 	</a>
 				</td>
+						@endif
 					@endif
     			@endif
 			</tr>

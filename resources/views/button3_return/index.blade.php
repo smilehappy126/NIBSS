@@ -65,7 +65,9 @@
         <th style=" text-align: center;">狀態</th>
         @if (Route::has('login'))
           @if (Auth::check())
+            @if( (Auth::user()->name)==='admin')
         <th style=" text-align: center;">編輯資料</th>
+            @endif
           @endif
         @endif
       </tr>
@@ -102,7 +104,9 @@
      <td> {{$re->status}}</td>
      @if (Route::has('login'))
           @if (Auth::check())
+            @if( (Auth::user()->name)==='admin')
      <td><a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}"><span class="glyphicon glyphicon-pencil"></span> 編輯</a></td>
+            @endif
           @endif
      @endif
     </tr>   
