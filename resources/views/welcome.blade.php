@@ -165,7 +165,7 @@
             <div class="LoginPanel">
             @if (Route::has('login'))
                 @if(Auth::check())
-                  <label class="notice" >Welcome, {{ $users[0]->name }}</label> 
+                  <label class="notice">Welcome,&nbsp</label><label class="notice" style="text-transform: uppercase;" >{{ Auth::user()->name }}</label> 
                 @endif
             @endif
                 @unless(Auth::check())

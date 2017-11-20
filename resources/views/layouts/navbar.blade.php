@@ -59,6 +59,38 @@
                 height: 20px;
                 transition: 0.3s;
             }
+            /*子選單*/
+            /* 將子選單加入+號 */
+            li.dropdown-submenu>a:after{
+                display:block;
+                  content:"+";
+                  float:right;
+                  font-size: 15px;
+                  margin-top:-1px;
+                  margin-left:5px;
+                  border: solid 1px #ccc;
+                  padding:0 4px;
+                  border-radius: 3px;
+            }
+            /* 選單開啟時變- */
+            li.dropdown-submenu.open>a:after{
+                  content:"-";
+            }
+            li.open ul.dropdown-menu>li.open>ul.dropdown-menu{
+                  position: relative;
+                  border: 0;
+                  border-radius: 0;
+                  box-shadow: none;
+            }
+            li.open ul.dropdown-menu>li.open>ul.dropdown-menu>li{
+                  padding-left: 20px;
+            }
+ 
+            /* 滑入選單時變換底色 */  
+            .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+                  background: rgba(0,0,0,0.1) !important;
+            }
+
 </style>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -87,10 +119,8 @@
                 <div class="top-right links">
                     @if (Auth::check())
                         <form action=" {{ asset('/logout') }}" method="post" >{{ csrf_field() }} 
-                          <li style="right: 10px; bottom:6px; position: absolute;">
-                            <a>
-                              <button class="LogoutButton" type="submit">Logout </button>
-                            </a>  
+                          <li class="dropdown-submenu" style="right: 10px; bottom:6px; position: absolute;">
+                            <button class="LogoutButton" type="submit">Logout </button>
                           </li>  
                         </form>
                     @else
@@ -104,7 +134,7 @@
                 <li style="right: 10px; bottom:6px; position: absolute;"><a><button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button></a></li>
             </div>
         @endunless
-
+        
         
       </ul>
       <!-- 搜尋功能 -->
