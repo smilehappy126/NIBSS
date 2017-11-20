@@ -41,10 +41,7 @@ class MyLoginController extends Controller
         Auth::logout();
         return redirect()->back();
     }
-
-
-
-   
+     
  	
 }
 

@@ -52,14 +52,24 @@
         <th style=" text-align: center;">歸還日期</th>
         <th style=" text-align: center;">班級</th>
         <th style=" text-align: center;">申請人</th>
+        @if (Route::has('login'))
+          @if (Auth::check())
         <th style=" text-align: center;">電話</th>
+          @endif
+        @endif
         <th style=" text-align: center;">借用物品</th>
         <th style=" text-align: center;">借用數量</th>
         <th style=" text-align: center;">抵押證件</th>
         <th style=" text-align: center;">授課教室</th>
         <th style=" text-align: center;">授課老師</th>
         <th style=" text-align: center;">狀態</th>
+        @if (Route::has('login'))
+          @if (Auth::check())
+            @if( (Auth::user()->name)==='admin')
         <th style=" text-align: center;">編輯資料</th>
+            @endif
+          @endif
+        @endif
       </tr>
       </table>
     <!-- 表單內容 -->
@@ -81,14 +91,24 @@
      </td>
      <td> {{$re->class}}</td>
      <td> {{$re->name}}</td>
+     @if (Route::has('login'))
+          @if (Auth::check())
      <td> {{$re->phone}}</td>   
+          @endif
+     @endif
      <td> {{$re->item}}</td>
      <td> {{$re->itemnum}}</td>
      <td> {{$re->license}}</td>
      <td> {{$re->classroom}}</td>
      <td> {{$re->teacher}}</td>
      <td> {{$re->status}}</td>
+     @if (Route::has('login'))
+          @if (Auth::check())
+            @if( (Auth::user()->name)==='admin')
      <td><a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}"><span class="glyphicon glyphicon-pencil"></span> 編輯</a></td>
+            @endif
+          @endif
+     @endif
     </tr>   
     </table>
     </div>
