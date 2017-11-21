@@ -89,8 +89,9 @@
 
     <div id="menu1" class="tab-pane fade">
         <div class="borrow">
-            <button type="button" class="btn btn-primary" onclick="appendForm()">點此新增申請單</button>
-        <h2><font color= red><所有項目請確實填寫！></font></h2>
+            <button type="button" class="btn btn-primary" onclick="appendForm()">點此新增一個申請單</button>
+            <button id="removeButton" type="button" class="btn btn-primary" onclick="removeForm()">點此刪除一個申請單</button>
+            <h2><font color= red><所有項目請確實填寫！></font></h2>
         <div id="myForm1">
         <h2>借用項目：</h2>
             <select class="form-group" width="auto" name="item[]">
@@ -173,14 +174,13 @@
 @section('js')
 
 <script language="JavaScript" type="text/javascript">  
-    
-    
-    function next() {
-    
-    var $name = document.getElementById("username").value ;
-    var $phone = document.getElementById("phone").value ;
-    var $class = document.getElementById("class").value ;
-    var $license = $("#form5").find("select[name='license']").val();
+  
+    function next()
+    {    
+        var $name = document.getElementById("username").value ;
+        var $phone = document.getElementById("phone").value ;
+        var $class = document.getElementById("class").value ;
+        var $license = $("#form5").find("select[name='license']").val();
         if($name == "" ||  $class == "" || $license == null)
         {
             alert("尚有資料未填！");  
@@ -199,12 +199,29 @@
     
     function appendForm() {
         //複製myForm1表單，更改id變成myForm2,myForm3...
+        
         $("#myForm1").clone()
                     .attr("id","myForm" + (formCount+=1))
                     .insertAfter($("[id^=myForm]:last"));
+        if(formCount > 1){
+                document.getElementById('removeButton').style.display="inline";
+        }
 
 //        window.alert("現在的formCount: " + formCount);
+    }
+    function removeForm(){
+        // 刪除最後一個myForm表單
+
+        if(formCount !== 1)
+        {
+            $("[id^=myForm]:last").remove();
+            formCount-=1;
+            if(formCount == 1){
+                document.getElementById('removeButton').style.display="none";
+            }
+       }
     } 
+
     
     function Previous1() {
     $("#L2").removeClass("active");
@@ -254,7 +271,7 @@
             $('#b3').attr('href','#home');
         
     }*/
-    
+   
 </script>
 
 
