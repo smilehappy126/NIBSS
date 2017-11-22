@@ -20,6 +20,7 @@
             {!! method_field('DELETE') !!}
             <button type="submit"  id="{{ $classroom->id }}">
                 刪除
+                
             </button>
         </form>
 
