@@ -180,7 +180,7 @@
      	   		</th>
 				@if (Route::has('login'))
 					@if (Auth::check())
-						@if( (Auth::user()->name)==='admin')
+						@if( (Auth::user()->email)==='test@cc.ncu.edu.tw')
 				<!-- 編輯資料 -->
    	 			<th style="text-align: center;">編輯資料</th>
 			</tr> 
