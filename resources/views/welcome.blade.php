@@ -10,6 +10,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+        <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+        <script src="js/modernizr.js"></script> <!-- Modernizr -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Styles -->
@@ -145,13 +148,44 @@
                 height: 20px;
                 transition: 0.3s;
             }
+            .background{
+                background-image: url("/img/2.jpg");
+                width: 100%;
+                height: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+               
+            }
+            .title{
+                background-color: black;
+                opacity: 0.6;
+                color: white;
+                font-weight: bolder;
+                -webkit-filter: blur(10px);
+                filter: blur(2px);
+                z-index: 10;
+                
+
+            }
+            .TitleText{
+                background-color: transparent;
+                z-index: 100;
+                font-size: 50px;
+               
+            }
                           
             
         </style>
+        <script type="text/javascript">
+            
+      
+        </script>
     </head>
     <body>
         
-        <div class="flex-center position-ref full-height">
+      <div class="flex-center position-ref full-height background">
+         
             
             <!-- 登出按鈕 -->
             @if (Route::has('login'))
@@ -192,13 +226,20 @@
             
         
             <!-- 主選單 -->
-            <div class="content">
+            <div class="content" style="position: relative;">
                 
                 <div class="title m-b-md">
-                    設備借用系統 
+                     &nbsp
                 </div>
                 
+                <div class="TitleText m-b-md">
+                    設備借用系統
+                </div>  
+                
+                
 
+                
+                
                 <div class="links">
                     <a  href="{{ url('/create') }}">新增申請單</a>|
                     <a  href="{{ url('/borrow') }}">借用狀況</a>|
@@ -206,8 +247,10 @@
                     <a  href="{{ url('/reserve') }}">預約狀況</a>|
                     <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                 </div>
+                
             </div>
-        </div>
+        
+      </div>
         
         <!-- End of Content -->
         
@@ -375,8 +418,5 @@
             
     </body>
     <!-- Switch Modal -->
-    <script type="text/javascript">
-      
-      
-    </script>
+    
 </html>
