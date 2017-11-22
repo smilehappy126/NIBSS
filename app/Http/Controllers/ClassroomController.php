@@ -93,9 +93,10 @@ class ClassroomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,Classroom $classroom)
     {
-        //
+        $classroom->delete();
+        return redirect('/newclassroom');
     }
 
     //取名注意！！！別取new

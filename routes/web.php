@@ -96,11 +96,13 @@ Route::post('/newclassroom','ClassroomController@store');
 Route::get('/newclassroom', 'ClassroomController@newClassroomPage');
 //修改教室資料
 Route::post('/newclassroom/{classroom}','ClassroomController@update');
+//刪除教室資料
+Route::delete('/newclassroom/{classroom}','ClassroomController@destroy');
 
 //固定課程預約
-Route::get('/inputClass', 'LongcourseController@index');
-//新增教室內容資料
-//Route::post('/inputClass', 'LongcourseController@store');
+Route::get('/inputClass/{roomname}', 'LongcourseController@index');
+//新增多筆
+Route::post('/inputClass/save', 'LongcourseController@store');
 
 // Login驗證
 Auth::routes();

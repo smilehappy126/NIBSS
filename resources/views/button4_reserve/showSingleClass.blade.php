@@ -44,7 +44,7 @@ echo "現在所在教室: ", $currentClassroom;
 
     <!--新增課程資訊按鈕-->
     <button type="button" class="btn btn-link">
-        <a href="{{ asset('/inputClass') }}"><div>固定課程預約</div></a>
+        <a href="{{ asset('/inputClass/' . $currentClassroom) }}"><div>固定課程預約</div></a>
     </button>
     
     
@@ -1308,7 +1308,7 @@ $( document ).ready(function() {
 //        alert("index_start: " + index_start);
 //        alert("index_end: " + index_end);
         
-        if(index_start > index_end || index_start == index_end){
+        if(index_start > index_end){
 //            alert("起始節次應早於結束節次");
             $(".form_submit").prop('disabled', true);
             $("#errorMessage").text("起始節次應早於結束節次");
@@ -1327,7 +1327,7 @@ $( document ).ready(function() {
 //        alert("index_start: " + index_start);
 //        alert("index_end: " + index_end);
         
-        if(index_start > index_end || index_start == index_end){
+        if(index_start > index_end){
 //            alert("起始節次應早於結束節次");
             $(".form_submit").prop('disabled', true);
             $("#errorMessage").text("起始節次應早於結束節次");
@@ -1337,7 +1337,6 @@ $( document ).ready(function() {
         }
         
     });
-    
     
 
 });
