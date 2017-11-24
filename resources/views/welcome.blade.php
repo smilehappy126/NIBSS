@@ -149,7 +149,7 @@
                 transition: 0.3s;
             }
             .background{
-                background-image: url("/img/2.jpg");
+                background-image: url("/img/3.jpg");
                 width: 100%;
                 height: 100%;
                 background-position: center;
@@ -165,15 +165,25 @@
                 -webkit-filter: blur(10px);
                 filter: blur(2px);
                 z-index: 10;
-                
+                position: relative;
+
 
             }
             .TitleText{
                 background-color: transparent;
                 z-index: 100;
                 font-size: 50px;
-               
+                position: absolute;
+                text-align: center;
+                top:10%;
+                font-family: Microsoft JhengHei;
+                font-size: 45px;
+                color: white;
+                right: 0px;
+                left: 0px;
+
             }
+
                           
             
         </style>
@@ -228,13 +238,13 @@
             <!-- 主選單 -->
             <div class="content" style="position: relative;">
                 
-                <div class="title m-b-md">
-                     &nbsp
+                <div style="align-items: center;">
+                    <div class="title m-b-md">
+                        &nbsp
+                    </div>
+                    <span class="TitleText">設備借用系統</span>
                 </div>
                 
-                <div class="TitleText m-b-md">
-                    設備借用系統
-                </div>  
                 
                 
 
