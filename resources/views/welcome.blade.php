@@ -148,8 +148,9 @@
                 height: 20px;
                 transition: 0.3s;
             }
+            /*背景圖片的位置: /ncumisborrowsystem/public/img*/
             .background{
-                background-image: url("/img/3.jpg");
+                background-image: url("/img/5.jpg"); 
                 width: 100%;
                 height: 100%;
                 background-position: center;
