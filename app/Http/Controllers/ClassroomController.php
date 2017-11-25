@@ -41,7 +41,10 @@ class ClassroomController extends Controller
         $classrooms->word= $request->word;
         $classrooms->imgurl= $request->imgurl;
         $classrooms->save();
-        return redirect('/newclassroom');
+
+
+
+    return redirect('/newclassroom');
     }
 
     /**
@@ -83,7 +86,7 @@ class ClassroomController extends Controller
         $classroom->save();
 
         
-        return redirect('/newclassroom');
+        return redirect('/editclassroom');
         // return $classroom->id;
     }
 
@@ -96,7 +99,7 @@ class ClassroomController extends Controller
     public function destroy(Request $request,Classroom $classroom)
     {
         $classroom->delete();
-        return redirect('/newclassroom');
+        return redirect('/editclassroom');
     }
 
     //取名注意！！！別取new
@@ -104,6 +107,14 @@ class ClassroomController extends Controller
     {
         $classrooms = Classroom::all();
         return view('button4_reserve.newclassroom',[
+                'classrooms'=> $classrooms,
+            ]);
+    }
+
+    public function editClassroomPage()
+    {
+        $classrooms = Classroom::all();
+        return view('button4_reserve.editclassroom',[
                 'classrooms'=> $classrooms,
             ]);
     }

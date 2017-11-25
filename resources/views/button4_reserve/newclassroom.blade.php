@@ -1,79 +1,75 @@
 @extends('layouts.layout')
 @section('title', '預約狀況')
 @section('css')
+<style>
+/*    .btn-primary {
+        background-color: #FFF;
+        color: #285e8e;
+        border-color: #3276b1;
+        border-radius: 25px;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active    {
+        background-color: #3276b1;
+        color: #FFF;
+        border-color: #285e8e;
+    }*/
+        .btn-primary{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 24px;
+                background-color:#B0C4DE;
+                width: 80px;
+                height: 50px;
+                border-radius: 100px;
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
 
+            }
+
+           .btn-primary:hover{
+                background-color: #CCDDFF;
+                width:150px;
+                transition: 0.3s;
+</style>
 @stop
 
 @section('content')
 <div class="container">
 
-  @foreach ($classrooms as $classroom)
-    <div class="panel panel-default">
-       <div class="panel-heading">{{ $classroom->roomname }}
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
-           修改
-        </button>
-       </div>
-       <div class="panel-body">{{ $classroom->word }}  <img src="{{ $classroom->imgurl }}" height="200" width="400"> 
-        <form action="{{ asset('/newclassroom/'.$classroom->id) }}" method="POST">
-            {!! csrf_field() !!}
-            {!! method_field('DELETE') !!}
-            <button type="submit"  id="{{ $classroom->id }}">
-                刪除
-                
-            </button>
-        </form>
+<button type="button" class="btn btn-link">
+        <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
+    </button>
+</br>
 
-
- <div class="modal fade" id="editModal{{$classroom->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <form action="{{ asset('/newclassroom/'.$classroom->id) }}" method="post">
-       {{ csrf_field() }}
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{ $classroom->roomname }}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <textarea  class="form-control" rows="5" name="word">{{ $classroom->word }}</textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-    </form>
-    </div>
-  </div>
-</div>
-
-       </div>
-    </div>
-  @endforeach
-  
-
- <form action="{{ asset('/newclassroom') }}" method="post">
+ <form action="{{ asset('/newclassroom') }}" method="post"> <!-- //enctype="multipart/form-data"加ㄉ  -->
  	    {{ csrf_field() }}
     <div class="form-group">
        <label for="classid">教室名稱或編號:</label>
-       <input type="text" class="form-control" id="classid" name="roomname">
+       <input type="text" class="form-control" id="classid" name="roomname" required="必填！">
     </div>
     <div class="form-group">
        <label for="classword">教室位置、設備、軟體描述:</label>
-       <input type="text" class="form-control" id="classword" name="word">
+       <input type="text" class="form-control" id="classword" name="word" required="必填！">
     </div>
         <div class="form-group">
        <label for="classpic">教室照片路由:</label>
-       <input type="text" class="form-control" id="classpic" name="imgurl">
+       <input type="text" class="form-control" id="classpic" name="imgurl" required="必填！">  <!-- input type="file" 改ㄉ  -->
     </div>
     <div>
         <button class="btn btn-primary" type="submit">送出</button>
     </div>
+
+ 
   </form>
 
-
 </div>
+
+
+
 @endsection
 
 @section('js')

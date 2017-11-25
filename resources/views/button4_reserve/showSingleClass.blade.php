@@ -42,6 +42,11 @@ echo "現在所在教室: ", $currentClassroom;
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
     </button>
 
+    <!--修改刪除教室資料按鈕-->
+    <button type="button" class="btn btn-link">
+        <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
+    </button>
+
     <!--新增課程資訊按鈕-->
     <button type="button" class="btn btn-link">
         <a href="{{ asset('/inputClass') }}"><div>固定課程預約</div></a>
