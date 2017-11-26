@@ -16,7 +16,7 @@
     
 <div class="cry">
     少年 你登入成功了!!<br> 
-        你是 {{ $users[0]->name}}!
+        
     <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
     <div class="panel-body">

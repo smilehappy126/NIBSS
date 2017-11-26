@@ -49,7 +49,7 @@ echo "現在所在教室: ", $currentClassroom;
 
     <!--新增課程資訊按鈕-->
     <button type="button" class="btn btn-link">
-        <a href="{{ asset('/inputClass') }}"><div>固定課程預約</div></a>
+        <a href="{{ asset('/inputClass/' . $currentClassroom) }}"><div>固定課程預約</div></a>
     </button>
     
     
@@ -1342,7 +1342,6 @@ $( document ).ready(function() {
         }
         
     });
-    
     
 
 });
