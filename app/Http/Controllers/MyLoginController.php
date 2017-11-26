@@ -41,7 +41,10 @@ class MyLoginController extends Controller
         Auth::logout();
         return redirect()->back();
     }
-     
+    
+    public function admin(){
+        return view('button5_admin.admin');
+    }
  	
 }
 

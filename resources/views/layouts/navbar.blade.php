@@ -115,6 +115,15 @@
         <li><a href="{{ url('/return') }}">已歸還資料</a></li>
         <li><a href="{{ url('/reserve') }}">預約狀況</a></li>
         <li><a href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a></li>
+        <!-- 管理者模式 -->
+        @if (Route::has('login'))
+            @if(Auth::check())
+                @if( (Auth::user()->email)==='test@cc.ncu.edu.tw')   
+                    <li><a  href="{{ url('/admin') }}">管理者模式</a></li>
+                @endif
+            @endif
+        @endif
+        <!-- 登出登入按鍵 -->
         @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
@@ -134,8 +143,6 @@
                 <li style="right: 10px; bottom:6px; position: absolute;"><a><button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button></a></li>
             </div>
         @endunless
-        
-        
       </ul>
       <!-- 搜尋功能 -->
       <!-- <form class="navbar-form navbar-left">

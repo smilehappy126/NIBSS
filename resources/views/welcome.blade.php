@@ -148,8 +148,9 @@
                 height: 20px;
                 transition: 0.3s;
             }
+            /*背景圖片的位置: /ncumisborrowsystem/public/img*/
             .background{
-                background-image: url("/img/2.jpg");
+                background-image: url("/img/5.jpg"); 
                 width: 100%;
                 height: 100%;
                 background-position: center;
@@ -162,18 +163,35 @@
                 opacity: 0.6;
                 color: white;
                 font-weight: bolder;
-                -webkit-filter: blur(10px);
-                filter: blur(2px);
                 z-index: 10;
-                
-
+                position: relative;
             }
             .TitleText{
                 background-color: transparent;
                 z-index: 100;
                 font-size: 50px;
-               
+                position: absolute;
+                text-align: center;
+                top:10%;
+                font-family: Microsoft JhengHei;
+                font-size: 45px;
+                color: white;
+                right: 0px;
+                left: 0px;
             }
+            .LinkText{
+                background-color: transparent;
+                z-index: 100;
+                font-size: 30px;
+                
+                text-align: center;
+            }
+            /*模糊效果*/
+            .BlurEffect{
+                -webkit-filter: blur(10px);
+                filter: blur(2px);
+            }
+
                           
             
         </style>
@@ -227,32 +245,43 @@
         
             <!-- 主選單 -->
             <div class="content" style="position: relative;">
-                
-                <div class="title m-b-md">
-                     &nbsp
+                <div style="position: relative;">
+                <!-- 標題 -->
+                <div style="align-items: center;">
+                    <div class="title m-b-md BlurEffect">
+                        &nbsp
+                    </div>
+                    <span class="TitleText">設備借用系統</span>
                 </div>
                 
-                <div class="TitleText m-b-md">
-                    設備借用系統
-                </div>  
-                
-                
-
-                
-                
-                <div class="links">
-                    <a  href="{{ url('/create') }}">新增申請單</a>|
-                    <a  href="{{ url('/borrow') }}">借用狀況</a>|
-                    <a  href="{{ url('/return') }}">已歸還資料</a>|
-                    <a  href="{{ url('/reserve') }}">預約狀況</a>|
-                    <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
+                <!-- 分頁連結-->
+                <div class="links" style="align-items: center;" >
+                    <div class="BlurEffect" style="align-items: center; background-color: black; opacity: 0.6; font-size: 60px;">
+                        &nbsp
+                    </div>
+                    <span class="links LinkText">
+                        <a  href="{{ url('/create') }}">新增申請單</a>|
+                        <a  href="{{ url('/borrow') }}">借用狀況</a>|
+                        <a  href="{{ url('/return') }}">已歸還資料</a>|
+                        <a  href="{{ url('/reserve') }}">預約狀況</a>|
+                        <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
+                    @if (Route::has('login'))
+                        @if(Auth::check())
+                            @if( (Auth::user()->email)==='test@cc.ncu.edu.tw')   
+                        |<a  href="{{ url('/admin') }}">管理者模式</a>
+                            @endif
+                        @endif
+                    @endif
+                    </span>
+                    
                 </div>
-                
             </div>
+                
+            </div><!-- End of Content -->
         
       </div>
         
-        <!-- End of Content -->
+        
         
         <!-- ↓↓↓ Modal Section ↓↓↓ -->
 
