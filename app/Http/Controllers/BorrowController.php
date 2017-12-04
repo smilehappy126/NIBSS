@@ -36,7 +36,7 @@ class BorrowController extends Controller
   // 透過Name來搜尋
   public function search(Request $rep)
   {
-      $miss=Miss::where('name','like',$rep->searchname.'%')
+      $miss=Miss::where('name','like','%'.$rep->searchname.'%')
                   ->get();
       if (count($miss)>=1) {
         return view('button2_borrow.index',['miss'=> $miss]);
@@ -47,7 +47,16 @@ class BorrowController extends Controller
   // 透過Content來搜尋
   public function searchall(Request $rep)
   {
-      $miss=Miss::search($rep->searchcontent)
+      $miss=Miss::where('name','like','%'.$rep->searchcontent.'%')
+                ->orWhere('class','like','%'.$rep->searchcontent.'%')
+                ->orWhere('phone','like','%'.$rep->searchcontent.'%')
+                ->orWhere('item','like','%'.$rep->searchcontent.'%')
+                ->orWhere('itemnum','like','%'.$rep->searchcontent.'%')
+                ->orWhere('status','like','%'.$rep->searchcontent.'%')
+                ->orWhere('teacher','like','%'.$rep->searchcontent.'%')
+                ->orWhere('classroom','like','%'.$rep->searchcontent.'%')
+                ->orWhere('license','like','%'.$rep->searchcontent.'%')
+                ->orWhere('date','like','%'.$rep->searchcontent.'%')
                   ->get();
       if (count($miss)>=1) {
         return view('button2_borrow.index',['miss'=> $miss]);
