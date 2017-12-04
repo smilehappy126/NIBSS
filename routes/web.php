@@ -59,7 +59,8 @@ Route::get('/borrow/teacherdesc','BorrowController@teacherdesc');
 Route::get('/borrow/statusasc','BorrowController@statusasc');
 Route::get('/borrow/statusdesc','BorrowController@statusdesc');
 //透過名字尋找
-Route::post('/borrow/searchName','BorrowController@searchName');
+Route::post('/borrow/search','BorrowController@search');
+Route::post('/borrow/searchall','BorrowController@searchall');
 //已歸還資料
 // Route::get('/return', function () {
 //     return view('button3_return.index');

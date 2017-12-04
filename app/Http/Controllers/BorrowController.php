@@ -12,7 +12,8 @@ class BorrowController extends Controller
 	{
 		$miss = Miss::where('status','=','借用中')
                   ->get();
-		return view('button2_borrow.index',['miss'=> $miss]);
+    $counter=1;
+		return view('button2_borrow.index',['miss'=> $miss],['counter'=>$counter]);
 
 	}
 	
@@ -33,16 +34,26 @@ class BorrowController extends Controller
 	}
   
   // 透過Name來搜尋
-  public function searchName(Request $rep)
+  public function search(Request $rep)
   {
-      $miss=Miss::where('name','=',$rep->searchname)
+      $miss=Miss::where('name','like',$rep->searchname.'%')
                   ->get();
       if (count($miss)>=1) {
         return view('button2_borrow.index',['miss'=> $miss]);
       } else if (count($miss)<1){
         return view('button2_borrow.fail',['miss'=> $miss]);
       }
-      // return view('button2_borrow.index',['miss'=> $miss]);
+  }
+  // 透過Content來搜尋
+  public function searchall(Request $rep)
+  {
+      $miss=Miss::search($rep->searchcontent)
+                  ->get();
+      if (count($miss)>=1) {
+        return view('button2_borrow.index',['miss'=> $miss]);
+      } else if (count($miss)<1){
+        return view('button2_borrow.fail',['miss'=> $miss]);
+      }
   }
 
   // ID排序
@@ -50,13 +61,15 @@ class BorrowController extends Controller
     $miss=Miss::where('status','=','借用中')
                 ->orderBy('id','asc')
                 ->get();
-    return view('button2_borrow.index',['miss'=> $miss]);
+    $counter=2;
+    return view('button2_borrow.index',['miss'=> $miss],['counter'=> $counter]);
   }
   public function iddesc(){
     $miss=Miss::where('status','=','借用中')
                 ->orderBy('id','desc')
                 ->get();
-    return view('button2_borrow.index',['miss'=> $miss]);
+    $counter=1;
+    return view('button2_borrow.index',['miss'=> $miss],['counter'=>$counter]);
   }
   
   // Date排序
