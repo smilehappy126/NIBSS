@@ -40,7 +40,7 @@
     <div class="panel panel-default">
        <div class="panel-heading">{{ $classroom->roomname }}</div>
   
-       <div class="panel-body"><img src="{{ $classroom->imgurl }}" height="200" width="300"></br>
+       <div class="panel-body"><img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" height="200" width="300"></br>
               教室描述：
               {{ $classroom->word }} </br></br>
             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
