@@ -110,5 +110,6 @@ Auth::routes();
 
 Route::post('/loginNow', 'Auth\LoginController@login');
 Route::get('/logout', 'MyLoginController@logout');
-Route::get('/admin','MyLoginController@admin');
+Route::get('/admin',array('before'=>'auth', 'uses'=>'MyLoginController@admin'));
+Route::get('/admin/userlists','MyLoginController@userlists');
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');

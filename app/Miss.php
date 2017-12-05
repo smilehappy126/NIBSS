@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
 
 class Miss extends Model
 {
@@ -14,5 +13,4 @@ class Miss extends Model
     {
         return $this->belongsTo(User::class);
     }
-    use Searchable;
 }
