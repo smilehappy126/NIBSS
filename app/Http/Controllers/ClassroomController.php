@@ -44,7 +44,7 @@ class ClassroomController extends Controller
 
 
 
-    return redirect('/newclassroom');
+    return redirect('/reserve/'.$request->roomname);
     }
 
     /**

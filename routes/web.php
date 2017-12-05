@@ -80,7 +80,7 @@ Route::get('/reserve', 'CourseController@index');
 Route::get('/reserve/{roomname}', 'CourseController@show');
 //(點選上下一週後)
 Route::get('/reserve/{roomname}/{weekfirst}', 'CourseController@showOtherWeek');
-//excel
+//單筆excel
 Route::post('/importExcel', 'CourseController@importExcel');
 
 
@@ -94,7 +94,7 @@ Route::delete('reserve/deleteCourse/{id}','CourseController@destroy');
 
 //以下尚未處理
 //新增教室資料
-Route::post('/newclassroom','ClassroomController@store');
+Route::post('/reserve/{roomname}','ClassroomController@store');
 Route::get('/newclassroom', 'ClassroomController@newClassroomPage');
 //修改教室資料
 Route::get('/editclassroom', 'ClassroomController@editClassroomPage');
@@ -106,7 +106,8 @@ Route::delete('/editclassroom/{classroom}','ClassroomController@destroy');
 Route::get('/inputClass/{roomname}', 'LongcourseController@index');
 //新增多筆
 Route::post('/inputClass/save', 'LongcourseController@store');
-
+//固定課程excel
+Route::post('/inputClass/importExcel', 'LongcourseController@importExcel');
 // Login驗證
 Auth::routes();
 

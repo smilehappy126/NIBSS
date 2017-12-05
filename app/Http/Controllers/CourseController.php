@@ -81,7 +81,8 @@ class CourseController extends Controller
 
                 foreach ($data->toArray() as $key => $value) {
                     if(!empty($value)){
-                        foreach ($value as $v) {    
+                        foreach ($value as $v) { 
+                            //start_classtime / end_classtime要是文字格式   
                             //英文字母需皆為小寫    
                             $insert[] = ['roomname' => $v['roomname'], 'weekfirst' => $v['weekfirst'], 'start_classtime' => $v['start_classtime'], 'end_classtime' => $v['end_classtime'], 'teacher' => $v['teacher'], 'content' => $v['content']];
                         }
