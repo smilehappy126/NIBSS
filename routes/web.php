@@ -13,7 +13,7 @@
 //起始頁
 Route::get('/','MyLoginController@welcome');
 //登入驗證
-// Route::get('/mylogin','MyLoginController@mylogin');
+Route::get('/mylogin','MyLoginController@mylogin');
 //登入成功測試
 // Route::get('/login/success','MyLoginController@loginauth');
 
@@ -59,7 +59,8 @@ Route::get('/borrow/teacherdesc','BorrowController@teacherdesc');
 Route::get('/borrow/statusasc','BorrowController@statusasc');
 Route::get('/borrow/statusdesc','BorrowController@statusdesc');
 //透過名字尋找
-Route::post('/borrow/searchName','BorrowController@searchName');
+Route::post('/borrow/search','BorrowController@search');
+Route::post('/borrow/searchall','BorrowController@searchall');
 //已歸還資料
 // Route::get('/return', function () {
 //     return view('button3_return.index');
@@ -80,6 +81,8 @@ Route::get('/reserve', 'CourseController@index');
 Route::get('/reserve/{roomname}', 'CourseController@show');
 //(點選上下一週後)
 Route::get('/reserve/{roomname}/{weekfirst}', 'CourseController@showOtherWeek');
+//單筆excel
+Route::post('/importExcel', 'CourseController@importExcel');
 
 
 //新增課程資料
@@ -92,7 +95,7 @@ Route::delete('reserve/deleteCourse/{id}','CourseController@destroy');
 
 //以下尚未處理
 //新增教室資料
-Route::post('/newclassroom','ClassroomController@store');
+Route::post('/reserve/{roomname}','ClassroomController@store');
 Route::get('/newclassroom', 'ClassroomController@newClassroomPage');
 //修改教室資料
 Route::get('/editclassroom', 'ClassroomController@editClassroomPage');
@@ -101,13 +104,16 @@ Route::post('/editclassroom/{classroom}','ClassroomController@update');
 Route::delete('/editclassroom/{classroom}','ClassroomController@destroy');
 
 //固定課程預約
-Route::get('/inputClass', 'LongcourseController@index');
-//新增教室內容資料
-//Route::post('/inputClass', 'LongcourseController@store');
-
-
-Auth::routes();
+Route::get('/inputClass/{roomname}', 'LongcourseController@index');
+//新增多筆
+Route::post('/inputClass/save', 'LongcourseController@store');
+//固定課程excel
+Route::post('/inputClass/importExcel', 'LongcourseController@importExcel');
 // Login驗證
-Route::post('/loginNow', 'Auth\LoginController@login');
+Auth::routes();
 
-Route::get('/home', 'MyLoginController@welcome')->name('home');
+Route::post('/loginNow', 'Auth\LoginController@login');
+Route::get('/logout', 'MyLoginController@logout');
+Route::get('/admin',array('before'=>'auth', 'uses'=>'MyLoginController@admin'));
+Route::get('/admin/userlists','MyLoginController@userlists');
+Route::get('/home', 'MyLoginController@afterlogin')->name('home');

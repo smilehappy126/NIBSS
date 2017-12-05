@@ -29,13 +29,27 @@ class MyLoginController extends Controller
  	}
     public function mylogin()
     {
-        $users=Auth::user();
-        return view('button2_borrow.success',['users'=>$users]);
+        
+        return view('button2_borrow.success');
     }
-
-
-
-   
+    public function afterlogin()
+    {
+        
+        return redirect()->back();
+    }
+    public function logout(Request $request) {
+        Auth::logout();
+          return redirect()->back();
+    }
+    
+    public function admin(){
+        $users=User::all();
+        return view('button5_admin.admin',['users'=>$users]);
+    }
+    public function userlists(){
+        $users=User::all();
+        return view('button5_admin.userlists',['users'=>$users]);
+    }
  	
 }
 

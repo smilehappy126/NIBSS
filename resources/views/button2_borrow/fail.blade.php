@@ -10,28 +10,31 @@
 	text-align: center;
 	}
 	.search{
-	background-color: transparent;
-	font-family:  Microsoft JhengHei;
-	text-align:left;
-	margin-left: 82.5%;
-	font-weight: bold;
-	}
-	.searchButton{
-	width: 40px;
-    height: 25px;
+  background-color: transparent;
+  font-family:  Microsoft JhengHei;
+  text-align:right;
+  
+  font-weight: bold;
+  }
+  .searchButton{
+  width: 41px;
+    height: 28px;
     font-size: 12px;
     font-weight: bold;
     text-align: left;
     border: 0px;
     transition: 0.3s;
     cursor: pointer;
-    background-color: transparent;	
-	}
+    background-color: transparent;
+    font-family:  Microsoft JhengHei;
+    border-radius: 5px; 
+  }
 	.TableTop{
-	font-family:  Microsoft JhengHei;
-	font-size: 20px;
-	text-align: center;
-	}
+  font-family:  Microsoft JhengHei;
+  font-size: 20px;
+  text-align: center;
+  word-break: break-word;
+  }
 	.TableContent{
     font-family:  Microsoft JhengHei;
 	font-size: 15px;
@@ -75,7 +78,7 @@
     background-color: grey;
     }
     .searchButton:hover{
-    background-color: grey;
+    background-color: #DDDDDD;
     }
    
     </style>
@@ -86,11 +89,16 @@
 <div class="container">
 <div class="TopTitle">借用狀況</div>
 <!-- 透過名字搜尋 -->
-<div class="search"><form action="{{ asset ('/borrow/searchName')}}" method="post" style="display: inline;">{{ csrf_field()}}<input class="form-inline" name="searchname" id="searchname" type="text"  placeholder="請輸入名字...." value=""><nobr><button class="searchButton" id="searchButton" type="submit">搜尋</button></form></div>
+  <div class="search">
+    <form action="{{ asset ('/borrow/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+      <input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  value="" style="width: 20%;">
+      <button class="searchButton" id="searchButton" type="submit">搜尋</button>
+    </form>
+  </div>
 
 <!-- 表單的標頭 -->
 <div class="TableTop">
-	<table class="table" style="table-layout: fixed; text-align: center;" border="3" >
+	<table class="table" style="table-layout: fixed; text-align: center;" >
 	<tr>
 	
 <!-- 序號 -->
