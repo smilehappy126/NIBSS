@@ -45,7 +45,7 @@
     </button>
 </br>
 
- <form action="{{ asset('/newclassroom') }}" method="post"> <!-- //enctype="multipart/form-data"加ㄉ  -->
+ <form action="{{ asset('/reserve/{roomname}') }}" method="post"> <!-- //enctype="multipart/form-data"加ㄉ  -->
  	    {{ csrf_field() }}
     <div class="form-group">
        <label for="classid">教室名稱或編號:</label>

@@ -9,6 +9,7 @@ use App\Course;
 use DateTime;
 use DateInterval;
 use DatePeriod;
+use Excel;
 
 class LongcourseController extends Controller
 {
@@ -66,6 +67,42 @@ class LongcourseController extends Controller
         return redirect('reserve/'.$request->roomname);
     }
 
+    //excel
+    public function importExcel(Request $request)
+    {
+        if($request->hasFile('import_file')){
+            $path = $request->file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {})->get();
+            if(!empty($data) && $data->count()){
+
+                foreach ($data->toArray() as $key => $value) {
+                    if(!empty($value)){
+                        foreach($value as $v){
+                             $begin = new DateTime( $v['start_date'] );
+                             $end = new DateTime( $v['end_date'] );
+                             $mondays = getIntervalMonday($begin, $end);
+                             $day = getBeginDay($begin);
+                            foreach ($mondays as $monday) {
+                            //start_date / end_date要是日期格式
+                            //英文字母需皆為小寫    
+                                $insert[] = ['roomname' => $v['roomname'], 'weekFirst' => $monday, 'start_classtime' => $day . "_" .$v['start_classtime'], 'end_classtime' => $day . "_" .$v['end_classtime'], 'teacher' => $v['teacher'], 'content' => $v['content']];
+                            }
+                        }
+                    }
+                }
+
+                
+                if(!empty($insert)){
+                    Course::insert($insert);
+                    return back()->with('success','Insert Record successfully.');
+                }
+
+            }
+
+        }
+
+        return back()->with('error','Please Check your file, Something is wrong there.');
+    }
     /**
      * Display the specified resource.
      *
