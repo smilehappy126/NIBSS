@@ -80,6 +80,8 @@ Route::get('/reserve', 'CourseController@index');
 Route::get('/reserve/{roomname}', 'CourseController@show');
 //(點選上下一週後)
 Route::get('/reserve/{roomname}/{weekfirst}', 'CourseController@showOtherWeek');
+//excel
+Route::post('/importExcel', 'CourseController@importExcel');
 
 
 //新增課程資料
