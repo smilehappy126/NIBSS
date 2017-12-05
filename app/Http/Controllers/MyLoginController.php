@@ -39,11 +39,16 @@ class MyLoginController extends Controller
     }
     public function logout(Request $request) {
         Auth::logout();
-        return redirect()->back();
+          return redirect()->back();
     }
     
     public function admin(){
-        return view('button5_admin.admin');
+        $users=User::all();
+        return view('button5_admin.admin',['users'=>$users]);
+    }
+    public function userlists(){
+        $users=User::all();
+        return view('button5_admin.userlists',['users'=>$users]);
     }
  	
 }
