@@ -57,7 +57,7 @@
     </div>
         <div class="form-group">
        <label for="classpic">教室照片路由:</label>
-       <input type="text" class="form-control" id="classpic" name="imgurl" required="必填！">  <!-- input type="file" 改ㄉ  -->
+       <input type="file" class="form-control" id="classpic" name="imgurl" required="必填！">  <!-- input type="file" 改ㄉ  -->
     </div>
     <div>
         <button class="btn btn-primary" type="submit">送出</button>
