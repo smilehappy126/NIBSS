@@ -44,26 +44,6 @@ class BorrowController extends Controller
         return view('button2_borrow.fail',['miss'=> $miss]);
       }
   }
-  // 透過Content來搜尋
-  public function searchall(Request $rep)
-  {
-      $miss=Miss::where('name','like','%'.$rep->searchcontent.'%')
-                ->orWhere('class','like','%'.$rep->searchcontent.'%')
-                ->orWhere('phone','like','%'.$rep->searchcontent.'%')
-                ->orWhere('item','like','%'.$rep->searchcontent.'%')
-                ->orWhere('itemnum','like','%'.$rep->searchcontent.'%')
-                ->orWhere('status','like','%'.$rep->searchcontent.'%')
-                ->orWhere('teacher','like','%'.$rep->searchcontent.'%')
-                ->orWhere('classroom','like','%'.$rep->searchcontent.'%')
-                ->orWhere('license','like','%'.$rep->searchcontent.'%')
-                ->orWhere('date','like','%'.$rep->searchcontent.'%')
-                  ->get();
-      if (count($miss)>=1) {
-        return view('button2_borrow.index',['miss'=> $miss]);
-      } else if (count($miss)<1){
-        return view('button2_borrow.fail',['miss'=> $miss]);
-      }
-  }
 
   // ID排序
   public function idasc(){
