@@ -13,73 +13,7 @@
 @section('content')
 
 <?php
-echo "新增多筆";
-/* testing */
-//$begin = new DateTime( '2017-11-22' );
-//$end = new DateTime( '2017-11-30' );
-//
-//
-//getIntervalMonday($begin, $end);
-//function getIntervalMonday($begin, $end){
-//    
-//    /* 當週任一天的禮拜一是幾號? */
-//    $beginString = $begin->format("Y-m-d");
-//    $endString = $end->format("Y-m-d");
-//    
-//    //讓起始日期&結束日期成為禮拜一
-//    if(date("w", strtotime($beginString)) == 1){
-//        $beginMon = strtotime($beginString);
-//    }else{
-//        $beginMon = strtotime('last monday', strtotime($beginString));
-//    }
-//    
-//    if(date("w", strtotime($endString)) == 1){
-//        $ending = strtotime("+1 day", $endString);
-//    }else{
-//        //$endMon = strtotime('last monday', strtotime($endString));
-//        $ending = strtotime("last monday +1 day", strtotime($endString)); // +1天，為了DatePeriod取的時候尾巴沒包含
-//    }
-//    
-//    $beginMon = date("Y-m-d", $beginMon);
-//    echo "begin Monday is " . $beginMon . "<br>";
-//    $beginMon = new DateTime($beginMon);
-//    
-//    $ending = date("Y-m-d", $ending);
-//    echo "endMon plus one day is " . $ending . "<br>";
-//    $ending = new DateTime($ending);
-////    $endMon = date("Y-m-d", $endMon);
-////    echo "end Monday is " . $endMon . "<br>";
-//    
-//    
-//    $interval = new DateInterval('P1D');
-//    $period = new DatePeriod($beginMon, $interval, $ending);
-//    
-//    $dates = array();
-//    // $dates陣列內放置$date(格式為"Y-m-d")
-//    foreach($period as $date){
-//        //$dates[] = $date->format("Y-m-d");
-//        array_push($dates, $date->format("Y-m-d"));
-//    }
-//    
-//    // 列出日期區間為Monday的
-//    foreach($dates as $date){
-//        if(date("w", strtotime($date)) == 1){
-//            echo $date . "<br>";
-//        }
-//    }
-//    
-//}
-//
-//getBeginDay($begin);
-//function getBeginDay($begin){
-//    $beginString = $begin->format("Y-m-d");
-//    $beginDay = date("w", strtotime($beginString));
-//    
-//    $dayOfWeek = array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
-//    
-//    //echo $dayOfWeek[$beginDay] . "<br>";
-//    return $dayOfWeek[$beginDay];
-//}
+echo "新增多筆" . "<br>";
 
 ?>
 
