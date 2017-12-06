@@ -60,7 +60,6 @@ Route::get('/borrow/statusasc','BorrowController@statusasc');
 Route::get('/borrow/statusdesc','BorrowController@statusdesc');
 //透過名字尋找
 Route::post('/borrow/search','BorrowController@search');
-Route::post('/borrow/searchall','BorrowController@searchall');
 //已歸還資料
 // Route::get('/return', function () {
 //     return view('button3_return.index');
@@ -114,6 +113,10 @@ Auth::routes();
 
 Route::post('/loginNow', 'Auth\LoginController@login');
 Route::get('/logout', 'MyLoginController@logout');
-Route::get('/admin',array('before'=>'auth', 'uses'=>'MyLoginController@admin'));
-Route::get('/admin/userlists','MyLoginController@userlists');
+// Admin路由區
+Route::get('/admin',array('before'=>'auth', 'uses'=>'AdminController@admin'));
+Route::get('/admin/userlists','AdminController@userlists');
+Route::post('/admin/userlists/update/{id}','AdminController@update');
+Route::post('/admin/searchall','AdminController@searchall');
+
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');
