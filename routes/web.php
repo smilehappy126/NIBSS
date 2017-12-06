@@ -95,7 +95,7 @@ Route::delete('reserve/deleteCourse/{id}','CourseController@destroy');
 
 //以下尚未處理
 //新增教室資料
-Route::post('/reserve/{roomname}','ClassroomController@store');
+Route::post('/newclassroom','ClassroomController@store');
 Route::get('/newclassroom', 'ClassroomController@newClassroomPage');
 //修改教室資料
 Route::get('/editclassroom', 'ClassroomController@editClassroomPage');
