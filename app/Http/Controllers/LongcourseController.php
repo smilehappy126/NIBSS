@@ -25,6 +25,12 @@ class LongcourseController extends Controller
                 'classrooms'=> $classrooms,
                 'currentClassroom'=> $roomname
             ]);
+        
+//        /* testing query */
+//        $query = Course::all()->where('roomname', $roomname)
+//            ->where('weekfirst', $weekfirst)->count();
+//        
+//        return $query;
     }
 
     /**
@@ -149,24 +155,27 @@ class LongcourseController extends Controller
     }
 }
 
-function getIntervalMonday($begin, $end){
+function getIntervalMonday($begin, $end){  
+    /* 取區間日期的禮拜一
+    (當週任一天的禮拜一是幾號?) */
     
-    /* 當週任一天的禮拜一是幾號? */
     $beginString = $begin->format("Y-m-d");
     $endString = $end->format("Y-m-d");
     
-    //讓起始日期&結束日期成為禮拜一
+    // 讓起始日期&結束日期成為禮拜一
     if(date("w", strtotime($beginString)) == 1){
         $beginMon = strtotime($beginString);
     }else{
         $beginMon = strtotime('last monday', strtotime($beginString));
     }
     
+    // 結束日期+1天，是為了用DatePeriod的時候，尾巴沒包含
     if(date("w", strtotime($endString)) == 1){
         $ending = strtotime("+1 day", $endString);
     }else{
         //$endMon = strtotime('last monday', strtotime($endString));
-        $ending = strtotime("last monday +1 day", strtotime($endString)); // +1天，為了DatePeriod取的時候尾巴沒包含
+        $ending = strtotime("last monday +1 day", strtotime($endString)); 
+        
     }
     
     $beginMon = date("Y-m-d", $beginMon);

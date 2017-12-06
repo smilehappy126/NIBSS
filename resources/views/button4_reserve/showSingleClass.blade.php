@@ -1,6 +1,11 @@
 @extends('layouts.layout') 
 @section('title', '預約狀況') 
-@section('css') 
+@section('css')
+<style>
+.errorMessage {
+    color: red;
+}
+</style>
 @stop 
 
 @section('content')
@@ -15,27 +20,18 @@ $preString = date('Y-m-d',$pre);
 $nextString = date('Y-m-d',$next);
 
 
-////test字串方式比對weekFirst時間(格式: XXXX-XX-XX)
-//if($dateString == "2017-08-21"){
-//    echo "The Mondays` date are same. Working.<br>";
-//}else{
-//    echo "Something Wrong.<br>";
-//}
-
-
-//echo "本週一: ", $dateString;
-//echo "<br>";
-//echo "上週一: ", $preString;
-//echo "<br>";
-//echo "下週一: ", $nextString;
-//
-//echo "<br>";
 echo "現在所在教室: ", $currentClassroom;
-
-
 ?>
 
 <div class="container">
+    
+    <!--顯示出錯訊息(課程重疊了)-->
+    @if (session('alert'))
+    <div class="alert alert-danger alert-dismissable fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
+    </div>
+    @endif
 
     <!--新增教室資料按鈕-->
     <button type="button" class="btn btn-link">
@@ -910,7 +906,7 @@ echo "現在所在教室: ", $currentClassroom;
                         <br>
                         <label>該週週一: {{$thisMonday}}</label>
                         <input name="weekFirst" value="{{$thisMonday}}" hidden>
-                        <p id="errorMessage" style="color:red;"></p>
+                        <p class="errorMessage" id="errorMessage"></p>
                     </div> 
             </div>
             <div class="modal-footer">
