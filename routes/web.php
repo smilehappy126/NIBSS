@@ -25,39 +25,6 @@ Route::post('/create','ApplicationController@store');
 Route::get('/borrow', 'BorrowController@index');
 Route::post('/borrow/update/{id}','BorrowController@update');
 
-// ID排序
-Route::get('/borrow/idasc','BorrowController@idasc');
-Route::get('/borrow/iddesc','BorrowController@iddesc');
-// Date排序
-Route::get('/borrow/dateasc','BorrowController@dateasc');
-Route::get('/borrow/datedesc','BorrowController@datedesc');
-// Class排序
-Route::get('/borrow/classasc','BorrowController@classasc');
-Route::get('/borrow/classdesc','BorrowController@classdesc');
-// Name排序
-Route::get('/borrow/nameasc','BorrowController@nameasc');
-Route::get('/borrow/namedesc','BorrowController@namedesc');
-// Phone排序
-Route::get('/borrow/phoneasc','BorrowController@phoneasc');
-Route::get('/borrow/phonedesc','BorrowController@phonedesc');
-// Item排序
-Route::get('/borrow/itemasc','BorrowController@itemasc');
-Route::get('/borrow/itemdesc','BorrowController@itemdesc');
-// Itemnnum排序
-Route::get('/borrow/itemnumasc','BorrowController@itemnumasc');
-Route::get('/borrow/itemnumdesc','BorrowController@itemnumdesc');
-// License排序
-Route::get('/borrow/licenseasc','BorrowController@licenseasc');
-Route::get('/borrow/licensedesc','BorrowController@licensedesc');
-// Classroom排序
-Route::get('/borrow/classroomasc','BorrowController@classroomasc');
-Route::get('/borrow/classroomdesc','BorrowController@classroomdesc');
-// Teacher排序
-Route::get('/borrow/teacherasc','BorrowController@teacherasc');
-Route::get('/borrow/teacherdesc','BorrowController@teacherdesc');
-// Status排序
-Route::get('/borrow/statusasc','BorrowController@statusasc');
-Route::get('/borrow/statusdesc','BorrowController@statusdesc');
 //透過名字尋找
 Route::post('/borrow/search','BorrowController@search');
 //已歸還資料

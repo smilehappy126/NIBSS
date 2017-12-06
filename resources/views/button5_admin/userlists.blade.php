@@ -2,13 +2,19 @@
 @section('title', '使用者清單')
 @section('css')
    <style type="text/css">
-   #TableTop{
+    .TopTitle{
+        background-color: transparent;
+        font-family: DFKai-sb;
+        font-size: 80px;
+        text-align: center;
+    }
+    .TableTop{
         font-family:  Microsoft JhengHei;
         font-size: 20px;
         text-align: center;
         word-break: break-word;
     }
-    #TableContent{
+    .TableContent{
         font-family:  Microsoft JhengHei;
         font-size: 15px;
         text-align: center;
@@ -34,29 +40,47 @@
 
 @section('content')
 <div class="container">
-    <!-- 表單表頭 -->
-    <table class="table" id="TableTop" style="table-layout: fixed;">
-        <tr>    
-            <th style="width: 80px; text-align: center;">使用者</th>
-            <th style="width: 180px; text-align: center;">信箱</th>
-            <th style="text-align: center;">違規次數</th>
-            <th style="text-align: center;">權限等級</th>
-            <th style="text-align: center;">修改資料</th>
-        </tr>
-    </table>
+    <div class="TopTitle">使用者名單</div>
+    <div class="TableTop">
+        <!-- 表單表頭 -->
+        <table class="table" id="TableTitle" style="table-layout: fixed;">
+            <tr>    
+                <th style="text-align: center; width: 80px;">
+                    <button id="nameSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">名稱</button>
+                </th>
+                <th style="text-align: center; width: 180px;">
+                    <button id="emailSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
+                </th>
+                <th style="text-align: center;"">
+                    <button id="nameSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">違規次數</button>
+                </th>
+                <th style="text-align: center;"">
+                    <button id="levelSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">權限等級</button>
+                </th>
+                <th style="text-align: center;"">
+                    <button id="levelSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">修改資料</button>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div class="TableContent">
+        <!-- 表單內容 -->
+        <table class="table" id="content" style="table-layout: fixed;"">
+            @foreach($users as $user)
+            <tr>
+                <th style="width: 80px; text-align: center;">{{ $user->name }}</th>
+                <th style="width: 180px; text-align: center;">{{ $user->email }}</th>
+                <th style="text-align: center;">{{ $user->violation }}</th>
+                <th style="text-align: center;">{{ $user->level }}</th>
+                <th style="text-align: center;">
+                    <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$user->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
+                </th>
+            </tr>
+            @endforeach
+        </table>
+    </div>
+
     @foreach($users as $user)
-    <!-- 表單內容 -->
-    <table class="table" id="TableContent" style="table-layout: fixed;"">
-        <th style="width: 80px; text-align: center;">{{ $user->name }}</th>
-        <th style="width: 180px; text-align: center;">{{ $user->email }}</th>
-        <th style="text-align: center;">{{ $user->violation }}</th>
-        <th style="text-align: center;">{{ $user->level }}</th>
-        <th style="text-align: center;">
-            <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$user->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
-        </th>
-    </table>
-
-
         <!-- Edit Modal -->
         <div id="EditModal{{$user->id}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
             <div class="modal-dialog">
@@ -120,5 +144,61 @@
 @endsection
 
 @section('js')
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("content");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc"; 
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 0; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TH")[n];
+      y = rows[i + 1].getElementsByTagName("TH")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++; 
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
 
 @stop
