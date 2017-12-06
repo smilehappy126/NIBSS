@@ -16,9 +16,10 @@ class ApplicationController extends Controller
  	{	   
     $eq = array();
     $num = array();
-    
+
     $eq = $request->item;
     $num =$request->itemnum;
+
 
     /*$str_eq = json_encode($eq);
     $str_num = json_encode($num);*/

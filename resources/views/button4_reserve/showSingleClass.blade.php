@@ -47,6 +47,16 @@ echo "現在所在教室: ", $currentClassroom;
     <button type="button" class="btn btn-link">
         <a href="{{ asset('/inputClass/' . $currentClassroom) }}"><div>固定課程預約</div></a>
     </button>
+    <!-- excel -->
+    <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <input type="file" name="import_file" />
+                    {{ csrf_field() }}
+        <br/>
+
+        <button class="btn btn-primary">Import CSV or Excel File</button>
+
+    </form>
+                    
     
     
 

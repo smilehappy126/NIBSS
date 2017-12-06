@@ -39,7 +39,7 @@ echo "(請先選擇教室)<br>";
   <div class="col-md-4">
      <div class="panel panel-default">
        <div class="panel-heading">    <a href="{{ asset('/reserve/' . $classroom->roomname ) }}" class="btn btn-secondary btn-block classBtn" id="{{ $classroom->roomname }}">{{ $classroom->roomname }}</a></div>
-          <div class="panel-body"><img src="{{ $classroom->imgurl }}" height="200" width="300"></br>
+          <div class="panel-body"><img src="{{ url('/uploadimg/'.$classroom->imgurl) }}" height="200" width="300"></br>
               教室描述：
               {{ $classroom->word }} </br>
           </div>

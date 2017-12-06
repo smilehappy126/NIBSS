@@ -59,7 +59,7 @@ Route::get('/borrow/teacherdesc','BorrowController@teacherdesc');
 Route::get('/borrow/statusasc','BorrowController@statusasc');
 Route::get('/borrow/statusdesc','BorrowController@statusdesc');
 //透過名字尋找
-Route::post('/borrow/searchName','BorrowController@searchName');
+Route::post('/borrow/search','BorrowController@search');
 //已歸還資料
 // Route::get('/return', function () {
 //     return view('button3_return.index');
@@ -80,6 +80,8 @@ Route::get('/reserve', 'CourseController@index');
 Route::get('/reserve/{roomname}', 'CourseController@show');
 //(點選上下一週後)
 Route::get('/reserve/{roomname}/{weekfirst}', 'CourseController@showOtherWeek');
+//單筆excel
+Route::post('/importExcel', 'CourseController@importExcel');
 
 
 //新增課程資料
@@ -104,11 +106,17 @@ Route::delete('/editclassroom/{classroom}','ClassroomController@destroy');
 Route::get('/inputClass/{roomname}', 'LongcourseController@index');
 //新增多筆
 Route::post('/inputClass/save', 'LongcourseController@store');
-
+//固定課程excel
+Route::post('/inputClass/importExcel', 'LongcourseController@importExcel');
 // Login驗證
 Auth::routes();
 
 Route::post('/loginNow', 'Auth\LoginController@login');
 Route::get('/logout', 'MyLoginController@logout');
-Route::get('/admin','MyLoginController@admin');
+// Admin路由區
+Route::get('/admin',array('before'=>'auth', 'uses'=>'AdminController@admin'));
+Route::get('/admin/userlists','AdminController@userlists');
+Route::post('/admin/userlists/update/{id}','AdminController@update');
+Route::post('/admin/searchall','AdminController@searchall');
+
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');

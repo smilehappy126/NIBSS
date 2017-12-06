@@ -39,7 +39,15 @@ class ClassroomController extends Controller
         $classrooms = new Classroom;
         $classrooms->roomname= $request->roomname;
         $classrooms->word= $request->word;
-        $classrooms->imgurl= $request->imgurl;
+        
+
+        $this->validate($request, [
+            'imgurl' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = time().'.'.$request->imgurl->getClientOriginalExtension();
+        $request->imgurl->move(public_path('uploadimg'), $imageName);
+        $classrooms->imgurl= $imageName;
         $classrooms->save();
 
 

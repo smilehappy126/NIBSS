@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use Excel;
+
+//Controller好像要寫在一起，不同Controller同時return相同view會有問題
+//測試中...把WeekController東西移來這裡
 use App\Classroom;
 
 
@@ -67,6 +71,39 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         
+    }
+    //excel
+    public function importExcel(Request $request)
+    {
+
+        if($request->hasFile('import_file')){
+            $path = $request->file('import_file')->getRealPath();
+
+            $data = Excel::load($path, function($reader) {})->get();
+
+            if(!empty($data) && $data->count()){
+
+                foreach ($data->toArray() as $key => $value) {
+                    if(!empty($value)){
+                        foreach ($value as $v) { 
+                            //start_classtime / end_classtime要是文字格式   
+                            //英文字母需皆為小寫    
+                            $insert[] = ['roomname' => $v['roomname'], 'weekfirst' => $v['weekfirst'], 'start_classtime' => $v['start_classtime'], 'end_classtime' => $v['end_classtime'], 'teacher' => $v['teacher'], 'content' => $v['content']];
+                        }
+                    }
+                }
+
+                
+                if(!empty($insert)){
+                    Course::insert($insert);
+                    return back()->with('success','Insert Record successfully.');
+                }
+
+            }
+
+        }
+
+        return back()->with('error','Please Check your file, Something is wrong there.');
     }
 
     /**

@@ -94,7 +94,7 @@
                 border-width: 0px;
                 transition: 0.3s;
                 cursor: pointer;
-
+                opacity: 0.6;
             }
 
             .LoginButton:hover{
@@ -115,17 +115,18 @@
                 font-family: Microsoft JhengHei;
                 font-weight: bolder;
                 font-size: 22px;
-                background-color:#B0C4DE;
+                background-color:#FFE4B5;
                 width: 100px;
                 height: 40px;
                 border-radius: 100px;
                 border-width: 0px;
                 transition: 0.3s;
                 cursor: pointer;
+                opacity: 0.7;
 
             }
             .LogoutButton:hover{
-                background-color: #CCDDFF;
+                background-color: #F4A460;
                 width:150px;
                 transition: 0.3s;
 
@@ -345,7 +346,7 @@
                                     </div>    
                                 </div>    
                             </div>
-
+                        </div>
                         <!--  End of Modal Body -->
 
                         <!-- Begin of Modal Footer -->
@@ -396,7 +397,7 @@
                                     </div>
                                     <!-- Register E-Mail -->
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                        <label for="email" class="col-md-4 control-label">E-Mail</label>
+                                        <label for="email" class="col-md-4 control-label">電子信箱</label>
                                         <div class="col-md-6">
                                             <input id="email" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
 
@@ -411,7 +412,7 @@
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
                                         <label for="password" class="col-md-4 control-label">密碼</label>
                                         <div class="col-md-6">
-                                            <input id="password" type="password" class="LoginInput" name="password" style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="password" type="password" class="LoginInput" name="password" placeholder="At least 6 characters..." style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
                                             
                                             @if ($errors->has('password'))
                                                 <span class="help-block">

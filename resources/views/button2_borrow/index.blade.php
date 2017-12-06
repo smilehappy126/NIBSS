@@ -109,7 +109,7 @@
 	<div class="TopTitle">借用狀況</div>
 	<!-- 透過名字搜尋 -->
 	<div class="search">
-		<form action="{{ asset ('/borrow/searchName')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+		<form action="{{ asset ('/borrow/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
 			<input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  value="" style="width: 20%;">
 			<button class="searchButton" id="searchButton" type="submit">搜尋</button>
 		</form>
@@ -118,12 +118,18 @@
 	<!-- Table Head -->
 	<div class="TableTop">
 		<table class="table" style="text-align: center; table-layout: fixed;">
-			<tr>	
+			<tr>
 				<!-- 序號 -->
-				<th style="text-align: center;">租借序號<br>
+					<form id="idSortForm1" action="{{ asset ('/borrow/idasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}
+						<th style="text-align: center;">
+							<button id="idSortButton" type="submit" style="border-radius: 100px; border: none; background-color: transparent;">租借序號</button>
+						</th>
+					</form>
+							
+					<!-- <br>
 		   			<form action="{{ asset ('/borrow/idasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
    		   			<form action="{{ asset ('/borrow/iddesc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↓</button></form>
-   				</th>   	    
+   				</th>   	 -->    
 				<!-- 日期 -->
   				<th style="text-align: center;">租借日期<br>
    		   			<form action="{{ asset ('/borrow/dateasc') }}" method="get" style="display: inline-block;">{{ csrf_field()}}<button class="sortButton" type="submit">↑</button></form>&emsp;
@@ -301,16 +307,10 @@
 @endsection
 
 @section('js')
-<!-- <script>
-$(document).ready(function(){
-	$('#testbtn').on('click',function(){
-		$('#searchname').attr('value','21313');
-		console.log($('#searchname').attr('name'));
-		console.log($('#searchname').val());
-		$('#searchButton').html("123");
-	});
-});
+<script>
 
-</script> -->
+	
+
+</script>
 @stop
 
