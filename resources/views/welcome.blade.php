@@ -268,7 +268,7 @@
                         <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                     @if (Route::has('login'))
                         @if(Auth::check())
-                            @if( (Auth::user()->email)==='test@cc.ncu.edu.tw')   
+                            @if( (Auth::user()->level)==='管理員')   
                         |<a  href="{{ url('/admin') }}">管理者模式</a>
                             @endif
                         @endif

@@ -2,6 +2,21 @@
 @section('title', '使用者清單')
 @section('css')
    <style type="text/css">
+    .returnButton{
+        border-radius: 40px;
+        font-weight: bolder;
+        font-family: Microsoft JhengHei;
+        width: 9%;
+        font-size: 20px;
+        transition: 0.3s;
+        background-color: transparent;
+        border-width: 1px;  
+    }
+    .returnButton:hover{
+        width: 12%;
+        transition: 0.3s;
+        background-color: #DDDDDD;
+    }
     .TopTitle{
         background-color: transparent;
         font-family: DFKai-sb;
@@ -68,12 +83,19 @@
       transition: 0.3s;
       width:150px;
     }
-   </style>
+  </style>
 @stop
 
 @section('content')
 <div class="container">
-    <div class="TopTitle">使用者名單</div>
+    <div class="returnSection">
+       <form action=" {{ asset('/admin')}}" method="get" }}">
+        <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
+       </form>
+    </div>
+    <div class="TopTitle">
+      使用者名單
+    </div>
     <div class="searchUser">
     <form action="{{ asset ('/admin/searchUser')}}" method="post" style="width: 100%;">{{ csrf_field()}}
       <input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  value="" style="width: 20%;">
@@ -143,7 +165,7 @@
                                             <!-- Edit Modal Table -->
                                             <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
                                                 <tr><th>使用者 : </th><th><label style="text-align: center; width: 100%;">{{ $user->name}}</label> </th></tr>
-                                                <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}"></th></th>
+                                                <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}"></th></tr>
                                                 <tr><th>違規次數 :</th><th> <input  class="form-control" type="text" name="violation" value="{{ $user->violation }}"></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 

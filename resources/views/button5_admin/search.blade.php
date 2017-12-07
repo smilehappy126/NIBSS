@@ -2,73 +2,87 @@
 @section('title', '查詢結果')
 @section('css')
   <style>
-  .TopTitle{
-    background-color: transparent;
-    font-family: DFKai-sb;
-    font-size: 80px;
-    text-align: center;
-  }
-  .search{
-    background-color: transparent;
-    font-family:  Microsoft JhengHei;
-    text-align:right;
-    font-weight: bold;
-  }
-  .searchButton{
-    width: 41px;
-      height: 28px;
-      font-size: 12px;
-      font-weight: bold;
-      text-align: left;
-      border: 0px;
+    .returnButton{
+      width: 22%;
+      font-family: Microsoft JhengHei;
+      font-size: 20px;
       transition: 0.3s;
-      cursor: pointer;
+      background-color: transparent;
+      border-width: 1px;
+      border-radius: 40px;
+    }
+    .returnButton:hover{
+      width: 27%;
+      transition: 0.3s;
+      background-color: #DDDDDD;
+    }
+    .searchButton{
+      width: 22%;
+      font-family: Microsoft JhengHei;
+      font-size: 20px;
+      transition: 0.3s;
+      background-color: transparent;
+      border-width: 1px;
+      border-radius: 40px;
+    }
+    .searchButton:hover{
+      width: 27%;
+      transition: 0.3s;
+      background-color: #DDDDDD;
+    }
+    .TopTitle{
+      background-color: transparent;
+      font-family: DFKai-sb;
+      font-size: 80px;
+      text-align: center;
+    }
+    .search{
       background-color: transparent;
       font-family:  Microsoft JhengHei;
-      border-radius: 5px; 
-  }
-  .TableTop{
-    font-family:  Microsoft JhengHei;
-    font-size: 20px;
-    text-align: center;
-    word-break: break-word;
-  }
-  .TableContent{
+      text-align:right;
+      font-weight: bold;
+    }
+    
+    .TableTop{
       font-family:  Microsoft JhengHei;
-    font-size: 15px;
-    text-align: center;
-    font-weight: bold;
-  }
-  .EditButton{
-    background-color: transparent;
-    font-family: Microsoft JhengHei;
-    transition: 0.3s;
+      font-size: 20px;
+      text-align: center;
+      word-break: break-word;
+    }
+    .TableContent{
+      font-family:  Microsoft JhengHei;
+      font-size: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .EditButton{
+      background-color: transparent;
+      font-family: Microsoft JhengHei;
+      transition: 0.3s;
       cursor: pointer;
       border: 0px;
-  }
-  .EditButton:hover{
-    background-color: #FF5511;
-  }
-  .EditPage{
-    font-family: Microsoft JhengHei;
-    font-size: 20px;
-    font-weight: bold;
+    }
+    .EditButton:hover{
+      background-color: #FF5511;
+    }
+    .EditPage{
+      font-family: Microsoft JhengHei;
+      font-size: 20px;
+      font-weight: bold;
     }
     .modal-title{
       font-size: 30px;
       font-weight: bold;
     }
     .sortButton{
-      width: 20px;
-      height: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      text-align: left;
-      border: 0px;
+      border-radius: 40px;
+      font-weight: bolder;
+      font-family: Microsoft JhengHei;
+      width: 9%;
+      font-size: 20px;
       transition: 0.3s;
-      cursor: pointer;
       background-color: transparent;
-      border-radius: 5px; 
+      border-width: 1px;  
     }
     .contentdata:hover{
       background-color: #CCBBFF;
@@ -76,9 +90,7 @@
     .sortButton:hover{
       background-color: #DDDDDD;
     }
-    .searchButton:hover{
-      background-color: #DDDDDD;
-    }
+    
     .resetButton{
       width:100px ;
       height:40px;
@@ -97,6 +109,7 @@
       width:150px;
     }
     
+    
 }
     </style>
   
@@ -104,18 +117,28 @@
 
 @section('content')
 <div class="container">
+  <div class="NavSection">
+        <table style="text-align: center; table-layout: fixed; width: 100%; ">
+            <tr>
+              <th>
+                <form action=" {{ asset('/admin')}}" method="get" }}" style="width: 100%;">
+                <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
+                </form>
+              </th>
+              <th style="text-align: right;">
+                <!-- 再次搜尋 -->
+                <form action="{{ asset ('/borrow/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+                  <button class="searchButton" id="searchButton" type="submit">再次搜尋<span class="glyphicon glyphicon-chevron-right"></span></button>
+                </form>
+              </th>
+            </tr>
+        </table>
+  </div>
+  
   <div class="TopTitle">
     查詢結果<br>
     <label style="font-size: 30px; font-family: Microsoft JhengHei;">以「{{ $content }}」搜尋</label>
   </div>
-  <!-- 透過名字搜尋 -->
-  <div class="search">
-    <form action="{{ asset ('/borrow/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-      <input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  value="" style="width: 20%;">
-      <button class="searchButton" id="searchButton" type="submit">搜尋</button>
-    </form>
-  </div>
-
   <!-- Table Head -->
   <div class="TableTop">
     <table class="table" id="TitleTable" style="text-align: center; table-layout: fixed;">
@@ -178,14 +201,12 @@
       </tr> 
             @endif
           @endif
-          @endif
-      </table>
-    </div>
-    <!-- End of Table Head -->
+        @endif
+    </table>
+  </div>
+  <!-- End of Table Head -->
 
   <!-- Table Content -->
-  
-  
   <div class="TableContent">
     <table class="table" id="content" style="table-layout: fixed; text-align: center" >
       @foreach($miss as $mis)
@@ -198,7 +219,7 @@
           @if (Auth::check())
         <td id="phone-{{$mis->id}}">{{$mis->phone}}</td>
           @endif
-          @endif
+        @endif
         <td id="item-{{$mis->id}}">{{$mis->item}}</td>
         <td id="itemnum-{{$mis->id}}">{{$mis->itemnum}}</td>
         <td id="license-{{$mis->id}}">{{$mis->license}}</td>
@@ -215,7 +236,7 @@
         </td>
             @endif
           @endif
-          @endif
+        @endif
         </tr>
       @endforeach
     </table>
@@ -290,10 +311,11 @@
   @endunless
   <div style="text-align: center;">
     <form action="{{ asset('/admin/searchall') }}" method="post">{{ csrf_field() }}
-      <input type="text" name="searchcontent" value="{{$content}}" style="display: none;">
-      <button class="resetButton" id="testbtn">重新整理</button>
+        <input type="text" name="searchcontent" value="{{$content}}" style="display: none;">
+        <button class="resetButton" id="testbtn">重新整理</button>
     </form>
   </div>
+
 </div>
 <!-- End of Container -->
 
