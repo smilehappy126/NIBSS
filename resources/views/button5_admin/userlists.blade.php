@@ -35,18 +35,57 @@
         background-color: antiquewhite;
         transition: 0.3s;
     }
+    .searchUser{
+      background-color: transparent;
+      font-family:  Microsoft JhengHei;
+      text-align:right;
+      font-weight: bold;
+    }
+    .searchButton{
+      border-width: 0px;
+      border-radius: 30px;
+      width: 6%;
+      background-color: #DCDCDC;
+      font-family: Microsoft JhengHei;
+    }
+    .searchButton:hover{
+      background-color: #F5F5F5;
+    }
+    .resetButton{
+      width:100px ;
+      height:40px;
+      font-family: Microsoft JhengHei;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      border-width: 1px;
+      border-radius: 20px;
+      background-color: transparent;
+      transition: 0.3s;
+    }
+    .resetButton:hover{
+      background-color: #DDDDDD;
+      transition: 0.3s;
+      width:150px;
+    }
    </style>
 @stop
 
 @section('content')
 <div class="container">
     <div class="TopTitle">使用者名單</div>
+    <div class="searchUser">
+    <form action="{{ asset ('/admin/searchUser')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+      <input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  value="" style="width: 20%;">
+      <button class="searchButton" id="searchButton" type="submit">搜尋</button>
+    </form>
+  </div>
     <div class="TableTop">
         <!-- 表單表頭 -->
         <table class="table" id="TableTitle" style="table-layout: fixed;">
             <tr>    
                 <th style="text-align: center; width: 80px;">
-                    <button id="nameSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">名稱</button>
+                    <button id="nameSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">名字</button>
                 </th>
                 <th style="text-align: center; width: 180px;">
                     <button id="emailSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
@@ -138,7 +177,13 @@
         </div>
 <!-- End of Edit Modal -->
     @endforeach
+  <div style="text-align: center;">
+    <form action="{{ asset('/admin/userlists') }}" method="get">
+      <button class="resetButton" id="testbtn">重新整理</button>
+    </form>
+  </div>
 </div>
+<!-- End of Container -->
 
 
 @endsection

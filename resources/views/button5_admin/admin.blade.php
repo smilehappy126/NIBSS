@@ -35,8 +35,8 @@
 	    background-color: #DDDDDD;
     }
     .searchcontent{
-    	height: 80px;
-    	font-size: 50px;
+    	height: 50px;
+    	font-size: 30px;
     }
     .notice{
     	font-family: Microsoft JhengHei;
@@ -106,7 +106,7 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <form action="{{ asset ('/admin/searchall')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-										<input  class="searchcontent" name="searchcontent" id="searchcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 100%;">
+										<label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp</label><input  class="searchcontent" name="searchcontent" id="searchcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 70%;">
 		                        </div>    
                             </div>
                         </div>

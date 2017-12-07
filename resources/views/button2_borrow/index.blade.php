@@ -108,7 +108,7 @@
 	<!-- 透過名字搜尋 -->
 	<div class="search">
 		<form action="{{ asset ('/borrow/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-			<input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  value="" style="width: 20%;">
+			<input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  style="width: 20%;">
 			<button class="searchButton" id="searchButton" type="submit">搜尋</button>
 		</form>
 	</div>
