@@ -104,7 +104,10 @@
 
 @section('content')
 <div class="container">
-  <div class="TopTitle">查詢結果</div>
+  <div class="TopTitle">
+    查詢結果<br>
+    <label style="font-size: 30px; font-family: Microsoft JhengHei;">以「{{ $content }}」搜尋</label>
+  </div>
   <!-- 透過名字搜尋 -->
   <div class="search">
     <form action="{{ asset ('/borrow/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
@@ -163,7 +166,7 @@
         </th>
           <!-- 狀態 -->
           <th style="text-align: center;">
-          <button id="statusSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
+          <button id="statusSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
         </th>
         @if (Route::has('login'))
           @if (Auth::check())
@@ -237,7 +240,7 @@
             <!-- Edit Modal Body -->
           <div class="modal-body">
               <div class="EditPage">
-                  <form action="{{asset ( '/borrow/update/'.$mis->id) }}" method="post">{{ csrf_field()}}
+                  <form action="{{asset ( '/admin/searchall/update/'.$mis->id) }}" method="post">{{ csrf_field()}}
               <div class="EditInfo">
                 <!-- Edit Modal Table -->
                 <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
@@ -266,6 +269,7 @@
             <!-- End of Edit Modal Body -->
             <!-- Modal Footer -->
             <div class="modal-footer">
+                <input type="text" name="searchcontent" value="{{$content}}" style="display: none;"> <!-- 將搜尋關鍵字帶入Modal -->
                 <button type="submit" class="btn btn-default">變更</button> 
                   </form>
                 <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
@@ -285,7 +289,8 @@
   </div>
   @endunless
   <div style="text-align: center;">
-    <form action="{{ asset('/borrow') }}" method="get">
+    <form action="{{ asset('/admin/searchall') }}" method="post">{{ csrf_field() }}
+      <input type="text" name="searchcontent" value="{{$content}}" style="display: none;">
       <button class="resetButton" id="testbtn">重新整理</button>
     </form>
   </div>

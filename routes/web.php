@@ -75,15 +75,17 @@ Route::get('/inputClass/{roomname}', 'LongcourseController@index');
 Route::post('/inputClass/save', 'LongcourseController@store');
 //固定課程excel
 Route::post('/inputClass/importExcel', 'LongcourseController@importExcel');
+
 // Login驗證
 Auth::routes();
-
 Route::post('/loginNow', 'Auth\LoginController@login');
 Route::get('/logout', 'MyLoginController@logout');
+
 // Admin路由區
 Route::get('/admin',array('before'=>'auth', 'uses'=>'AdminController@admin'));
 Route::get('/admin/userlists','AdminController@userlists');
-Route::post('/admin/userlists/update/{id}','AdminController@update');
+Route::post('/admin/userlists/update/{id}','AdminController@updateUserLists');
 Route::post('/admin/searchall','AdminController@searchall');
+Route::post('/admin/searchall/update/{id}','AdminController@updateContentData');
 
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');
