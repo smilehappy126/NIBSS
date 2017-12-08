@@ -184,14 +184,41 @@
                 background-color: transparent;
                 z-index: 100;
                 font-size: 30px;
-                
+                top: 40%;
                 text-align: center;
+                position: absolute;
+                right: 0px;
+                left: 0px;
+                color: pink;
             }
+            .LinkText > a {
+                color:  #FFE4B5;
+                padding: 0 25px;
+                font-size: 25px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+/*PC CSS Section*/
+@media screen and (min-width: 900px){
             /*模糊效果*/
             .BlurEffect{
                 -webkit-filter: blur(10px);
                 filter: blur(2px);
+                height: 180px;
             }
+}
+/*Mobile CSS Section*/
+@media screen and (max-width: 900px) and (min-width: 300px){
+            /*模糊效果*/
+            .BlurEffect{
+                -webkit-filter: blur(10px);
+                filter: blur(2px);
+                height: 300px;
+            }
+
+}
 
                           
             
@@ -252,15 +279,28 @@
                     <div class="title m-b-md BlurEffect">
                         &nbsp
                     </div>
-                    <span class="TitleText">設備借用系統</span>
+                    <span class="TitleText">
+                        設備借用系統
+                    </span>
+                    <span class="links LinkText">
+                        <a  href="{{ url('/create') }}">新增申請單</a>|
+                        <a  href="{{ url('/borrow') }}">借用狀況</a>|
+                        <a  href="{{ url('/return') }}">已歸還資料</a>|
+                        <a  href="{{ url('/reserve') }}">預約狀況</a>|
+                        <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
+                    @if (Route::has('login'))
+                        @if(Auth::check())
+                            @if( (Auth::user()->level)==='管理員')   
+                        |<a  href="{{ url('/admin') }}">管理者模式</a>
+                            @endif
+                        @endif
+                    @endif
+                    </span>
                 </div>
                 
                 <!-- 分頁連結-->
-                <div class="links" style="align-items: center;" >
-                    <div class="BlurEffect" style="align-items: center; background-color: black; opacity: 0.6; font-size: 60px;">
-                        &nbsp
-                    </div>
-                    <span class="links LinkText">
+                <div class="links" style="align-items: center; visibility: hidden;" >
+                    <span class="links">
                         <a  href="{{ url('/create') }}">新增申請單</a>|
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|

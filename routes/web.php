@@ -82,7 +82,7 @@ Route::post('/loginNow', 'Auth\LoginController@login');
 Route::get('/logout', 'MyLoginController@logout');
 
 // Admin路由區
-Route::get('/admin',array('before'=>'auth', 'uses'=>'AdminController@admin'));
+Route::get('/admin','AdminController@admin');
 Route::get('/admin/userlists','AdminController@userlists');
 Route::post('/admin/searchUser','AdminController@searchUser');
 Route::post('/admin/userlists/update/{id}','AdminController@updateUserLists');

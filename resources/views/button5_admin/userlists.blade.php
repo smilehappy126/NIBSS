@@ -2,6 +2,12 @@
 @section('title', '使用者清單')
 @section('css')
    <style type="text/css">
+  /*PC CSS*/
+@media screen and (min-width: 900px){
+    .Mobilesection{
+        display: none;
+    }
+
     .returnButton{
         border-radius: 40px;
         font-weight: bolder;
@@ -83,63 +89,103 @@
       transition: 0.3s;
       width:150px;
     }
+}
+/*End of PC CSS*/
+
+/*Mobile CSS*/
+
+/*End of Mobile CSS*/
+@media screen and (max-width: 900px) and (min-width: 300px) and (max-height: 1024px){
+        .PCsection{
+          display: none;
+        }
+
+        .resetButton{
+          width:100px ;
+          height:40px;
+          font-family: Microsoft JhengHei;
+          font-size: 16px;
+          font-weight: bold;
+          text-align: center;
+          border-width: 1px;
+          border-radius: 20px;
+          background-color: transparent;
+          transition: 0.3s;
+        }
+        .resetButton:hover{
+          background-color: #DDDDDD;
+          transition: 0.3s;
+          width:150px;
+}
+
   </style>
 @stop
 
 @section('content')
 <div class="container">
-    <div class="returnSection">
-       <form action=" {{ asset('/admin')}}" method="get" }}">
-        <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
-       </form>
+    <!-- PC section -->
+    <div class="PCsection">  
+      <div class="returnSection">
+         <form action=" {{ asset('/admin')}}" method="get" }}">
+          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
+         </form>
+      </div>
+      <div class="TopTitle">
+        使用者名單
+      </div>
+      <div class="searchUser">
+        <form action="{{ asset ('/admin/searchUser')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+          <input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  value="" style="width: 20%;">
+          <button class="searchButton" id="searchButton" type="submit">搜尋</button>
+        </form>
+      </div>
+      <div class="TableTop">
+          <!-- 表單表頭 -->
+          <table class="table" id="TableTitle" style="table-layout: fixed;">
+              <tr>    
+                  <th style="text-align: center; width: 80px;">
+                      <button id="nameSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">名字</button>
+                  </th>
+                  <th style="text-align: center; width: 180px;">
+                      <button id="emailSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
+                  </th>
+                  <th style="text-align: center;"">
+                      <button id="nameSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">違規次數</button>
+                  </th>
+                  <th style="text-align: center;"">
+                      <button id="levelSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">權限等級</button>
+                  </th>
+                  <th style="text-align: center;"">
+                      <button id="levelSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">修改資料</button>
+                  </th>
+              </tr>
+          </table>
+      </div>
+      <div class="TableContent">
+          <!-- 表單內容 -->
+          <table class="table" id="content" style="table-layout: fixed;"">
+              @foreach($users as $user)
+              <tr>
+                  <th style="width: 80px; text-align: center;">{{ $user->name }}</th>
+                  <th style="width: 180px; text-align: center;">{{ $user->email }}</th>
+                  <th style="text-align: center;">{{ $user->violation }}</th>
+                  <th style="text-align: center;">{{ $user->level }}</th>
+                  <th style="text-align: center;">
+                      <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$user->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
+                  </th>
+              </tr>
+              @endforeach
+          </table>
+      </div>
     </div>
-    <div class="TopTitle">
-      使用者名單
+    <!-- End of PC Section -->
+
+    <!-- Mobile Section -->
+    <div class="Mobilesection">
+      123
     </div>
-    <div class="searchUser">
-    <form action="{{ asset ('/admin/searchUser')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-      <input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  value="" style="width: 20%;">
-      <button class="searchButton" id="searchButton" type="submit">搜尋</button>
-    </form>
-  </div>
-    <div class="TableTop">
-        <!-- 表單表頭 -->
-        <table class="table" id="TableTitle" style="table-layout: fixed;">
-            <tr>    
-                <th style="text-align: center; width: 80px;">
-                    <button id="nameSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">名字</button>
-                </th>
-                <th style="text-align: center; width: 180px;">
-                    <button id="emailSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
-                </th>
-                <th style="text-align: center;"">
-                    <button id="nameSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">違規次數</button>
-                </th>
-                <th style="text-align: center;"">
-                    <button id="levelSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">權限等級</button>
-                </th>
-                <th style="text-align: center;"">
-                    <button id="levelSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">修改資料</button>
-                </th>
-            </tr>
-        </table>
-    </div>
-    <div class="TableContent">
-        <!-- 表單內容 -->
-        <table class="table" id="content" style="table-layout: fixed;"">
-            @foreach($users as $user)
-            <tr>
-                <th style="width: 80px; text-align: center;">{{ $user->name }}</th>
-                <th style="width: 180px; text-align: center;">{{ $user->email }}</th>
-                <th style="text-align: center;">{{ $user->violation }}</th>
-                <th style="text-align: center;">{{ $user->level }}</th>
-                <th style="text-align: center;">
-                    <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$user->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
-                </th>
-            </tr>
-            @endforeach
-        </table>
-    </div>
+
+    <!-- End of Mobile Section -->
 
     @foreach($users as $user)
         <!-- Edit Modal -->
