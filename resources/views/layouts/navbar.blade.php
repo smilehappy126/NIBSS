@@ -1,5 +1,14 @@
 <style type="text/css">
-  .LoginButton{
+    /*PC版本登入登出*/
+    @media screen and (min-width: 900px){
+            .Mobilelogout{
+                display: none;
+            }
+            .Mobilelogin{
+                display: none;
+            }
+
+            .LoginButton{
                 float: center;
                 font-family: Microsoft JhengHei;
                 font-weight: bolder;
@@ -12,7 +21,6 @@
                 transition: 0.3s;
                 cursor: pointer;
             }
-
             .LoginButton:hover{
                 background-color: #CCDDFF;
                 width:150px;
@@ -31,16 +39,22 @@
                 border-width: 0px;
                 transition: 0.3s;
                 cursor: pointer;
-                
-
             }
-
             .LogoutButton:hover{
                 background-color:#F4A460;
                 width:150px;
                 transition: 0.3s;
-
             }
+        }
+    /*Mobile版本登入登出*/
+        @media screen and (max-width: 900px) and (min-width: 300px) and (max-height: 1024px){
+            #PClogout{
+                display: none;
+            }
+            #PClogin{
+                display: none;
+            }
+        }
             .RegisterButton{
                 background-color: transparent;
                 transition: 0.3s;
@@ -115,17 +129,19 @@
         <li><a href="{{ url('/return') }}">已歸還資料</a></li>
         <li><a href="{{ url('/reserve') }}">預約狀況</a></li>
         <li><a href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a></li>
+        
         <!-- 管理者模式 -->
         @if (Route::has('login'))
             @if(Auth::check())
-                @if( (Auth::user()->email)==='test@cc.ncu.edu.tw')   
+                @if( (Auth::user()->level)==='管理員')   
                     <li><a  href="{{ url('/admin') }}">管理者模式</a></li>
                 @endif
             @endif
         @endif
+    <!-- PC版本登入登出 -->
         <!-- 登出登入按鍵 -->
         @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links" id="PClogout">
                     @if (Auth::check())
                         <form action=" {{ asset('/logout') }}" method="post" >{{ csrf_field() }} 
                           <li class="dropdown-submenu" style="right: 10px; bottom:6px; position: absolute;">
@@ -138,11 +154,37 @@
                 </div>
             @endif
         @unless(Auth::check())
-            <div class="LoginPanel">
+            <div class="LoginPanel" id="PClogin">
                 <!-- Trigger the modal with a button -->
                 <li style="right: 10px; bottom:6px; position: absolute;"><a><button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button></a></li>
             </div>
         @endunless
+    <!-- PC版本結束 -->
+
+    <!-- Mobile版本登入登出 -->
+        <!-- 登出登入按鍵 -->
+        @if (Route::has('login'))
+                <div class="links Mobilelogout">
+                    @if (Auth::check())
+                        <form action=" {{ asset('/logout') }}" method="post" >{{ csrf_field() }} 
+                          <li class="dropdown-submenu">
+                            <button class="LogoutButton" type="submit">Logout </button>
+                          </li>  
+                        </form>
+                    @else
+                        
+                    @endif
+                </div>
+            @endif
+        @unless(Auth::check())
+            <div class="Mobilelogin">
+                <!-- Trigger the modal with a button -->
+                <li><a><button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button></a></li>
+            </div>
+        @endunless
+
+    <!-- Mobile版本登入登出結束 -->
+
       </ul>
       <!-- 搜尋功能 -->
       <!-- <form class="navbar-form navbar-left">

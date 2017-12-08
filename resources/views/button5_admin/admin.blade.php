@@ -18,6 +18,25 @@
 	.Search:hover{
 		background-color: #FF8888;
 	}
+    @media screen and (max-width: 700px) and (min-width: 300px){
+        .Search{
+        border: 0px;
+        border-radius: 8px;
+        background-color: white;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        height: 100%;
+        bottom: :0;
+        float: left;
+        font-family: Microsoft JhengHei;
+        font-size: 80px;
+    }
+    .Search:hover{
+        background-color: #FF8888;
+    }
+    }
+
 	.searchButton{
 		width: 41px;
     	height: 28px;
@@ -35,8 +54,8 @@
 	    background-color: #DDDDDD;
     }
     .searchcontent{
-    	height: 80px;
-    	font-size: 50px;
+    	height: 35px;
+    	font-size: 20px;
     }
     .notice{
     	font-family: Microsoft JhengHei;
@@ -56,11 +75,11 @@
 				<table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
 					<tr>
 						<th>
-							<button class="Search" type="button" data-toggle="modal" data-target="#SearchModal">搜尋</button>
+							<button class="Search" type="button" data-toggle="modal" data-target="#SearchModal">歷史紀錄</button>
 						</th>
 						<th>
 						<form action=" {{asset('/admin/userlists')}} " method="get" >{{ csrf_field() }}
-						<button class="Search" type="submit">使用者</button>
+						<button class="Search" type="submit">使用者清單</button>
 						</form>
 						</th>
 					</tr>
@@ -106,7 +125,8 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <form action="{{ asset ('/admin/searchall')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-										<input  class="searchcontent" name="searchcontent" id="searchcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 100%;">
+										<label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp</label>
+                                        <input  class="searchcontent" name="searchcontent" id="searchcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 70%;" autofocus>
 		                        </div>    
                             </div>
                         </div>

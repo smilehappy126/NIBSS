@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', '編輯借用狀況')
+@section('title', '查詢失敗')
 
 @section('css')
 <style>
@@ -80,6 +80,23 @@
     .searchButton:hover{
     background-color: #DDDDDD;
     }
+    .resetButton{
+      width:100px ;
+      height:40px;
+      font-family: Microsoft JhengHei;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      border-width: 1px;
+      border-radius: 20px;
+      background-color: transparent;
+      transition: 0.3s;
+    }
+    .resetButton:hover{
+      background-color: #DDDDDD;
+      transition: 0.3s;
+      width:150px;
+    }
    
     </style>
 	
@@ -87,7 +104,7 @@
 
 @section('content')
 <div class="container">
-<div class="TopTitle">借用狀況</div>
+<div class="TopTitle">查詢結果</div>
 <!-- 透過名字搜尋 -->
   <div class="search">
     <form action="{{ asset ('/borrow/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
@@ -153,7 +170,7 @@
 查無此資料!!!
 </div>
 	<form action="{{ asset('/borrow') }}" method="get">
-<button class="btn btn-primary" id="testbtn">重新整理</button>
+<button class="resetButton" id="testbtn">重新整理</button>
 </form>
 </div>
 
