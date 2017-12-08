@@ -194,7 +194,7 @@
             .LinkText > a {
                 color:  #FFE4B5;
                 padding: 0 25px;
-                font-size: 25px;
+                font-size: 24px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
