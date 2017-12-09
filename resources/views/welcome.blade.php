@@ -72,7 +72,7 @@
                 float: right;
                 position: absolute;
                 margin-right: 10px;
-                top: 80%;
+                top: 70%;
             }
             .ErrorMessages{
                 float: right;
@@ -107,7 +107,7 @@
                 float: center;
                 font-family: Microsoft JhengHei;
                 font-weight: bolder;
-                font-size: 50px;
+                font-size: 39px;
                 
             }
             .LogoutButton{
@@ -184,7 +184,7 @@
                 background-color: transparent;
                 z-index: 100;
                 font-size: 30px;
-                top: 40%;
+                top: 35%;
                 text-align: center;
                 position: absolute;
                 right: 0px;
@@ -208,6 +208,7 @@
                 filter: blur(2px);
                 height: 180px;
             }
+
 }
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
@@ -245,7 +246,9 @@
             <div class="LoginPanel">
             @if (Route::has('login'))
                 @if(Auth::check())
-                  <label class="notice">Welcome,&nbsp</label><label class="notice" style="text-transform: uppercase;" >{{ Auth::user()->name }}</label> 
+                    <label class="notice" style="text-transform: uppercase;">
+                        Welcome, {{ Auth::user()->name }}
+                    </label> 
                 @endif
             @endif
                 @unless(Auth::check())
@@ -282,7 +285,7 @@
                     <span class="TitleText">
                         設備借用系統
                     </span>
-                    <span class="links LinkText">
+                    <span class="links LinkText" id="PClinks">
                         <a  href="{{ url('/create') }}">新增申請單</a>|
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|
