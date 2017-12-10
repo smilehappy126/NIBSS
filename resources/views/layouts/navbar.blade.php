@@ -134,7 +134,7 @@
         @if (Route::has('login'))
             @if(Auth::check())
                 @if( (Auth::user()->level)==='管理員')   
-                    <li><a  href="{{ url('/admin') }}">管理者模式</a></li>
+                    <li><a  href="{{ url('/admin') }}">管理者專區</a></li>
                 @endif
             @endif
         @endif

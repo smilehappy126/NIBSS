@@ -2,7 +2,19 @@
 @section('title', '管理者模式')
 @section('css')
 <style type="text/css">
-	.Search{
+/*PC CSS Section*/
+@media screen and (min-width: 900px){
+    .Mobilesection{
+        display: none;
+    }
+
+    .TopTitle{
+        background-color: transparent;
+        font-family: DFKai-sb;
+        font-size: 80px;
+        text-align: center;
+    }
+    .FormButton{
 		border: 0px;
 		border-radius: 8px;
 		background-color: pink;
@@ -15,29 +27,10 @@
 		font-family: Microsoft JhengHei;
 		font-size: 80px;
 	}
-	.Search:hover{
+	.FormButton:hover{
 		background-color: #FF8888;
 	}
-    @media screen and (max-width: 700px) and (min-width: 300px){
-        .Search{
-        border: 0px;
-        border-radius: 8px;
-        background-color: white;
-        left: 0px;
-        right: 0px;
-        width: 100%;
-        height: 100%;
-        bottom: :0;
-        float: left;
-        font-family: Microsoft JhengHei;
-        font-size: 80px;
-    }
-    .Search:hover{
-        background-color: #FF8888;
-    }
-    }
-
-	.searchButton{
+    .searchButton{
 		width: 41px;
     	height: 28px;
     	font-size: 12px;
@@ -63,49 +56,158 @@
     	font-size: 100px;
     	color: #FF3333;
     }
+}
+/*End of PC CSS Section*/
+
+/*Mobile CSS Section*/
+@media screen and (max-width: 900px) and (min-width: 300px){
+    .PCsection{
+      display: none;
+    }
+
+    .TopTitle{
+        background-color: transparent;
+        font-family: DFKai-sb;
+        font-size: 60px;
+        text-align: center;
+    }
+    .FormButton{
+        border: 0px;
+        border-radius: 8px;
+        background-color: pink;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        height: 100%;
+        bottom: :0;
+        float: left;
+        font-family: Microsoft JhengHei;
+        font-size: 50px;
+    }
+    .FormButton:hover{
+        background-color: #FF8888;
+    }
+    .searchButton{
+        width: 41px;
+        height: 28px;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: left;
+        border: 0px;
+        transition: 0.3s;
+        cursor: pointer;
+        background-color: transparent;
+        font-family:  Microsoft JhengHei;
+        border-radius: 5px; 
+    }
+    .searchButton:hover{
+        background-color: #DDDDDD;
+    }
+    .searchcontent{
+        height: 35px;
+        font-size: 20px;
+    }
+    .notice{
+        font-family: Microsoft JhengHei;
+        font-weight: bolder;
+        font-size: 100px;
+        color: #FF3333;
+    }
+}
+
+/*End of Mobile CSS Section*/
 
 </style>
 @stop
 
 @section('content')
-<div class="container" style="width: 80%;">
-	@if(Auth::check())
-		@if(Auth::user()->level === '管理員')
-			<div class="content" style="position: relative;">
-				<table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
-					<tr>
-						<th>
-							<button class="Search" type="button" data-toggle="modal" data-target="#SearchModal">歷史紀錄</button>
-						</th>
-						<th>
-						<form action=" {{asset('/admin/userlists')}} " method="get" >{{ csrf_field() }}
-						<button class="Search" type="submit">使用者清單</button>
-						</form>
-						</th>
-					</tr>
-					<tr>
-						<th>
-							<button class="Search" type="button">3</button>
-						</th>
-						<th>
-							<button class="Search" type="button">4</button>
-						</th>
-					</tr>
-				</table>
-			</div>
-		@endif
-	@endif
-	
-	@unless(Auth::user()->level === '管理員')
-		<div class="content">
-			<label class="notice">只限管理員使用，請先登入!!!</label>
-		</div>
-	@endunless
+<div class="container" style="width: 100%;">
+    <!-- PC Section -->
+    <div class="PCsection">
+        <div class="TopTitle">
+          管理者專區
+        </div>
+        @if(Auth::check())
+    		@if(Auth::user()->level === '管理員')
+    			<div class="content" style="position: relative;">
+    				<table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
+    					<tr>
+    						<th>
+    							<button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">歷史紀錄</button>
+    						</th>
+    						<th>
+    						  <form action=" {{asset('/admin/userlists')}} " method="get" >{{ csrf_field() }}
+    						      <button class="FormButton" type="submit">使用者清單</button>
+    						  </form>
+    						</th>
+    					</tr>
+    					<tr>
+    						<th>
+    							<button class="FormButton" type="button">3</button>
+    						</th>
+    						<th>
+    							<button class="FormButton" type="button">4</button>
+    						</th>
+    					</tr>
+    				</table>
+    			</div>
+    		@endif
+    	@endif
+    	
+    	@unless(Auth::user()->level === '管理員')
+    		<div class="content">
+    			<label class="notice">只限管理員使用，請先登入!!!</label>
+    		</div>
+    	@endunless
+    </div>
+    <!-- End of PC Section -->
+
+    <!-- Mobile Section -->
+    <div class="Mobilesection">
+        <div class="TopTitle">
+          管理者專區
+        </div>
+        @if(Auth::check())
+            @if(Auth::user()->level === '管理員')
+                <div class="content" style="position: relative;">
+                    <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
+                        <tr>
+                            <th>
+                                <button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">歷史紀錄</button>
+                            </th>
+                            <th>
+                            <form action=" {{asset('/admin/userlists')}} " method="get" >{{ csrf_field() }}
+                            <button class="FormButton" type="submit">使用者清單</button>
+                            </form>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <button class="FormButton" type="button">3</button>
+                            </th>
+                            <th>
+                                <button class="FormButton" type="button">4</button>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            @endif
+        @endif
+        
+        @unless(Auth::user()->level === '管理員')
+            <div class="content">
+                <label class="notice">只限管理員使用，請先登入!!!</label>
+            </div>
+        @endunless
+    </div>
+    <!-- End of Mobile Section -->
+
+
 </div>
+<!-- End of Container -->
 
 <!-- ↓↓↓ Modal Section ↓↓↓ -->
-
-    	<!-- Search Modal -->
+    <!-- Search Modal -->
         <div id="SearchModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" style="opacity: 0.9;">
             <div class="modal-dialog">
 
@@ -147,9 +249,6 @@
             </div>
         </div>        
         <!-- End of Search Modal -->
-
-        
-
 <!-- ↑↑↑ End of Modal Section ↑↑↑ -->
 
 

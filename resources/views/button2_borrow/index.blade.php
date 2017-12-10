@@ -284,7 +284,7 @@
 		<!-- Table -->
 		<div>
 			@foreach($miss as $mis)
-			<table class="table" id="MobileTable" style="text-align: center; table-layout: fixed;">
+			<table class="table-bordered" id="MobileTable" style="text-align: center; table-layout: fixed; width: 100%; background-color: #FDF5E6;">
 				<!-- 序號 -->
 				<tr>
 					<th class="TableTop" style="text-align: center;">
@@ -408,6 +408,7 @@
 					@endif
 	    		@endif
 	    	</table>
+	    	<br>
 	    	@endforeach
 		</div>
 	 	<!-- End of Table-->

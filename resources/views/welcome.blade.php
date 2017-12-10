@@ -73,6 +73,7 @@
                 position: absolute;
                 margin-right: 10px;
                 top: 70%;
+                z-index: 1;
             }
             .ErrorMessages{
                 float: right;
@@ -216,7 +217,7 @@
             .BlurEffect{
                 -webkit-filter: blur(10px);
                 filter: blur(2px);
-                height: 300px;
+                height: 250px;
             }
 
 }
@@ -283,7 +284,7 @@
                         &nbsp
                     </div>
                     <span class="TitleText">
-                        設備借用系統
+                        設備管理系統
                     </span>
                     <span class="links LinkText" id="PClinks">
                         <a  href="{{ url('/create') }}">新增申請單</a>|
@@ -294,7 +295,7 @@
                     @if (Route::has('login'))
                         @if(Auth::check())
                             @if( (Auth::user()->level)==='管理員')   
-                        |<a  href="{{ url('/admin') }}">管理者模式</a>
+                        | <br> | <a  href="{{ url('/admin') }}">管理者模式</a>|
                             @endif
                         @endif
                     @endif
@@ -350,7 +351,7 @@
                                 <div class="col-md-8 col-md-offset-2">
                                     <form class="form-horizontal" action=" {{ asset('/loginNow') }} " method="post">
                                     <!-- Login Email -->
-                                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}" style="text-align: center;">
                                         <label class="col-md-4 control-label" for="email" style="font-weight: bold; "> E-Mail</label>{{ csrf_field() }} 
                                                 <div class="col-md-6">
                                                 <input class="LoginInput" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: 
@@ -366,7 +367,7 @@
                                            
                                     </div>
                                     <!-- Login 密碼 -->
-                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
+                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}" style="text-align: center;">
                                         
                                             
                                                 <label class="col-md-4 control-label" for="password" style="font-weight: bold;">密碼</label>{{ csrf_field() }} 

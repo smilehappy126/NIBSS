@@ -2,8 +2,14 @@
 @section('title', '查詢結果')
 @section('css')
   <style>
+/*PC CSS Section*/
+@media screen and (min-width: 900px){
+    .Mobilesection{
+        display: none;
+    }
+
     .returnButton{
-      width: 22%;
+      width: 27%;
       font-family: Microsoft JhengHei;
       font-size: 20px;
       transition: 0.3s;
@@ -12,12 +18,12 @@
       border-radius: 40px;
     }
     .returnButton:hover{
-      width: 27%;
+      width: 32%;
       transition: 0.3s;
       background-color: #DDDDDD;
     }
     .searchButton{
-      width: 25%;
+      width: 40%;
       font-family: Microsoft JhengHei;
       font-size: 20px;
       transition: 0.3s;
@@ -26,11 +32,17 @@
       border-radius: 40px;
     }
     .searchButton:hover{
-      width: 30%;
+      width: 45%;
       transition: 0.3s;
       background-color: #DDDDDD;
     }
     .TopTitle{
+      background-color: transparent;
+      font-family: DFKai-sb;
+      font-size: 80px;
+      text-align: center;
+    }
+    .NavSection{
       background-color: transparent;
       font-family: DFKai-sb;
       font-size: 80px;
@@ -42,7 +54,6 @@
       text-align:right;
       font-weight: bold;
     }
-    
     .TableTop{
       font-family:  Microsoft JhengHei;
       font-size: 20px;
@@ -108,139 +119,365 @@
       transition: 0.3s;
       width:150px;
     }
-    
-    
 }
+/*End of PC CSS Section*/
+
+/*Mobile CSS Section*/
+@media screen and (max-width: 900px) and (min-width: 300px){
+    .PCsection{
+      display: none;
+    }
+
+    .TopTitle{
+      background-color: transparent;
+      font-family: DFKai-sb;
+      font-size: 80px;
+      text-align: center;
+    }
+
+    .returnButton{
+      width: 60%;
+      font-family: Microsoft JhengHei;
+      font-size: 15px;
+      transition: 0.3s;
+      background-color: transparent;
+      border-width: 1px;
+      border-radius: 40px;
+    }
+    .returnButton:hover{
+      width: 70%;
+      transition: 0.3s;
+      background-color: #DDDDDD;
+    }
+    .searchButton{
+      width: 78%;
+      font-family: Microsoft JhengHei;
+      font-size: 15px;
+      transition: 0.3s;
+      background-color: transparent;
+      border-width: 1px;
+      border-radius: 40px;
+    }
+    .searchButton:hover{
+      width: 85%;
+      transition: 0.3s;
+      background-color: #DDDDDD;
+    }
+    .resetButton{
+      width:100px ;
+      height:40px;
+      font-family: Microsoft JhengHei;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      border-width: 1px;
+      border-radius: 20px;
+      background-color: transparent;
+      transition: 0.3s;
+    }
+    .resetButton:hover{
+      background-color: #DDDDDD;
+      transition: 0.3s;
+      width:150px;
+    }
+/*End of Mobile CSS Section*/
+}
+    
+
     </style>
   
 @stop
 
 @section('content')
 <div class="container">
-  <div class="NavSection">
-        <table style="text-align: center; table-layout: fixed; width: 100%; ">
-            <tr>
-              <th>
-                <form action=" {{ asset('/admin')}}" method="get" }}" style="width: 100%;">
-                <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
-                </form>
-              </th>
-              <th style="text-align: right;">
-                <!-- 再次搜尋 -->
-                  <button class="searchButton" id="searchButton" type="button" data-toggle="modal" data-target="#SearchModal">再次搜尋<span class="glyphicon glyphicon-chevron-right"></span></button>
-                </form>
-              </th>
-            </tr>
-        </table>
-  </div>
-  
-  <div class="TopTitle">
-    查詢結果<br>
-    <label style="font-size: 30px; font-family: Microsoft JhengHei;">以「{{ $content }}」搜尋</label>
-  </div>
-  <!-- Table Head -->
-  <div class="TableTop">
-    <table class="table" id="TitleTable" style="text-align: center; table-layout: fixed;">
-      <tr>
-        <!-- 序號 -->
-        <th style="text-align: center;">
-          <button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">租借序號</button>
-        </th>  
-        <!-- 日期 -->
-          <th style="text-align: center;">
-          <button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">租借日期</button>
-        </th>
-          <!-- 班級 -->
+    <div class="TopTitle">
+      查詢結果<br>
+    </div>
+    <!-- PC Section -->
+    <div class="PCsection">
+      <div class="NavSection">
+            <table style="text-align: center; table-layout: fixed; width: 100%; ">
+                <tr>
+                  <th>
+                    <form action=" {{ asset('/admin')}}" method="get" }}" style="width: 100%;">
+                    <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
+                    </form>
+                  </th>
+                  <th style="text-align: center;">
+                    <label style="font-size: 30px; font-family: Microsoft JhengHei;">以「{{ $content }}」搜尋</label>
+                  </th>
+                  <th style="text-align: right;">
+                    <!-- 再次搜尋 -->
+                      <button class="searchButton" id="searchButton" type="button" data-toggle="modal" data-target="#SearchModal">再次搜尋<span class="glyphicon glyphicon-chevron-right"></span></button>
+                    </form>
+                  </th>
+                </tr>
+            </table>
+      </div>
+        
+      
+      <!-- Table Head -->
+      <div class="TableTop">
+        <table class="table" id="TitleTable" style="text-align: center; table-layout: fixed;">
+          <tr>
+            <!-- 序號 -->
             <th style="text-align: center;">
-          <button id="classSortButton" type="submit" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">班級</button>
-        </th>
-          <!-- 申請人 -->
-          <th style="text-align: center;">
-          <button id="nameSortButton" type="submit" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
-        </th>
-        @if (Route::has('login'))
-          @if (Auth::check())
-        <!-- 電話 -->
-          <th style="text-align: center;">
-          <button id="phoneSortButton" type="submit" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
-        </th>
+              <button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">租借序號</button>
+            </th>  
+            <!-- 日期 -->
+              <th style="text-align: center;">
+              <button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">租借日期</button>
+            </th>
+              <!-- 班級 -->
+                <th style="text-align: center;">
+              <button id="classSortButton" type="submit" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">班級</button>
+            </th>
+              <!-- 申請人 -->
+              <th style="text-align: center;">
+              <button id="nameSortButton" type="submit" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
+            </th>
+            @if (Route::has('login'))
+              @if (Auth::check())
+            <!-- 電話 -->
+              <th style="text-align: center; width: 10%;">
+              <button id="phoneSortButton" type="submit" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+            </th>
+                @endif
+              @endif
+            <!-- 借用物品-->
+              <th style="text-align: center;">
+              <button id="itemSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">借用物品</button>
+            </th>
+            <!-- 借用數量 -->
+              <th style="text-align: center;">
+              <button id="itemnumSortButton" type="submit" onclick="sortTable(6)" style="border-radius: 100px; border: none; background-color: transparent;">借用數量</button>
+            </th>
+            <!-- 抵押證件 -->
+              <th style="text-align: center;">
+              <button id="licenseSortButton" type="submit" onclick="sortTable(7)" style="border-radius: 100px; border: none; background-color: transparent;">抵押證件</button>
+            </th>
+              <!-- 授課教室 -->
+              <th style="text-align: center;">
+              <button id="classroomSortButton" type="button" onclick="sortTable(8)" style="border-radius: 100px; border: none; background-color: transparent;">授課教室</button>
+            </th>
+            <!-- 授課教師 -->
+              <th style="text-align: center;">
+              <button id="teacherSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
+            </th>
+              <!-- 狀態 -->
+              <th style="text-align: center;">
+              <button id="statusSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
+            </th>
+            @if (Route::has('login'))
+              @if (Auth::check())
+                @if( (Auth::user()->level)==='管理員')
+            <!-- 編輯資料 -->
+              <th style="text-align: center;">
+              <button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
+            </th>
+          </tr> 
+                @endif
+              @endif
             @endif
-          @endif
-        <!-- 借用物品-->
-          <th style="text-align: center;">
-          <button id="itemSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">借用物品</button>
-        </th>
-        <!-- 借用數量 -->
-          <th style="text-align: center;">
-          <button id="itemnumSortButton" type="submit" onclick="sortTable(6)" style="border-radius: 100px; border: none; background-color: transparent;">借用數量</button>
-        </th>
-        <!-- 抵押證件 -->
-          <th style="text-align: center;">
-          <button id="licenseSortButton" type="submit" onclick="sortTable(7)" style="border-radius: 100px; border: none; background-color: transparent;">抵押證件</button>
-        </th>
-          <!-- 授課教室 -->
-          <th style="text-align: center;">
-          <button id="classroomSortButton" type="button" onclick="sortTable(8)" style="border-radius: 100px; border: none; background-color: transparent;">授課教室</button>
-        </th>
-        <!-- 授課教師 -->
-          <th style="text-align: center;">
-          <button id="teacherSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
-        </th>
-          <!-- 狀態 -->
-          <th style="text-align: center;">
-          <button id="statusSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
-        </th>
-        @if (Route::has('login'))
-          @if (Auth::check())
-            @if( (Auth::user()->level)==='管理員')
-        <!-- 編輯資料 -->
-          <th style="text-align: center;">
-          <button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
-        </th>
-      </tr> 
-            @endif
-          @endif
-        @endif
-    </table>
-  </div>
-  <!-- End of Table Head -->
+        </table>
+      </div>
+      <!-- End of Table Head -->
 
-  <!-- Table Content -->
-  <div class="TableContent">
-    <table class="table" id="content" style="table-layout: fixed; text-align: center" >
-      @foreach($miss as $mis)
-      <tr class="contentdata" id="tr-{{$mis->id}}">
-        <td id="id-{{$mis->id}}">{{$mis->id}}</td>
-        <td id="date-{{$mis->id}}">{{$mis->date}}</td>
-        <td id="class-{{$mis->id}}">{{$mis->class}}</td>
-        <td id="name-{{$mis->id}}">{{$mis->name}}</td>
-        @if (Route::has('login'))
-          @if (Auth::check())
-        <td id="phone-{{$mis->id}}">{{$mis->phone}}</td>
-          @endif
-        @endif
-        <td id="item-{{$mis->id}}">{{$mis->item}}</td>
-        <td id="itemnum-{{$mis->id}}">{{$mis->itemnum}}</td>
-        <td id="license-{{$mis->id}}">{{$mis->license}}</td>
-        <td id="classroom-{{$mis->id}}">{{$mis->classroom}}</td>
-        <td id="teacher-{{$mis->id}}">{{$mis->teacher}}</td>
-        <td id="status-{{$mis->id}}">{{$mis->status}}</td>
-        @if (Route::has('login'))
-          @if (Auth::check())
-            @if( (Auth::user()->name)==='admin')
-        <td>
-          <a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
-            <span class="glyphicon glyphicon-pencil"></span> 編輯
-          </a>
-        </td>
+      <!-- Table Content -->
+      <div class="TableContent">
+        <table class="table" id="content" style="table-layout: fixed; text-align: center" >
+          @foreach($miss as $mis)
+          <tr class="contentdata" id="tr-{{$mis->id}}">
+            <td id="id-{{$mis->id}}">{{$mis->id}}</td>
+            <td id="date-{{$mis->id}}">{{$mis->date}}</td>
+            <td id="class-{{$mis->id}}">{{$mis->class}}</td>
+            <td id="name-{{$mis->id}}">{{$mis->name}}</td>
+            @if (Route::has('login'))
+              @if (Auth::check())
+            <td id="phone-{{$mis->id}}" style="width: 10%;">{{$mis->phone}}</td>
+              @endif
             @endif
-          @endif
-        @endif
-        </tr>
-      @endforeach
-    </table>
-  </div>
-  <!-- End of Table Content -->
+            <td id="item-{{$mis->id}}">{{$mis->item}}</td>
+            <td id="itemnum-{{$mis->id}}">{{$mis->itemnum}}</td>
+            <td id="license-{{$mis->id}}">{{$mis->license}}</td>
+            <td id="classroom-{{$mis->id}}">{{$mis->classroom}}</td>
+            <td id="teacher-{{$mis->id}}">{{$mis->teacher}}</td>
+            <td id="status-{{$mis->id}}">{{$mis->status}}</td>
+            @if (Route::has('login'))
+              @if (Auth::check())
+                @if( (Auth::user()->name)==='admin')
+            <td>
+              <a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                <span class="glyphicon glyphicon-pencil"></span> 編輯
+              </a>
+            </td>
+                @endif
+              @endif
+            @endif
+            </tr>
+          @endforeach
+        </table>
+      </div>
+      <!-- End of Table Content -->
+    </div>
+    <!-- End of PC Section -->
+
+    <!-- Mobile Section -->
+    <div class="Mobilesection">
+      <div class="NavSection">
+            <table style="text-align: center; table-layout: fixed; width: 100%; ">
+                <tr>
+                  <th style="text-align: center;">
+                    <form action=" {{ asset('/admin')}}" method="get" }}" style="width: 100%;">
+                    <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
+                    </form>
+                  </th>
+                  <th style="text-align: center;">
+                    <label style="font-size: 17px; font-family: Microsoft JhengHei;">以「{{ $content }}」搜尋</label>
+                  </th>
+                  <th style="text-align: center;">
+                    <!-- 再次搜尋 -->
+                      <button class="searchButton" id="searchButton" type="button" data-toggle="modal" data-target="#SearchModal">再次搜尋<span class="glyphicon glyphicon-chevron-right"></span></button>
+                    </form>
+                  </th>
+                </tr>
+            </table>
+      </div>
+      <br>
+      
+      <!-- Mobile Table -->
+      <div class="TableTop">
+        @foreach($miss as $mis)
+        <table class="table-bordered" id="TitleTable" style="text-align: center; table-layout: fixed; width: 100%; background-color: #FFFFE0;">
+            <!-- 序號 -->
+          <tr>
+              <th style="text-align: center;">
+                <button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">租借序號</button>
+              </th>
+              <th id="id-{{$mis->id}}">
+                {{$mis->id}}
+              </th>
+          </tr>
+          <!-- 日期 -->
+          <tr>
+              <th style="text-align: center;">
+                <button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">租借日期</button>
+              </th>
+              <th id="date-{{$mis->id}}">
+                {{$mis->date}}
+              </th>
+          </tr>
+          <!-- 班級 -->
+          <tr>
+              <th style="text-align: center;">
+                <button id="classSortButton" type="submit" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">班級</button>
+              </th>
+              <th id="class-{{$mis->id}}">
+                {{$mis->class}}
+              </th>
+          </tr>
+          <!-- 申請人 -->
+          <tr>
+              <th style="text-align: center;">
+                <button id="nameSortButton" type="submit" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
+              </th>
+              <th id="name-{{$mis->id}}">
+                {{$mis->name}}
+              </th>
+          </tr>
+          <!-- 電話 -->
+            @if (Route::has('login'))
+              @if (Auth::check())
+                @if ((Auth::user()->level)==='管理員')
+          <tr>
+              <th style="text-align: center;"">
+                <button id="phoneSortButton" type="submit" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+              </th>
+              <th id="phone-{{$mis->id}}">
+                {{$mis->phone}}
+              </th>
+          </tr>
+                @endif
+              @endif
+            @endif
+          <!-- 借用物品-->
+          <tr>
+              <th style="text-align: center;">
+                <button id="itemSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">借用物品</button>
+              </th>
+              <th id="item-{{$mis->id}}">
+                {{$mis->item}}
+              </th>
+          </tr>
+          <!-- 借用數量 -->
+          <tr>
+              <th style="text-align: center;">
+                <button id="itemnumSortButton" type="submit" onclick="sortTable(6)" style="border-radius: 100px; border: none; background-color: transparent;">借用數量</button>
+              </th>
+              <th id="itemnum-{{$mis->id}}">
+                {{$mis->itemnum}}
+              </th>
+          </tr>
+          <!-- 抵押證件 -->
+          <tr>
+              <th style="text-align: center;">
+                <button id="licenseSortButton" type="submit" onclick="sortTable(7)" style="border-radius: 100px; border: none; background-color: transparent;">抵押證件</button>
+              </th>
+              <th id="license-{{$mis->id}}">
+                {{$mis->license}}
+              </th>
+          </tr>
+          <!-- 授課教室 -->
+          <tr>
+              <th style="text-align: center;">
+                <button id="classroomSortButton" type="button" onclick="sortTable(8)" style="border-radius: 100px; border: none; background-color: transparent;">授課教室</button>
+              </th>
+              <th id="classroom-{{$mis->id}}">
+                {{$mis->classroom}}
+              </th>
+          </tr>
+          <!-- 授課教師 -->
+          <tr>
+              <th style="text-align: center;">
+                <button id="teacherSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
+              </th>
+              <th id="teacher-{{$mis->id}}">
+                {{$mis->teacher}}
+              </th>
+          </tr>
+          <!-- 狀態 -->
+          <tr>
+              <th style="text-align: center;">
+                <button id="statusSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
+              </th>
+              <th id="status-{{$mis->id}}">
+                {{$mis->status}}
+              </th>
+          </tr>
+          <!-- 編輯資料 -->
+            @if (Route::has('login'))
+              @if (Auth::check())
+                @if( (Auth::user()->level)==='管理員')
+          <tr>
+              <th style="text-align: center;">
+                <button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
+              </th>
+              <th>
+                <a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                  <span class="glyphicon glyphicon-pencil"></span> 編輯
+                </a>
+              </th>
+          </tr> 
+                @endif
+              @endif
+            @endif
+        </table>
+        <br>
+        @endforeach
+      </div>
+      <!-- End of Mobile Table -->
+    </div>
+    <!-- End of Mobile Section -->
 
 
 
