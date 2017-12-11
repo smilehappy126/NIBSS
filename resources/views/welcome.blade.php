@@ -82,28 +82,6 @@
                 top: 70%;
 
             }
-
-            .LoginButton{
-                float: center;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 30px;
-                background-color:#B0C4DE;
-                width: 180px;
-                height: 80px;
-                border-radius: 100px;
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-                opacity: 0.6;
-            }
-
-            .LoginButton:hover{
-                background-color: #CCDDFF;
-                width:280px;
-                transition: 0.3s;
-
-            }
             .notice{
                 float: center;
                 font-family: Microsoft JhengHei;
@@ -181,11 +159,20 @@
                 right: 0px;
                 left: 0px;
             }
+            
+/*PC CSS Section*/
+@media screen and (min-width: 900px){
+            /*模糊效果*/
+            .BlurEffect{
+                -webkit-filter: blur(10px);
+                filter: blur(2px);
+                height: 180px;
+            }
             .LinkText{
                 background-color: transparent;
                 z-index: 100;
                 font-size: 30px;
-                top: 35%;
+                top: 42%;
                 text-align: center;
                 position: absolute;
                 right: 0px;
@@ -201,13 +188,26 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-/*PC CSS Section*/
-@media screen and (min-width: 900px){
-            /*模糊效果*/
-            .BlurEffect{
-                -webkit-filter: blur(10px);
-                filter: blur(2px);
-                height: 180px;
+            .LoginButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 30px;
+                background-color:#B0C4DE;
+                width: 180px;
+                height: 70px;
+                border-radius: 100px;
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+                opacity: 0.6;
+            }
+
+            .LoginButton:hover{
+                background-color: #CCDDFF;
+                width:280px;
+                transition: 0.3s;
+
             }
 
 }
@@ -218,6 +218,48 @@
                 -webkit-filter: blur(10px);
                 filter: blur(2px);
                 height: 250px;
+            }
+            .LinkText{
+                background-color: transparent;
+                z-index: 100;
+                font-size: 30px;
+                top: 33%;
+                text-align: center;
+                position: absolute;
+                right: 0px;
+                left: 0px;
+                color: pink;
+            }
+            .LinkText > a {
+                color:  #FFE4B5;
+                padding: 0 25px;
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+            .LoginButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 30px;
+                background-color:#B0C4DE;
+                width: 180px;
+                height: 65px;
+                border-radius: 100px;
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+                opacity: 0.6;
+                z-index: 1;
+            }
+
+            .LoginButton:hover{
+                background-color: #CCDDFF;
+                width:280px;
+                transition: 0.3s;
+
             }
 
 }

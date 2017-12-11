@@ -82,7 +82,7 @@
         bottom: :0;
         float: left;
         font-family: Microsoft JhengHei;
-        font-size: 50px;
+        font-size: 40px;
     }
     .FormButton:hover{
         background-color: #FF8888;
@@ -143,10 +143,10 @@
     					</tr>
     					<tr>
     						<th>
-    							<button class="FormButton" type="button">3</button>
+    							<button class="FormButton" type="button">其他功能</button>
     						</th>
     						<th>
-    							<button class="FormButton" type="button">4</button>
+    							<button class="FormButton" type="button">其他功能</button>
     						</th>
     					</tr>
     				</table>
@@ -183,10 +183,10 @@
                         </tr>
                         <tr>
                             <th>
-                                <button class="FormButton" type="button">3</button>
+                                <button class="FormButton" type="button">其他功能</button>
                             </th>
                             <th>
-                                <button class="FormButton" type="button">4</button>
+                                <button class="FormButton" type="button">其他功能</button>
                             </th>
                         </tr>
                     </table>

@@ -94,6 +94,12 @@
         transition: 0.3s;
         width:150px;
     }
+    .notice{
+        font-family: Microsoft JhengHei;
+        font-weight: bolder;
+        font-size: 100px;
+        color: #FF3333;
+    }
 }
 /*End of PC CSS*/
 
@@ -176,6 +182,12 @@
         transition: 0.3s;
         background-color: #DDDDDD;
     }
+    .notice{
+        font-family: Microsoft JhengHei;
+        font-weight: bolder;
+        font-size: 45px;
+        color: #FF3333;
+    }
 }
 /*End of Mobile CSS*/
 
@@ -185,6 +197,8 @@
 
 @section('content')
 <div class="container">
+  @if(Auth::check())
+    @if((Auth::user()->level)>'1')
     <!-- PC section -->
     <div class="PCsection">  
       <div class="TopTitle">
@@ -309,6 +323,7 @@
                     {{ $user->level }}
                   </th>
               </tr>
+              @if((Auth::user()->level)==='管理員')
               <tr>
                   <th style="text-align: center;" class="TableTitle">
                       <button id="levelSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">修改資料</button>
@@ -317,6 +332,7 @@
                       <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$user->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
                   </th>
               </tr>
+              @endif
           </table>
           <br>
           @endforeach
@@ -350,7 +366,7 @@
                                             <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
                                                 <tr><th>使用者 : </th><th><label style="text-align: center; width: 100%;">{{ $user->name}}</label> </th></tr>
                                                 <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}"></th></tr>
-                                                <tr><th>違規次數 :</th><th> <input  class="form-control" type="text" name="violation" value="{{ $user->violation }}"></th></tr>
+                                                <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}"></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
                                                         <select class="form-control" name="level" value="{{ $user->level }}">
@@ -383,6 +399,7 @@
         </div>
 <!-- End of Edit Modal -->
     @endforeach
+
   <div style="text-align: center;">
     <form action="{{ asset('/admin/userlists') }}" method="get">
       <button class="resetButton" id="testbtn">重新整理</button>
@@ -431,6 +448,21 @@
         </div>        
         <!-- End of Search Modal -->
 <!-- ↑↑↑ End of Modal Section ↑↑↑ -->
+  @endif <!-- Auth::user()->level -->
+  @unless((Auth::user()->level)>'1')
+  <div class="content">
+      <label class="notice">只限管理員使用，請先登入!!!</label>
+  </div>
+  @endunless
+@endif  <!-- Auth::check() -->
+@unless(Auth::check())
+  <div class="content">
+      <label class="notice">只限管理員使用，請先登入!!!</label>
+  </div>
+@endunless
+
+
+
 
 </div>
 <!-- End of Container -->
