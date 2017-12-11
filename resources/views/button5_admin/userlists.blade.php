@@ -198,7 +198,7 @@
 @section('content')
 <div class="container">
   @if(Auth::check())
-    @if((Auth::user()->level)>'1')
+    @if((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     <!-- PC section -->
     <div class="PCsection">  
       <div class="TopTitle">
@@ -236,7 +236,7 @@
                   <th style="text-align: center;">
                       <button id="levelSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">權限等級</button>
                   </th>
-                  @if ((Auth::user()->level)==='管理員')
+                  @if ((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
                   <th style="text-align: center; width: 120px;">
                       <button id="levelSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">修改資料</button>
                   </th>
@@ -253,7 +253,7 @@
                   <th style="text-align: center;">{{ $user->email }}</th>
                   <th style="text-align: center; width: 120px;">{{ $user->violation }}</th>
                   <th style="text-align: center;">{{ $user->level }}</th>
-                  @if ((Auth::user()->level)==='管理員')
+                  @if ((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
                   <th style="text-align: center; width: 120px;">
                       <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$user->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
                   </th>
@@ -449,21 +449,17 @@
         <!-- End of Search Modal -->
 <!-- ↑↑↑ End of Modal Section ↑↑↑ -->
   @endif <!-- Auth::user()->level -->
-  @unless((Auth::user()->level)>'1')
+  @unless((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
   <div class="content">
       <label class="notice">只限管理員使用，請先登入!!!</label>
   </div>
   @endunless
-@endif  <!-- Auth::check() -->
+@endif<!-- Auth::check() -->
 @unless(Auth::check())
   <div class="content">
       <label class="notice">只限管理員使用，請先登入!!!</label>
   </div>
 @endunless
-
-
-
-
 </div>
 <!-- End of Container -->
 
