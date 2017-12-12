@@ -16,10 +16,10 @@ class ApplicationController extends Controller
  	{	   
     $eq = array();
     $num = array();
+    $classroom = "$request->classroom$request->key"; 
 
     $eq = $request->item;
     $num =$request->itemnum;
-
 
     /*$str_eq = json_encode($eq);
     $str_num = json_encode($num);*/
@@ -33,14 +33,14 @@ class ApplicationController extends Controller
     $application->item =  $str_eq;
     $application->itemnum = $str_num;
     $application->license = $request->license;
-    $application->classroom = $request->classroom;
+    $application->classroom = $classroom;
     $application->teacher = $request->teacher;
     $application->phone = $request->phone;
     $application->date = Carbon::today()->format('Y-m-d');
     // echo($application->date);
     $application->status = '借用中';
     $application->save();
-    return redirect('/create');
+    return redirect('/');
      //
  	}
 }
