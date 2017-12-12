@@ -450,7 +450,7 @@
     								<tr><th>狀態 :</th>
     									<th> 
     										<select class="form-control" name="status" value="{{ $mis->status }}">
-    											<option value="已歸還">已歸還</option><option value="借用中">借用中</option>
+    											<option value="借用中">借用中</option><option value="已歸還">已歸還</option>
     										</select>
     									</th>
     								</tr>
