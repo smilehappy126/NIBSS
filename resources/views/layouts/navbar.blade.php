@@ -134,7 +134,7 @@
         @if (Route::has('login'))
             @if(Auth::check())
                 @if( (Auth::user()->level)==='管理員')   
-                    <li><a  href="{{ url('/admin') }}">管理者模式</a></li>
+                    <li><a  href="{{ url('/admin') }}">管理者專區</a></li>
                 @endif
             @endif
         @endif
@@ -155,8 +155,12 @@
             @endif
         @unless(Auth::check())
             <div class="LoginPanel" id="PClogin">
-                <!-- Trigger the modal with a button -->
-                <li style="right: 10px; bottom:6px; position: absolute;"><a><button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button></a></li>
+                <!-- Trigger the LoginModal with a button -->
+                <li style="right: 10px; bottom:6px; position: absolute;">
+                    <a>
+                        <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
+                    </a>
+                </li>
             </div>
         @endunless
     <!-- PC版本結束 -->
@@ -171,15 +175,17 @@
                             <button class="LogoutButton" type="submit">Logout </button>
                           </li>  
                         </form>
-                    @else
-                        
                     @endif
                 </div>
-            @endif
+        @endif
         @unless(Auth::check())
             <div class="Mobilelogin">
-                <!-- Trigger the modal with a button -->
-                <li><a><button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button></a></li>
+                <!-- Trigger the LoginModal with a button -->
+                <li>
+                    <a>
+                        <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
+                    </a>
+                </li>
             </div>
         @endunless
 
@@ -199,77 +205,67 @@
      <!-- Login Modal -->
         <div id="LoginModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
-
-                    <!-- Login Modal content-->
-                    <div class="modal-content">
-                        <!-- Begin of Modal Header -->
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <div id="LoginPage">
-                               <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">登入 Login</h4>
-                            </div>
+                <!-- Login Modal content-->
+                <div class="modal-content">
+                    <!-- Begin of Modal Header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div id="LoginPage">
+                            <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">登入 Login</h4>
                         </div>
-                        <!-- End of Modal Header -->
+                    </div>
+                    <!-- End of Modal Header -->
 
-                        <!-- Begin of Modal Body -->
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <form class="form-horizontal" action=" {{ asset('/loginNow') }} " method="post">
+                    <!-- Begin of Modal Body -->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <form class="form-horizontal" action=" {{ asset('/loginNow') }} " method="post">
                                     <!-- Login Email -->
-                                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}" style="text-align: center;">
                                         <label class="col-md-4 control-label" for="email" style="font-weight: bold; ">電子信箱</label>{{ csrf_field() }} 
-                                                <div class="col-md-6">
-                                                <input class="LoginInput" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: 
-                                                inline-block; font-size : 15px;font-family: Microsoft JhengHei;
-                                                font-weight: bold;" required autofocus></input>
+                                        <div class="col-md-6">
+                                            <input class="LoginInput" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: inline-block; font-size : 15px;font-family: Microsoft JhengHei;font-weight: bold;" required autofocus></input>
                                                     <!-- @if ($errors->has('email'))
                                                     <span class="help-block">
                                                     <strong>{{ $errors->first('email') }}</strong>
                                                     </span>
                                                     @endif -->
-                                                </div> 
-                                            
-                                           
+                                        </div> 
                                     </div>
                                     <!-- Login 密碼 -->
-                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
-                                        
-                                            
-                                                <label class="col-md-4 control-label" for="password" style="font-weight: bold;">密碼</label>{{ csrf_field() }} 
-                                                <div class="col-md-6">
-                                                <input type="password" name="password" id="password"  value="" style="display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required></input>
+                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}" style="text-align: center;">
+                                        <label class="col-md-4 control-label" for="password" style="font-weight: bold;">密碼</label>{{ csrf_field() }} 
+                                        <div class="col-md-6">
+                                            <input type="password" name="password" id="password"  value="" style="display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required>
                                                     <!-- @if ($errors->has('LoginPassword'))
                                                         <span class="help-block">
                                                         <strong>{{ $errors->first('password') }}</strong>
                                                         </span>
                                                     @endif -->
-                                                </div>
-                                            
-                                            <!-- 註冊按鈕 -->
-                                            <!-- Trigger the Register modal with a button -->
-                                                <br>
+                                        </div>
+                                        <br>
                                     </div>
                                     <!-- Register按鈕 -->
                                     <div class="form-group" align="center">
-                                    <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
+                                        <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
                                     </div>    
-                                </div>    
-                            </div>
-
-                        <!--  End of Modal Body -->
-
-                        <!-- Begin of Modal Footer -->
-                        <div class="modal-footer">
-                              <div class="form-group">
-                                    <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Login</button>
-                                    <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
-                              </div>
+                            </div>    
                         </div>
-                        <!-- End of Modal Footer -->
-                                </form>
                     </div>
-                    <!-- End of Login Modal Conent -->
+                    <!--  End of Modal Body -->
+                    
+                    <!-- Begin of Modal Footer -->
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Login</button>
+                            <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!-- End of Modal Footer -->
+                               </form>
+                </div>
+                <!-- End of Login Modal Conent -->
             </div>
         </div>        
         <!-- End of Login Modal -->
@@ -277,28 +273,26 @@
         <!-- Register Modal -->
         <div id="RegisterModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
             <div class="modal-dialog">
-
-                    <!-- Register Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <div id="RegisterPage">
-                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">註冊 Register</h4>
-                            </div>
-                        </div> <!-- End of Modal Header -->
-                         
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                                     {{ csrf_field() }}
-                                     <!-- Register 姓名 -->
+                <!-- Register Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div id="RegisterPage">
+                            <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">註冊 Register</h4>
+                        </div>
+                    </div>
+                    <!-- End of Modal Header -->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                                    {{ csrf_field() }}
+                                    <!-- Register 姓名 -->
                                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                         <label for="name" class="col-md-4 control-label">姓名</label>
                                         <div class="col-md-6">
                                             <input id="name" type="text" class="LoginInput" name="name" value="{{ old('name') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required autofocus>
-
-                                            @if ($errors->has('name'))
+                                                @if ($errors->has('name'))
                                                <span class="help-block">
                                                <strong>{{ $errors->first('name') }}</strong>
                                                </span>
@@ -313,7 +307,7 @@
 
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
-                                                <strong>{{ $errors->first('email') }}</strong>
+                                                    <strong>{{ $errors->first('email') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -338,20 +332,21 @@
                                             <input id="password-confirm" type="password" class="LoginInput" name="password_confirmation" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
                                         </div>
                                     </div>
-                                </div>
                             </div>
-                        </div> <!-- End of Modal Body --> 
-                       
-                        <div class="modal-footer">
-                              <div class="form-group">
-                              <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Register</button>
-                              <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
-                              </div>
-                        </div> 
-                        <!-- End of Modal Footer -->
-                                        </form>
+                        </div>
                     </div> 
-                    <!-- End of Register Modal Content -->
+                    <!-- End of Modal Body --> 
+                       
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Register</button>
+                            <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                        </div>
+                    </div> 
+                    <!-- End of Modal Footer -->
+                                        </form>
+                </div> 
+                <!-- End of Register Modal Content -->
             </div>
         </div>
         <!-- End of Register Modal -->

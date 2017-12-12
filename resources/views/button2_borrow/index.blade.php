@@ -226,7 +226,7 @@
 					</th>
 					@if (Route::has('login'))
 						@if (Auth::check())
-							@if( (Auth::user()->level)==='管理員')
+							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<!-- 編輯資料 -->
 	   	 			<th style="text-align: center;">
 						<button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
@@ -261,7 +261,7 @@
 					<td id="status-{{$mis->id}}">{{$mis->status}}</td>
 					@if (Route::has('login'))
 						@if (Auth::check())
-							@if( (Auth::user()->level)==='管理員')
+							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<td>
 					 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
 					 		<span class="glyphicon glyphicon-pencil"></span> 編輯
@@ -284,7 +284,7 @@
 		<!-- Table -->
 		<div>
 			@foreach($miss as $mis)
-			<table class="table" id="MobileTable" style="text-align: center; table-layout: fixed;">
+			<table class="table-bordered" id="MobileTable" style="text-align: center; table-layout: fixed; width: 100%; background-color: #FDF5E6;">
 				<!-- 序號 -->
 				<tr>
 					<th class="TableTop" style="text-align: center;">
@@ -323,7 +323,7 @@
 				</tr>
 				@if (Route::has('login'))
 					@if (Auth::check())
-						@if(Auth::user()->level==='管理員')
+						@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 				<!-- 電話 -->
 				<tr>
 	   				<th class="TableTop" style="text-align: center;">
@@ -392,7 +392,7 @@
 				</tr>
 				@if (Route::has('login'))
 					@if (Auth::check())
-						@if( (Auth::user()->level)==='管理員')
+						@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 				<!-- 編輯資料 -->
 				<tr>
 	   	 			<th class="TableTop" style="text-align: center;">
@@ -408,6 +408,7 @@
 					@endif
 	    		@endif
 	    	</table>
+	    	<br>
 	    	@endforeach
 		</div>
 	 	<!-- End of Table-->
@@ -502,7 +503,8 @@ function sortTable(n) {
     rows = table.getElementsByTagName("TR");
     /* Loop through all table rows (except the
     first, which contains table headers): */
-    for (i = 0; i < (rows.length - 1); i++) {
+    for (i = 0; i < (rows.length - 1); i++) 
+    {
       // Start by saying there should be no switching:
       shouldSwitch = false;
       /* Get the two elements you want to compare,
@@ -511,37 +513,47 @@ function sortTable(n) {
       y = rows[i + 1].getElementsByTagName("TD")[n];
       /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+      if (dir == "asc") 
+      {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
+        {
           // If so, mark as a switch and break the loop:
           shouldSwitch= true;
           break;
         }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+      } 
+      else if (dir == "desc") 
+      {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
+        {
           // If so, mark as a switch and break the loop:
           shouldSwitch= true;
           break;
         }
       }
-    }
-    if (shouldSwitch) {
+    }//End For Loop
+    
+    if (shouldSwitch) 
+    {
       /* If a switch has been marked, make the switch
       and mark that a switch has been done: */
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
       // Each time a switch is done, increase this count by 1:
       switchcount ++; 
-    } else {
+    } 
+    else 
+    {
       /* If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again. */
-      if (switchcount == 0 && dir == "asc") {
+      if (switchcount == 0 && dir == "asc") 
+      {
         dir = "desc";
         switching = true;
       }
     }
-  }
-}
+  }//End While Loop
+}//End Function
 </script>
 @stop
 

@@ -72,7 +72,8 @@
                 float: right;
                 position: absolute;
                 margin-right: 10px;
-                top: 80%;
+                top: 70%;
+                z-index: 1;
             }
             .ErrorMessages{
                 float: right;
@@ -81,33 +82,11 @@
                 top: 70%;
 
             }
-
-            .LoginButton{
-                float: center;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 30px;
-                background-color:#B0C4DE;
-                width: 180px;
-                height: 80px;
-                border-radius: 100px;
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-                opacity: 0.6;
-            }
-
-            .LoginButton:hover{
-                background-color: #CCDDFF;
-                width:280px;
-                transition: 0.3s;
-
-            }
             .notice{
                 float: center;
                 font-family: Microsoft JhengHei;
                 font-weight: bolder;
-                font-size: 50px;
+                font-size: 39px;
                 
             }
             .LogoutButton{
@@ -180,11 +159,20 @@
                 right: 0px;
                 left: 0px;
             }
+            
+/*PC CSS Section*/
+@media screen and (min-width: 900px){
+            /*模糊效果*/
+            .BlurEffect{
+                -webkit-filter: blur(10px);
+                filter: blur(2px);
+                height: 180px;
+            }
             .LinkText{
                 background-color: transparent;
                 z-index: 100;
                 font-size: 30px;
-                top: 40%;
+                top: 42%;
                 text-align: center;
                 position: absolute;
                 right: 0px;
@@ -200,14 +188,28 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-/*PC CSS Section*/
-@media screen and (min-width: 900px){
-            /*模糊效果*/
-            .BlurEffect{
-                -webkit-filter: blur(10px);
-                filter: blur(2px);
-                height: 180px;
+            .LoginButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 30px;
+                background-color:#B0C4DE;
+                width: 180px;
+                height: 70px;
+                border-radius: 100px;
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+                opacity: 0.6;
             }
+
+            .LoginButton:hover{
+                background-color: #CCDDFF;
+                width:280px;
+                transition: 0.3s;
+
+            }
+
 }
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
@@ -215,7 +217,49 @@
             .BlurEffect{
                 -webkit-filter: blur(10px);
                 filter: blur(2px);
-                height: 300px;
+                height: 250px;
+            }
+            .LinkText{
+                background-color: transparent;
+                z-index: 100;
+                font-size: 30px;
+                top: 33%;
+                text-align: center;
+                position: absolute;
+                right: 0px;
+                left: 0px;
+                color: pink;
+            }
+            .LinkText > a {
+                color:  #FFE4B5;
+                padding: 0 25px;
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+            .LoginButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 30px;
+                background-color:#B0C4DE;
+                width: 180px;
+                height: 65px;
+                border-radius: 100px;
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+                opacity: 0.6;
+                z-index: 1;
+            }
+
+            .LoginButton:hover{
+                background-color: #CCDDFF;
+                width:280px;
+                transition: 0.3s;
+
             }
 
 }
@@ -245,7 +289,9 @@
             <div class="LoginPanel">
             @if (Route::has('login'))
                 @if(Auth::check())
-                  <label class="notice">Welcome,&nbsp</label><label class="notice" style="text-transform: uppercase;" >{{ Auth::user()->name }}</label> 
+                    <label class="notice" style="text-transform: uppercase;">
+                        Welcome, {{ Auth::user()->name }}
+                    </label> 
                 @endif
             @endif
                 @unless(Auth::check())
@@ -280,9 +326,9 @@
                         &nbsp
                     </div>
                     <span class="TitleText">
-                        設備借用系統
+                        設備管理系統
                     </span>
-                    <span class="links LinkText">
+                    <span class="links LinkText" id="PClinks">
                         <a  href="{{ url('/create') }}">新增申請單</a>|
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|
@@ -291,7 +337,7 @@
                     @if (Route::has('login'))
                         @if(Auth::check())
                             @if( (Auth::user()->level)==='管理員')   
-                        |<a  href="{{ url('/admin') }}">管理者模式</a>
+                        | <br> | <a  href="{{ url('/admin') }}">管理者模式</a>|
                             @endif
                         @endif
                     @endif
@@ -347,7 +393,7 @@
                                 <div class="col-md-8 col-md-offset-2">
                                     <form class="form-horizontal" action=" {{ asset('/loginNow') }} " method="post">
                                     <!-- Login Email -->
-                                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}" style="text-align: center;">
                                         <label class="col-md-4 control-label" for="email" style="font-weight: bold; "> E-Mail</label>{{ csrf_field() }} 
                                                 <div class="col-md-6">
                                                 <input class="LoginInput" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: 
@@ -363,7 +409,7 @@
                                            
                                     </div>
                                     <!-- Login 密碼 -->
-                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
+                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}" style="text-align: center;">
                                         
                                             
                                                 <label class="col-md-4 control-label" for="password" style="font-weight: bold;">密碼</label>{{ csrf_field() }} 
