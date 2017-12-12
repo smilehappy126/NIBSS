@@ -165,12 +165,12 @@
 	<div class="PCsection">
 		<div class="TopTitle">已歸還資料</div>
 		<!-- 透過名字搜尋 -->
-		<div class="search">
-			<form action="{{ asset ('/borrow/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+		<!-- <div class="search">
+			<form action="{{ asset ('/return/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
 				<input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  style="width: 20%;">
 				<button class="searchButton" id="searchButton" type="submit">搜尋</button>
 			</form>
-		</div>
+		</div> -->
 
 		<!-- Table Head -->
 		<div class="TableTop">
@@ -256,7 +256,7 @@
 					       $re->timestamps = false;
 					       $re->save();
 					       if ($re->status == "借用中")
-					       $re->timestamps=ture;
+					       $re->timestamps = ture;
 					      ?>
 					          {{$re->updated_at}}
 					     </td>

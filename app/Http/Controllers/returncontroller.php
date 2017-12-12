@@ -32,6 +32,17 @@ class returnController extends Controller
       $update->save();
       return redirect('/return');
 	}
+  // 透過Name來搜尋
+  public function search(Request $rep)
+  {
+      $res=Miss::where('name','like','%'.$rep->searchname.'%')
+                  ->get();
+      if (count($res)>=1) {
+        return view('button3_return.index',['res'=> $res]);
+      } else if (count($miss)<1){
+        return view('button3_return.fail',['res'=> $res]);
+      }
+  }
 
 
 }

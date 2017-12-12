@@ -37,6 +37,8 @@ Route::post('/borrow/search','BorrowController@search');
 Route::get('/return', 'returnController@index');
 //編輯資料
 Route::post('/return/update/{id}','returnController@update');
+//透過名字尋找
+Route::post('/return/search','returnController@search');
 
 
 
