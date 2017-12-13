@@ -328,8 +328,11 @@
                     <span class="TitleText">
                         設備管理系統
                     </span>
-                    <span class="links LinkText" id="PClinks">
+                    <span class="links LinkText">
+                        
+                        @if(Auth::check())
                         <a  href="{{ url('/create') }}">新增申請單</a>|
+                        @endif
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|
                         <a  href="{{ url('/reserve') }}">預約狀況</a>|
