@@ -43,6 +43,7 @@
 <button type="button" class="btn btn-link">
         <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
     </button>
+    <a  href="{{ url('/reserve') }}">預約狀況</a>
 </br>
 
  <form action="{{ asset('/newclassroom') }}" method="post" enctype="multipart/form-data"> <!-- //enctype="multipart/form-data"加ㄉ  -->

@@ -43,10 +43,11 @@
        <div class="panel-body"><img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" height="200" width="300"></br>
               教室描述：
               {{ $classroom->word }} </br></br>
+
             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
                修改
             </button>
-        <form action="{{ asset('/editclassroom/'.$classroom->id) }}" method="POST">
+        <form action="{{ asset('/editclassroom/'.$classroom->id) }}" method="POST" onclick="if(confirm('您確定刪除嗎?')) return true;else return false">
             {!! csrf_field() !!}
             {!! method_field('DELETE') !!}
             <button type="submit" class="btn btn-secondary btn-block" id="{{ $classroom->id }}">
