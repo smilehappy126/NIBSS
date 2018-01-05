@@ -81,15 +81,15 @@ echo "(請先選擇教室)<br>";
 
 $( document ).ready(function() {
     
-    /* alert進入的教室 */
-    $(".classBtn").click(function() {
+    // /* alert進入的教室 */
+    // $(".classBtn").click(function() {
         
-        var classroomBtn;// 所在教室
-        classroomBtn = this.id;
+    //     var classroomBtn;// 所在教室
+    //     classroomBtn = this.id;
         
-        alert("你進入了 " + classroomBtn + " 教室頁面");
+    //     alert("你進入了 " + classroomBtn + " 教室頁面");
         
-    });
+    // });
     
 });
 

@@ -1173,7 +1173,7 @@ $( document ).ready(function() {
                 populate_Sun(".select_end");
             }
             
-//            // 設置select中的預設option
+            // 設置select中的預設option
             selected(".select_start", start);
             selected(".select_end", end);
         }
