@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
-use Excel;
-
-//Controller好像要寫在一起，不同Controller同時return相同view會有問題
-//測試中...把WeekController東西移來這裡
 use App\Classroom;
+use Excel;
 
 
 class CourseController extends Controller
@@ -35,6 +32,8 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //新增課程資料
     public function create(Request $request)
     {
         /* 檢查節次是否重疊 */
@@ -169,9 +168,12 @@ class CourseController extends Controller
     //更新課程資料(點選Modal後)
     public function update(Request $request, $id)
     {
+
         /* 檢查節次是否重疊 */
         $query = Course::all()->where('roomname', $request->roomname)
-            ->where('weekFirst', $request->weekFirst);
+            ->where('weekFirst', $request->weekFirst)
+            ->where('id', '!=', $id); //除了自己以外
+            
 
         foreach($query as $item){
             if( isOverlap($item->start_classTime, $item->end_classTime, 
@@ -180,8 +182,8 @@ class CourseController extends Controller
                     ->with('alert', '課堂節次有重複!');
             }
         }
-        
-        /* 更新一筆課堂資料 */
+
+
         $course = Course::find($id);
         $course->content = $request->content;
         $course->teacher = $request->teacher;
@@ -201,7 +203,7 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    //更新課程資料(點選Modal後)
+    //刪除課程資料(點選Modal後)
     public function destroy(Request $request, $id)
     {
        
