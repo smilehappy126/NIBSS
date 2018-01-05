@@ -1,12 +1,9 @@
 @extends('layouts.layout')
 @section('title', '預約狀況')
 @section('css')
-<!--
-<link href="/ncumisborrowsystem/public/include/pickadate.js-master/lib/themes/default.css" rel="stylesheet">
-<link href="/ncumisborrowsystem/public/include/pickadate.js-master/lib/themes/default.date.css" rel="stylesheet">
--->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+
+<link href="{{ asset('/include/pickadate/lib/themes/classic.css') }}" rel="stylesheet">
+<link href="{{ asset('/include/pickadate/lib/themes/classic.date.css') }}" rel="stylesheet">
 
 @stop
 
@@ -34,23 +31,14 @@ echo "新增多筆" . "<br>";
         <div class="form-group">
             <label>教室: {{$currentClassroom}}</label>
             <input name="roomname" value="{{$currentClassroom}}" hidden>
-<!--
-            <select class="form-control" id="classroom_select" name="roomname">
-                  @foreach ($classrooms as $classroom)
-                    <option value="{{ $classroom->roomname }} "> {{ $classroom->roomname }} </option>
-                  @endforeach
-            </select>
--->
         </div>
         <div class="form-group">
             <label>課堂起始日期:</label>
-<!--            <input type="text" class="form-control" name="start_date">-->
-            <input type="text" class="form-control datepick" name="start_date">
+            <input id="start_date" class="pickadate form-control" type="text" name="start_date" placeholder="點選以選擇日期" data-value="" required>
         </div>
         <div class="form-group">
             <label>課堂結束日期:</label>
-<!--            <input type="text" class="form-control" name="end_date">-->
-            <input type="text" class="form-control datepick" name="end_date">
+            <input id="end_date" class="pickadate form-control" type="text" name="end_date" placeholder="點選以選擇日期" data-value="" required>
         </div>
         <div class="form-group">
             <label>起始節次:</label>
@@ -91,14 +79,14 @@ echo "新增多筆" . "<br>";
         
         <div class="form-group">
             <label>內容:</label>
-            <input type="text" class="form-control" name="content">
+            <input type="text" class="form-control" name="content" required>
         </div>
         <div class="form-group">
             <label>老師:</label>
-            <input type="text" class="form-control" name="teacher">
+            <input type="text" class="form-control" name="teacher" required>
         </div>
         <div>
-            <button class="btn btn-primary" type="submit">送出</button>
+            <button id="submit_btn" class="btn btn-primary" type="submit">送出</button>
         </div>
     </form>
 </div>
@@ -110,21 +98,31 @@ echo "新增多筆" . "<br>";
 
 @section('js')
 
-<!--
-<script src="/ncumisborrowsystem/public/include/pickadate.js-master/lib/picker.js"></script>
-<script src="/ncumisborrowsystem/public/include/pickadate.js-master/lib/picker.date.js"></script>
--->
-
-<!--Jquery Datepicker-->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="{{ asset('/include/pickadate/lib/picker.js') }}"></script>
+<script src="{{ asset('/include/pickadate/lib/picker.date.js') }}"></script>
+<script src="{{ asset('/include/pickadate/lib/legacy.js') }}"></script>
 
 <script language="JavaScript" type="text/javascript">
 $( document ).ready(function(){
     
-    $(".datepick").datepicker({ dateFormat: 'yy-mm-dd' });
-    
-    $("#classroom_select [value="+$roomname+"]").prop('selected', true);
+    // JQuery Datepicker
+    // $(".datepick").datepicker({ dateFormat: 'yy-mm-dd' });
+
+    $(".pickadate").pickadate({
+        format: 'yyyy-mm-dd',
+        formatSubmit: 'yyyy-mm-dd'
+    });
+
+    $("#submit_btn").click(function() {
+
+        if($("#start_date").val() == ""){
+            alert("請選擇課堂起始日期!");
+        }
+        if($("#end_date").val() == ""){
+            alert("請選擇課堂結束日期!");
+        }
+    });
+
 });
 </script>
 
