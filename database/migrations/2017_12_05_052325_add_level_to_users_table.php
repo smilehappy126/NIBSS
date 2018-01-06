@@ -14,7 +14,7 @@ class AddLevelToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('level');
+            $table->string('level')->default('一般使用者');
         });
     }
 
