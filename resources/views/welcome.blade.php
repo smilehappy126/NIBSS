@@ -471,7 +471,7 @@
                                 <div class="col-md-8 col-md-offset-2">
                                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                                      {{ csrf_field() }}
-                                     <!-- Register 姓名 -->
+                                    <!-- Register 姓名 -->
                                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                         <label for="name" class="col-md-4 control-label">姓名</label>
                                         <div class="col-md-6">
@@ -495,6 +495,13 @@
                                                 <strong>{{ $errors->first('email') }}</strong>
                                                 </span>
                                             @endif
+                                        </div>
+                                    </div>
+                                    <!-- Register Phone -->
+                                    <div class="form-group">
+                                        <label for="phone" class="col-md-4 control-label">電話號碼</label>
+                                        <div class="col-md-6">
+                                            <input id="phone" type="text" class="LoginInput" name="phone" value="{{ old('phone') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
                                         </div>
                                     </div>
                                     <!-- Register 密碼 -->

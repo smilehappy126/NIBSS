@@ -230,6 +230,9 @@
                   <th style="text-align: center;">
                       <button id="emailSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
                   </th>
+                  <th style="text-align: center;">
+                      <button id="phoneSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+                  </th>
                   <th style="text-align: center; width: 120px;">
                       <button id="nameSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">違規次數</button>
                   </th>
@@ -251,6 +254,7 @@
               <tr>
                   <th style="text-align: center; width: 150px;">{{ $user->name }}</th>
                   <th style="text-align: center;">{{ $user->email }}</th>
+                  <th style="text-align: center;">{{ $user->phone}}</th>
                   <th style="text-align: center; width: 120px;">{{ $user->violation }}</th>
                   <th style="text-align: center;">{{ $user->level }}</th>
                   @if ((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
@@ -305,6 +309,14 @@
                   </th>
                   <th style="text-align: center;" class="TableContent">
                     {{ $user->email }}
+                  </th>
+              </tr>
+              <tr>
+                  <th style="text-align: center;" class="TableTitle">
+                      <button id="phoneSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+                  </th>
+                  <th style="text-align: center;" class="TableContent">
+                    {{ $user->phone }}
                   </th>
               </tr>
               <tr>
@@ -369,7 +381,8 @@
                                                 <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}"></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
-                                                        <select class="form-control" name="level" value="{{ $user->level }}">
+                                                        <select class="form-control" name="level" value="{{ $user->level }}" required>
+                                                            <option value="" selected disabled hidden></option>
                                                             <option value="管理員">管理員</option>
                                                             <option value="工讀生">工讀生</option>
                                                             <option value="一般使用者">一般使用者</option>
