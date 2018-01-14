@@ -378,6 +378,7 @@
                                             <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
                                                 <tr><th>使用者 : </th><th><label style="text-align: center; width: 100%;">{{ $user->name}}</label> </th></tr>
                                                 <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}"></th></tr>
+                                                <tr><th>電話 :</th> <th><input  class="form-control" type="phone" name="phone" value="{{ $user->phone }}"></th></tr>
                                                 <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}"></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
