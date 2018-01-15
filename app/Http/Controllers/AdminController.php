@@ -23,6 +23,7 @@ class AdminController extends Controller
     {
       $update= User::find($id);
       $update->update(['email'=>$rep->email]);
+      $update->update(['phone'=>$rep->phone]);
       $update->update(['violation'=>$rep->violation]);
       $update->update(['level'=>$rep->level]);
       return redirect('/admin/userlists');
