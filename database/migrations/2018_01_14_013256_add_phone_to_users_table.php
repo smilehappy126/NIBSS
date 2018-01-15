@@ -14,7 +14,7 @@ class AddPhoneToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone');
+            $table->string('phone')->default('無資料');
         });
     }
 

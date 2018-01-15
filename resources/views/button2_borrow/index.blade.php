@@ -165,12 +165,12 @@
 	<div class="PCsection">
 		<div class="TopTitle">借用狀況</div>
 		<!-- 透過名字搜尋 -->
-		<div class="search">
+		<!-- <div class="search">
 			<form action="{{ asset ('/borrow/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
 				<input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  style="width: 20%;">
 				<button class="searchButton" id="searchButton" type="submit">搜尋</button>
 			</form>
-		</div>
+		</div> -->
 
 		<!-- Table Head -->
 		<div class="TableTop">
@@ -447,6 +447,16 @@
     								<tr><th>抵押證件 :</th><th> <input class="form-control" type="text" name="license" value="{{ $mis->license }}"></th></tr>
     								<tr><th>授課教室 :</th><th> <input class="form-control" type="text" name="classroom" value="{{ $mis->classroom }}"></th></tr>
     								<tr><th>授課教師 :</th><th> <input  class="form-control" type="text" name="teacher" value="{{ $mis->teacher }}"></th></tr>
+    								<tr><th>違規狀況 :</th>
+    									<th>
+    										<select class="form-control" name="violation">
+    											<option value="0">正常</option>
+    											<option value="1" selected>違規一次</option>
+    											<option value="3">停權</option>
+    										</select>    										
+
+    									</th>
+    								</tr>
     								<tr><th>狀態 :</th>
     									<th> 
     										<select class="form-control" name="status" value="{{ $mis->status }}">
