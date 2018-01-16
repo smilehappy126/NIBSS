@@ -32,7 +32,13 @@ class BorrowController extends Controller
       $update->update(['classroom'=>$rep->classroom]);
       $update->update(['teacher'=>$rep->teacher]);
       $update->update(['status'=>$rep->status]);
+
+      $user=User::where('phone','=','$rep->phone')->get();
+      $newviolation=$user->violation+$rep->violation;
+      $user->update(['violation'=>$newviolation]);
       return redirect('/borrow');
+
+
 	}
   
   // 透過Name來搜尋
@@ -46,7 +52,6 @@ class BorrowController extends Controller
         return view('button2_borrow.fail',['miss'=> $miss]);
       }
   }
-
  //  // ID排序
  //  public function idasc(){
  //    $miss=Miss::where('status','=','借用中')

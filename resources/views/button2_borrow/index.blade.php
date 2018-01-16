@@ -451,7 +451,7 @@
     									<th>
     										<select class="form-control" name="violation">
     											<option value="0">正常</option>
-    											<option value="1" selected>違規一次</option>
+    											<option value="1">違規一次</option>
     											<option value="3">停權</option>
     										</select>    										
 

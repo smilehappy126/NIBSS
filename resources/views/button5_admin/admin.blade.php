@@ -143,7 +143,9 @@
     					</tr>
     					<tr>
     						<th>
-    							<button class="FormButton" type="button">其他功能</button>
+    							<form action=" {{asset('/admin/rule')}} " method="get"> {{ csrf_field() }}
+                                    <button class="FormButton" type="submit">編輯條例</button>
+                                </form>
     						</th>
     						<th>
     							<button class="FormButton" type="button">其他功能</button>
@@ -177,13 +179,15 @@
                             </th>
                             <th>
                             <form action=" {{asset('/admin/userlists')}} " method="get" >{{ csrf_field() }}
-                            <button class="FormButton" type="submit">使用者清單</button>
+                                <button class="FormButton" type="submit">使用者清單</button>
                             </form>
                             </th>
                         </tr>
                         <tr>
                             <th>
-                                <button class="FormButton" type="button">其他功能</button>
+                                <form action=" {{asset('/admin/rule')}} " method="get"> {{ csrf_field() }}
+                                    <button class="FormButton" type="submit">編輯條例</button>
+                                </form>
                             </th>
                             <th>
                                 <button class="FormButton" type="button">其他功能</button>
