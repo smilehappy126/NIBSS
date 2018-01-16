@@ -2,6 +2,21 @@
 @section('title', '預約狀況')
 @section('css')
 <style >
+    .returnButton{
+        border-radius: 40px;
+        font-weight: bolder;
+        font-family: Microsoft JhengHei;
+        width: 5%;
+        font-size: 20px;
+        transition: 0.3s;
+        background-color: transparent;
+        border-width: 1px;  
+    }
+    .returnButton:hover{
+        width: 7%;
+        transition: 0.3s;
+        background-color: #DDDDDD;
+    }
     .btn-primary {
         background-color: #FFF;
         color: #285e8e;
@@ -35,6 +50,11 @@
 
 @section('content')
 
+  <div class="returnSection">
+      <form action=" {{ asset('/reserve')}}" method="get" }}">
+          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
+      </form>
+  </div>
   @foreach ($classrooms as $classroom)
   <div class="col-md-4">
     <div class="panel panel-default">
@@ -47,6 +67,7 @@
             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
                修改
             </button>
+        @if(Auth::user()->level === '管理員')
         <form action="{{ asset('/editclassroom/'.$classroom->id) }}" method="POST" onclick="if(confirm('您確定刪除嗎?')) return true;else return false">
             {!! csrf_field() !!}
             {!! method_field('DELETE') !!}
@@ -54,6 +75,7 @@
                 刪除 
             </button>
         </form>
+        @endif
 
 
  <div class="modal fade" id="editModal{{$classroom->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
