@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
      public function miss()
     {
-        return $this->hasMany(Mis::class);
+        return $this->hasMany(Miss::class);
     }
 }

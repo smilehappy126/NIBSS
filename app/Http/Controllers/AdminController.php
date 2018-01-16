@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Miss;
 use App\User;
+use App\Rules;
 
 class AdminController extends Controller
 {
@@ -75,5 +76,23 @@ class AdminController extends Controller
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
                   ->get();
         return view('button5_admin.search',['miss'=> $miss],['content'=>$rep->searchcontent]);
+    }
+    // 進入編輯條例的頁面
+    public function rule()
+    {
+      $rules=Rules::all();
+      return view('button5_admin.rule',['rules'=> $rules]);
+    }
+    public function personInfoupdate(Request $rep){
+      $update=Rules::where('id','=','1');
+      $update->update(['personInfo'=>$rep->personInfo]);
+
+      return redirect('/admin/rule');
+    }
+    public function noteupdate(Request $rep){
+      $update=Rules::where('id','=','1');
+      $update->update(['note'=>$rep->note]);
+
+      return redirect('/admin/rule');
     }
 }

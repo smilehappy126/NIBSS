@@ -90,5 +90,8 @@ Route::post('/admin/searchUser','AdminController@searchUser');
 Route::post('/admin/userlists/update/{id}','AdminController@updateUserLists');
 Route::post('/admin/searchall','AdminController@searchall');
 Route::post('/admin/searchall/update/{id}','AdminController@updateContentData');
+Route::get('/admin/rule','AdminController@rule');
+Route::post('/admin/rules/updatenote','AdminController@noteupdate');
+Route::post('/admin/rules/updatepersonInfo','AdminController@personInfoupdate');
 
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');
