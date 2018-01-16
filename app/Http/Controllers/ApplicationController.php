@@ -4,15 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Miss;
+use App\User;
+use App\Rules;
 use Carbon\Carbon;
 class ApplicationController extends Controller
 	
 {
  	public function index()
  	{
-       return view('button1_create.index');//
+        $rules=Rules::all();
+       return view('button1_create.index',['rules'=> $rules]);//
  	}
- 	public function store(Request $request)
+
+    public function set()
+    {
+      return view('button1_create.setphone');//
+    }
+ 	
+    public function store(Request $request)
  	{	   
     $eq = array();
     $num = array();
@@ -43,6 +52,14 @@ class ApplicationController extends Controller
     return redirect('/');
      //
  	}
+
+    public function setphone(Request $request)
+    {
+    $update = User::where('email','=','$request->currentuser')->first();      
+    $editphone = $request->phone;
+    $update->update(['phone'=>'$editphone']);
+    return redirect('/');   
+    }
 }
 
 

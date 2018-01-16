@@ -124,7 +124,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav ">
         <li class="active" ><a href="{{ url('/') }}">主選單<span class="sr-only">(current)</span></a></li>
-        <li><a href="{{ url('/create') }}">新增申請單</a></li>
+        @if(Auth::check())
+            @if((Auth::user()->phone)==='無資料')
+                    <li><a  href="{{ url('/create/setphone') }}">新增申請單</a></li>
+                @else
+                    <li><a  href="{{ url('/create') }}">新增申請單</a></li>
+            @endif
+        @endif  
         <li><a href="{{ url('/borrow') }}">借用狀況</a></li>
         <li><a href="{{ url('/return') }}">已歸還資料</a></li>
         <li><a href="{{ url('/reserve') }}">預約狀況</a></li>
