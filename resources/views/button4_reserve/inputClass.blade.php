@@ -9,19 +9,41 @@
 
 @section('content')
 
-<?php
+<!-- <?php
 echo "新增多筆" . "<br>";
 
-?>
-<!-- excel -->
-    <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('inputClass/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+?> -->
+<button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal">
+        Excel匯入固定多筆資料
+    </button>
+
+    <div class="modal fade" id="excelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Excel匯入固定多筆資料</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- excel -->
+    <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
         <input type="file" name="import_file" />
                     {{ csrf_field() }}
         <br/>
 
-        <button class="btn btn-primary">Import CSV or Excel File</button>
+        <button class="btn btn-md btn-primary">Import CSV or Excel File</button>
 
     </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>        
 
 <div class="container">
 

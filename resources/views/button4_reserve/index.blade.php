@@ -12,15 +12,15 @@ $dateString = $date->format('Y-m-d');
 $pre = strtotime('previous monday', strtotime($dateString));
 $next = strtotime('next monday', strtotime($dateString)); 
 
-echo "主畫面<br>";
-echo "(請先選擇教室)<br>";
+// echo "主畫面<br>";
+// echo "(請先選擇教室)<br>";
 //echo "(可在思考此處畫面設計)";
 
 
 ?>
 
 <!--新增教室資料按鈕-->
-<div class="btn-group"> 
+<div class="btn-group btn-group-lg"> 
     <button type="button" class="btn btn-link">
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
     </button>
