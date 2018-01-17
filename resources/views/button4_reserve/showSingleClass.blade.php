@@ -5,6 +5,107 @@
 .errorMessage {
     color: red;
 }
+
+.rwd-table {
+            background: #fff;
+            overflow: hidden;
+        }
+
+            .rwd-table tr:nth-of-type(2n) {
+                background: #eee;
+            }
+
+            .rwd-table th, .rwd-table td {
+                margin: 0.5em 1em;
+            }
+
+        .rwd-table {
+            min-width: 100%;
+        }
+
+            .rwd-table th {
+                display: none;
+            }
+
+            .rwd-table td {
+                display: block;
+            }
+
+                .rwd-table td:before {
+                    content: attr(data-th) " : ";
+                    font-weight: bold;
+                    width: 6.5em;
+                    display: inline-block;
+                }
+
+            .rwd-table th, .rwd-table td {
+                text-align: left;
+            }
+
+                .rwd-table th, .rwd-table td:before {
+                    color: #25517d;
+                    font-weight: bold;
+                }
+
+        @media (min-width: 480px) {
+            .rwd-table td:before {
+                display: none;
+            }
+
+            .rwd-table th, .rwd-table td {
+                display: table-cell;
+                padding: 0.25em 0.5em;
+            }
+
+                .rwd-table th:first-child, .rwd-table td:first-child {
+                    padding-left: 0;
+                }
+
+                .rwd-table th:last-child, .rwd-table td:last-child {
+                    padding-right: 0;
+                }
+
+            .rwd-table th, .rwd-table td {
+                padding: 1em !important;
+            }
+        }
+/*
+        .rwd-table {
+  border: 1px solid #000000;
+  border-collapse: collapse;
+}
+  .rwd-table th, td {
+    border: 1px solid #000000;
+    padding: 2px 4px;
+    text-align: center;
+  }
+   
+@media screen and (max-width: 451px) {
+   
+  .rwd-table tr {
+    border: 1px solid #000000;
+  }
+   
+  .rwd-table th {
+      display: none;
+  }
+   
+  .rwd-table td {
+      display: block;
+      border: none;
+  }
+   
+  .rwd-table td:before {
+      content: attr(data-th) " ";
+      float: left;
+      font-weight: bold;
+  }
+}
+*/
+
+
+
+
 </style>
 @stop 
 
@@ -134,62 +235,62 @@ $nextString = date('Y-m-d',$next);
     </div>
 
 
-
-    <table BORDER="5" align=center width="1200" height="800" class="table table-bordered" style="border:8px #00BBFF groove;">
+<div class="container">
+    <table BORDER="5" align=center width="1200" height="800" class="table table-bordered rwd-table" style="border:8px #00BBFF groove;">
 
         <tr style="font-weight:bold;" id="monitor">
-            <td> </td>
-            <td>時間</td>
+            <th> </th>
+            <th>時間</th>
 
-            <td>
+            <th>
                 星期一 <br>
                 <?php
                 echo $date->format('Y-m-d');
                 $date->add(new DateInterval('P1D'));
                 ?>
-            </td>
-            <td>
+            </th>
+            <th>
                 星期二 <br>
                 <?php
                 echo $date->format('Y-m-d');
                 $date->add(new DateInterval('P1D'));
                 ?>
-            </td>
-            <td>
+            </th>
+            <th>
                 星期三 <br>
                 <?php
                 echo $date->format('Y-m-d');
                 $date->add(new DateInterval('P1D'));
                 ?>
-            </td>
-            <td>
+            </th>
+            <th>
                 星期四 <br>
                 <?php
                 echo $date->format('Y-m-d');
                 $date->add(new DateInterval('P1D'));
                 ?>
-            </td>
-            <td>
+            </th>
+            <th>
                 星期五 <br>
                 <?php
                 echo $date->format('Y-m-d');
                 $date->add(new DateInterval('P1D'));
                 ?>
-            </td>
-            <td>
+            </th>
+            <th>
                 星期六 <br>
                 <?php
                 echo $date->format('Y-m-d');
                 $date->add(new DateInterval('P1D'));
                 ?>
-            </td>
-            <td>
+            </th>
+            <th>
                 星期日 <br>
                 <?php
                 echo $date->format('Y-m-d');
                 // $date->add(new DateInterval('P1D'));
                 ?>
-            </td>
+            </th>
         </tr>
         <tr>
             <td style="font-weight:bold;"><font size="3">1</td>
@@ -883,7 +984,7 @@ $nextString = date('Y-m-d',$next);
             </td>
         </tr>
     </table>
-
+</div>
 
 
 @foreach ($results as $course)
@@ -1007,6 +1108,7 @@ $nextString = date('Y-m-d',$next);
         </div>
     </div>
 </div>
+
 
 @endforeach
 
