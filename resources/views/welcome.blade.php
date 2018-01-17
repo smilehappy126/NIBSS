@@ -289,8 +289,9 @@
             <div class="LoginPanel">
             @if (Route::has('login'))
                 @if(Auth::check())
-                    <label class="notice" style="text-transform: uppercase;">
-                        Welcome, {{ Auth::user()->name }}
+                    <label class="notice" style="text-transform: uppercase; text-align: center;">
+                        Welcome, {{ Auth::user()->name }} <br><br>
+                        目前違規次數 : {{ Auth::user()->violation }}
                     </label> 
                 @endif
             @endif
