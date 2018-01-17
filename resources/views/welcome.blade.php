@@ -328,11 +328,15 @@
                     <span class="TitleText">
                         設備管理系統
                     </span>
-                    <span class="links LinkText">
-                        
+                    <span class="links LinkText">    
                         @if(Auth::check())
+                        @if((Auth::user()->phone)==='無資料')
+                        <a  href="{{ url('/create/setphone') }}">新增申請單</a>|
+                        @else
                         <a  href="{{ url('/create') }}">新增申請單</a>|
                         @endif
+                    @endif  
+                    
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|
                         <a  href="{{ url('/reserve') }}">預約狀況</a>|
@@ -350,7 +354,13 @@
                 <!-- 分頁連結-->
                 <div class="links" style="align-items: center; visibility: hidden;" >
                     <span class="links">
+                        @if(Auth::check())
+                        @if((Auth::user()->phone)==='無資料')
+                        <a  href="{{ url('/create/setphone') }}">新增申請單</a>|
+                        @else
                         <a  href="{{ url('/create') }}">新增申請單</a>|
+                        @endif
+                    @endif  
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|
                         <a  href="{{ url('/reserve') }}">預約狀況</a>|

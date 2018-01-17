@@ -19,7 +19,9 @@ Route::get('/mylogin','MyLoginController@mylogin');
 
 //新增申請單
 Route::get('/create', 'ApplicationController@index');
+Route::get('/create/setphone', 'ApplicationController@set');
 Route::post('/create','ApplicationController@store');
+Route::post('/create/setphone','ApplicationController@setphone');
 //借用狀況
 
 Route::get('/borrow', 'BorrowController@index');

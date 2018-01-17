@@ -32,6 +32,13 @@
         background-color:#F5F5F5;
         border-radius:10px;
         padding:15px 15px;
+        margin-bottom:20px;
+    }
+    .border3{
+        background-color:#F5F5F5;
+        border-radius:10px;
+        padding:15px 15px;
+        margin-top: 2px;
     }
     }
 
@@ -160,40 +167,24 @@
         <div class="border1">
         <h4>
             <div class="border2">
-                <label class="warm">『本表單蒐集之個人資料，僅限於設備、教室借用相關事宜之聯絡，非經當事人同意，絕不轉作其他用途，亦不會公布任何資訊， 並遵循本校個人資料保護管理制度資料保存與安全控管辦理。』<br></label>
                 <label class="labelSet">
-        1. 鑰匙不得轉借他人使用，委託他人歸還時借用人仍須對教室之狀態負責並遵守資管系教室使用規定。
-        <br>
-        2.  一筆申請單只借一個時段。
-        <br>
-        3.  使用105、107、017教室上課時教室內二個門都請務必要開啟，下課時務必再次確認二個門是否都有關好。
-        <br>
-        4.  離開前務必確認教室內之 1.冷氣 2.投影機 3.電燈 4.電腦或電子講桌 5.麥克風 6.桌上之總電源7.門窗等，是否都已關閉？
-        <br>
-        5.  在關門時，請再次確認門是否上鎖了(要鎖到底)。
-        <br>
-        6.  使用後請借用人督促同學將垃圾帶走並維持教室之整潔。
-        <br>
-        7.  夜間教室借用請於當日下午16:00~17:00於系辦申請，以鐘聲為準，逾時視為放棄借用之權利。
-        <br>
-        8.  鑰匙請於活動後1小時內歸還，逾下班時間者請於隔日9:00前歸還。
-        <br>
-        9.  借用器材時，請明確備註「活動名稱+歸還日期及時間」，若無填寫歸還日期及時間者，視為活動結束隔日早上09:00前歸還。
-        <br>
-        10.  借用器材者請務必愛惜使用並應盡妥善保管之義務。
-        <br>
-        11.器材若損壞或遺失，借用人應負起賠償之責任。
-        <br>
-        12.違反以上規定者，系辦有權停借教室及器材。
-        <br>
-        13.夜間活動借用教室請於晚上10:00點前結束。
-        <br>
-        14.以上若有未盡事宜悉依本校及管院相關規定辦理，若發現教室或設備有異常現象，請速通知系辦(vinceku@mgt.ncu.edu.tw或ncu6500@ncu.edu.tw )分機66500，否則最後之借用人應負起相關責任。
-        <br>
+                <?php
+            echo nl2br($rules[0]->personinfo)
+            ?>
                 </label>
+                <input  type="radio" class="optionRadio" name="person" id="person1" value="yes" onclick="show2()">
+                <label class="labelSet">本人已確實詳閱上述之同意書內容，並且同意提供個人之資料以供中央大學資訊管理學系使用。</label>
+            </div>    
+            <div id="border3" class="border3">
+            <br>    
+                <label class="labelSet">
+                <?php
+                echo nl2br($rules[0]->note)
+                ?>
+                </label>
+                <input  type="radio" class="optionRadio" name="ruler" id="ruler"  onclick="show()" checked disabled>
+                <label class="labelSet">本人已確實詳閱上述之同意書內容，並且同意以上器材借用規則。</label>
             </div>
-        <input  type="radio" class="optionRadio" name="rull" id="rull1" value="yes" onclick="show()">
-        <label class="labelSet">我同意上述規則</label>
         </h4>
         </div>
     </div>
@@ -382,9 +373,14 @@
 @section('js')
 
 <script language="JavaScript" type="text/javascript">  
+    function show2(){
+        document.getElementById("ruler").disabled=false;
+    }    
     function show(){
+
         document.getElementById('container1').style.display="none";
         document.getElementById('container2').style.display="inline";
+
     }
 
     function selectroom(){
