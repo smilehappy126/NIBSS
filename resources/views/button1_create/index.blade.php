@@ -38,7 +38,7 @@
         background-color:#F5F5F5;
         border-radius:10px;
         padding:15px 15px;
-        margin-top: 2px;
+        margin-top: 20px;
     }
     }
 
@@ -88,6 +88,29 @@
         background: #9faab7;
     }
     .optionRadio{
+        border-radius: 50%;
+    }
+    .optionRadio2:checked::before {
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        content: '';
+        display: inline-block;
+        font-size: 26.66667px;
+        text-align: center;
+        line-height: 40px;
+    }
+    .optionRadio2:checked::after {
+        background: #40e0d0;
+        content: '';
+        display: block;
+        position: relative;
+        z-index: 100;
+    }
+    .optionRadio2:hover {
+        background: #9faab7;
+    }
+    .optionRadio2{
         border-radius: 50%;
     }
     /*上下一步按鈕*/
@@ -182,7 +205,7 @@
                 echo nl2br($rules[0]->note)
                 ?>
                 </label>
-                <input  type="radio" class="optionRadio" name="ruler" id="ruler"  onclick="show()" checked disabled>
+                <input  type="radio" class="optionRadio optionRadio2" name="ruler" id="ruler"  onclick="show()" checked disabled>
                 <label class="labelSet">本人已確實詳閱上述之同意書內容，並且同意以上器材借用規則。</label>
             </div>
         </h4>
@@ -208,7 +231,6 @@
                     <div class="form-group">
                         <label><h2>班級（必選）：</h2></label>
                         <select class="form-control" id="class" name="class"  required>
-                            <option value="" disabled selected></option>
                             <optgroup label="資管系">
                             <option value="資管1A">1A</option>
                             <option value="資管1B">1B</option>
@@ -239,8 +261,9 @@
             
                     <div class="form-group">
                         @if( (Auth::user()->phone)==='無資料')
-                        <label><h2>電話：</h2></label>
-                        <input type="text"  class="form-control" name="phone">
+                        <label><h2>電話(必填)：</h2></label>
+                        <input type="text"  class="form-control" id="phone" name="phone" required>
+                        <input type="text"  name="email" value="{{ Auth::user()->email }}" style="display:none;">
                         @endif
                         @unless( (Auth::user()->phone)==='無資料')
                         <label><h2>電話：{{ Auth::user()->phone }}</h2></label>
@@ -249,9 +272,8 @@
                     </div>
 
                     <div class="form-group">           
-                        <label><h2>證件（必填）：</h2></label>
+                        <label><h2>證件：</h2></label>
                         <select class="form-control" name="license" required>
-                            <option value="" disabled selected></option>
                             <option value="身分證">身分證</option>
                             <option value="學生證">學生證</option>
                             <option value="健保卡">健保卡</option>
@@ -415,27 +437,19 @@
 
     function next()
     {    
-        var $name = document.getElementById("username").value ;
         var $phone = document.getElementById("phone").value ;
-        var $class = document.getElementById("class").value ;
-        var $license = $("#form5").find("select[name='license']").val();
-        
-        if($name == "" ||  $class == "" || $license == null)
-        {
-            alert("尚有資料未填！");  
+        /*if($phone == null){
+            alert("請確實填寫電話！"); 
         }
-        else if(isNaN($phone) == 1)
-        {
-            alert("請確實填寫電話！");
-        }
-        else{
+        if($phone !== null){*/
             document.getElementById('home').style.display="none";
             document.getElementById('menu1').style.display="inline";
             $("#L1").removeClass("active");
             $("#L2").addClass("active");
             $('#b1').attr('href','#menu1');
-            $('#B3').attr('value','#menu1')
-        }
+            $('#B3').attr('value','#menu1') 
+        /*}*/
+        
     }
     var formCount = 1;
     
