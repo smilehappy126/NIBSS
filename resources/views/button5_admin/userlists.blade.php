@@ -382,10 +382,11 @@
                                                 <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}"></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
+                                                        
                                                         <select class="form-control" name="level" value="{{ $user->level }}" required>
-                                                            <option value="" selected disabled hidden></option>
+                                                            <option value="" disabled hidden></option>
                                                             <option value="管理員">管理員</option>
-                                                            <option value="工讀生">工讀生</option>
+                                                            <option value="工讀生" >工讀生</option>
                                                             <option value="一般使用者">一般使用者</option>
                                                         </select>
                                                     </th>
