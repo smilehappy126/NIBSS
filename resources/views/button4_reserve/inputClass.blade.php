@@ -5,14 +5,16 @@
 <link href="{{ asset('/include/pickadate/lib/themes/classic.css') }}" rel="stylesheet">
 <link href="{{ asset('/include/pickadate/lib/themes/classic.date.css') }}" rel="stylesheet">
 
+<style>
+.errorMessage {
+    color: red;
+}
+</style>
 @stop
 
 @section('content')
 
-<!-- <?php
-echo "新增多筆" . "<br>";
 
-?> -->
 <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal">
         Excel匯入固定多筆資料
     </button>
@@ -57,14 +59,16 @@ echo "新增多筆" . "<br>";
         <div class="form-group">
             <label>課堂起始日期:</label>
             <input id="start_date" class="pickadate form-control" type="text" name="start_date" placeholder="點選以選擇日期" data-value="" required>
+            <p class="errorMessage" id="err_startDate"></p>
         </div>
         <div class="form-group">
             <label>課堂結束日期:</label>
             <input id="end_date" class="pickadate form-control" type="text" name="end_date" placeholder="點選以選擇日期" data-value="" required>
+            <p class="errorMessage" id="err_endDate"></p>
         </div>
         <div class="form-group">
             <label>起始節次:</label>
-            <select class="form-control" name="start_classTime">
+            <select class="form-control select_start" name="start_classTime">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -82,7 +86,7 @@ echo "新增多筆" . "<br>";
         </div>
         <div class="form-group">
             <label>結束節次:</label>
-            <select class="form-control" name="end_classTime">
+            <select class="form-control select_end" name="end_classTime">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -98,7 +102,10 @@ echo "新增多筆" . "<br>";
                 <option value="C">C</option>
             </select>
         </div>
-        
+        <div>
+            <p class="errorMessage" id="err_classTime"></p>
+        </div>
+
         <div class="form-group">
             <label>內容:</label>
             <input type="text" class="form-control" name="content" required>
@@ -114,8 +121,6 @@ echo "新增多筆" . "<br>";
 </div>
 
 
-
-
 @endsection
 
 @section('js')
@@ -127,9 +132,6 @@ echo "新增多筆" . "<br>";
 <script language="JavaScript" type="text/javascript">
 $( document ).ready(function(){
     
-    // JQuery Datepicker
-    // $(".datepick").datepicker({ dateFormat: 'yy-mm-dd' });
-
     $(".pickadate").pickadate({
         format: 'yyyy-mm-dd',
         formatSubmit: 'yyyy-mm-dd'
@@ -138,10 +140,79 @@ $( document ).ready(function(){
     $("#submit_btn").click(function() {
 
         if($("#start_date").val() == ""){
-            alert("請選擇課堂起始日期!");
+            // alert("請選擇課堂起始日期!");
+            $("#err_startDate").text("請選擇課堂起始日期!");
         }
         if($("#end_date").val() == ""){
-            alert("請選擇課堂結束日期!");
+            // alert("請選擇課堂結束日期!");
+            $("#err_endDate").text("請選擇課堂起始日期!");
+        }
+        else{
+            $("#err_startDate").text("");
+            $("#err_endDate").text("");
+        }
+    });
+
+    /* 起始日期應早於結束日期 */
+    var from_$input = $('#start_date').pickadate(),
+        from_picker = from_$input.pickadate('picker');
+
+    var to_$input = $('#end_date').pickadate(),
+        to_picker = to_$input.pickadate('picker');
+
+    // Check if there’s a “from” or “to” date to start with.
+    if ( from_picker.get('value') ) {
+      to_picker.set('min', from_picker.get('select'));
+    }
+    if ( to_picker.get('value') ) {
+      from_picker.set('max', to_picker.get('select'));
+    }
+
+    // When something is selected, update the “from” and “to” limits.
+    from_picker.on('set', function(event) {
+      if ( event.select ) {
+        to_picker.set('min', from_picker.get('select'));  
+      }
+      else if ( 'clear' in event ) {
+        to_picker.set('min', false);
+      }
+    });
+    to_picker.on('set', function(event) {
+      if ( event.select ) {
+        from_picker.set('max', to_picker.get('select'));
+      }
+      else if ( 'clear' in event ) {
+        from_picker.set('max', false);
+      }
+    });
+
+
+    /* 起始節次應早於結束節次 */
+    $(".select_start").change(function(){
+
+        var index_start = $(".select_start option:selected").val();
+        var index_end = $(".select_end option:selected").val();
+
+        if(index_start > index_end){
+            $("#err_classTime").text("起始節次應早於結束節次");
+            $("#submit_btn").prop('disabled', true);
+        }else{
+            $("#err_classTime").text("");
+            $("#submit_btn").prop('disabled', false);
+        }
+    });
+
+    $(".select_end").change(function(){
+
+        var index_start = $(".select_start option:selected").val();
+        var index_end = $(".select_end option:selected").val();
+
+        if(index_start > index_end){
+            $("#err_classTime").text("起始節次應早於結束節次");
+            $("#submit_btn").prop('disabled', true);
+        }else{
+            $("#err_classTime").text("");
+            $("#submit_btn").prop('disabled', false);
         }
     });
 
