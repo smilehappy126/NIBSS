@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Miss;
+use App\User;
 use Illuminate\Http\Request;
 
 class returnController extends Controller
@@ -10,8 +11,9 @@ class returnController extends Controller
   
   public function index()
   {
+    $users=User::all();
     $res = Miss::where('status','=','已歸還')->orderBy('date','desc')->get();
-    return view('button3_return.index',['res'=> $res]);
+    return view('button3_return.index',['res'=> $res,'users'=>$users]);
   }
 
 
@@ -43,6 +45,12 @@ class returnController extends Controller
         return view('button3_return.fail',['res'=> $res]);
       }
   }
+  public function userupdate(Request $rep)
+    {
+      $update= User::where('phone','=',$rep->phone);
+      $update->update(['violation'=>$rep->violation]);
+      return redirect('/return');
+    }
 
 
 }
