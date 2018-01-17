@@ -43,6 +43,8 @@ Route::post('/return/update/{id}','returnController@update');
 //透過名字尋找
 Route::post('/return/search','returnController@search');
 
+Route::post('/return/userupdate','returncontroller@userupdate');
+
 
 
 
