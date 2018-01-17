@@ -26,6 +26,7 @@ Route::post('/create/setphone','ApplicationController@setphone');
 
 Route::get('/borrow', 'BorrowController@index');
 Route::post('/borrow/update/{id}','BorrowController@update');
+Route::post('/borrow/userupdate','BorrowController@userupdate');
 
 //透過名字尋找
 Route::post('/borrow/search','BorrowController@search');

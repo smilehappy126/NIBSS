@@ -14,7 +14,7 @@ class AddPhoneToMiss extends Migration
     public function up()
     {
         Schema::table('miss', function (Blueprint $table) {
-            $table->string('phone');
+            $table->string('phone')->nullable();
         });
     }
 
