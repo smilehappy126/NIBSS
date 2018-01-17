@@ -16,11 +16,6 @@ class ApplicationController extends Controller
        return view('button1_create.index',['rules'=> $rules]);//
  	}
 
-    public function set()
-    {
-      return view('button1_create.setphone');//
-    }
- 	
     public function store(Request $request)
  	{	   
     $eq = array();
@@ -49,17 +44,13 @@ class ApplicationController extends Controller
     // echo($application->date);
     $application->status = '借用中';
     $application->save();
+    
+    $update=User::where('email','=',$request->email);      
+    $update->update(['phone'=>$request->phone]);
     return redirect('/');
      //
  	}
 
-    public function setphone(Request $request)
-    {
-    $update = User::where('email','=','$request->currentuser')->first();      
-    $editphone = $request->phone;
-    $update->update(['phone'=>'$editphone']);
-    return redirect('/');   
-    }
 }
 
 

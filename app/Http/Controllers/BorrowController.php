@@ -34,11 +34,10 @@ class BorrowController extends Controller
       $update->update(['status'=>$rep->status]);
       return redirect('/borrow');
   }
-  public function updateUser(Request $rep)
+  public function userupdate(Request $rep)
     {
       $update= User::where('phone','=',$rep->phone);
       $update->update(['violation'=>$rep->violation]);
-      $update->update(['level'=>$rep->level]);
       return redirect('/borrow');
     }
   
