@@ -32,14 +32,15 @@ class BorrowController extends Controller
       $update->update(['classroom'=>$rep->classroom]);
       $update->update(['teacher'=>$rep->teacher]);
       $update->update(['status'=>$rep->status]);
-
-      $user=User::where('phone','=','$rep->phone')->get();
-      $newviolation=$user->violation+$rep->violation;
-      $user->update(['violation'=>$newviolation]);
       return redirect('/borrow');
-
-
-	}
+  }
+  public function updateUser(Request $rep)
+    {
+      $update= User::where('phone','=',$rep->phone);
+      $update->update(['violation'=>$rep->violation]);
+      $update->update(['level'=>$rep->level]);
+      return redirect('/borrow');
+    }
   
   // 透過Name來搜尋
   public function search(Request $rep)

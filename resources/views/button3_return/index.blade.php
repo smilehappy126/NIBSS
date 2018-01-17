@@ -198,10 +198,12 @@
 					</th>
 					@if (Route::has('login'))
 						@if (Auth::check())
+							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<!-- 電話 -->
 	   				<th style="text-align: center;">
 						<button id="phoneSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
 					</th>
+							@endif
 	     				@endif
 	    			@endif
 				 	<!-- 借用物品-->
@@ -264,7 +266,9 @@
 					<td id="name-{{$re->id}}">{{$re->name}}</td>
 					@if (Route::has('login'))
 						@if (Auth::check())
+							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<td id="phone-{{$re->id}}">{{$re->phone}}</td>
+							@endif
 						@endif
 	    			@endif
 					<td id="item-{{$re->id}}">{{$re->item}}</td>

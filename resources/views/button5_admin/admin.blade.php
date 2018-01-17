@@ -50,12 +50,12 @@
     	height: 35px;
     	font-size: 20px;
     }
-    .notice{
-    	font-family: Microsoft JhengHei;
-    	font-weight: bolder;
-    	font-size: 100px;
-    	color: #FF3333;
-    }
+        .notice{
+        	font-family: Microsoft JhengHei;
+        	font-weight: bolder;
+        	font-size: 100px;
+        	color: #FF3333;
+        }
 }
 /*End of PC CSS Section*/
 
