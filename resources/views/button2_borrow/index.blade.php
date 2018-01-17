@@ -102,6 +102,22 @@
 		    transition: 0.3s;
 		    width:150px;
 	    }
+	    .UserModalButton{
+	    	background-color: #4169E1;
+	    	border-width: 0px;
+	    	border-radius: 7px;
+	    	font-size: 14px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 100%;
+	    	transition: 0.3s;
+	    }
+	    .UserModalButton:hover{
+	    	background-color: #483D8B;
+	    	transition: 0.3s;
+	    }
 	}
 /*End of PC section*/
 	
@@ -151,6 +167,22 @@
 		    background-color: #DDDDDD;
 		    transition: 0.3s;
 		    width:150px;
+	    }
+	    .UserModalButton{
+	    	background-color: #4169E1;
+	    	border-width: 0px;
+	    	border-radius: 7px;
+	    	font-size: 15px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 55%;
+	    	transition: 0.3s;
+	    }
+	    .UserModalButton:hover{
+	    	background-color: #483D8B;
+	    	transition: 0.3s;
 	    }
     }
 /*End of Mobile CSS Section*/
@@ -243,7 +275,7 @@
 					<td id="class-{{$mis->id}}">{{$mis->class}}</td>
 					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 	   					<td id="name-{{$mis->id}}">
-	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}">{{$mis->name}}</button>
+	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
 	   					</td>
 	   				@endif
 	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
@@ -322,7 +354,7 @@
 					</th>
 					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 	   					<td id="name-{{$mis->id}}">
-	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}">{{$mis->name}}</button>
+	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
 	   					</td>
 	   				@endif
 	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
@@ -457,16 +489,6 @@
     								<tr><th>抵押證件 :</th><th> <input class="form-control" type="text" name="license" value="{{ $mis->license }}"></th></tr>
     								<tr><th>授課教室 :</th><th> <input class="form-control" type="text" name="classroom" value="{{ $mis->classroom }}"></th></tr>
     								<tr><th>授課教師 :</th><th> <input  class="form-control" type="text" name="teacher" value="{{ $mis->teacher }}"></th></tr>
-    								<tr><th>違規狀況 :</th>
-    									<th>
-    										<select class="form-control" name="violation">
-    											<option value="0">正常</option>
-    											<option value="1">違規一次</option>
-    											<option value="3">停權</option>
-    										</select>    										
-
-    									</th>
-    								</tr>
     								<tr><th>狀態 :</th>
     									<th> 
     										<select class="form-control" name="status" value="{{ $mis->status }}">
@@ -514,7 +536,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
-                                    <form class="form-horizontal" method="post" action="{{ asset('/admin/userlists/update/'.$user->id)}}">
+                                    <form class="form-horizontal" method="post" action="{{ asset('/borrow/userupdate')}}">
                                      {{ csrf_field() }}
                                     <div class="EditPage">
                                         <div class="EditInfo">
@@ -522,21 +544,17 @@
                                             <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
                                                 <tr><th>使用者 : </th><th><label style="text-align: center; width: 100%;">{{ $user->name}}</label> </th></tr>
                                                 <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}" disabled></th></tr>
-                                                <tr><th>電話 :</th> <th><input  class="form-control" type="phone" name="phone" value="{{ $user->phone }}" disabled></th></tr>
+                                                <tr><th>電話 :</th> <th><input class="form-control" type="phone" value="{{ $user->phone }}" disabled></th></tr>
                                                 <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}"></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
-                                                        <select class="form-control" name="level" value="{{ $user->level }}" required>
-                                                            <option value="" selected disabled hidden></option>
-                                                            <option value="管理員">管理員</option>
-                                                            <option value="工讀生">工讀生</option>
-                                                            <option value="一般使用者">一般使用者</option>
-                                                        </select>
+                                                        <input class="form-control" type="text" value="{{ $user->level }}" disabled></th>
                                                     </th>
                                                 </tr>
-                                                
                                             </table>
                                             <!-- End of Edit Modal Table -->
+                                            <input name="phone" value="{{$user->phone}}" hidden >
+                                            <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
                                         </div>
                                     </div>
                                 </div>
