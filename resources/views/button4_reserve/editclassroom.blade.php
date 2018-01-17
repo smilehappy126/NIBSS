@@ -6,7 +6,7 @@
         border-radius: 40px;
         font-weight: bolder;
         font-family: Microsoft JhengHei;
-        width: 5%;
+        width: 10%;
         font-size: 20px;
         transition: 0.3s;
         background-color: transparent;
@@ -63,10 +63,12 @@
        <div class="panel-body"><img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" height="200" width="300"></br>
               教室描述：
               {{ $classroom->word }} </br></br>
-
             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
                修改
             </button>
+
+    @if (Route::has('login'))
+      @if (Auth::check())
         @if(Auth::user()->level === '管理員')
         <form action="{{ asset('/editclassroom/'.$classroom->id) }}" method="POST" onclick="if(confirm('您確定刪除嗎?')) return true;else return false">
             {!! csrf_field() !!}
@@ -76,6 +78,8 @@
             </button>
         </form>
         @endif
+      @endif
+    @endif
 
 
  <div class="modal fade" id="editModal{{$classroom->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

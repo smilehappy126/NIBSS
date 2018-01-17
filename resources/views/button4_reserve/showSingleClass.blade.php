@@ -133,7 +133,9 @@ $nextString = date('Y-m-d',$next);
         <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
     </div>
     @endif
-
+     @if (Route::has('login'))
+        @if (Auth::check())
+             @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     <!--新增教室資料按鈕-->
     <button type="button" class="btn btn-link btn-lg">
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
@@ -152,7 +154,9 @@ $nextString = date('Y-m-d',$next);
     <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal">
         Excel匯入單一多筆資料
     </button>
-
+            @endif
+        @endif
+    @endif
     <div class="modal fade" id="excelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -988,6 +992,7 @@ $nextString = date('Y-m-d',$next);
 
 
 @foreach ($results as $course)
+
     <ul>
         <h2>{{$course->content}}, {{$course->teacher}}</h2>
         <li>{{$course->roomname}},
@@ -1000,7 +1005,9 @@ $nextString = date('Y-m-d',$next);
 </div>
 
 
-
+@if (Route::has('login'))
+    @if (Auth::check())
+        @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 <!--點選空白格子Modal: 新增-->
 <div class="modal fade" id="cellModal_create" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -1054,11 +1061,16 @@ $nextString = date('Y-m-d',$next);
         </div>
     </div>
 </div>
+         @endif
+     @endif
+ @endif
 
 
 <!--點選課表格子Modal: 修改-->
 @foreach ($results as $course)
-
+@if (Route::has('login'))
+    @if (Auth::check())
+        @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 <div class="modal fade" id="cellModal{{$course->id}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1108,7 +1120,9 @@ $nextString = date('Y-m-d',$next);
         </div>
     </div>
 </div>
-
+         @endif
+     @endif
+ @endif
 
 @endforeach
 
