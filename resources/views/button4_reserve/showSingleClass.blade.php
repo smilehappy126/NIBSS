@@ -62,7 +62,7 @@ $nextString = date('Y-m-d',$next);
         </button>
       </div>
       <div class="modal-body">
-        <!-- excel -->
+        
     <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
         <input type="file" name="import_file" />
                     {{ csrf_field() }}
@@ -78,8 +78,18 @@ $nextString = date('Y-m-d',$next);
       </div>
     </div>
   </div>
-</div>            
-    
+</div>   
+<br>         
+<!-- excel -->
+   <!--  <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <input type="file" name="import_file" />
+                    {{ csrf_field() }}
+        <br/>
+
+        <button class="btn btn-primary">Import CSV or Excel File</button>
+
+    </form>
+     -->
     <!--教室按鈕-->
     @foreach ($classrooms as $classroom)
 <!--

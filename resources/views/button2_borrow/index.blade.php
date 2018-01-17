@@ -102,6 +102,22 @@
 		    transition: 0.3s;
 		    width:150px;
 	    }
+	    .UserModalButton{
+	    	background-color: #4169E1;
+	    	border-width: 0px;
+	    	border-radius: 7px;
+	    	font-size: 14px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 100%;
+	    	transition: 0.3s;
+	    }
+	    .UserModalButton:hover{
+	    	background-color: #483D8B;
+	    	transition: 0.3s;
+	    }
 	}
 /*End of PC section*/
 	
@@ -152,6 +168,22 @@
 		    transition: 0.3s;
 		    width:150px;
 	    }
+	    .UserModalButton{
+	    	background-color: #4169E1;
+	    	border-width: 0px;
+	    	border-radius: 7px;
+	    	font-size: 15px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 55%;
+	    	transition: 0.3s;
+	    }
+	    .UserModalButton:hover{
+	    	background-color: #483D8B;
+	    	transition: 0.3s;
+	    }
     }
 /*End of Mobile CSS Section*/
     
@@ -164,14 +196,6 @@
 <div class="container">
 	<div class="PCsection">
 		<div class="TopTitle">借用狀況</div>
-		<!-- 透過名字搜尋 -->
-		<!-- <div class="search">
-			<form action="{{ asset ('/borrow/search')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-				<input  name="searchname" id="searchname" type="text"  placeholder="請輸入名字...."  style="width: 20%;">
-				<button class="searchButton" id="searchButton" type="submit">搜尋</button>
-			</form>
-		</div> -->
-
 		<!-- Table Head -->
 		<div class="TableTop">
 			<table class="table" id="TitleTable" style="text-align: center; table-layout: fixed;">
@@ -194,10 +218,12 @@
 					</th>
 					@if (Route::has('login'))
 						@if (Auth::check())
+							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<!-- 電話 -->
 	   				<th style="text-align: center;">
 						<button id="phoneSortButton" type="submit" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
 					</th>
+							@endif
 	     				@endif
 	    			@endif
 				 	<!-- 借用物品-->
@@ -247,10 +273,19 @@
 					<td id="id-{{$mis->id}}">{{$mis->id}}</td>
 					<td id="date-{{$mis->id}}">{{$mis->date}}</td>
 					<td id="class-{{$mis->id}}">{{$mis->class}}</td>
-					<td id="name-{{$mis->id}}">{{$mis->name}}</td>
+					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
+	   					<td id="name-{{$mis->id}}">
+	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
+	   					</td>
+	   				@endif
+	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
+						<td id="name-{{$mis->id}}">{{$mis->name}}</td>
+					@endunless
 					@if (Route::has('login'))
 						@if (Auth::check())
+							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<td id="phone-{{$mis->id}}">{{$mis->phone}}</td>
+							@endif
 						@endif
 	    			@endif
 					<td id="item-{{$mis->id}}">{{$mis->item}}</td>
@@ -317,9 +352,16 @@
 	   				<th class="TableTop" style="text-align: center;">
 						<button id="nameSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
 					</th>
+					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
+	   					<td id="name-{{$mis->id}}">
+	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
+	   					</td>
+	   				@endif
+	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 					<td class="TableContent" id="name-{{$mis->id}}">
 						{{$mis->name}}
 					</td>
+					@endunless
 				</tr>
 				@if (Route::has('login'))
 					@if (Auth::check())
@@ -447,16 +489,6 @@
     								<tr><th>抵押證件 :</th><th> <input class="form-control" type="text" name="license" value="{{ $mis->license }}"></th></tr>
     								<tr><th>授課教室 :</th><th> <input class="form-control" type="text" name="classroom" value="{{ $mis->classroom }}"></th></tr>
     								<tr><th>授課教師 :</th><th> <input  class="form-control" type="text" name="teacher" value="{{ $mis->teacher }}"></th></tr>
-    								<tr><th>違規狀況 :</th>
-    									<th>
-    										<select class="form-control" name="violation">
-    											<option value="0">正常</option>
-    											<option value="1">違規一次</option>
-    											<option value="3">停權</option>
-    										</select>    										
-
-    									</th>
-    								</tr>
     								<tr><th>狀態 :</th>
     									<th> 
     										<select class="form-control" name="status" value="{{ $mis->status }}">
@@ -485,6 +517,64 @@
 	<!-- End of Edit Modal -->
 	@endforeach
 	<!-- End of Foreach -->
+	
+
+	@foreach($users as $user)
+        <!-- Edit Modal -->
+        <div id="EditModal{{$user->phone}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
+            <div class="modal-dialog">
+
+                    <!-- Edit Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="EditPage">
+                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">修改 Edit</h4>
+                            </div>
+                        </div> <!-- End of Modal Header -->
+                         
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form class="form-horizontal" method="post" action="{{ asset('/borrow/userupdate')}}">
+                                     {{ csrf_field() }}
+                                    <div class="EditPage">
+                                        <div class="EditInfo">
+                                            <!-- Edit Modal Table -->
+                                            <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
+                                                <tr><th>使用者 : </th><th><label style="text-align: center; width: 100%;">{{ $user->name}}</label> </th></tr>
+                                                <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}" disabled></th></tr>
+                                                <tr><th>電話 :</th> <th><input class="form-control" type="phone" value="{{ $user->phone }}" disabled></th></tr>
+                                                <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}"></th></tr>
+                                                <tr><th>權限等級 :</th>
+                                                    <th> 
+                                                        <input class="form-control" type="text" value="{{ $user->level }}" disabled></th>
+                                                    </th>
+                                                </tr>
+                                            </table>
+                                            <!-- End of Edit Modal Table -->
+                                            <input name="phone" value="{{$user->phone}}" hidden >
+                                            <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- End of Modal Body -->
+                        <div class="modal-footer">
+                              <div class="form-group">
+                              <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Edit</button>
+                              <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                              </div>
+                        </div> 
+                        <!-- End of Modal Footer -->
+                                    </form>
+                    </div> 
+                    <!-- End of Edit Modal Content -->
+            </div>
+        </div>
+<!-- End of Edit Modal -->
+    @endforeach
 
 	<div style="text-align: center;">
 		<form action="{{ asset('/borrow') }}" method="get">
