@@ -12,8 +12,9 @@ class ApplicationController extends Controller
 {
  	public function index()
  	{
+        $users=User::all();
         $rules=Rules::all();
-       return view('button1_create.index',['rules'=> $rules]);//
+       return view('button1_create.index',['rules'=> $rules,'users'=> $users]);//
  	}
 
     public function store(Request $request)
