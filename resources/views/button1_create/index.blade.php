@@ -201,8 +201,8 @@
                 </ul>
                 <div id="home" class="tab-pane fade in active">
                     <div class="form-group">
-                        <label><h2>姓名（必填）：</h2></label>
-                        <input type="text" class="form-control" id="username" name="name" required>
+                        <label><h2>姓名：{{ Auth::user()->name }}</h2></label>
+                        <input type="text" class="form-control" value="{{ Auth::user()->name }}" id="username" name="name" style="display:none;">
                     </div>             
 
                     <div class="form-group">
@@ -238,8 +238,14 @@
                     </div> 
             
                     <div class="form-group">
-                        <label><h2>電話（必填）：</h2></label>
-                        <input type="text" class="form-control" id="phone" name="phone" placeholder="000 000 0000" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="10" required>
+                        @if( (Auth::user()->phone)==='無資料')
+                        <label><h2>電話：</h2></label>
+                        <input type="text"  class="form-control" name="phone">
+                        @endif
+                        @unless( (Auth::user()->phone)==='無資料')
+                        <label><h2>電話：{{ Auth::user()->phone }}</h2></label>
+                        <input type="text" class="form-control" id="phone" name="phone" value="{{ Auth::user()->phone }}" style="display:none;">
+                        @endunless
                     </div>
 
                     <div class="form-group">           

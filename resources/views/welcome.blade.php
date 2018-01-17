@@ -330,13 +330,8 @@
                     </span>
                     <span class="links LinkText">    
                         @if(Auth::check())
-                        @if((Auth::user()->phone)==='無資料')
-                        <a  href="{{ url('/create/setphone') }}">新增申請單</a>|
-                        @else
                         <a  href="{{ url('/create') }}">新增申請單</a>|
                         @endif
-                    @endif  
-                    
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|
                         <a  href="{{ url('/reserve') }}">預約狀況</a>|
@@ -355,12 +350,8 @@
                 <div class="links" style="align-items: center; visibility: hidden;" >
                     <span class="links">
                         @if(Auth::check())
-                        @if((Auth::user()->phone)==='無資料')
-                        <a  href="{{ url('/create/setphone') }}">新增申請單</a>|
-                        @else
                         <a  href="{{ url('/create') }}">新增申請單</a>|
                         @endif
-                    @endif  
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|
                         <a  href="{{ url('/reserve') }}">預約狀況</a>|
