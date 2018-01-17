@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Miss;
 use App\User;
 use App\Rules;
+use App\Item;
 
 class AdminController extends Controller
 {
@@ -14,12 +15,14 @@ class AdminController extends Controller
         $users=User::all();
         return view('button5_admin.admin',['users'=>$users]);
     }
-    
+//使用者清單
+    //顯示使用者清單頁面
     public function userlists(){
         $users=User::orderBy('level','desc') //預設排列順序為 管理員 → 工讀生 → 一般使用者
                 ->get();
         return view('button5_admin.userlists',['users'=>$users]);
     }
+    //使用者清單的編輯功能
     public function updateUserLists(Request $rep, $id)
     {
       $update= User::find($id);
@@ -29,12 +32,14 @@ class AdminController extends Controller
       $update->update(['level'=>$rep->level]);
       return redirect('/admin/userlists');
     }
+    //使用者清單的搜尋功能
     public function searchUser(Request $rep){
       $users=User::where('name','like','%'.$rep->searchname.'%')
               ->get();
       return view('button5_admin.userlists',['users'=>$users]);
     }
-    // 透過Content來搜尋
+//歷史紀錄
+    // 歷史紀錄的搜尋
     public function searchall(Request $rep){
         $miss=Miss::where('name','like','%'.$rep->searchcontent.'%')
                 ->orWhere('class','like','%'.$rep->searchcontent.'%')
@@ -49,7 +54,7 @@ class AdminController extends Controller
                   ->get();
         return view('button5_admin.search',['miss'=> $miss],['content'=>$rep->searchcontent]);
     }
-    //在管理者頁面裡的搜尋更改內容 
+    //在管理者頁面裡的搜尋更改內容(歷史紀錄中的再次搜尋) 
     public function updateContentData(Request $rep, $id)
     {
       $update= Miss::find($id);
@@ -77,22 +82,36 @@ class AdminController extends Controller
                   ->get();
         return view('button5_admin.search',['miss'=> $miss],['content'=>$rep->searchcontent]);
     }
+//編輯條例
     // 進入編輯條例的頁面
     public function rule()
     {
       $rules=Rules::all();
       return view('button5_admin.rule',['rules'=> $rules]);
     }
+    //編輯條例頁面中的編輯個資資訊
     public function personInfoupdate(Request $rep){
       $update=Rules::where('id','=','1');
       $update->update(['personInfo'=>$rep->personInfo]);
 
       return redirect('/admin/rule');
     }
+    //編輯條例中的編輯借用規則
     public function noteupdate(Request $rep){
       $update=Rules::where('id','=','1');
       $update->update(['note'=>$rep->note]);
 
       return redirect('/admin/rule');
+    }
+//物品清單
+    // 進入可借用物品頁面
+    public function item(){
+      $items=Item::all();
+      return view('button5_admin.item',['items'=> $items]);
+    }
+    //進入目前清單頁面
+    public function itemlists(){
+      $items=Item::all();
+      return view('button5_admin.itemlists',['items'=> $items]);
     }
 }
