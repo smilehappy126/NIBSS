@@ -162,6 +162,10 @@
             
 /*PC CSS Section*/
 @media screen and (min-width: 900px){
+            .MobleSection{
+                display: none;
+            }
+
             /*模糊效果*/
             .BlurEffect{
                 -webkit-filter: blur(10px);
@@ -213,6 +217,10 @@
 }
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
+            .PCSection{
+                display: none;
+            }
+
             /*模糊效果*/
             .BlurEffect{
                 -webkit-filter: blur(10px);
@@ -329,6 +337,7 @@
                     <span class="TitleText">
                         設備管理系統
                     </span>
+                    
                     <span class="links LinkText">    
                         @if(Auth::check())
                             @if(Auth::user()->violation < $violations[0]->violationnum)
@@ -347,6 +356,7 @@
                         @endif
                     @endif
                     </span>
+                    
                 </div>
                 
                 <!-- 分頁連結 看不見區域-->

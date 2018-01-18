@@ -50,6 +50,18 @@
     .FormButton:hover{
         background-color:  #6495ED;
     }
+    .TableHead{
+        font-size: 25px;
+    }
+    .TableHead>th{
+        text-align: center;
+    }
+    .TableContent>th{
+        text-align: center;
+    }
+    .TableContent:hover{
+        background-color: #77FFEE;
+    }
     
 
 }
@@ -129,16 +141,28 @@
             @if(Auth::user()->level === '管理員')
                 <div class="content" style="position: relative;">
                     <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
-                        <tr>
+                        <tr class="TableHead">
+                            <th>物品類別</th>
+                            <th>物品名稱</th>
+                            <th>物品數量</th>
+                            <th>物品上架者</th>
+                            <th>更新日期</th>
+                            <th>編輯</th>
+                        </tr>
+                        @foreach($items as $item)
+                        <tr class="TableContent">
+                            <th>{{$item->itemgroup}}</th>
+                            <th>{{$item->itemname}}</th>
+                            <th>{{$item->itemnum}}</th>
+                            <th>{{$item->createuser}}</th>
+                            <th>{{$item->updated_at}}</th>
                             <th>
-                                <button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">新增物品</button>
-                            </th>
-                            <th>
-                              <form action=" {{asset('/admin/itemlists')}} " method="get" >{{ csrf_field() }}
-                                  <button class="FormButton" type="submit">目前清單</button>
-                              </form>
+                                <a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $item->id }}" data-toggle="modal" data-target="#EditModal{{$item->id}}">
+                                    <span class="glyphicon glyphicon-pencil"></span> 編輯
+                                </a>
                             </th>
                         </tr>
+                        @endforeach
                     </table>
                 </div>
             @endif
