@@ -291,7 +291,7 @@
                                         <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px; text-align: center;">規則制定者&nbsp:&nbsp{{$violations[0]->createuser}}<br></label>
                                         <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">
                                         違規次數超過&nbsp</label>
-                                        <input  class="violationcontent" name="violationcontent" id="violationcontent" type="number" value="{{$violations[0]->violationnum}}" style="width: 12%;" autofocus>
+                                        <input  class="form-group" name="violationcontent" id="violationcontent" type="number" value="{{$violations[0]->violationnum}}" style="width: 12%; font-family: Microsoft JhengHei" autofocus>
                                         <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">(包含)</label><br>
                                         <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px; color: red;">立即停權</label>
                                         <input type="text" name="violationuser" value="{{ Auth::user()->name}}" style="display: none;">

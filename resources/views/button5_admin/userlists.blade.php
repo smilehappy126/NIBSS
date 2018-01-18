@@ -353,6 +353,7 @@
 
     <!-- End of Mobile Section -->
 
+    <!-- Modal Section -->
     @foreach($users as $user)
         <!-- Edit Modal -->
         <div id="EditModal{{$user->id}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >

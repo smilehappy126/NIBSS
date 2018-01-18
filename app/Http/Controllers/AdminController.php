@@ -8,6 +8,7 @@ use App\User;
 use App\Rules;
 use App\Item;
 use App\Violation;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -116,6 +117,17 @@ class AdminController extends Controller
       $items=Item::all();
       return view('button5_admin.itemlists',['items'=> $items]);
     }
+    //編輯物品相關資訊
+    public function updateItemLists(Request $rep, $id){
+      $update=Item::find($id);
+      $update->update(['itemgroup'=>$rep->itemgroup]);
+      $update->update(['itemname'=>$rep->itemname]);
+      $update->update(['itemnum'=>$rep->itemnum]);
+      $update->update(['createuser'=>$rep->createuser]);
+      return redirect('/admin/itemlists');
+    }
+
+
 //違規次數上限
     public function violationupdate(Request $rep){
       $update=Violation::where('id','=','1');

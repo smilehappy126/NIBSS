@@ -58,6 +58,8 @@
     }
     .TableContent>th{
         text-align: center;
+        font-weight: bolder;
+        font-size: 20px;
     }
     .TableContent:hover{
         background-color: #77FFEE;
@@ -145,7 +147,7 @@
                             <th>物品類別</th>
                             <th>物品名稱</th>
                             <th>物品數量</th>
-                            <th>物品上架者</th>
+                            <th>負責人</th>
                             <th>更新日期</th>
                             <th>編輯</th>
                         </tr>
@@ -185,6 +187,87 @@
         
       </div>  
       <!-- End of Mobile Section -->
+
+      <!-- Modal Section -->
+    @foreach($items as $item)
+        <!-- Edit Modal -->
+        <div id="EditModal{{$item->id}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
+            <div class="modal-dialog">
+
+                    <!-- Edit Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="EditPage">
+                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei; font-weight: bolder;">編輯物品資訊</h4>
+                            </div>
+                        </div> <!-- End of Modal Header -->
+                         
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form class="form-horizontal" method="post" action="{{ asset('/admin/itemlists/update/'.$item->id)}}">
+                                     {{ csrf_field() }}
+                                    <div class="EditPage">
+                                        <div class="EditInfo">
+                                            <!-- Edit Modal Table -->
+                                            <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px; font-size: 20px;">
+                                                <tr>
+                                                    <th>物品類別 :</th>
+                                                    <th>
+                                                        <input class="form-control" name="itemgroup" value="{{ $item->itemgroup}}">
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th>物品名稱 :</th> 
+                                                    <th>
+                                                        <input  class="form-control" type="string" name="itemname" value="{{ $item->itemname }}">
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th>物品數量 :</th> 
+                                                    <th>
+                                                        <input  class="form-control" type="number" name="itemnum" value="{{ $item->itemnum }}">
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th>負責人 :</th>
+                                                    <th> 
+                                                        <input  class="form-control" type="string" name="createuser" value="{{ $item->createuser }}">
+                                                    </th>
+                                                </tr>
+                                            </table>
+                                            <!-- End of Edit Modal Table -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- End of Modal Body -->
+                        <div class="modal-footer">
+                              <div class="form-group">
+                              <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Edit</button>
+                              <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                              </div>
+                        </div> 
+                        <!-- End of Modal Footer -->
+                                    </form>
+                    </div> 
+                    <!-- End of Edit Modal Content -->
+            </div>
+        </div>
+<!-- End of Edit Modal -->
+    @endforeach
+    
+
+
+
+
+
+
+
+
+
 
     @endif <!-- Auth::user()->level -->
     @unless((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')

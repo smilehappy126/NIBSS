@@ -9,10 +9,10 @@
 	    }
 
         .TopTitle{
-		background-color: transparent;
-		font-family: DFKai-sb;
-		font-size: 80px;
-		text-align: center;
+			background-color: transparent;
+			font-family: DFKai-sb;
+			font-size: 80px;
+			text-align: center;
 		}
 		.search{
 			background-color: transparent;
