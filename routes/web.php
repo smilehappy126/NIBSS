@@ -105,5 +105,8 @@ Route::get('/logout', 'MyLoginController@logout');
 	//物品清單
 	Route::get('/admin/item','AdminController@item');
 	Route::get('/admin/itemlists','AdminController@itemlists');
+	Route::post('/admin/itemlists/update/{id}','AdminController@updateItemLists');
+	//違規次數上限
+	Route::post('/admin/violationupdate','AdminController@violationupdate');
 
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');

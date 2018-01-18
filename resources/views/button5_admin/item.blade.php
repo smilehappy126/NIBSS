@@ -125,24 +125,20 @@
         <div class="TopTitle">
           可借用物品
         </div>
-        @if(Auth::check())
-            @if(Auth::user()->level === '管理員')
-                <div class="content" style="position: relative;">
-                    <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
-                        <tr>
-                            <th>
-                                <button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">新增物品</button>
-                            </th>
-                            <th>
-                              <form action=" {{asset('/admin/itemlists')}} " method="get" >{{ csrf_field() }}
-                                  <button class="FormButton" type="submit">目前清單</button>
-                              </form>
-                            </th>
-                        </tr>
-                    </table>
-                </div>
-            @endif
-        @endif
+            <div class="content" style="position: relative;">
+                <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
+                    <tr>
+                        <th>
+                            <button class="FormButton" type="button" data-toggle="modal" data-target="#CreateItemModal">新增物品</button>
+                        </th>
+                        <th>
+                            <form action=" {{asset('/admin/itemlists')}} " method="get" >{{ csrf_field() }}
+                                <button class="FormButton" type="submit">目前清單</button>
+                            </form>
+                        </th>
+                    </tr>
+                </table>
+            </div>
       </div>
       <!-- End of PC Section -->
       
@@ -176,6 +172,50 @@
   @endunless
 </div>
 <!-- End of Container -->
+
+<!-- ↓↓↓ Modal Section ↓↓↓ -->
+    <!-- CreateItem Modal -->
+        <div id="CreateItemModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" style="opacity: 0.9;">
+            <div class="modal-dialog">
+
+                    <!-- CreateItem Modal content-->
+                    <div class="modal-content">
+                        <!-- Begin of Modal Header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="CreateItemPage">
+                               <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">新增物品 Create Items</h4>
+                            </div>
+                        </div>
+                        <!-- End of Modal Header -->
+
+                        <!-- Begin of Modal Body -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form action="{{ asset ('/admin/CreateItemall')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+                                        <input  class="CreateItemcontent" name="CreateItemcontent" id="CreateItemcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 70%;" autofocus>
+                                </div>    
+                            </div>
+                        </div>
+
+                        <!--  End of Modal Body -->
+
+                        <!-- Begin of Modal Footer -->
+                        <div class="modal-footer">
+                              <div class="form-group">
+                                    <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Create</button>
+                                    <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                              </div>
+                        </div>
+                        <!-- End of Modal Footer -->
+                                </form>
+                    </div>
+                    <!-- End of CreateItem Modal Conent -->
+            </div>
+        </div>        
+        <!-- End of CreateItem Modal -->
+<!-- ↑↑↑ End of Modal Section ↑↑↑ -->
 
 
 @endsection

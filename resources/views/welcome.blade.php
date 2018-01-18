@@ -162,6 +162,10 @@
             
 /*PC CSS Section*/
 @media screen and (min-width: 900px){
+            .MobleSection{
+                display: none;
+            }
+
             /*模糊效果*/
             .BlurEffect{
                 -webkit-filter: blur(10px);
@@ -213,6 +217,10 @@
 }
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
+            .PCSection{
+                display: none;
+            }
+
             /*模糊效果*/
             .BlurEffect{
                 -webkit-filter: blur(10px);
@@ -329,9 +337,12 @@
                     <span class="TitleText">
                         設備管理系統
                     </span>
+                    
                     <span class="links LinkText">    
                         @if(Auth::check())
-                        <a  href="{{ url('/create') }}">新增申請單</a>|
+                            @if(Auth::user()->violation < $violations[0]->violationnum)
+                                <a  href="{{ url('/create') }}">新增申請單</a>|
+                            @endif
                         @endif
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|
@@ -345,9 +356,10 @@
                         @endif
                     @endif
                     </span>
+                    
                 </div>
                 
-                <!-- 分頁連結-->
+                <!-- 分頁連結 看不見區域-->
                 <div class="links" style="align-items: center; visibility: hidden;" >
                     <span class="links">
                         @if(Auth::check())
