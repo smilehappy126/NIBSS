@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Miss;
 use App\User;
 use App\Rules;
+use App\Violation;
 use Carbon\Carbon;
 class ApplicationController extends Controller
 	

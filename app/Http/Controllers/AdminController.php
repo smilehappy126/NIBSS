@@ -7,13 +7,15 @@ use App\Miss;
 use App\User;
 use App\Rules;
 use App\Item;
+use App\Violation;
 
 class AdminController extends Controller
 {
     //導向管理者頁面
 	  public function admin(){
         $users=User::all();
-        return view('button5_admin.admin',['users'=>$users]);
+        $violations=Violation::all();
+        return view('button5_admin.admin',['users'=>$users,'violations'=>$violations]);
     }
 //使用者清單
     //顯示使用者清單頁面
@@ -113,5 +115,12 @@ class AdminController extends Controller
     public function itemlists(){
       $items=Item::all();
       return view('button5_admin.itemlists',['items'=> $items]);
+    }
+//違規次數上限
+    public function violationupdate(Request $rep){
+      $update=Violation::where('id','=','1');
+      $update->update(['violationnum'=>$rep->violationcontent]);
+      $update->update(['createuser'=>$rep->violationuser]);
+      return redirect('/admin');      
     }
 }

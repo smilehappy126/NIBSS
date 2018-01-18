@@ -331,7 +331,7 @@
                     </span>
                     <span class="links LinkText">    
                         @if(Auth::check())
-                        <a  href="{{ url('/create') }}">新增申請單</a>|
+                                <a  href="{{ url('/create') }}">新增申請單</a>|
                         @endif
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|
@@ -347,7 +347,7 @@
                     </span>
                 </div>
                 
-                <!-- 分頁連結-->
+                <!-- 分頁連結 看不見區域-->
                 <div class="links" style="align-items: center; visibility: hidden;" >
                     <span class="links">
                         @if(Auth::check())

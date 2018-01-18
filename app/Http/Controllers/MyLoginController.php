@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Violation;
 use Auth;
 
 class MyLoginController extends Controller
@@ -11,7 +12,8 @@ class MyLoginController extends Controller
 {
  	public function welcome(){
        $users=User::all();
-       return view('welcome',['users'=>$users]);//
+       $violation=Violation::where('id','=','1')->get();
+       return view('welcome',['users'=>$users,'violation'=>$violation]);//
     }
 
     public function login(Request $rep)
