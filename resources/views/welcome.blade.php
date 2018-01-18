@@ -331,7 +331,9 @@
                     </span>
                     <span class="links LinkText">    
                         @if(Auth::check())
+                            @if(Auth::user()->violation < $violations[0]->violationnum)
                                 <a  href="{{ url('/create') }}">新增申請單</a>|
+                            @endif
                         @endif
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|

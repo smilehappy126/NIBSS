@@ -12,8 +12,8 @@ class MyLoginController extends Controller
 {
  	public function welcome(){
        $users=User::all();
-       $violation=Violation::where('id','=','1')->get();
-       return view('welcome',['users'=>$users,'violation'=>$violation]);//
+       $violations=Violation::where('id','=','1')->get();
+       return view('welcome',['users'=>$users,'violations'=>$violations]);//
     }
 
     public function login(Request $rep)
