@@ -89,14 +89,21 @@ Route::post('/loginNow', 'Auth\LoginController@login');
 Route::get('/logout', 'MyLoginController@logout');
 
 // Admin路由區
-Route::get('/admin','AdminController@admin');
-Route::get('/admin/userlists','AdminController@userlists');
-Route::post('/admin/searchUser','AdminController@searchUser');
-Route::post('/admin/userlists/update/{id}','AdminController@updateUserLists');
-Route::post('/admin/searchall','AdminController@searchall');
-Route::post('/admin/searchall/update/{id}','AdminController@updateContentData');
-Route::get('/admin/rule','AdminController@rule');
-Route::post('/admin/rules/updatenote','AdminController@noteupdate');
-Route::post('/admin/rules/updatepersonInfo','AdminController@personInfoupdate');
+	// 管理者頁面
+	Route::get('/admin','AdminController@admin');
+	//使用者清單
+	Route::get('/admin/userlists','AdminController@userlists');
+	Route::post('/admin/searchUser','AdminController@searchUser');
+	Route::post('/admin/userlists/update/{id}','AdminController@updateUserLists');
+	//歷史紀錄
+	Route::post('/admin/searchall','AdminController@searchall');
+	Route::post('/admin/searchall/update/{id}','AdminController@updateContentData');
+	//編輯條例
+	Route::get('/admin/rule','AdminController@rule');
+	Route::post('/admin/rules/updatenote','AdminController@noteupdate');
+	Route::post('/admin/rules/updatepersonInfo','AdminController@personInfoupdate');
+	//物品清單
+	Route::get('/admin/item','AdminController@item');
+	Route::get('/admin/itemlists','AdminController@itemlists');
 
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');

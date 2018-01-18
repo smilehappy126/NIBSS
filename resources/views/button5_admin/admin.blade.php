@@ -148,7 +148,9 @@
                                 </form>
     						</th>
     						<th>
-    							<button class="FormButton" type="button">其他功能</button>
+                                <form action=" {{asset('/admin/item')}}" method="get" >{{ csrf_field() }}
+    							    <button class="FormButton" type="submit">可借用物品</button>
+                                </form>
     						</th>
     					</tr>
     				</table>
@@ -190,7 +192,9 @@
                                 </form>
                             </th>
                             <th>
-                                <button class="FormButton" type="button">其他功能</button>
+                                <form action=" {{asset('/admin/item')}}" method="get" >{{ csrf_field() }}
+                                    <button class="FormButton" type="submit">可借用物品</button>
+                                </form>
                             </th>
                         </tr>
                     </table>

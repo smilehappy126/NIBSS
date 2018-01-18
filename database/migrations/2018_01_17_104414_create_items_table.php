@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRulesTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateRulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rules', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('personinfo')->nullable();
-            $table->text('note')->nullable();
+            $table->string('itemgroup')->nullable()->default('無資料');
+            $table->string('itemname')->nullable()->default('無資料');;
+            $table->string('itemnum')->nullable()->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateRulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rules');
+        Schema::dropIfExists('items');
     }
 }
