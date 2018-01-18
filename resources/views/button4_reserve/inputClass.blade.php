@@ -82,7 +82,7 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="午休">午休</option>
+                <option value="noon">午休</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
                 <option value="7">7</option>
@@ -100,7 +100,7 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="午休">午休</option>
+                <option value="noon">午休</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
                 <option value="7">7</option>
@@ -139,6 +139,9 @@
 <script src="{{ asset('/include/pickadate/lib/legacy.js') }}"></script>
 
 <script language="JavaScript" type="text/javascript">
+
+var classTime_array = ["1", "2", "3", "4", "noon", "5", "6", "7", "8", "9", "A", "B", "C"];
+
 $( document ).ready(function(){
     
     $(".pickadate").pickadate({
@@ -199,8 +202,8 @@ $( document ).ready(function(){
     /* 起始節次應早於結束節次 */
     $(".select_start").change(function(){
 
-        var index_start = $(".select_start option:selected").val();
-        var index_end = $(".select_end option:selected").val();
+        var index_start = classTime_array.indexOf($(".select_start option:selected").val());
+        var index_end = classTime_array.indexOf($(".select_end option:selected").val());
 
         if(index_start > index_end){
             $("#err_classTime").text("起始節次應早於結束節次");
@@ -213,8 +216,8 @@ $( document ).ready(function(){
 
     $(".select_end").change(function(){
 
-        var index_start = $(".select_start option:selected").val();
-        var index_end = $(".select_end option:selected").val();
+        var index_start = classTime_array.indexOf($(".select_start option:selected").val());
+        var index_end = classTime_array.indexOf($(".select_end option:selected").val());
 
         if(index_start > index_end){
             $("#err_classTime").text("起始節次應早於結束節次");

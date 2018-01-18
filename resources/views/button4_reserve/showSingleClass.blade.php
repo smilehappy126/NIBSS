@@ -1169,12 +1169,14 @@ $( document ).ready(function() {
             start = classTime_array.indexOf("{{$course->start_classTime}}");
             end = classTime_array.indexOf("{{$course->end_classTime}}");
     
-    
-            /* for管理員: 刪除課程資料按鈕 */
+
+            /* for管理員: 刪除課程按鈕 */
             var form_delete = $("<form/>", 
-                             { action:"{{ asset('reserve/deleteCourse/'.$course->id) }}", 
-                               method:"post" }
-                        );
+                             { action:"{{ asset('reserve/deleteCourse/'.$course->id) }}",
+                               method:"post",
+                               id:"deleteCourse"
+                             }
+            );
             form_delete.append( 
                 $("<input/>", 
                      { type:"hidden",  
@@ -1205,20 +1207,21 @@ $( document ).ready(function() {
                 $("#"+classTime_array[i]).children("p.cell_teacher").text("{{$course->teacher}}");
                 $("#"+classTime_array[i]).children("p.cell_start_classTime").text("{{$course->start_classTime}}");
                 $("#"+classTime_array[i]).children("p.cell_end_classTime").text("{{$course->end_classTime}}");
-                
-                // for管理員: 刪除課程資料按鈕
-                $("#"+classTime_array[i]).append(form_delete);
             }
+
+            // for管理員: 刪除課程按鈕
+            $("#"+classTime_array[end]).append(form_delete);
     
         @endif
     
     @endforeach
     
+    
 
     /* 按下課表內格子顯示cellModal */
     $(".Curriculum").click(function() {
         
-        // 有課程資料的Modal部分用foreach (每個課都有自己的modal，再去對應顯示)
+        /* 有課程資料的Modal部分用foreach (每個課都有自己的modal，再去對應顯示) */
         
           // 取得<td>中的課程id
           var thisId = $(this).children("p.cell_id").text();
@@ -1229,7 +1232,6 @@ $( document ).ready(function() {
               $("#cellModal"+thisId).modal("show");
           }
           
-        
           /* ps: 可以這樣取<td>內的資料 */
 //        var thisId = $(this).children("p.cell_id").text();
 //        var thisContent = $(this).children("p.cell_content").text();
@@ -1239,7 +1241,10 @@ $( document ).ready(function() {
 
     });
     
-
+    /* 刪除課程按鈕，阻止修改modal被呼叫(終止事件傳導) */
+    $("#deleteCourse").click(function(){
+        event.stopPropagation();
+    });
     
 
     /* 根據目前星期幾，顯示cellModal中不同的select option */
@@ -1466,7 +1471,6 @@ $( document ).ready(function() {
 //        alert("index_end: " + index_end);
         
         if(index_start > index_end){
-//            alert("起始節次應早於結束節次");
             $(".form_submit").prop('disabled', true);
             $("#errorMessage").text("起始節次應早於結束節次");
         }else{
@@ -1485,7 +1489,6 @@ $( document ).ready(function() {
 //        alert("index_end: " + index_end);
         
         if(index_start > index_end){
-//            alert("起始節次應早於結束節次");
             $(".form_submit").prop('disabled', true);
             $("#errorMessage").text("起始節次應早於結束節次");
         }else{
