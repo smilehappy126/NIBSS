@@ -8,6 +8,6 @@ use Carbon;
 class Itemgroup extends Model
 {
     protected $table = 'itemgroups';
-    protected $fillable = ['groupname','groupitemnum','creatuser'];
+    protected $fillable = ['groupname','groupitemnum','creator'];
 
 }

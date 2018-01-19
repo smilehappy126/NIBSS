@@ -120,14 +120,14 @@ class AdminController extends Controller
       $items->itemgroup = $rep->itemgroup;
       $items->itemname = $rep->itemname;
       $items->itemnum = $rep->itemnum;
-      $items->createuser = $rep->createuser;
+      $items->creator = $rep->creator;
       $items->save();
       //檢查此類別是否已存在，不存在的話就創建，存在的話類別物品的數量加1
       $itemgroupscheck = Itemgroup::where('groupname','=',$rep->itemgroup)->get();
       if (count($itemgroupscheck)<1){
          $itemsgroups = new Itemgroup;
          $itemsgroups->groupname = $rep->itemgroup;
-         $itemsgroups->createuser = $rep->createuser;
+         $itemsgroups->creator = $rep->creator;
          $itemsgroups->save();
       } 
       // else if (count($itemgroupscheck)>=1){
@@ -149,7 +149,7 @@ class AdminController extends Controller
       $update->update(['itemgroup'=>$rep->itemgroup]);
       $update->update(['itemname'=>$rep->itemname]);
       $update->update(['itemnum'=>$rep->itemnum]);
-      $update->update(['createuser'=>$rep->createuser]);
+      $update->update(['creator'=>$rep->creator]);
       return redirect('/admin/itemlists');
     }
 
@@ -158,7 +158,7 @@ class AdminController extends Controller
     public function violationupdate(Request $rep){
       $update=Violation::where('id','=','1');
       $update->update(['violationnum'=>$rep->violationcontent]);
-      $update->update(['createuser'=>$rep->violationuser]);
+      $update->update(['creator'=>$rep->violationuser]);
       return redirect('/admin');      
     }
 }

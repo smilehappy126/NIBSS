@@ -199,12 +199,34 @@
                                         <div class="EditInfo">
                                             <!-- Edit Modal Table -->
                                             <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
-                                                <tr><th>物品類別 : </th><th><input class="form-control" type="text" name="itemgroup" style="text-align: center; width: 100%;" required></th></tr>
-                                                <tr><th>物品名稱 :</th> <th><input  class="form-control" type="text" name="itemname" style="text-align: center;" required ></th></tr>
-                                                <tr><th>物品數量 :</th> <th><input  class="form-control" type="number" name="itemnum" style="text-align: center;" value="1" required></th></tr>
+                                                <tr>
+                                                    <th>物品類別 : </th>
+                                                    <th>
+                                                        <select class="form-control" id="groupselection" type="text" name="itemgroup" style="text-align: center; width: 100%; transition: 0.3s;" onclick="checkselect()" required>
+                                                            @foreach($itemsgroups as $itemsgroup)
+                                                                <option value="{{$itemsgroup->groupname}}" onclick="hidecreatebox()">{{$itemsgroup->groupname}}</option>
+                                                            @endforeach
+                                                                <option>123</option>
+                                                                <option id="otheritemgroup" value="其他" >其他(創建新類別)</option>
+                                                        </select>
+                                                        <input type="text" id="createbox" name="createinput" placeholder="新的類別..." style=" width: 100%; transition: 0.3s; display: none; " disabled>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th>物品名稱 :</th> 
+                                                    <th>
+                                                        <input  class="form-control" type="text" name="itemname" style="text-align: center;" required >
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th>物品數量 :</th> 
+                                                    <th>
+                                                        <input  class="form-control" type="number" name="itemnum" style="text-align: center;" value="1" required>
+                                                    </th>
+                                                </tr>
                                             </table>
                                             <!-- End of Edit Modal Table -->
-                                            <input class="form-control" type="text" name="createuser" value="{{Auth::user()->name}}" style="display:none;">
+                                            <input class="form-control" type="text" name="creator" value="{{Auth::user()->name}}" style="width: 100%; display:none;">
                                         </div>
                                     </div>
                                 </div>
@@ -232,5 +254,29 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+    function checkselect(){
+        if (document.getElementById('groupselection').value==="其他") 
+        {
+            document.getElementById('groupselection').setAttribute("name", "itemgroupselection");
+            var newgroup = document.getElementById('createbox');
+            newgroup.removeAttribute("disabled");
+            newgroup.setAttributeNode(document.createAttribute("required"));
+            newgroup.setAttribute("class", "form-control");
+            newgroup.setAttribute("name", "itemgroup");
+            newgroup.style.display="inline";
+        }
+        else if (document.getElementById('groupselection').value!="其他") {
+            document.getElementById('groupselection').setAttribute("name", "itemgroup");
+            var newgroup = document.getElementById('createbox');
+            newgroup.setAttribute("name", "creatinput");
+            newgroup.removeAttribute("required");
+            newgroup.setAttributeNode(document.createAttribute("disabled"));
+            newgroup.removeAttribute("class");
+            newgroup.style.display="none";
+        }
+    }
+</script>
+
 
 @stop
