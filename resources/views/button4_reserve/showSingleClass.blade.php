@@ -1170,33 +1170,43 @@ $( document ).ready(function() {
             end = classTime_array.indexOf("{{$course->end_classTime}}");
     
 
-            /* for管理員: 刪除課程按鈕 */
-            var form_delete = $("<form/>", 
-                             { action:"{{ asset('reserve/deleteCourse/'.$course->id) }}",
-                               method:"post",
-                               id:"deleteCourse"
-                             }
-            );
-            form_delete.append( 
-                $("<input/>", 
-                     { type:"hidden",  
-                       name:"_token", 
-                       value:"{{csrf_token()}}" }
-                 )
-            );
-            form_delete.append( 
-                 $("<input/>", 
-                      { type:"hidden", 
-                        name:"_method", 
-                        value:"delete" }
-                   )
-            );
-            form_delete.append( 
-                 $("<button>刪除</button>", 
-                      { type:"submit" }
-                   )
-            );
-            /* end */
+            @if (Route::has('login'))
+                @if (Auth::check())
+                    @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+                        /* for管理員: 刪除課程按鈕 */
+                        var form_delete = $("<form/>", 
+                                         { action:"{{ asset('reserve/deleteCourse/'.$course->id) }}",
+                                           method:"post",
+                                           id:"deleteCourse"
+                                         }
+                        );
+                        form_delete.append( 
+                            $("<input/>", 
+                                 { type:"hidden",  
+                                   name:"_token", 
+                                   value:"{{csrf_token()}}" }
+                             )
+                        );
+                        form_delete.append( 
+                             $("<input/>", 
+                                  { type:"hidden", 
+                                    name:"_method", 
+                                    value:"delete" }
+                               )
+                        );
+                        form_delete.append( 
+                             $("<button>刪除</button>", 
+                                  { type:"submit" }
+                               )
+                        );
+                        /* end */
+
+                        //加入刪除課程按鈕至table
+                        $("#"+classTime_array[end]).append(form_delete);
+
+                    @endif
+                @endif
+             @endif
     
     
             // 將資料放入<td>裡 
@@ -1208,12 +1218,8 @@ $( document ).ready(function() {
                 $("#"+classTime_array[i]).children("p.cell_start_classTime").text("{{$course->start_classTime}}");
                 $("#"+classTime_array[i]).children("p.cell_end_classTime").text("{{$course->end_classTime}}");
             }
-
-            // for管理員: 刪除課程按鈕
-            $("#"+classTime_array[end]).append(form_delete);
     
         @endif
-    
     @endforeach
     
     

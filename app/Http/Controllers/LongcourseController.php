@@ -171,7 +171,7 @@ function getIntervalMonday($begin, $end){
     
     // 結束日期+1天，是為了用DatePeriod的時候，尾巴沒包含
     if(date("w", strtotime($endString)) == 1){
-        $ending = strtotime("+1 day", $endString);
+        $ending = strtotime("+1 day", strtotime($endString));
     }else{
         //$endMon = strtotime('last monday', strtotime($endString));
         $ending = strtotime("last monday +1 day", strtotime($endString)); 
