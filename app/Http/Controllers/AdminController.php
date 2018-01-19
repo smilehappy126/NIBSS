@@ -112,6 +112,16 @@ class AdminController extends Controller
       $items=Item::all();
       return view('button5_admin.item',['items'=> $items]);
     }
+    //創建新的物品
+    public function createitem(Request $rep){
+      $items= new Item;
+      $items->itemgroup = $rep->itemgroup;
+      $items->itemname = $rep->itemname;
+      $items->itemnum = $rep->itemnum;
+      $items->createuser = $rep->createuser;
+      $items->save();
+      return redirect('/admin/item');
+    }
     //進入目前清單頁面
     public function itemlists(){
       $items=Item::all();

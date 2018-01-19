@@ -353,10 +353,12 @@
 
     <!-- End of Mobile Section -->
 
+    
     <!-- Modal Section -->
+    
+    <!-- Edit Modal -->
     @foreach($users as $user)
-        <!-- Edit Modal -->
-        <div id="EditModal{{$user->id}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
+      <div id="EditModal{{$user->id}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
             <div class="modal-dialog">
 
                     <!-- Edit Modal content-->
@@ -413,8 +415,8 @@
                     <!-- End of Edit Modal Content -->
             </div>
         </div>
-<!-- End of Edit Modal -->
     @endforeach
+    <!-- End of Edit Modal -->
 
   <div style="text-align: center;">
     <form action="{{ asset('/admin/userlists') }}" method="get">
