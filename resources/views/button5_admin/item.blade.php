@@ -193,13 +193,24 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
-                                    <form action="{{ asset ('/admin/CreateItemall')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-                                        <input  class="CreateItemcontent" name="CreateItemcontent" id="CreateItemcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 70%;" autofocus>
-                                </div>    
+                                    <form class="form-horizontal" method="post" action="{{asset('/admin/createitem')}}">
+                                     {{ csrf_field() }}
+                                    <div class="EditPage">
+                                        <div class="EditInfo">
+                                            <!-- Edit Modal Table -->
+                                            <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
+                                                <tr><th>物品類別 : </th><th><input class="form-control" type="text" name="itemgroup" style="text-align: center; width: 100%;" required></th></tr>
+                                                <tr><th>物品名稱 :</th> <th><input  class="form-control" type="text" name="itemname" style="text-align: center;" required ></th></tr>
+                                                <tr><th>物品數量 :</th> <th><input  class="form-control" type="number" name="itemnum" style="text-align: center;" value="1" required></th></tr>
+                                            </table>
+                                            <!-- End of Edit Modal Table -->
+                                            <input class="form-control" type="text" name="createuser" value="{{Auth::user()->name}}" style="display:none;">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <!--  End of Modal Body -->
+                        </div> 
+                        <!-- End of Modal Body -->
 
                         <!-- Begin of Modal Footer -->
                         <div class="modal-footer">

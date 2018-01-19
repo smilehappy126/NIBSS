@@ -7,6 +7,7 @@ use App\Miss;
 use App\User;
 use App\Rules;
 use App\Item;
+use App\Itemgroup;
 use App\Violation;
 use Carbon\Carbon;
 
@@ -110,15 +111,40 @@ class AdminController extends Controller
     // 進入可借用物品頁面
     public function item(){
       $items=Item::all();
-      return view('button5_admin.item',['items'=> $items]);
+      $itemsgroups=Itemgroup::all();
+      return view('button5_admin.item',['items'=> $items,'itemsgroups'=> $itemsgroups]);
+    }
+    //創建新的物品
+    public function createitem(Request $rep){
+      $items= new Item;
+      $items->itemgroup = $rep->itemgroup;
+      $items->itemname = $rep->itemname;
+      $items->itemnum = $rep->itemnum;
+      $items->createuser = $rep->createuser;
+      $items->save();
+      //檢查此類別是否已存在，不存在的話就創建，存在的話類別物品的數量加1
+      $itemgroupscheck = Itemgroup::where('groupname','=',$rep->itemgroup)->get();
+      if (count($itemgroupscheck)<1){
+         $itemsgroups = new Itemgroup;
+         $itemsgroups->groupname = $rep->itemgroup;
+         $itemsgroups->createuser = $rep->createuser;
+         $itemsgroups->save();
+      } 
+      // else if (count($itemgroupscheck)>=1){
+      //    $itemgroupscheck->groupitemnum = $itemgroupscheck->groupitemnum+$rep->itemnum;  
+      // }
+
+      return redirect('/admin/item');
     }
     //進入目前清單頁面
     public function itemlists(){
       $items=Item::all();
-      return view('button5_admin.itemlists',['items'=> $items]);
+      $itemsgroups=Itemgroup::all();
+      return view('button5_admin.itemlists',['items'=> $items,'itemsgroups'=> $itemsgroups]);
     }
     //編輯物品相關資訊
     public function updateItemLists(Request $rep, $id){
+      $itemsgroups=Itemgroup::all();
       $update=Item::find($id);
       $update->update(['itemgroup'=>$rep->itemgroup]);
       $update->update(['itemname'=>$rep->itemname]);

@@ -104,6 +104,7 @@ Route::get('/logout', 'MyLoginController@logout');
 	Route::post('/admin/rules/updatepersonInfo','AdminController@personInfoupdate');
 	//物品清單
 	Route::get('/admin/item','AdminController@item');
+	Route::post('/admin/createitem','AdminController@createitem');
 	Route::get('/admin/itemlists','AdminController@itemlists');
 	Route::post('/admin/itemlists/update/{id}','AdminController@updateItemLists');
 	//違規次數上限
