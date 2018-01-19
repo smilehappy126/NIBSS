@@ -200,7 +200,7 @@
                                             <!-- Edit Modal Table -->
                                             <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
                                                 <tr>
-                                                    <th>物品類別 : </th>
+                                                    <th>物品類別 :</th>
                                                     <th>
                                                         <select class="form-control" id="groupselection" type="text" name="itemgroup" style="text-align: center; width: 100%; transition: 0.3s;" onclick="checkselect()" required>
                                                             @foreach($itemsgroups as $itemsgroup)
