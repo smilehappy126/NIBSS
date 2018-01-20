@@ -144,19 +144,29 @@
                 <div class="content" style="position: relative;">
                     <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
                         <tr class="TableHead">
-                            <th>物品類別</th>
-                            <th>物品名稱</th>
-                            <th>物品數量</th>
-                            <th>負責人</th>
+                            <th>
+                                <button id="groupSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">物品類別</button>
+                            </th>
+                            <th>
+                                <button id="nameSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">物品名稱</button>
+                            </th>
+                            <th>
+                                <button id="numSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">物品數量</button>
+                            </th>
+                            <th>
+                                <button id="userSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
+                            </th>
                             <th>更新日期</th>
                             <th>編輯</th>
                         </tr>
+                    </table>
+                    <table class="table" id="itemcontent" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
                         @foreach($items as $item)
                         <tr class="TableContent">
                             <th>{{$item->itemgroup}}</th>
                             <th>{{$item->itemname}}</th>
                             <th>{{$item->itemnum}}</th>
-                            <th>{{$item->createuser}}</th>
+                            <th>{{$item->creator}}</th>
                             <th>{{$item->updated_at}}</th>
                             <th>
                                 <a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $item->id }}" data-toggle="modal" data-target="#EditModal{{$item->id}}">
@@ -233,7 +243,7 @@
                                                 <tr>
                                                     <th>負責人 :</th>
                                                     <th> 
-                                                        <input  class="form-control" type="string" name="createuser" value="{{ $item->createuser }}">
+                                                        <input  class="form-control" type="string" name="creator" value="{{ $item->creator }}">
                                                     </th>
                                                 </tr>
                                             </table>
@@ -288,5 +298,61 @@
 @endsection
 
 @section('js')
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("itemcontent");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc"; 
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 0; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TH")[n];
+      y = rows[i + 1].getElementsByTagName("TH")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++; 
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
 
 @stop

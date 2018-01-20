@@ -212,7 +212,7 @@
         </div>
         @if(Auth::check())
     		@if(Auth::user()->level === '管理員')
-<!--     			<div class="content" style="position: relative;">
+    			<div class="content" style="position: relative;">
     				<table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
     					<tr>
     						<th>
@@ -242,77 +242,8 @@
                             </th>
                         </tr>
     				</table>
-    			</div> -->
-
-<div class="col-md-4">
-    <div class="hovereffect">
-        <img class="img-responsive" src="http://placehold.it/350x250" alt="">
-            <div class="overlay">
-                <h2>歷史紀錄</h2>
-                <p>
-                  <form>
-                    <button type="button" data-toggle="modal" data-target="#SearchModal">LINK HERE</button>
-                    </form>
-                </p>
-            </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="hovereffect">
-        <img class="img-responsive" src="http://placehold.it/350x250" alt="">
-            <div class="overlay">
-                <h2>使用者清單</h2>
-                <p>
-                <form action=" {{asset('/admin/rule')}} " method="get" >{{ csrf_field() }}
-                     <button type="submit">LINK HERE</button>
-                </form>
-                </p>
-            </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="hovereffect">
-        <img class="img-responsive" src="http://placehold.it/350x250" alt="">
-            <div class="overlay">
-                <h2>可借用物品</h2>
-                <p>
-                <form action=" {{asset('/admin/item')}} " method="get" >{{ csrf_field() }}
-                     <button type="submit">LINK HERE</button>
-                </form>
-                </p>
-            </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="hovereffect">
-        <img class="img-responsive" src="http://placehold.it/350x250" alt="">
-            <div class="overlay">
-                <h2>編輯條例</h2>
-                <p>
-                <form action=" {{asset('/admin/rule')}} " method="get" >{{ csrf_field() }}
-                     <button type="submit">LINK HERE</button>
-                </form>
-                </p>
-            </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="hovereffect">
-        <img class="img-responsive" src="http://placehold.it/350x250" alt="">
-            <div class="overlay">
-                <h2>違規次數上限</h2>
-                <p>
-                <form>{{ csrf_field() }}
-                     <button type="button" data-toggle="modal" data-target="#ViolationModal">LINK HERE</button>
-                </form>
-                </p>
-            </div>
-    </div>
-</div>
+    			</div>
+          <!-- End of Content -->
     		@endif
     	@endif
     	
@@ -444,7 +375,7 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <form action="{{ asset ('/admin/violationupdate')}}" method="post" style="width: 100%; text-align: center;">{{ csrf_field()}}
-                                        <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px; text-align: center;">規則制定者&nbsp:&nbsp{{$violations[0]->createuser}}<br></label>
+                                        <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px; text-align: center;">規則制定者&nbsp:&nbsp{{$violations[0]->creator}}<br></label>
                                         <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">
                                         違規次數超過&nbsp</label>
                                         <input  class="form-group" name="violationcontent" id="violationcontent" type="number" value="{{$violations[0]->violationnum}}" style="width: 12%; font-family: Microsoft JhengHei" autofocus>
