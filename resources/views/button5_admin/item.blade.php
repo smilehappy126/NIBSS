@@ -27,6 +27,7 @@
         font-family: DFKai-sb;
         font-size: 80px;
         text-align: center;
+        font-weight: bolder;
     }
     .notice{
         font-family: Microsoft JhengHei;
@@ -64,22 +65,23 @@
         border-radius: 40px;
         font-weight: bolder;
         font-family: Microsoft JhengHei;
-        width: 25%;
+        width: 30%;
         font-size: 20px;
         transition: 0.3s;
         background-color: transparent;
         border-width: 1px;  
     }
     .returnButton:hover{
-        width: 27%;
+        width: 33%;
         transition: 0.3s;
         background-color: #DDDDDD;
     }
     .TopTitle{
         background-color: transparent;
         font-family: DFKai-sb;
-        font-size: 80px;
+        font-size: 50px;
         text-align: center;
+        font-weight: bolder;
     }
     .notice{
         font-family: Microsoft JhengHei;
@@ -125,20 +127,20 @@
         <div class="TopTitle">
           可借用物品
         </div>
-            <div class="content" style="position: relative;">
-                <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
-                    <tr>
-                        <th>
-                            <button class="FormButton" type="button" data-toggle="modal" data-target="#CreateItemModal">新增物品</button>
-                        </th>
-                        <th>
-                            <form action=" {{asset('/admin/itemlists')}} " method="get" >{{ csrf_field() }}
-                                <button class="FormButton" type="submit">目前清單</button>
-                            </form>
-                        </th>
-                    </tr>
-                </table>
-            </div>
+        <div class="content" style="position: relative;">
+            <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
+                <tr>
+                    <th>
+                        <button class="FormButton" type="button" data-toggle="modal" data-target="#CreateItemModal">新增物品</button>
+                    </th>
+                    <th>
+                    <form action=" {{asset('/admin/itemlists')}} " method="get" >{{ csrf_field() }}
+                        <button class="FormButton" type="submit">目前清單</button>
+                    </form>
+                    </th>
+                </tr>
+            </table>
+        </div>
       </div>
       <!-- End of PC Section -->
       
@@ -153,6 +155,20 @@
         </div>  
         <div class="TopTitle">
           可借用物品
+        </div>
+        <div class="content" style="position: relative;">
+            <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
+                <tr>
+                    <th>
+                        <button class="FormButton" type="button" data-toggle="modal" data-target="#CreateItemModal">新增物品</button>
+                    </th>
+                    <th>
+                    <form action=" {{asset('/admin/itemlists')}} " method="get" >{{ csrf_field() }}
+                        <button class="FormButton" type="submit">目前清單</button>
+                    </form>
+                    </th>
+                </tr>
+            </table>
         </div>
         
       </div>  
@@ -206,7 +222,6 @@
                                                             @foreach($itemsgroups as $itemsgroup)
                                                                 <option value="{{$itemsgroup->groupname}}" onclick="hidecreatebox()">{{$itemsgroup->groupname}}</option>
                                                             @endforeach
-                                                                <option>123</option>
                                                                 <option id="otheritemgroup" value="其他" >其他(創建新類別)</option>
                                                         </select>
                                                         <input type="text" id="createbox" name="createinput" placeholder="新的類別..." style=" width: 100%; transition: 0.3s; display: none; " disabled>

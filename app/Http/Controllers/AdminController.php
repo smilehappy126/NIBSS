@@ -152,6 +152,12 @@ class AdminController extends Controller
       $update->update(['creator'=>$rep->creator]);
       return redirect('/admin/itemlists');
     }
+    //刪除物品
+    public function deleteItemLists(Request $rep, $id){
+      $deleteItem=Item::find($id);
+      $deleteItem->delete();
+      return redirect('/admin/itemlists');
+    }
 
 
 //違規次數上限

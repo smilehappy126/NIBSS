@@ -96,56 +96,57 @@
         font-family: DFKai-sb;
         font-size: 80px;
         text-align: center;
+        font-weight: bolder;
     }
     .FormButton{
-		border: 0px;
-		border-radius: 8px;
-		background-color: pink;
-		left: 0px;
-		right: 0px;
-		width: 100%;
-		height: 100%;
-		bottom: :0;
-		float: left;
-		font-family: Microsoft JhengHei;
-		font-size: 80px;
+    		border: 0px;
+    		border-radius: 8px;
+    		background-color: pink;
+    		left: 0px;
+    		right: 0px;
+    		width: 100%;
+    		height: 100%;
+    		bottom: :0;
+    		float: left;
+    		font-family: Microsoft JhengHei;
+    		font-size: 80px;
 	}
 	.FormButton:hover{
-		background-color: #FF8888;
+		    background-color: #FF8888;
 	}
-    .searchButton{
-		width: 41px;
-    	height: 28px;
-    	font-size: 12px;
- 	    font-weight: bold;
-	    text-align: left;
-	    border: 0px;
-	    transition: 0.3s;
-	    cursor: pointer;
-	    background-color: transparent;
-	    font-family:  Microsoft JhengHei;
-	    border-radius: 5px;	
+  .searchButton{
+    		width: 41px;
+        height: 28px;
+        font-size: 12px;
+     	  font-weight: bold;
+    	  text-align: left;
+    	  border: 0px;
+    	  transition: 0.3s;
+    	  cursor: pointer;
+    	  background-color: transparent;
+    	  font-family:  Microsoft JhengHei;
+    	  border-radius: 5px;	
 	}
 	.searchButton:hover{
-	    background-color: #DDDDDD;
-    }
-    .searchcontent{
-    	height: 35px;
-    	font-size: 20px;
-    }
-        .notice{
-        	font-family: Microsoft JhengHei;
-        	font-weight: bolder;
-        	font-size: 100px;
-        	color: #FF3333;
-        }
+	      background-color: #DDDDDD;
+  }
+  .searchcontent{
+        height: 35px;
+        font-size: 20px;
+  }
+  .notice{
+        font-family: Microsoft JhengHei;
+        font-weight: bolder;
+        font-size: 100px;
+        color: #FF3333;
+  }
 }
 /*End of PC CSS Section*/
 
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
     .PCsection{
-      display: none;
+        display: none;
     }
 
     .TopTitle{
@@ -153,6 +154,7 @@
         font-family: DFKai-sb;
         font-size: 60px;
         text-align: center;
+        font-weight: bolder;
     }
     .FormButton{
         border: 0px;
@@ -238,7 +240,7 @@
     					</tr>
                         <tr>
                             <th>
-                                <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規次數上限</button>
+                                <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規上限</button>
                             </th>
                         </tr>
     				</table>
@@ -288,7 +290,7 @@
                             </th>
                             <tr>
                                 <th>
-                                    <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規次數上限</button>
+                                    <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規上限</button>
                                 </th>
                             </tr>
                         </tr>
