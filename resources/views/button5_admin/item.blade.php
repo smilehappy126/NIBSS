@@ -289,6 +289,7 @@
             newgroup.setAttributeNode(document.createAttribute("disabled"));
             newgroup.removeAttribute("class");
             newgroup.style.display="none";
+            newgroup.setAttribute("value", "");
         }
     }
 </script>

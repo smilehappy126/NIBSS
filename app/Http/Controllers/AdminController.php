@@ -156,12 +156,15 @@ class AdminController extends Controller
     public function deleteItemLists(Request $rep, $id){
       $deleteItem=Item::find($id);
       $deleteItem->delete();
-      return redirect('/admin/itemlists');
-
-      $groupcheck = Itemgroup::all();
-      foreach ($itemsgroups as $key => $itemgroup) {
-        # code...
-      }
+      //檢查類別物品數量是否為0，物品數量為0時刪除該類別
+      $groupchecks = Itemgroup::all();
+      foreach ($groupchecks as $groupcheck) {
+        $groupitem= Item::where('itemgroup','=',$groupcheck->groupname)->get();
+        if(count($groupitem)<1){
+          $groupcheck->delete();
+        }// End if
+      }//End foreach
+      return redirect('/admin/itemlists'); 
     }
 
 

@@ -218,9 +218,11 @@
                                 <button id="numSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">物品數量</button>
                             </th>
                             <th>
-                                <button id="userSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
+                                <button id="userSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
                             </th>
-                            <th>更新日期</th>
+                            <th>
+                                <button id="updatedSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">更新日期</button>
+                            </th>
                             <th>編輯</th>
                         </tr>
                     </table>
@@ -422,7 +424,7 @@
                         <div class="modal-footer">
                               <div class="form-group" style="text-align: center;">
                                 <button type="submit" class="btn btn-default" id="ModalDeleteButton" style="font-size: 20px; font-weight: bold;">Delete</button></form>
-                                <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" onclick="showModalEditSection({{$item->id}})">Back</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 20px; font-weight: bold;" onclick="showModalEditSection({{$item->id}})">Back</button>
                               </div>
                         </div> 
                         <!-- End of Modal Footer -->
