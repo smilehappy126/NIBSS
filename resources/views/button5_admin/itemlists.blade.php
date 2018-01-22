@@ -352,7 +352,7 @@
                               <div class="form-group">
                               <button type="submit" class="btn btn-default" id="ModalEditButton" style="font-size: 20px; font-weight: bold;">Edit</button>
                               </form>
-                              <button type="button" class="btn btn-default" id="ModalDeleteButton" style="font-size: 20px; font-weight: bold;" onclick="showModalDeleteSection({{$item->id}})">Delete</button>
+                              <button type="button" class="btn btn-default" id="ModalDeleteButton" style="font-size: 20px; font-weight: bold;" data-toggle="modal" data-target="#DeleteModal{{$item->id}}">Delete</button>
                               <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
                               </div>
                         </div> 
@@ -361,10 +361,15 @@
                     <!-- End of Edit Modal Content -->
                 </div>
                 <!-- End of EditSection -->
+            </div>
+        </div>
+<!-- End of Edit Modal -->
 
-                <!-- DeleteSection -->
-                <div id="DeleteSection{{$item->id}}" style="display: none;">
-                    <!-- Delete Modal content-->
+ <!-- Delete Modal -->
+        <div id="DeleteModal{{$item->id}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
+            <div class="modal-dialog">
+    <!-- Delete Modal content-->
+                <!-- Delete Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -423,12 +428,11 @@
                         <!-- End of Modal Footer -->
                     </div> 
                     <!-- End of Delete Modal Content -->
-                </div>
-
-
             </div>
-        </div>
-<!-- End of Edit Modal -->
+        </div>        
+        <!-- End of Delete Modal -->
+
+<!-- ↑↑↑ End of Modal Section ↑↑↑ -->
     @endforeach
    
     @endif <!-- Auth::user()->level -->
@@ -508,12 +512,12 @@ function sortTable(n) {
 
 function showModalEditSection(id){
     var toshowSection = "EditSection"+id;
-    document.getElementById("EditSection").style.display="inline";
+    document.getElementById('EditSection').style.display="inline";
     document.getElementById('DeleteSection').style.display="none";
 }
 function showModalDeleteSection(id){
-    var toshowSection = "DeleteSeciton"+id;
-    var tohideSection = "EditSection"+id;
+    var toshowSection = 'DeleteSeciton'+id;
+    var tohideSection = 'EditSection'+id;
     document.getElementById(toshowSection).style.display="inline";
     document.getElementById(tohideSection).style.display="none";
 }

@@ -157,6 +157,11 @@ class AdminController extends Controller
       $deleteItem=Item::find($id);
       $deleteItem->delete();
       return redirect('/admin/itemlists');
+
+      $groupcheck = Itemgroup::all();
+      foreach ($itemsgroups as $key => $itemgroup) {
+        # code...
+      }
     }
 
 
