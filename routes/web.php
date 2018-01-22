@@ -107,6 +107,7 @@ Route::get('/logout', 'MyLoginController@logout');
 	Route::post('/admin/createitem','AdminController@createitem');
 	Route::get('/admin/itemlists','AdminController@itemlists');
 	Route::post('/admin/itemlists/update/{id}','AdminController@updateItemLists');
+	Route::post('/admin/itemlists/delete/{id}','AdminController@deleteItemLists');
 	//違規次數上限
 	Route::post('/admin/violationupdate','AdminController@violationupdate');
 
