@@ -26,7 +26,7 @@ $next = strtotime('next monday', strtotime($dateString));
     <button type="button" class="btn btn-link">
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
     </button>
-
+    
     <!--修改刪除教室資料按鈕-->
     <button type="button" class="btn btn-link">
         <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
