@@ -10,6 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//portal
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/signin', 'SigninController@signin');
+    Route::get('/auth/provider/callback', 'SigninController@callback');
+    Route::get('/logout', 'SigninController@logout');
+});
 //起始頁
 Route::get('/','MyLoginController@welcome');
 //登入驗證

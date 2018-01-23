@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>資管系-資訊系統</title>
-
+        <!-- Title icon -->
+        <link rel="icon" href="{{asset('img/layout/mis.png')}}">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -443,6 +444,8 @@
                                     </div>
                                     <!-- Register按鈕 -->
                                     <div class="form-group" align="center">
+                                    <!-- portal按鈕 需要美化 -->
+                                    <a href="{{asset('/signin')}}" class="btn btn-success portal" role="button">Portal登入</a><br><br>
                                     <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
                                     </div>    
                                 </div>    
