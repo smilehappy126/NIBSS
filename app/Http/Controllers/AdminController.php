@@ -9,16 +9,18 @@ use App\Rules;
 use App\Item;
 use App\Itemgroup;
 use App\Violation;
+use App\Reason;
 use Carbon\Carbon;
 
 class AdminController extends Controller
 {
-    //導向管理者頁面
+//導向管理者頁面
 	  public function admin(){
         $users=User::all();
         $violations=Violation::all();
         return view('button5_admin.admin',['users'=>$users,'violations'=>$violations]);
     }
+
 //使用者清單
     //顯示使用者清單頁面
     public function userlists(){
@@ -42,6 +44,7 @@ class AdminController extends Controller
               ->get();
       return view('button5_admin.userlists',['users'=>$users]);
     }
+
 //歷史紀錄
     // 歷史紀錄的搜尋
     public function searchall(Request $rep){
@@ -86,6 +89,7 @@ class AdminController extends Controller
                   ->get();
         return view('button5_admin.search',['miss'=> $miss],['content'=>$rep->searchcontent]);
     }
+
 //編輯條例
     // 進入編輯條例的頁面
     public function rule()
@@ -107,6 +111,7 @@ class AdminController extends Controller
 
       return redirect('/admin/rule');
     }
+
 //物品清單
     // 進入可借用物品頁面
     public function item(){
@@ -175,4 +180,30 @@ class AdminController extends Controller
       $update->update(['creator'=>$rep->violationuser]);
       return redirect('/admin');      
     }
+
+//違規紀錄
+    //顯示違規紀錄
+    public function reasons(){
+      $reasons = Reason::all();
+      return view('button5_admin.reason',['reasons'=>$reasons]);
+    }
+    //編輯違規紀錄
+    public function updateReasons(Request $rep, $id){
+      $update =  Reason::find($id);
+      $update->update(['user'=>$rep->user]);
+      $update->update(['phone'=>$rep->phone]);
+      $update->update(['reason'=>$rep->reason]);
+      $update->update(['creator'=>$rep->creator]);
+      return redirect('/admin/reasons');
+    }
+    //搜尋違規紀錄
+    public function searchReason(Request $rep){
+      $reasons = Reason::where('user','like','%'.$rep->searchname.'%')
+                      ->orWhere('phone','like','%'.$rep->searchname.'%')
+                      ->orWhere('reason','like','%'.$rep->searchname.'%')
+                      ->orWhere('creator','like','%'.$rep->searchname.'%')
+                      ->get();
+      return view('button5_admin.reason',['reasons'=>$reasons]);
+    }
 }
+

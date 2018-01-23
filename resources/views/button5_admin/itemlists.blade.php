@@ -512,17 +512,17 @@ function sortTable(n) {
   }
 }
 
-function showModalEditSection(id){
-    var toshowSection = "EditSection"+id;
-    document.getElementById('EditSection').style.display="inline";
-    document.getElementById('DeleteSection').style.display="none";
-}
-function showModalDeleteSection(id){
-    var toshowSection = 'DeleteSeciton'+id;
-    var tohideSection = 'EditSection'+id;
-    document.getElementById(toshowSection).style.display="inline";
-    document.getElementById(tohideSection).style.display="none";
-}
+// function showModalEditSection(id){
+//     var toshowSection = "EditSection"+id;
+//     document.getElementById('EditSection').style.display="inline";
+//     document.getElementById('DeleteSection').style.display="none";
+// }
+// function showModalDeleteSection(id){
+//     var toshowSection = 'DeleteSeciton'+id;
+//     var tohideSection = 'EditSection'+id;
+//     document.getElementById(toshowSection).style.display="inline";
+//     document.getElementById(tohideSection).style.display="none";
+// }
 </script>
 
 @stop
