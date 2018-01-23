@@ -339,22 +339,16 @@
                             @endforeach
                         </select>
                         <h2>借用項目：</h2>  
-                        <select id="group2" class="form-control , item" width="auto" name="item[]" onchange="selnum()" disabled="disabled" required>
+                        <select id="group2" class="form-control , item"  name="item[]" onchange="selnum()" disabled="disabled" required>
                                 <option disabled selected>借用項目</option>
                             @foreach($items as $item)
-                                    <option value="{{ $item->itemname }}" label="{{ $item->itemname }}" style="display:none;">{{ $item->itemgroup }}
+                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" label="{{ $item->itemname }}" style="display:none;">{{ $item->itemgroup }}
                                     </option>
 
                             @endforeach
                         </select>    
                         <h2>借用數量：</h2>
-                        <select id="group3" class="form-control , itemnum" width="auto" name="itemnum[]" disabled="disabled" required>
-                            <option disabled selected>借用數量</option>
-                            @foreach($items as $item)
-                                <option value="{{ $item->itemnum }}" label="{{ $item->itemnum }}">{{ $item->itemname }} 
-                                </option>
-                            @endforeach
-                        </select> 
+                        <input type="number"  class="form-control" id="group3"  name="itemnum[]" min="0" max="5" disabled="disabled" onchange="limit()" required>
                     
                     </div>             
             
@@ -458,31 +452,25 @@
                 document.getElementById('group2').options[i].removeAttribute("style", "display:none");
             }
         }
+
         
     }
     
     function selnum(){
         $("#group3").removeAttr("disabled");
-        var $I2 = $("select[name='item[]']").val();
-        var $L3 = document.getElementById("group3").length;
-        var g3 = document.getElementById("group3");
-        
-        for (var i = 0; i < $L3; i++) {
-            document.getElementById('group3').options[i].setAttribute("style", "display:none");
-        }
-        for (var i = 0; i < $L3; i++) {
-            var x =g3.options[i].text;
-            if(x == $I2){
-                document.getElementById('group3').options[i].removeAttribute("style", "display:none");
-
-                }
-            }
-
-            
-
-
+        var id = $("#group2 option:selected").attr("id");
+        var g3 = parseInt(id, 10);
+        document.getElementById("group3").value= 0;
+        $("#group3").attr("max", g3);
     }
-
+    function limit(){
+        var x = document.getElementById("group3").value;
+        if(x > $("#group3").attr("max")){
+            document.getElementById("group3").value = $("#group3").attr("max");
+            alert("已經超出物品數量");
+            
+        }
+    }
 
     var formCount = 1;
     
@@ -494,13 +482,7 @@
             document.getElementById('group2').options[i].removeAttribute("style", "display:none");
         }
 
-        var $L3 = document.getElementById("group3").length;
-        var g3 = document.getElementById("group3");
-        for (var i = 0; i < $L3; i++) {
-            document.getElementById('group3').options[i].removeAttribute("style", "display:none");
-        }
-
-
+        
         $("#myForm1").clone(true)
                     .attr("id","myForm" + (formCount+=1))
                     .insertAfter($("[id^=myForm]:last"));
@@ -551,7 +533,8 @@
         $("#confirm").append("<h2>借用者:" + $s5 + "</h2>")
         for(var i = 1; i<=formCount; i++){
             $s1 = $("#myForm"+i).find("select[name='item[]']").val();
-            $s2 = $("#myForm"+i).find("select[name='itemnum[]']").val();
+            $s2 = $("#myForm"+i).find("input[name='itemnum[]']").val();
+
 
             $("#confirm").append("<h2>借用項目" + i + ": </h2>" + "項目: " + $s1 + "<br>")
                         .append("數量: " + $s2 + "<br>")
