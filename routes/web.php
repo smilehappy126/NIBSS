@@ -110,5 +110,9 @@ Route::get('/logout', 'MyLoginController@logout');
 	Route::post('/admin/itemlists/delete/{id}','AdminController@deleteItemLists');
 	//違規次數上限
 	Route::post('/admin/violationupdate','AdminController@violationupdate');
+	//違規紀錄
+	Route::get('/admin/reasons','AdminController@reasons');
+	Route::post('/admin/reasons/update/{id}','AdminController@updateReasons');
+	Route::post('/admin/searchReason','AdminController@searchReason');
 
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');

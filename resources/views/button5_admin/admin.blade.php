@@ -229,21 +229,26 @@
     					<tr>
     						<th>
     							<form action=" {{asset('/admin/rule')}} " method="get"> {{ csrf_field() }}
-                                    <button class="FormButton" type="submit">編輯條例</button>
-                                </form>
+                    <button class="FormButton" type="submit">編輯條例</button>
+                  </form>
     						</th>
     						<th>
-                                <form action=" {{asset('/admin/item')}}" method="get" >{{ csrf_field() }}
-    							    <button class="FormButton" type="submit">可借用物品</button>
-                                </form>
+                  <form action=" {{asset('/admin/item')}}" method="get" >{{ csrf_field() }}
+    							   <button class="FormButton" type="submit">可借用物品</button>
+                  </form>
     						</th>
     					</tr>
-                        <tr>
-                            <th>
-                                <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規上限</button>
-                            </th>
-                        </tr>
-    				</table>
+              <tr>
+                <th>
+                    <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規上限</button>
+                </th>
+                <th>
+                  <form action=" {{asset('/admin/reasons')}}" method="get" >{{ csrf_field() }}
+                     <button class="FormButton" type="submit">違規紀錄</button>
+                  </form>
+                </th>
+              </tr>
+            </table>
     			</div>
           <!-- End of Content -->
     		@endif
