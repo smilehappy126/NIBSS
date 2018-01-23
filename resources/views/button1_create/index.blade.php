@@ -172,31 +172,33 @@
 
 @section('content')
 <div class="container">
-    @if( (Auth::user()->violation) > 2)
+    
+    @if( (Auth::user()->violation) > $violations[0]->violationnum )
     <div id="container3" class="container3">
         <div class="border1">
         <h2>
             <div class="border2">
-                <label class="violationWarm">您因違規次數超過三次，因此被禁止借用，請洽詢系辦以恢復申請資格。
+                <label class="violationWarm">您因違規次數過多，因此被禁止借用，請洽詢系辦以恢復申請資格。
                 </label>
             <div>
         </h2>
         </div>
     </div>
     @endif
-    @if( (Auth::user()->violation) < 3)
+    @if( (Auth::user()->violation) <  $violations[0]->violationnum )
     <div id="container1" class="container1">
         <h2><label class="labelSet">器材租借使用規則</label></h2>
         <div class="border1">
         <h4>
             <div class="border2">
-                <label class="labelSet">
+                <label class="labelSet warm">
                 <?php
             echo nl2br($rules[0]->personinfo)
             ?>
                 </label>
                 <input  type="radio" class="optionRadio" name="person" id="person1" value="yes" onclick="show2()">
-                <label class="labelSet">本人已確實詳閱上述之同意書內容，並且同意提供個人之資料以供中央大學資訊管理學系使用。</label>
+                <label class="labelSet">本人已確實詳閱上述之同意書內容，並且同意提供個人之資料以供中央大學資訊管理學系使用。
+                </label>
             </div>    
             <div id="border3" class="border3">
             <br>    
@@ -328,42 +330,32 @@
                 </div>
  
                 <div id="menu1" class="tab-pane fade">
-                    <h2><font color= red><所有項目請確實填寫！></font></h2>
                     <div id="myForm1">
-                        <h2>借用項目：</h2>
-                        <select class="form-control" width="auto" name="item[]" required>
-                            <optgroup label="器材">
-                            <option value="無">無</option>
-                            <option value="電池盒">電池盒</option>
-                            <option value="紅外線簡報器">紅外線簡報器</option>
-                            <option value="筆記型電腦">筆記型電腦</option>
-                            <option value="相機">相機</option>
-                            <option value="數位攝影機">數位攝影機</option>
-                            <option value="腳架">腳架</option>
-                            <option value="螢幕傳輸線HDMI">螢幕傳輸線HDMI</option>
-                            <option value="延長線">延長線</option>
-                            <option value="網路線">網路線</option>
-                            <option value="電源線">電源線</option>
-                            <option value="單槍投影機">單槍投影機</option>
-                            <option value="麥克風">麥克風</option>
-                            <option value="喇叭">喇叭</option>
-                            <option value="擴大機">擴大機</option>
-                            <option value="錄音筆">錄音筆</option>
-                            <option value="按鈴">按鈴</option>
-                            <option value="推車">推車</option>
-                            <option value="IRS">IRS</option>
-                            </optgroup>
+                        <h2>借用種類：</h2>
+                        <select id="group1" class="form-control ,itemgroup" width="auto" name="itemgroup" onchange="selitem()" >
+                                <option disabled selected>請選擇借用種類</option>
+                            @foreach($itemgroups as $itemgroup)
+                                <option value="{{ $itemgroup->groupname }}">{{ $itemgroup->groupname }}</option>
+                            @endforeach
+                        </select>
+                        <h2>借用項目：</h2>  
+                        <select id="group2" class="form-control , item" width="auto" name="item[]" onchange="selnum()" disabled="disabled" required>
+                                <option disabled selected>借用項目</option>
+                            @foreach($items as $item)
+                                    <option value="{{ $item->itemname }}" label="{{ $item->itemname }}" style="display:none;">{{ $item->itemgroup }}
+                                    </option>
+
+                            @endforeach
                         </select>    
-        
                         <h2>借用數量：</h2>
-                        <select class="form-control" width="auto" name="itemnum[]" required>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>        
+                        <select id="group3" class="form-control , itemnum" width="auto" name="itemnum[]" disabled="disabled" required>
+                            <option disabled selected>借用數量</option>
+                            @foreach($items as $item)
+                                <option value="{{ $item->itemnum }}" label="{{ $item->itemnum }}">{{ $item->itemname }} 
+                                </option>
+                            @endforeach
+                        </select> 
+                    
                     </div>             
             
                     <div>
@@ -451,12 +443,65 @@
         /*}*/
         
     }
+
+    function selitem(){
+        $("#group2").removeAttr("disabled");
+        var $I1 = $("select[name='itemgroup']").val();
+        var $L2 = document.getElementById("group2").length;
+        var g2 = document.getElementById("group2");
+        for (var i = 0; i < $L2; i++) {
+            document.getElementById('group2').options[i].setAttribute("style", "display:none");
+        }
+        for (var i = 0; i < $L2; i++) {
+            var x =g2.options[i].text;
+            if(x == $I1){
+                document.getElementById('group2').options[i].removeAttribute("style", "display:none");
+            }
+        }
+        
+    }
+    
+    function selnum(){
+        $("#group3").removeAttr("disabled");
+        var $I2 = $("select[name='item[]']").val();
+        var $L3 = document.getElementById("group3").length;
+        var g3 = document.getElementById("group3");
+        
+        for (var i = 0; i < $L3; i++) {
+            document.getElementById('group3').options[i].setAttribute("style", "display:none");
+        }
+        for (var i = 0; i < $L3; i++) {
+            var x =g3.options[i].text;
+            if(x == $I2){
+                document.getElementById('group3').options[i].removeAttribute("style", "display:none");
+
+                }
+            }
+
+            
+
+
+    }
+
+
     var formCount = 1;
     
     function appendForm() {
         //複製myForm1表單，更改id變成myForm2,myForm3...
-        
-        $("#myForm1").clone()
+        var $L2 = document.getElementById("group2").length;
+        var g2 = document.getElementById("group2");
+        for (var i = 0; i < $L2; i++) {
+            document.getElementById('group2').options[i].removeAttribute("style", "display:none");
+        }
+
+        var $L3 = document.getElementById("group3").length;
+        var g3 = document.getElementById("group3");
+        for (var i = 0; i < $L3; i++) {
+            document.getElementById('group3').options[i].removeAttribute("style", "display:none");
+        }
+
+
+        $("#myForm1").clone(true)
                     .attr("id","myForm" + (formCount+=1))
                     .insertAfter($("[id^=myForm]:last"));
         if(formCount > 1){
@@ -490,6 +535,7 @@
     function Previous2() {
     $("#confirm").empty();
     document.getElementById('menu1').style.display="inline";
+    document.getElementById('menu2').style.display="none";
     $("#L3").removeClass("active");
     $("#L2").addClass("active");
     $('#B3').attr('href','#menu1');
@@ -499,6 +545,7 @@
     
     function confirm(){
         document.getElementById('menu1').style.display="none";
+        document.getElementById('menu2').style.display="inline";
         $s5 = document.getElementById("username").value;
         $("#confirm").empty();
         $("#confirm").append("<h2>借用者:" + $s5 + "</h2>")

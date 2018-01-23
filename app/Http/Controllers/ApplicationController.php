@@ -7,6 +7,8 @@ use App\Miss;
 use App\User;
 use App\Rules;
 use App\Violation;
+use App\Item;
+use App\Itemgroup;
 use Carbon\Carbon;
 class ApplicationController extends Controller
 	
@@ -14,8 +16,12 @@ class ApplicationController extends Controller
  	public function index()
  	{
         $users=User::all();
+        $violations=Violation::all();
         $rules=Rules::all();
-       return view('button1_create.index',['rules'=> $rules,'users'=> $users]);//
+        $items=Item::all();
+        $itemgroups=Itemgroup::all();
+       return view('button1_create.index',['rules'=> $rules,'users'=> $users,
+       'violations'=>$violations,'items'=>$items,'itemgroups'=>$itemgroups]);//
  	}
 
     public function store(Request $request)
