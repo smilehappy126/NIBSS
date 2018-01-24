@@ -60,9 +60,9 @@
     <div class="panel panel-default">
        <div class="panel-heading">{{ $classroom->roomname }}</div>
   
-       <div class="panel-body"><img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" height="200" width="300"></br>
+       <div class="panel-body"><img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" height="200" width="300"></br></br>
               教室描述：
-              {{ $classroom->word }} </br></br>
+              <textarea readonly class="form-control" rows="5" name="word">{{ $classroom->word }}</textarea>
             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
                修改
             </button>
