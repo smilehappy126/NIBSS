@@ -466,12 +466,13 @@
                                             <!-- Trigger the Register modal with a button -->
                                                 <br>
                                     </div>
-                                    <!-- Register按鈕 -->
+                                    <!-- 額外功能區 -->
                                     <div class="form-group" align="center">
-                                    <!-- 透過Portal登入的按鈕 -->
-                                    <button class="portal" type="button" onclick="location.href='/signin'">Portal登入</button>
-                                    <br><br>
-                                    <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
+                                        <!-- 透過Portal登入的按鈕 -->
+                                        <button class="portal" type="button" onclick="location.href='/signin'">Portal登入</button>
+                                        <br><br>
+                                        <!-- 註冊 -->
+                                        <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
                                     </div>    
                                 </div>    
                             </div>
