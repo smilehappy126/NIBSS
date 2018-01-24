@@ -131,7 +131,7 @@
             }
             /*背景圖片的位置: /ncumisborrowsystem/public/img*/
             .background{
-                background-image: url("/img/5.jpg"); 
+                background-image: url("/img/6.jpg"); 
                 width: 100%;
                 height: 100%;
                 background-position: center;
