@@ -498,6 +498,8 @@
     								</tr>
 								</table>
 								<!-- End of Edit Modal Table -->
+								<input name="audit" value="{{Auth::user()->name}}" hidden>
+    								<!-- ↑抓取登入使用者的名字，不會顯示在頁面上 -->
 							</div>
 	        		</div>
 	        	</div>
@@ -546,6 +548,7 @@
                                                 <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}" disabled></th></tr>
                                                 <tr><th>電話 :</th> <th><input class="form-control" type="phone" value="{{ $user->phone }}" disabled></th></tr>
                                                 <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}"></th></tr>
+                                                <tr><th>違規事由 :</th><th> <input  class="form-control" type="text" name="reason"></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
                                                         <input class="form-control" type="text" value="{{ $user->level }}" disabled></th>

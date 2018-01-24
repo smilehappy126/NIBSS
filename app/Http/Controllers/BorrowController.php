@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Miss;
 use App\User;
+use App\Reason;
 
 class BorrowController extends Controller
 {
@@ -14,8 +15,9 @@ class BorrowController extends Controller
 		$miss = Miss::where('status','=','借用中')
                   ->get();
     $users = User::all();
+    $reasons = Reason::all();
     $counter=1;
-		return view('button2_borrow.index',['miss'=> $miss],['users'=> $users],['counter'=>$counter]);
+		return view('button2_borrow.index',['miss'=> $miss],['users'=> $users],['counter'=>$counter],['reasons'=>$reasons]);
 
 	}
 	
@@ -32,6 +34,7 @@ class BorrowController extends Controller
       $update->update(['classroom'=>$rep->classroom]);
       $update->update(['teacher'=>$rep->teacher]);
       $update->update(['status'=>$rep->status]);
+      $update->update(['audit'=>$rep->audit]);
       return redirect('/borrow');
   }
   public function userupdate(Request $rep)
