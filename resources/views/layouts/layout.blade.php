@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-
+    <!-- title icon -->
+    <link rel="icon" href="{{asset('img/layout/mis.png')}}">
     {{-- 引入Styles --}}
     <link rel="stylesheet" href="{{ asset('include/bootstrap/css/bootstrap.min.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('include/font-awesome/css/font-awesome.min.css') }}" media="screen">

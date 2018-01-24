@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', '使用者清單')
+@section('title', '違規紀錄')
 @section('css')
    <style type="text/css">
   /*PC CSS*/
@@ -202,7 +202,7 @@
     <!-- PC section -->
     <div class="PCsection">  
       <div class="TopTitle">
-        使用者名單
+        違規紀錄
       </div>
       <table style="table-layout: fixed; width: 100%;">
           <tr>
@@ -214,7 +214,7 @@
                 </div>
             </th>
             <th style="text-align: right;">
-                <div class="searchUser">
+                <div class="searchReason">
                     <button class="searchButton" id="searchButton" type="button" data-toggle="modal" data-target="#SearchModal">搜尋<span class="glyphicon glyphicon-chevron-right"></span></button>
                 </div>
             </th>
@@ -224,23 +224,20 @@
           <!-- 表單表頭 -->
           <table class="table" id="TableTitle" style="table-layout: fixed;">
               <tr>    
-                  <th style="text-align: center; width: 150px;">
-                      <button id="nameSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">名字</button>
-                  </th>
                   <th style="text-align: center;">
-                      <button id="emailSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
+                      <button id="nameSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">違規者</button>
                   </th>
                   <th style="text-align: center;">
                       <button id="phoneSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
                   </th>
-                  <th style="text-align: center; width: 120px;">
-                      <button id="nameSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">違規次數</button>
+                  <th style="text-align: center;">
+                      <button id="reasonSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">違規原因</button>
                   </th>
                   <th style="text-align: center;">
-                      <button id="levelSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">權限等級</button>
+                      <button id="creatorSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
                   </th>
                   @if ((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
-                  <th style="text-align: center; width: 120px;">
+                  <th style="text-align: center;">
                       <button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">修改資料</button>
                   </th>
                   @endif
@@ -250,16 +247,15 @@
       <div class="TableContent">
           <!-- 表單內容 -->
           <table class="table" id="content" style="table-layout: fixed;"">
-              @foreach($users as $user)
+              @foreach($reasons as $reason)
               <tr>
-                  <th style="text-align: center; width: 150px;">{{ $user->name }}</th>
-                  <th style="text-align: center;">{{ $user->email }}</th>
-                  <th style="text-align: center;">{{ $user->phone}}</th>
-                  <th style="text-align: center; width: 120px;">{{ $user->violation }}</th>
-                  <th style="text-align: center;">{{ $user->level }}</th>
+                  <th style="text-align: center;">{{ $reason->user }}</th>
+                  <th style="text-align: center;">{{ $reason->phone }}</th>
+                  <th style="text-align: center;">{{ $reason->reason}}</th>
+                  <th style="text-align: center;">{{ $reason->creator }}</th>
                   @if ((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
-                  <th style="text-align: center; width: 120px;">
-                      <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$user->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
+                  <th style="text-align: center;">
+                      <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$reason->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
                   </th>
                   @endif
               </tr>
@@ -272,7 +268,7 @@
     <!-- Mobile Section -->
     <div class="Mobilesection">
       <div class="TopTitle">
-        使用者名單
+        違規紀錄
       </div>
       <table style="table-layout: fixed; width: 100%;">
           <tr>
@@ -284,7 +280,7 @@
               </div>
             </th>
             <th style="text-align: right;">
-              <div class="searchUser">
+              <div class="searchReason">
                  <button class="searchButton" id="searchButton" type="button" data-toggle="modal" data-target="#SearchModal">搜尋<span class="glyphicon glyphicon-chevron-right"></span></button>
               </div>
             </th>
@@ -293,22 +289,14 @@
       <br>
       <div class="TableTop">
           <!-- 表單表頭 -->
-          @foreach($users as $user)
+          @foreach($reasons as $reason)
           <table class="table-bordered" style="table-layout: fixed; width: 100%; background-color:  #FFF8DC;">
               <tr>    
                   <th style="text-align: center;" class="TableTitle">
-                      <button id="nameSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">名字</button>
+                      <button id="nameSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">違規者</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
-                      {{ $user->name }}
-                  </th>
-              </tr>
-              <tr>
-                  <th style="text-align: center;" class="TableTitle">
-                      <button id="emailSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
-                  </th>
-                  <th style="text-align: center;" class="TableContent">
-                    {{ $user->email }}
+                      {{ $reason->user }}
                   </th>
               </tr>
               <tr>
@@ -316,32 +304,32 @@
                       <button id="phoneSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
-                    {{ $user->phone }}
+                    {{ $reason->phone }}
                   </th>
               </tr>
               <tr>
                   <th style="text-align: center;" class="TableTitle">
-                      <button id="nameSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">違規次數</button>
+                      <button id="reasonSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">違規原因</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
-                    {{ $user->violation }}
+                    {{ $reason->reason }}
                   </th>
               </tr>
               <tr>
                   <th style="text-align: center;" class="TableTitle">
-                      <button id="levelSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">權限等級</button>
+                      <button id="creatorSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
-                    {{ $user->level }}
+                    {{ $reason->creator }}
                   </th>
               </tr>
               @if((Auth::user()->level)==='管理員')
               <tr>
                   <th style="text-align: center;" class="TableTitle">
-                      <button id="levelSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">修改資料</button>
+                      <button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">修改資料</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
-                      <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$user->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
+                      <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$reason->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
                   </th>
               </tr>
               @endif
@@ -357,8 +345,8 @@
     <!-- Modal Section -->
     
     <!-- Edit Modal -->
-    @foreach($users as $user)
-      <div id="EditModal{{$user->id}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
+    @foreach($reasons as $reason)
+      <div id="EditModal{{$reason->id}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
             <div class="modal-dialog">
 
                     <!-- Edit Modal content-->
@@ -373,28 +361,16 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
-                                    <form class="form-horizontal" method="post" action="{{ asset('/admin/userlists/update/'.$user->id)}}">
+                                    <form class="form-horizontal" method="post" action="{{ asset('/admin/reasons/update/'.$reason->id)}}">
                                      {{ csrf_field() }}
                                     <div class="EditPage">
                                         <div class="EditInfo">
                                             <!-- Edit Modal Table -->
                                             <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
-                                                <tr><th>使用者 : </th><th><label style="text-align: center; width: 100%;">{{ $user->name}}</label> </th></tr>
-                                                <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}"></th></tr>
-                                                <tr><th>電話 :</th> <th><input  class="form-control" type="phone" name="phone" value="{{ $user->phone }}"></th></tr>
-                                                <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}"></th></tr>
-                                                <tr><th>權限等級 :</th>
-                                                    <th> 
-                                                        
-                                                        <select class="form-control" name="level" value="{{ $user->level }}" required>
-                                                            <option value="" disabled hidden></option>
-                                                            <option value="管理員">管理員</option>
-                                                            <option value="工讀生" >工讀生</option>
-                                                            <option value="一般使用者">一般使用者</option>
-                                                        </select>
-                                                    </th>
-                                                </tr>
-                                                
+                                                <tr><th>違規者 : </th><th><label style="text-align: center; width: 100%;">{{ $reason->name}}</label> </th></tr>
+                                                <tr><th>電話 :</th> <th><input  class="form-control" type="phone" name="phone" value="{{ $reason->phone }}"></th></tr>
+                                                <tr><th>違規原因 :</th> <th><input  class="form-control" type="text" name="reason" value="{{ $reason->reason }}"></th></tr>
+                                                <tr><th>負責人 :</th><th> <input  class="form-control" type="text" name="creator" value="{{ $reason->creator }}"></th></tr>
                                             </table>
                                             <!-- End of Edit Modal Table -->
                                         </div>
@@ -419,7 +395,7 @@
     <!-- End of Edit Modal -->
 
   <div style="text-align: center;">
-    <form action="{{ asset('/admin/userlists') }}" method="get">
+    <form action="{{ asset('/admin/reasons') }}" method="get">
       <button class="resetButton" id="testbtn">重新整理</button>
     </form>
   </div>
@@ -443,9 +419,9 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
-                                <form action="{{ asset ('/admin/searchUser')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+                                <form action="{{ asset ('/admin/searchReason')}}" method="post" style="width: 100%;">{{ csrf_field()}}
                                     <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp</label>
-                                    <input  class="searchcontent" name="searchname" id="searchname" type="text"  placeholder="請輸入名字..."  value="" style="width: 70%;" autofocus>
+                                    <input  class="searchcontent" name="searchname" id="searchname" type="text"  placeholder="請輸入..."  value="" style="width: 70%;" autofocus>
                             </div>    
                         </div>
                     </div>

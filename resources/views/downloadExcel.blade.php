@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Export</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>
+				roomname
+			</td>
+			<td>
+				start_classtime
+			</td>
+			<td>
+				end_classtime
+			</td>
+			<td>
+				teacher
+			</td>
+			<td>
+				content
+			</td>
+			<td>
+				weekfirst
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

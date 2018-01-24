@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Miss;
 use App\User;
 use App\Rules;
+use App\Violation;
+use App\Item;
+use App\Itemgroup;
+// use App\SocialAccount;
 use Carbon\Carbon;
 class ApplicationController extends Controller
 	
@@ -13,8 +17,12 @@ class ApplicationController extends Controller
  	public function index()
  	{
         $users=User::all();
+        $violations=Violation::all();
         $rules=Rules::all();
-       return view('button1_create.index',['rules'=> $rules,'users'=> $users]);//
+        $items=Item::all();
+        $itemgroups=Itemgroup::all();
+       return view('button1_create.index',['rules'=> $rules,'users'=> $users,
+       'violations'=>$violations,'items'=>$items,'itemgroups'=>$itemgroups]);//
  	}
 
     public function store(Request $request)
@@ -45,7 +53,8 @@ class ApplicationController extends Controller
     // echo($application->date);
     $application->status = '借用中';
     $application->save();
-    
+    // $socialaccount=SocialAccount::where('email','=',$request->email);
+    // $socialaccount->update(['phone'=>$request->phone])
     $update=User::where('email','=',$request->email);      
     $update->update(['phone'=>$request->phone]);
     return redirect('/');

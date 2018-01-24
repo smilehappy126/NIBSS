@@ -45,6 +45,24 @@
                 width:150px;
                 transition: 0.3s;
             }
+            .portal{
+                background-color: transparent;
+                transition: 0.3s;
+                width: 140px;
+                height: 20px;
+                border-radius: 100px;
+                cursor: pointer;
+                border-width: 0px;
+                font-size: 15px;
+                font-weight: bold;
+
+            }
+            .portal:hover{
+                background-color: #B0E0E6;
+                width: 160px;
+                height: 20px;
+                transition: 0.3s;
+            }
         }
     /*Mobile版本登入登出*/
         @media screen and (max-width: 900px) and (min-width: 300px) and (max-height: 1024px){
@@ -103,6 +121,24 @@
             /* 滑入選單時變換底色 */  
             .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
                   background: rgba(0,0,0,0.1) !important;
+            }
+            .portal{
+                background-color: transparent;
+                transition: 0.3s;
+                width: 140px;
+                height: 20px;
+                border-radius: 100px;
+                cursor: pointer;
+                border-width: 0px;
+                font-size: 15px;
+                font-weight: bold;
+
+            }
+            .portal:hover{
+                background-color: #B0E0E6;
+                width: 160px;
+                height: 20px;
+                transition: 0.3s;
             }
 
 </style>
@@ -248,10 +284,14 @@
                                         </div>
                                         <br>
                                     </div>
-                                    <!-- Register按鈕 -->
+                                    <!-- 額外功能區 -->
                                     <div class="form-group" align="center">
+                                        <!-- 透過Portal登入的按鈕 -->
+                                        <button class="portal" type="button" onclick="location.href='/signin'">Portal登入</button>
+                                        <br><br>
+                                        <!-- 註冊 -->
                                         <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
-                                    </div>    
+                                    </div>     
                             </div>    
                         </div>
                     </div>

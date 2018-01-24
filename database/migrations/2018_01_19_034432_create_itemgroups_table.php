@@ -4,22 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateItemgroupsTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('itemgroups', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password')->nullable();
-            $table->rememberToken();
+            $table->string('groupname')->nullable()->default('無資料');
+            $table->integer('groupitemnum')->nullable()->default(1);
+            $table->string('creator')->nullable()->default('系統預設');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('itemgroups');
     }
 }

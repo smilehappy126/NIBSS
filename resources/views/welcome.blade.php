@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>資管系-資訊系統</title>
-
+        <!-- Title icon -->
+        <link rel="icon" href="{{asset('img/layout/mis.png')}}">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -128,6 +129,24 @@
                 height: 20px;
                 transition: 0.3s;
             }
+            .portal{
+                background-color: transparent;
+                transition: 0.3s;
+                width: 140px;
+                height: 20px;
+                border-radius: 100px;
+                cursor: pointer;
+                border-width: 0px;
+                font-size: 15px;
+                font-weight: bold;
+
+            }
+            .portal:hover{
+                background-color: #B0E0E6;
+                width: 160px;
+                height: 20px;
+                transition: 0.3s;
+            }
             /*背景圖片的位置: /ncumisborrowsystem/public/img*/
             .background{
                 background-image: url("/img/5.jpg"); 
@@ -162,6 +181,10 @@
             
 /*PC CSS Section*/
 @media screen and (min-width: 900px){
+            .MobleSection{
+                display: none;
+            }
+
             /*模糊效果*/
             .BlurEffect{
                 -webkit-filter: blur(10px);
@@ -209,10 +232,13 @@
                 transition: 0.3s;
 
             }
-
 }
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
+            .PCSection{
+                display: none;
+            }
+
             /*模糊效果*/
             .BlurEffect{
                 -webkit-filter: blur(10px);
@@ -268,7 +294,14 @@
             
         </style>
         <script type="text/javascript">
-            
+        function movetoPortal(){
+            document.getElementById('loginemail').removeAttribute('required');
+            document.getElementById('loginpassword').removeAttribute('required');
+        }
+        function backtologin(){
+            document.getElementById('loginemail').setAttributeNode(document.createAttribute("required"));
+            document.getElementById('loginpassword')..setAttributeNode(document.createAttribute("required"));
+        }
       
         </script>
     </head>
@@ -289,8 +322,9 @@
             <div class="LoginPanel">
             @if (Route::has('login'))
                 @if(Auth::check())
-                    <label class="notice" style="text-transform: uppercase;">
-                        Welcome, {{ Auth::user()->name }}
+                    <label class="notice" style="text-transform: uppercase; text-align: center;">
+                        Welcome, {{ Auth::user()->name }} <br><br>
+                        目前違規次數 : {{ Auth::user()->violation }}
                     </label> 
                 @endif
             @endif
@@ -328,9 +362,10 @@
                     <span class="TitleText">
                         設備管理系統
                     </span>
+                    
                     <span class="links LinkText">    
                         @if(Auth::check())
-                        <a  href="{{ url('/create') }}">新增申請單</a>|
+                            <a  href="{{ url('/create') }}">新增申請單</a>|
                         @endif
                         <a  href="{{ url('/borrow') }}">借用狀況</a>|
                         <a  href="{{ url('/return') }}">已歸還資料</a>|
@@ -344,9 +379,10 @@
                         @endif
                     @endif
                     </span>
+                    
                 </div>
                 
-                <!-- 分頁連結-->
+                <!-- 分頁連結 看不見區域-->
                 <div class="links" style="align-items: center; visibility: hidden;" >
                     <span class="links">
                         @if(Auth::check())
@@ -400,7 +436,7 @@
                                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}" style="text-align: center;">
                                         <label class="col-md-4 control-label" for="email" style="font-weight: bold; "> E-Mail</label>{{ csrf_field() }} 
                                                 <div class="col-md-6">
-                                                <input class="LoginInput" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: 
+                                                <input class="LoginInput" id="loginemail" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: 
                                                 inline-block; font-size : 15px;font-family: Microsoft JhengHei;
                                                 font-weight: bold;" required autofocus></input>
                                                     <!-- @if ($errors->has('email'))
@@ -418,7 +454,7 @@
                                             
                                                 <label class="col-md-4 control-label" for="password" style="font-weight: bold;">密碼</label>{{ csrf_field() }} 
                                                 <div class="col-md-6">
-                                                <input type="password" name="password" id="password"  value="" style="display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required></input>
+                                                <input type="password" name="password" id="loginpassword"  value="" style="display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required></input>
                                                     <!-- @if ($errors->has('LoginPassword'))
                                                         <span class="help-block">
                                                         <strong>{{ $errors->first('password') }}</strong>
@@ -430,9 +466,13 @@
                                             <!-- Trigger the Register modal with a button -->
                                                 <br>
                                     </div>
-                                    <!-- Register按鈕 -->
+                                    <!-- 額外功能區 -->
                                     <div class="form-group" align="center">
-                                    <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
+                                        <!-- 透過Portal登入的按鈕 -->
+                                        <button class="portal" type="button" onclick="location.href='/signin'">Portal登入</button>
+                                        <br><br>
+                                        <!-- 註冊 -->
+                                        <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
                                     </div>    
                                 </div>    
                             </div>

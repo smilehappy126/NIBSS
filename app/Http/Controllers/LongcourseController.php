@@ -109,6 +109,17 @@ class LongcourseController extends Controller
 
         return back()->with('error','Please Check your file, Something is wrong there.');
     }
+    //download excel
+    public function downloadExcel(Request $request)
+    { 
+        $data = Course::get()->toArray();
+        return Excel::create('2_exceldemo', function($excel){
+            $excel->sheet('2_exceldemo', function($sheet)
+            {
+                $sheet->loadView('longdownloadExcel');
+            });
+        })->export('xlsx');
+    }
     /**
      * Display the specified resource.
      *
@@ -171,7 +182,7 @@ function getIntervalMonday($begin, $end){
     
     // 結束日期+1天，是為了用DatePeriod的時候，尾巴沒包含
     if(date("w", strtotime($endString)) == 1){
-        $ending = strtotime("+1 day", $endString);
+        $ending = strtotime("+1 day", strtotime($endString));
     }else{
         //$endMon = strtotime('last monday', strtotime($endString));
         $ending = strtotime("last monday +1 day", strtotime($endString)); 

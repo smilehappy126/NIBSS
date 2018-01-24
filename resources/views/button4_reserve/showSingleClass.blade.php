@@ -133,7 +133,9 @@ $nextString = date('Y-m-d',$next);
         <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
     </div>
     @endif
-
+     @if (Route::has('login'))
+        @if (Auth::check())
+             @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     <!--新增教室資料按鈕-->
     <button type="button" class="btn btn-link btn-lg">
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
@@ -152,15 +154,19 @@ $nextString = date('Y-m-d',$next);
     <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal">
         Excel匯入單一多筆資料
     </button>
-
+            @endif
+        @endif
+    @endif
     <div class="modal fade" id="excelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+
         <h5 class="modal-title" id="exampleModalLabel">Excel匯入單一多筆資料</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        
       </div>
       <div class="modal-body">
         
@@ -172,6 +178,8 @@ $nextString = date('Y-m-d',$next);
         <button class="btn btn-md btn-primary">Import CSV or Excel File</button>
 
     </form>
+    <br>
+    <a href="{{asset('/downloadExcel')}}" class="btn btn-success" role="button">Excel單一多筆範本下載</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -988,6 +996,7 @@ $nextString = date('Y-m-d',$next);
 
 
 @foreach ($results as $course)
+
     <ul>
         <h2>{{$course->content}}, {{$course->teacher}}</h2>
         <li>{{$course->roomname}},
@@ -1000,7 +1009,9 @@ $nextString = date('Y-m-d',$next);
 </div>
 
 
-
+@if (Route::has('login'))
+    @if (Auth::check())
+        @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 <!--點選空白格子Modal: 新增-->
 <div class="modal fade" id="cellModal_create" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -1054,11 +1065,16 @@ $nextString = date('Y-m-d',$next);
         </div>
     </div>
 </div>
+         @endif
+     @endif
+ @endif
 
 
 <!--點選課表格子Modal: 修改-->
 @foreach ($results as $course)
-
+@if (Route::has('login'))
+    @if (Auth::check())
+        @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 <div class="modal fade" id="cellModal{{$course->id}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1108,7 +1124,9 @@ $nextString = date('Y-m-d',$next);
         </div>
     </div>
 </div>
-
+         @endif
+     @endif
+ @endif
 
 @endforeach
 
@@ -1155,32 +1173,44 @@ $( document ).ready(function() {
             start = classTime_array.indexOf("{{$course->start_classTime}}");
             end = classTime_array.indexOf("{{$course->end_classTime}}");
     
-    
-            /* for管理員: 刪除課程資料按鈕 */
-            var form_delete = $("<form/>", 
-                             { action:"{{ asset('reserve/deleteCourse/'.$course->id) }}", 
-                               method:"post" }
+
+            @if (Route::has('login'))
+                @if (Auth::check())
+                    @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+                        /* for管理員: 刪除課程按鈕 */
+                        var form_delete = $("<form/>", 
+                                         { action:"{{ asset('reserve/deleteCourse/'.$course->id) }}",
+                                           method:"post",
+                                           id:"deleteCourse"
+                                         }
                         );
-            form_delete.append( 
-                $("<input/>", 
-                     { type:"hidden",  
-                       name:"_token", 
-                       value:"{{csrf_token()}}" }
-                 )
-            );
-            form_delete.append( 
-                 $("<input/>", 
-                      { type:"hidden", 
-                        name:"_method", 
-                        value:"delete" }
-                   )
-            );
-            form_delete.append( 
-                 $("<button>刪除</button>", 
-                      { type:"submit" }
-                   )
-            );
-            /* end */
+                        form_delete.append( 
+                            $("<input/>", 
+                                 { type:"hidden",  
+                                   name:"_token", 
+                                   value:"{{csrf_token()}}" }
+                             )
+                        );
+                        form_delete.append( 
+                             $("<input/>", 
+                                  { type:"hidden", 
+                                    name:"_method", 
+                                    value:"delete" }
+                               )
+                        );
+                        form_delete.append( 
+                             $("<button>刪除</button>", 
+                                  { type:"submit" }
+                               )
+                        );
+                        /* end */
+
+                        //加入刪除課程按鈕至table
+                        $("#"+classTime_array[end]).append(form_delete);
+
+                    @endif
+                @endif
+             @endif
     
     
             // 將資料放入<td>裡 
@@ -1191,20 +1221,17 @@ $( document ).ready(function() {
                 $("#"+classTime_array[i]).children("p.cell_teacher").text("{{$course->teacher}}");
                 $("#"+classTime_array[i]).children("p.cell_start_classTime").text("{{$course->start_classTime}}");
                 $("#"+classTime_array[i]).children("p.cell_end_classTime").text("{{$course->end_classTime}}");
-                
-                // for管理員: 刪除課程資料按鈕
-                $("#"+classTime_array[i]).append(form_delete);
             }
     
         @endif
-    
     @endforeach
+    
     
 
     /* 按下課表內格子顯示cellModal */
     $(".Curriculum").click(function() {
         
-        // 有課程資料的Modal部分用foreach (每個課都有自己的modal，再去對應顯示)
+        /* 有課程資料的Modal部分用foreach (每個課都有自己的modal，再去對應顯示) */
         
           // 取得<td>中的課程id
           var thisId = $(this).children("p.cell_id").text();
@@ -1215,7 +1242,6 @@ $( document ).ready(function() {
               $("#cellModal"+thisId).modal("show");
           }
           
-        
           /* ps: 可以這樣取<td>內的資料 */
 //        var thisId = $(this).children("p.cell_id").text();
 //        var thisContent = $(this).children("p.cell_content").text();
@@ -1225,7 +1251,10 @@ $( document ).ready(function() {
 
     });
     
-
+    /* 刪除課程按鈕，阻止修改modal被呼叫(終止事件傳導) */
+    $("#deleteCourse").click(function(){
+        event.stopPropagation();
+    });
     
 
     /* 根據目前星期幾，顯示cellModal中不同的select option */
@@ -1452,7 +1481,6 @@ $( document ).ready(function() {
 //        alert("index_end: " + index_end);
         
         if(index_start > index_end){
-//            alert("起始節次應早於結束節次");
             $(".form_submit").prop('disabled', true);
             $("#errorMessage").text("起始節次應早於結束節次");
         }else{
@@ -1471,7 +1499,6 @@ $( document ).ready(function() {
 //        alert("index_end: " + index_end);
         
         if(index_start > index_end){
-//            alert("起始節次應早於結束節次");
             $(".form_submit").prop('disabled', true);
             $("#errorMessage").text("起始節次應早於結束節次");
         }else{

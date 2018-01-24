@@ -10,6 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//portal
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/signin', 'SigninController@signin');
+    Route::get('/auth/provider/callback', 'SigninController@callback');
+    Route::get('/logout', 'SigninController@logout');
+});
 //起始頁
 Route::get('/','MyLoginController@welcome');
 //登入驗證
@@ -58,6 +64,7 @@ Route::get('/reserve/{roomname}', 'CourseController@show');
 Route::get('/reserve/{roomname}/{weekfirst}', 'CourseController@showOtherWeek');
 //單筆excel
 Route::post('/importExcel', 'CourseController@importExcel');
+Route::get('/downloadExcel', 'CourseController@downloadExcel');
 
 
 //新增課程資料
@@ -84,6 +91,7 @@ Route::get('/inputClass/{roomname}', 'LongcourseController@index');
 Route::post('/inputClass/save', 'LongcourseController@store');
 //固定課程excel
 Route::post('/inputClass/importExcel', 'LongcourseController@importExcel');
+Route::get('/longdownloadExcel', 'LongcourseController@downloadExcel');
 
 // Login驗證
 Auth::routes();
@@ -91,14 +99,30 @@ Route::post('/loginNow', 'Auth\LoginController@login');
 Route::get('/logout', 'MyLoginController@logout');
 
 // Admin路由區
-Route::get('/admin','AdminController@admin');
-Route::get('/admin/userlists','AdminController@userlists');
-Route::post('/admin/searchUser','AdminController@searchUser');
-Route::post('/admin/userlists/update/{id}','AdminController@updateUserLists');
-Route::post('/admin/searchall','AdminController@searchall');
-Route::post('/admin/searchall/update/{id}','AdminController@updateContentData');
-Route::get('/admin/rule','AdminController@rule');
-Route::post('/admin/rules/updatenote','AdminController@noteupdate');
-Route::post('/admin/rules/updatepersonInfo','AdminController@personInfoupdate');
+	// 管理者頁面
+	Route::get('/admin','AdminController@admin');
+	//使用者清單
+	Route::get('/admin/userlists','AdminController@userlists');
+	Route::post('/admin/searchUser','AdminController@searchUser');
+	Route::post('/admin/userlists/update/{id}','AdminController@updateUserLists');
+	//歷史紀錄
+	Route::post('/admin/searchall','AdminController@searchall');
+	Route::post('/admin/searchall/update/{id}','AdminController@updateContentData');
+	//編輯條例
+	Route::get('/admin/rule','AdminController@rule');
+	Route::post('/admin/rules/updatenote','AdminController@noteupdate');
+	Route::post('/admin/rules/updatepersonInfo','AdminController@personInfoupdate');
+	//物品清單
+	Route::get('/admin/item','AdminController@item');
+	Route::post('/admin/createitem','AdminController@createitem');
+	Route::get('/admin/itemlists','AdminController@itemlists');
+	Route::post('/admin/itemlists/update/{id}','AdminController@updateItemLists');
+	Route::post('/admin/itemlists/delete/{id}','AdminController@deleteItemLists');
+	//違規次數上限
+	Route::post('/admin/violationupdate','AdminController@violationupdate');
+	//違規紀錄
+	Route::get('/admin/reasons','AdminController@reasons');
+	Route::post('/admin/reasons/update/{id}','AdminController@updateReasons');
+	Route::post('/admin/searchReason','AdminController@searchReason');
 
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');

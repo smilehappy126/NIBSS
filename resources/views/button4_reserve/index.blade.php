@@ -18,19 +18,23 @@ $next = strtotime('next monday', strtotime($dateString));
 
 
 ?>
-
+@if (Route::has('login'))
+  @if (Auth::check())
+    @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 <!--新增教室資料按鈕-->
 <div class="btn-group btn-group-lg"> 
     <button type="button" class="btn btn-link">
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
     </button>
-
+    
     <!--修改刪除教室資料按鈕-->
     <button type="button" class="btn btn-link">
         <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
     </button>
 </div></br>
-
+    @endif
+  @endif
+@endif
 
     <!--教室按鈕-->
     @foreach ($classrooms as $classroom)

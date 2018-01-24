@@ -36,9 +36,7 @@
     </div>
     <div class="footer-col col-md-4">
         <h3>關於我們</h3>
-        <p><i class="fa fa-info-circle"></i> &nbsp;我們是由一群大一~大三生組成的團隊</p>
-        <p><i class="fa fa-external-link"></i> <a href="{{ url('/about') }}">想知道更多關於新生知訊網團隊的成員嗎?</a></p>
-        <p><i class="fa fa-envelope-o"></i>&nbsp; E-mail : ncufreshweb@gmail.com</p>
+        <p><i class="fa fa-info-circle"></i> &nbsp;我們是由一群大三生組成的團隊</p>
     </div>
 </div>
 </div>
