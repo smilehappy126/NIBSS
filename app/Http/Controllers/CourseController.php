@@ -71,7 +71,7 @@ class CourseController extends Controller
     {
         
     }
-    //excel
+    //import excel
     public function importExcel(Request $request)
     {
 
@@ -103,6 +103,17 @@ class CourseController extends Controller
         }
 
         return back()->with('error','Please Check your file, Something is wrong there.');
+    }
+    //download excel
+    public function downloadExcel(Request $request)
+    { 
+        $data = Course::get()->toArray();
+        return Excel::create('1_exceldemo', function($excel){
+            $excel->sheet('1_exceldemo', function($sheet)
+            {
+                $sheet->loadView('downloadExcel');
+            });
+        })->export('xlsx');
     }
 
     /**

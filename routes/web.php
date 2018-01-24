@@ -51,6 +51,8 @@ Route::post('/return/search','returnController@search');
 
 Route::post('/return/userupdate','returncontroller@userupdate');
 
+Route::post('/return/reasonupdate','returncontroller@reasonupdate');
+
 
 
 
@@ -62,6 +64,7 @@ Route::get('/reserve/{roomname}', 'CourseController@show');
 Route::get('/reserve/{roomname}/{weekfirst}', 'CourseController@showOtherWeek');
 //單筆excel
 Route::post('/importExcel', 'CourseController@importExcel');
+Route::get('/downloadExcel', 'CourseController@downloadExcel');
 
 
 //新增課程資料
@@ -88,6 +91,7 @@ Route::get('/inputClass/{roomname}', 'LongcourseController@index');
 Route::post('/inputClass/save', 'LongcourseController@store');
 //固定課程excel
 Route::post('/inputClass/importExcel', 'LongcourseController@importExcel');
+Route::get('/longdownloadExcel', 'LongcourseController@downloadExcel');
 
 // Login驗證
 Auth::routes();

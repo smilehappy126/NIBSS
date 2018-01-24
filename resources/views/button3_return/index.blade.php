@@ -233,7 +233,7 @@
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<!-- 電話 -->
 	   				<th style="text-align: center;">
-						<button id="phoneSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+						<button id="phoneSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent; width: 80px;">電話</button>
 					</th>
 							@endif
 	     				@endif
@@ -269,6 +269,10 @@
 	   	 			<th style="text-align: center;">
 						<button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
 					</th>
+					<!-- 審核工讀生姓名 -->
+					<th style="text-align: center;">
+						<button id="auditSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">審核者</button>
+					</th>
 				</tr> 
 							@endif
 						@endif
@@ -297,7 +301,7 @@
 					<td id="class-{{$re->id}}">{{$re->class}}</td>
 					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 	   					<td id="name-{{$re->id}}">
-	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
+	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}" style="width: 120%;" ><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
 	   					</td>
 	   				@endif
 	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
@@ -306,7 +310,7 @@
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
-					<td id="phone-{{$re->id}}">{{$re->phone}}</td>
+					<td id="phone-{{$re->id}}" style="width: 100px;">{{$re->phone}}</td>
 							@endif
 						@endif
 	    			@endif
@@ -324,6 +328,7 @@
 					 		<span class="glyphicon glyphicon-pencil"></span> 編輯
 					 	</a>
 					</td>
+					<td id="audit-{{$re->id}}">{{$re->audit}}</td>
 							@endif
 						@endif
 	    			@endif
@@ -376,7 +381,7 @@
 					</th>
 					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 	   					<td id="name-{{$re->id}}">
-	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
+	   						<button class="UserModalButton" type="button" data-toggle="modal" data-target="EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
 	   					</td>
 	   				@endif
 	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
@@ -468,6 +473,15 @@
 					 	</a>
 					</td>
 				</tr> 
+				<!-- 審核工讀生姓名 -->
+				<tr>
+	   				<th class="TableTop" style="text-align: center;">
+						<button id="auditSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">審核者</button>
+					</th>
+					<td  class="TableContent" id="audit-{{$re->id}}">
+						{{Auth::user()->name}}
+					</td>
+				</tr>
 						@endif
 					@endif
 	    		@endif
@@ -520,6 +534,8 @@
     								</tr>
 								</table>
 								<!-- End of Edit Modal Table -->
+								<input name="audit" value="{{Auth::user()->name}}" hidden>
+    								<!-- ↑抓取登入使用者的名字，不會顯示在頁面上 -->
 							</div>
 	        		</div>
 	        	</div>
@@ -566,7 +582,8 @@
                                                 <tr><th>使用者 : </th><th><label style="text-align: center; width: 100%;">{{ $user->name}}</label> </th></tr>
                                                 <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}" disabled></th></tr>
                                                 <tr><th>電話 :</th> <th><input class="form-control" type="phone" value="{{ $user->phone }}" disabled></th></tr>
-                                                <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}"></th></tr>
+                                                <tr><th>違規點數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}" min="0"></th></tr>
+                                                <tr><th>違規事由 :</th><th> <input  class="form-control" type="text" name="reason" ></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
                                                         <input class="form-control" type="text" value="{{ $user->level }}" disabled></th>
@@ -576,6 +593,10 @@
                                             <!-- End of Edit Modal Table -->
                                             <input name="phone" value="{{$user->phone}}" hidden >
                                             <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
+                                            <input name="username" value="{{$user->name}}" hidden >
+                                            <!-- ↑視為傳遞User names的變數 不會顯示在頁面上 -->
+                                            <input name="reasoncreator" value="{{Auth::user()->name}}" hidden >
+                                            <!-- ↑視為傳遞Creator的變數 不會顯示在頁面上 -->
                                         </div>
                                     </div>
                                 </div>

@@ -129,6 +129,24 @@
                 height: 20px;
                 transition: 0.3s;
             }
+            .portal{
+                background-color: transparent;
+                transition: 0.3s;
+                width: 140px;
+                height: 20px;
+                border-radius: 100px;
+                cursor: pointer;
+                border-width: 0px;
+                font-size: 15px;
+                font-weight: bold;
+
+            }
+            .portal:hover{
+                background-color: #B0E0E6;
+                width: 160px;
+                height: 20px;
+                transition: 0.3s;
+            }
             /*背景圖片的位置: /ncumisborrowsystem/public/img*/
             .background{
                 background-image: url("/img/6.jpg"); 
@@ -214,7 +232,6 @@
                 transition: 0.3s;
 
             }
-
 }
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
@@ -277,7 +294,14 @@
             
         </style>
         <script type="text/javascript">
-            
+        function movetoPortal(){
+            document.getElementById('loginemail').removeAttribute('required');
+            document.getElementById('loginpassword').removeAttribute('required');
+        }
+        function backtologin(){
+            document.getElementById('loginemail').setAttributeNode(document.createAttribute("required"));
+            document.getElementById('loginpassword')..setAttributeNode(document.createAttribute("required"));
+        }
       
         </script>
     </head>
@@ -412,7 +436,7 @@
                                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}" style="text-align: center;">
                                         <label class="col-md-4 control-label" for="email" style="font-weight: bold; "> E-Mail</label>{{ csrf_field() }} 
                                                 <div class="col-md-6">
-                                                <input class="LoginInput" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: 
+                                                <input class="LoginInput" id="email" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: 
                                                 inline-block; font-size : 15px;font-family: Microsoft JhengHei;
                                                 font-weight: bold;" required autofocus></input>
                                                     <!-- @if ($errors->has('email'))
@@ -442,11 +466,13 @@
                                             <!-- Trigger the Register modal with a button -->
                                                 <br>
                                     </div>
-                                    <!-- Register按鈕 -->
+                                    <!-- 額外功能區 -->
                                     <div class="form-group" align="center">
-                                    <!-- portal按鈕 需要美化 -->
-                                    <a href="{{asset('/signin')}}" class="btn btn-success portal" role="button">Portal登入</a><br><br>
-                                    <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
+                                        <!-- 透過Portal登入的按鈕 -->
+                                        <button class="portal" type="button" onclick="location.href='/signin'">Portal登入</button>
+                                        <br><br>
+                                        <!-- 註冊 -->
+                                        <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
                                     </div>    
                                 </div>    
                             </div>

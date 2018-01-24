@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Miss;
 use App\User;
+use App\Reason;
 use Illuminate\Http\Request;
 
 class returnController extends Controller
@@ -13,7 +14,8 @@ class returnController extends Controller
   {
     $users=User::all();
     $res = Miss::where('status','=','已歸還')->orderBy('date','desc')->get();
-    return view('button3_return.index',['res'=> $res,'users'=>$users]);
+    $reasons = Reason::all();
+    return view('button3_return.index',['res'=> $res,'users'=>$users,'reasons'=>$reasons]);
   }
 
 
@@ -31,6 +33,7 @@ class returnController extends Controller
       $update->update(['classroom'=>$rep->classroom]);
       $update->update(['teacher'=>$rep->teacher]);
       $update->update(['status'=>$rep->status]);
+      $update->update(['audit'=>$rep->audit]);
       $update->save();
       return redirect('/return');
 	}
@@ -49,8 +52,16 @@ class returnController extends Controller
     {
       $update= User::where('phone','=',$rep->phone);
       $update->update(['violation'=>$rep->violation]);
+      $reason=new Reason();
+      $reason->user = $rep->username;
+      $reason->phone= $rep->phone;
+      $reason->reason = $rep->reason;
+      $reason->creator = $rep->reasoncreator;
+      $reason->save();
       return redirect('/return');
     }
+
+
 
 
 }

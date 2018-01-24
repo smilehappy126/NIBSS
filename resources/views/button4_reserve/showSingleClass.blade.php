@@ -161,10 +161,12 @@ $nextString = date('Y-m-d',$next);
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+
         <h5 class="modal-title" id="exampleModalLabel">Excel匯入單一多筆資料</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        
       </div>
       <div class="modal-body">
         
@@ -176,6 +178,8 @@ $nextString = date('Y-m-d',$next);
         <button class="btn btn-md btn-primary">Import CSV or Excel File</button>
 
     </form>
+    <br>
+    <a href="{{asset('/downloadExcel')}}" class="btn btn-success" role="button">Excel單一多筆範本下載</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -203,10 +207,11 @@ $nextString = date('Y-m-d',$next);
     </button>
 -->
 <!--classModal先不顯示，等跳轉之後再顯示-->
-    <a href="{{ asset('/reserve/' . $classroom->roomname ) }}" class="btn btn-primary classBtn" id="{{ $classroom->roomname }}">{{ $classroom->roomname }}</a>
-
+    <div class="btn-group btn-group-lg">
+        <a href="{{ asset('/reserve/' . $classroom->roomname ) }}" class="btn btn-primary classBtn" id="{{ $classroom->roomname }}">{{ $classroom->roomname }}</a>
+    </div>
 <!--   classModal   -->
-    <div class="modal fade" id="classModal{{ $classroom->roomname }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="classModal{{ $classroom->roomname }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -225,16 +230,18 @@ $nextString = date('Y-m-d',$next);
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     @endforeach
+    
+    <p></p>
 
     <!--上一週/下一週按鈕-->
     <div class="row">
         
-        <a href="{{ asset('/reserve/'.$currentClassroom.'/'.$preString) }}" class="btn btn-primary col col-md-offset-1 col-md-1"><<上一週</a>
+        <a href="{{ asset('/reserve/'.$currentClassroom.'/'.$preString) }}" class="btn btn-info col col-md-offset-1 col-md-1"><<上一週</a>
 
-        <a href="{{ asset('/reserve/'.$currentClassroom.'/'.$nextString) }}" class="btn btn-primary col col-md-offset-8 col-md-1">下一週>></a>
+        <a href="{{ asset('/reserve/'.$currentClassroom.'/'.$nextString) }}" class="btn btn-info col col-md-offset-8 col-md-1">下一週>></a>
         
     </div>
 
@@ -1032,11 +1039,11 @@ $nextString = date('Y-m-d',$next);
                     <hr>
                     <div class="form-group">
                         <label>開始時間</label>
-                        <select class="form-control select_start" name="start_classTime"></select>
+                        <select class="form-control select_start create_classTime" name="start_classTime"></select>
                     </div>
                     <div class="form-group">
                         <label>結束時間</label>
-                        <select class="form-control select_end" name="end_classTime"></select>
+                        <select class="form-control select_end create_classTime" name="end_classTime"></select>
                     </div>
                     <div class="form-group">
                         <label>教室: {{$currentClassroom}}</label>
@@ -1044,7 +1051,7 @@ $nextString = date('Y-m-d',$next);
                         <br>
                         <label>該週週一: {{$thisMonday}}</label>
                         <input name="weekFirst" value="{{$thisMonday}}" hidden>
-                        <p class="errorMessage" id="errorMessage"></p>
+                        <p class="errorMessage"></p>
                     </div> 
             </div>
             <div class="modal-footer">
@@ -1094,16 +1101,17 @@ $nextString = date('Y-m-d',$next);
                     <hr>
                     <div class="form-group">
                         <label>開始時間</label>
-                        <select class="form-control select_start" name="start_classTime"></select>
+                        <select class="form-control select_start modify_classTime" id="modify_start{{$course->id}}" name="start_classTime"></select>
                     </div>
                     <div class="form-group">
                         <label>結束時間</label>
-                        <select class="form-control select_end" name="end_classTime"></select>
+                        <select class="form-control select_end modify_classTime" id="modify_end{{$course->id}}" name="end_classTime"></select>
                     </div>
                     <div class="form-group">
                         <label>此項目id: {{$course->id}}</label>
                         <input name="roomname" value="{{$course->roomname}}" hidden>
                         <input name="weekFirst" value="{{$course->weekFirst}}" hidden>
+                        <p class="errorMessage"></p>
                     </div> 
             </div>
             <div class="modal-footer">
@@ -1145,6 +1153,7 @@ var classTime_array = ["Mon_1","Mon_2","Mon_3","Mon_4","Mon_noon","Mon_5","Mon_6
 var start=-1;
 var end=-1;
 
+var curId;
 
     
 $( document ).ready(function() {
@@ -1177,7 +1186,7 @@ $( document ).ready(function() {
                         var form_delete = $("<form/>", 
                                          { action:"{{ asset('reserve/deleteCourse/'.$course->id) }}",
                                            method:"post",
-                                           id:"deleteCourse"
+                                           class:"deleteCourse"
                                          }
                         );
                         form_delete.append( 
@@ -1236,6 +1245,7 @@ $( document ).ready(function() {
               $("#cellModal_create").modal("show");
           }else{ // 有資料: 修改Modal
               $("#cellModal"+thisId).modal("show");
+              curId = thisId;
           }
           
           /* ps: 可以這樣取<td>內的資料 */
@@ -1247,8 +1257,9 @@ $( document ).ready(function() {
 
     });
     
-    /* 刪除課程按鈕，阻止修改modal被呼叫(終止事件傳導) */
-    $("#deleteCourse").click(function(){
+    /* 刪除課程按鈕，阻止修改modal被呼叫 */
+    $(".deleteCourse").click(function(){
+        //終止事件傳導
         event.stopPropagation();
     });
     
@@ -1336,7 +1347,10 @@ $( document ).ready(function() {
         }
         
         //清空#errorMessage
-        $("#errorMessage").text("");
+        $(".errorMessage").text("");
+        //提交按鈕恢復正常
+        $(".form_submit").prop('disabled', false);
+
         
         function selected(mClass,day) {
             $(mClass+" [value="+day+"]").prop('selected', true);
@@ -1465,41 +1479,41 @@ $( document ).ready(function() {
     });
     
     
-    /* form validation: 結束節次應大於起始節次 */
-    // 但是對修改form沒用，why?
-    $(".select_start").change(function(){
-//        alert("select_start changed!");
-        
+    /* form validation: check結束節次應大於起始節次 */
+    $(".create_classTime").change(function(){
+
         var index_start = classTime_array.indexOf($(".select_start option:selected").val());
         var index_end = classTime_array.indexOf($(".select_end option:selected").val());
         
-//        alert("index_start: " + index_start);
-//        alert("index_end: " + index_end);
+        // alert("index_start: " + index_start);
+        // alert("index_end: " + index_end);
         
         if(index_start > index_end){
             $(".form_submit").prop('disabled', true);
-            $("#errorMessage").text("起始節次應早於結束節次");
+            $(".errorMessage").text("起始節次應早於結束節次");
         }else{
             $(".form_submit").prop('disabled', false);
-            $("#errorMessage").text("");
+            $(".errorMessage").text("");
         }
         
     });
-    $(".select_end").change(function(){
-//        alert("select_end changed!");
+    $(".modify_classTime").change(function(){
         
-        var index_start = classTime_array.indexOf($(".select_start option:selected").val());
-        var index_end = classTime_array.indexOf($(".select_end option:selected").val());
+        // alert(curId);
+        // var getValue = $("#modify_start"+curId).val();
+        // alert(getValue);
+        var index_start = classTime_array.indexOf($("#modify_start" + curId).val());
+        var index_end = classTime_array.indexOf($("#modify_end" + curId).val());
         
-//        alert("index_start: " + index_start);
-//        alert("index_end: " + index_end);
+        // alert("index_start: " + index_start);
+        // alert("index_end: " + index_end);
         
         if(index_start > index_end){
             $(".form_submit").prop('disabled', true);
-            $("#errorMessage").text("起始節次應早於結束節次");
+            $(".errorMessage").text("起始節次應早於結束節次");
         }else{
             $(".form_submit").prop('disabled', false);
-            $("#errorMessage").text("");
+            $(".errorMessage").text("");
         }
         
     });
