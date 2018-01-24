@@ -436,7 +436,7 @@
                                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}" style="text-align: center;">
                                         <label class="col-md-4 control-label" for="email" style="font-weight: bold; "> E-Mail</label>{{ csrf_field() }} 
                                                 <div class="col-md-6">
-                                                <input class="LoginInput" id="loginemail" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: 
+                                                <input class="LoginInput" id="email" type="email" name="email" id="email"  value="{{ old('email') }}" style="display: 
                                                 inline-block; font-size : 15px;font-family: Microsoft JhengHei;
                                                 font-weight: bold;" required autofocus></input>
                                                     <!-- @if ($errors->has('email'))
@@ -454,7 +454,7 @@
                                             
                                                 <label class="col-md-4 control-label" for="password" style="font-weight: bold;">密碼</label>{{ csrf_field() }} 
                                                 <div class="col-md-6">
-                                                <input type="password" name="password" id="loginpassword"  value="" style="display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required></input>
+                                                <input type="password" name="password" id="password"  value="" style="display: inline-block; font-size: 15px;font-family: Microsoft JhengHei; font-weight: bold;" required></input>
                                                     <!-- @if ($errors->has('LoginPassword'))
                                                         <span class="help-block">
                                                         <strong>{{ $errors->first('password') }}</strong>

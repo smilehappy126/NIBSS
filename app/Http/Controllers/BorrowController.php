@@ -41,6 +41,12 @@ class BorrowController extends Controller
     {
       $update= User::where('phone','=',$rep->phone);
       $update->update(['violation'=>$rep->violation]);
+      $reason=new Reason();
+      $reason->user = $rep->username;
+      $reason->phone= $rep->phone;
+      $reason->reason = $rep->reason;
+      $reason->creator = $rep->reasoncreator;
+      $reason->save();
       return redirect('/borrow');
     }
   
