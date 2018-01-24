@@ -71,13 +71,13 @@ class SigninController extends Controller
         $portal = $this->getUserInfo($request);
 
         // retrive account
-        // $account = SocialAccount::whereProvider('portal')
-        //     ->whereProviderUserId($portal->{'id'})
-        //     ->first();
-        // // if exist
-        // if ($account) {
-        //     return $account->user;
-        // } else {
+        $account = SocialAccount::whereProvider('portal')
+            ->whereProviderUserId($portal->{'id'})
+            ->first();
+        // if exist
+        if ($account) {
+            return $account->user;
+        } else {
             // no exist, create user
             $account = new SocialAccount([
                 'provider_user_id' => $portal->{'id'},
@@ -88,7 +88,7 @@ class SigninController extends Controller
                 'name' => $portal->{'name'},
                 // 'real_name' => $portal->{'name'},
                 'id' => $portal->{'id'},
-                'phone' => '0912345678',
+                'phone' => '無資料',
                 'level' => '一般使用者'
                 // 'unit' => $portal->{'unit'},
                 // 'type' => $portal->{'type'}
@@ -99,7 +99,7 @@ class SigninController extends Controller
             $account->save();
 
             return $user;
-        // }
+        }
     }
 
     public function getUserInfo(Request $request)
