@@ -233,7 +233,7 @@
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<!-- 電話 -->
 	   				<th style="text-align: center;">
-						<button id="phoneSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+						<button id="phoneSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent; width: 80px;">電話</button>
 					</th>
 							@endif
 	     				@endif
@@ -301,7 +301,7 @@
 					<td id="class-{{$re->id}}">{{$re->class}}</td>
 					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 	   					<td id="name-{{$re->id}}">
-	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
+	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}" style="width: 120%;" ><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
 	   					</td>
 	   				@endif
 	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
@@ -310,7 +310,7 @@
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
-					<td id="phone-{{$re->id}}">{{$re->phone}}</td>
+					<td id="phone-{{$re->id}}" style="width: 100px;">{{$re->phone}}</td>
 							@endif
 						@endif
 	    			@endif
@@ -381,7 +381,7 @@
 					</th>
 					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 	   					<td id="name-{{$re->id}}">
-	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
+	   						<button class="UserModalButton" type="button" data-toggle="modal" data-target="EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
 	   					</td>
 	   				@endif
 	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
@@ -582,7 +582,7 @@
                                                 <tr><th>使用者 : </th><th><label style="text-align: center; width: 100%;">{{ $user->name}}</label> </th></tr>
                                                 <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}" disabled></th></tr>
                                                 <tr><th>電話 :</th> <th><input class="form-control" type="phone" value="{{ $user->phone }}" disabled></th></tr>
-                                                <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}"></th></tr>
+                                                <tr><th>違規次數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}" min="0"></th></tr>
                                                 <tr><th>違規事由 :</th><th> <input  class="form-control" type="text" name="reason" ></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
