@@ -51,6 +51,8 @@ Route::post('/return/search','returnController@search');
 
 Route::post('/return/userupdate','returncontroller@userupdate');
 
+Route::post('/return/reasonupdate','returncontroller@reasonupdate');
+
 
 
 
