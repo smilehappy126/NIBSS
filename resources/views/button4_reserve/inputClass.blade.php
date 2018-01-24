@@ -39,6 +39,8 @@
         <button class="btn btn-primary">Import CSV or Excel File</button>
 
     </form>
+    <br>
+    <a href="{{asset('/longdownloadExcel')}}" class="btn btn-success" role="button">Excel固定多筆範本下載</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -161,10 +161,12 @@ $nextString = date('Y-m-d',$next);
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+
         <h5 class="modal-title" id="exampleModalLabel">Excel匯入單一多筆資料</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        
       </div>
       <div class="modal-body">
         
@@ -176,6 +178,8 @@ $nextString = date('Y-m-d',$next);
         <button class="btn btn-md btn-primary">Import CSV or Excel File</button>
 
     </form>
+    <br>
+    <a href="{{asset('/downloadExcel')}}" class="btn btn-success" role="button">Excel單一多筆範本下載</a>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

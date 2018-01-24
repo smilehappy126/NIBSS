@@ -109,6 +109,17 @@ class LongcourseController extends Controller
 
         return back()->with('error','Please Check your file, Something is wrong there.');
     }
+    //download excel
+    public function downloadExcel(Request $request)
+    { 
+        $data = Course::get()->toArray();
+        return Excel::create('2_exceldemo', function($excel){
+            $excel->sheet('2_exceldemo', function($sheet)
+            {
+                $sheet->loadView('longdownloadExcel');
+            });
+        })->export('xlsx');
+    }
     /**
      * Display the specified resource.
      *
