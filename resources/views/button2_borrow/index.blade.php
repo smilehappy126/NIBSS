@@ -558,6 +558,10 @@
                                             <!-- End of Edit Modal Table -->
                                             <input name="phone" value="{{$user->phone}}" hidden >
                                             <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
+                                            <input name="username" value="{{$user->name}}" hidden >
+                                            <!-- ↑視為傳遞User names的變數 不會顯示在頁面上 -->
+                                            <input name="reasoncreator" value="{{Auth::user()->name}}" hidden >
+                                            <!-- ↑視為傳遞Creator的變數 不會顯示在頁面上 -->
                                         </div>
                                     </div>
                                 </div>
