@@ -231,13 +231,13 @@
                       <button id="emailSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
                   </th>
                   <th style="text-align: center;">
-                      <button id="phoneSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+                      <button id="phoneSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
                   </th>
                   <th style="text-align: center; width: 120px;">
-                      <button id="nameSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">違規點數</button>
+                      <button id="nameSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">違規點數</button>
                   </th>
                   <th style="text-align: center;">
-                      <button id="levelSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">權限等級</button>
+                      <button id="levelSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">權限等級</button>
                   </th>
                   @if ((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
                   <th style="text-align: center; width: 120px;">
@@ -305,7 +305,7 @@
               </tr>
               <tr>
                   <th style="text-align: center;" class="TableTitle">
-                      <button id="emailSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
+                      <button id="emailSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;" disabled>信箱</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
                     {{ $user->email }}
@@ -313,7 +313,7 @@
               </tr>
               <tr>
                   <th style="text-align: center;" class="TableTitle">
-                      <button id="phoneSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+                      <button id="phoneSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;" disabled>電話</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
                     {{ $user->phone }}
@@ -321,7 +321,7 @@
               </tr>
               <tr>
                   <th style="text-align: center;" class="TableTitle">
-                      <button id="nameSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">違規點數</button>
+                      <button id="nameSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;" disabled>違規點數</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
                     {{ $user->violation }}
@@ -329,7 +329,7 @@
               </tr>
               <tr>
                   <th style="text-align: center;" class="TableTitle">
-                      <button id="levelSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">權限等級</button>
+                      <button id="levelSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;" disabled>權限等級</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
                     {{ $user->level }}

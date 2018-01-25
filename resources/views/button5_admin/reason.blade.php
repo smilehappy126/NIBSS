@@ -231,10 +231,16 @@
                       <button id="phoneSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
                   </th>
                   <th style="text-align: center;">
-                      <button id="reasonSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">違規原因</button>
+                      <button id="reasonSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">違規原因</button>
                   </th>
                   <th style="text-align: center;">
-                      <button id="creatorSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
+                      <button id="deletereasonSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">撤銷原因</button>
+                  </th>
+                  <th style="text-align: center;">
+                      <button id="userviolationSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">違規點數</button>
+                  </th>
+                  <th style="text-align: center;">
+                      <button id="creatorSortButton" type="button" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
                   </th>
                   @if ((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
                   <th style="text-align: center;">
@@ -252,6 +258,8 @@
                   <th style="text-align: center;">{{ $reason->user }}</th>
                   <th style="text-align: center;">{{ $reason->phone }}</th>
                   <th style="text-align: center;">{{ $reason->reason}}</th>
+                  <th style="text-align: center;">{{ $reason->deletereason}}</th>
+                  <th style="text-align: center;">{{$reason->violation}}</th>
                   <th style="text-align: center;">{{ $reason->creator }}</th>
                   @if ((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
                   <th style="text-align: center;">
@@ -301,7 +309,7 @@
               </tr>
               <tr>
                   <th style="text-align: center;" class="TableTitle">
-                      <button id="phoneSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+                      <button id="phoneSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
                     {{ $reason->phone }}
@@ -317,7 +325,23 @@
               </tr>
               <tr>
                   <th style="text-align: center;" class="TableTitle">
-                      <button id="creatorSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
+                      <button id="deletereasonSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">撤銷原因</button>
+                  </th>
+                  <th style="text-align: center;" class="TableContent">
+                    {{ $reason->deletereason }}
+                  </th>
+              </tr>
+              <tr>
+                  <th style="text-align: center;" class="TableTitle">
+                      <button id="userviolationSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">違規點數</button>
+                  </th>
+                  <th style="text-align: center;" class="TableContent">
+                      {{$reason->violation}}
+                  </th>
+              </tr>
+              <tr>
+                  <th style="text-align: center;" class="TableTitle">
+                      <button id="creatorSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
                     {{ $reason->creator }}
@@ -342,6 +366,8 @@
     <!-- End of Mobile Section -->
 
     
+
+
     <!-- Modal Section -->
     
     <!-- Edit Modal -->
@@ -367,9 +393,11 @@
                                         <div class="EditInfo">
                                             <!-- Edit Modal Table -->
                                             <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
-                                                <tr><th>違規者 : </th><th><label style="text-align: center; width: 100%;">{{ $reason->name}}</label> </th></tr>
+                                                <tr><th>違規者 : </th><th><input  class="form-control" type="phone" name="phone" disabled value="{{ $reason->user }}"> </th></tr>
                                                 <tr><th>電話 :</th> <th><input  class="form-control" type="phone" name="phone" value="{{ $reason->phone }}"></th></tr>
                                                 <tr><th>違規原因 :</th> <th><input  class="form-control" type="text" name="reason" value="{{ $reason->reason }}"></th></tr>
+                                                <tr><th>撤銷原因 :</th> <th><input  class="form-control" type="text" name="deletereason" value="{{ $reason->deletereason }}"></th></tr>
+                                                <tr><th>違規點數 :</th> <th><input  class="form-control" type="number" min="0" name="violation" value="{{$reason->violation}}"></th></tr>
                                                 <tr><th>負責人 :</th><th> <input  class="form-control" type="text" name="creator" value="{{ $reason->creator }}"></th></tr>
                                             </table>
                                             <!-- End of Edit Modal Table -->
@@ -462,6 +490,8 @@
 
 @section('js')
 <script>
+
+  
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("content");
