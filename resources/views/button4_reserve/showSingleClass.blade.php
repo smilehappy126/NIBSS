@@ -151,13 +151,13 @@ $nextString = date('Y-m-d',$next);
         <a href="{{ asset('/inputClass/' . $currentClassroom) }}"><div>固定課程預約</div></a>
     </button>
     
-    <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal">
+    <!-- <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal">
         Excel匯入單一多筆資料
-    </button>
+    </button> -->
             @endif
         @endif
     @endif
-    <div class="modal fade" id="excelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- <div class="modal fade" id="excelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -187,8 +187,8 @@ $nextString = date('Y-m-d',$next);
       </div>
     </div>
   </div>
-</div>   
-<br>         
+</div>   -->
+<br>          
 <!-- excel -->
    <!--  <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
         <input type="file" name="import_file" />
