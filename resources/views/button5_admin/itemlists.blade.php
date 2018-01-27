@@ -190,7 +190,7 @@
 @stop
 
 @section('content')
-<div class="container" style="width: 90%;">
+<div class="container" style="width: 90%;  padding-top: 0px;">
   @if(Auth::check())
     @if((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
       <!-- PC Section -->

@@ -189,7 +189,7 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container" style=" padding-top: 0px;">
     <div class="TopTitle">
       查詢結果<br>
     </div>
