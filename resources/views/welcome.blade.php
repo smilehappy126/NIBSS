@@ -216,7 +216,7 @@
                 font-family: Microsoft JhengHei;
                 font-weight: bolder;
                 font-size: 30px;
-                background-color:#B0C4DE;
+                background-color: #00008B;
                 width: 180px;
                 height: 70px;
                 border-radius: 100px;
@@ -227,7 +227,7 @@
             }
 
             .LoginButton:hover{
-                background-color: #CCDDFF;
+                background-color:#003377;
                 width:280px;
                 transition: 0.3s;
 
@@ -271,7 +271,7 @@
                 font-family: Microsoft JhengHei;
                 font-weight: bolder;
                 font-size: 30px;
-                background-color:#B0C4DE;
+                background-color:#00008B;
                 width: 180px;
                 height: 65px;
                 border-radius: 100px;
@@ -283,7 +283,7 @@
             }
 
             .LoginButton:hover{
-                background-color: #CCDDFF;
+                background-color: #003377;
                 width:280px;
                 transition: 0.3s;
 
