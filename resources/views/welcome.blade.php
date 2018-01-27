@@ -158,7 +158,7 @@
                
             }
             .title{
-                background-color: black;
+                background-color: #262626;
                 opacity: 0.6;
                 color: white;
                 font-weight: bolder;
