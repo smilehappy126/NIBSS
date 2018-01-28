@@ -98,6 +98,21 @@
         border-color: #5cb85c;
     }
 
+    .btn-secondary1{
+        margin-top:2%;
+        background-color: #FFF;
+        color: #0000ff;
+        border-color: #0000ff;
+        border-radius: 25px;
+    }
+    .btn-secondary1:hover,
+    .btn-secondary1:focus,
+    .btn-secondary1:active    {
+        background-color: #0000ff;
+        color: #FFF;
+        border-color: #0000ff;
+    }
+
 </style>
 @stop 
 
@@ -202,7 +217,7 @@
         <textarea readonly class="form-control" rows="5" name="word">{{ $classroom->word }}</textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary1" data-dismiss="modal">Close</button>
       </div>
     </form>
     </div>

@@ -71,50 +71,50 @@ class CourseController extends Controller
     {
         
     }
-    //import excel
-    public function importExcel(Request $request)
-    {
+    // //import excel
+    // public function importExcel(Request $request)
+    // {
 
-        if($request->hasFile('import_file')){
-            $path = $request->file('import_file')->getRealPath();
+    //     if($request->hasFile('import_file')){
+    //         $path = $request->file('import_file')->getRealPath();
 
-            $data = Excel::load($path, function($reader) {})->get();
+    //         $data = Excel::load($path, function($reader) {})->get();
 
-            if(!empty($data) && $data->count()){
+    //         if(!empty($data) && $data->count()){
 
-                foreach ($data->toArray() as $key => $value) {
-                    if(!empty($value)){
-                        foreach ($value as $v) { 
-                            //start_classtime / end_classtime要是文字格式   
-                            //英文字母需皆為小寫    
-                            $insert[] = ['roomname' => $v['roomname'], 'weekfirst' => $v['weekfirst'], 'start_classtime' => $v['start_classtime'], 'end_classtime' => $v['end_classtime'], 'teacher' => $v['teacher'], 'content' => $v['content']];
-                        }
-                    }
-                }
+    //             foreach ($data->toArray() as $key => $value) {
+    //                 if(!empty($value)){
+    //                     foreach ($value as $v) { 
+    //                         //start_classtime / end_classtime要是文字格式   
+    //                         //英文字母需皆為小寫    
+    //                         $insert[] = ['roomname' => $v['roomname'], 'weekfirst' => $v['weekfirst'], 'start_classtime' => $v['start_classtime'], 'end_classtime' => $v['end_classtime'], 'teacher' => $v['teacher'], 'content' => $v['content']];
+    //                     }
+    //                 }
+    //             }
 
                 
-                if(!empty($insert)){
-                    Course::insert($insert);
-                    return back()->with('success','Insert Record successfully.');
-                }
+    //             if(!empty($insert)){
+    //                 Course::insert($insert);
+    //                 return back()->with('success','Insert Record successfully.');
+    //             }
 
-            }
+    //         }
 
-        }
+    //     }
 
-        return back()->with('error','Please Check your file, Something is wrong there.');
-    }
-    //download excel
-    public function downloadExcel(Request $request)
-    { 
-        $data = Course::get()->toArray();
-        return Excel::create('1_exceldemo', function($excel){
-            $excel->sheet('1_exceldemo', function($sheet)
-            {
-                $sheet->loadView('downloadExcel');
-            });
-        })->export('xlsx');
-    }
+    //     return back()->with('error','Please Check your file, Something is wrong there.');
+    // }
+    // //download excel
+    // public function downloadExcel(Request $request)
+    // { 
+    //     $data = Course::get()->toArray();
+    //     return Excel::create('1_exceldemo', function($excel){
+    //         $excel->sheet('1_exceldemo', function($sheet)
+    //         {
+    //             $sheet->loadView('downloadExcel');
+    //         });
+    //     })->export('xlsx');
+    // }
 
     /**
      * Display the specified resource.

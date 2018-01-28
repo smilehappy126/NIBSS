@@ -206,7 +206,7 @@
 @stop
 
 @section('content')
-<div class="container" style="width: 100%;">
+<div class="container" style="width: 100%; padding-top: 0px;">
     <!-- PC Section -->
     <div class="PCsection">
         <div class="TopTitle">
@@ -296,6 +296,11 @@
                             <tr>
                                 <th>
                                     <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規上限</button>
+                                </th>
+                                <th>
+                                    <form action=" {{asset('/admin/reasons')}}" method="get" >{{ csrf_field() }}
+                                       <button class="FormButton" type="submit">違規紀錄</button>
+                                    </form>
                                 </th>
                             </tr>
                         </tr>

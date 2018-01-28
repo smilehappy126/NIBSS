@@ -193,7 +193,7 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container" style=" padding-top: 0px;">
 	<div class="PCsection">
 		<div class="TopTitle">借用狀況</div>
 		<!-- Table Head -->

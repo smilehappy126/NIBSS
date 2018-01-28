@@ -36,6 +36,10 @@ class AdminController extends Controller
       $update->update(['phone'=>$rep->phone]);
       $update->update(['violation'=>$rep->violation]);
       $update->update(['level'=>$rep->level]);
+      $reason = Reason::where('phone','=',$rep->phone);
+      if(count($reason)==1){
+        $reason->update(['violation'=>$rep->violation]);
+      }
       return redirect('/admin/userlists');
     }
     //使用者清單的搜尋功能
@@ -185,15 +189,20 @@ class AdminController extends Controller
     //顯示違規紀錄
     public function reasons(){
       $reasons = Reason::all();
-      return view('button5_admin.reason',['reasons'=>$reasons]);
+      $users = User::all();
+      return view('button5_admin.reason',['reasons'=>$reasons,'users'=>$users]);
     }
     //編輯違規紀錄
     public function updateReasons(Request $rep, $id){
-      $update =  Reason::find($id);
-      $update->update(['user'=>$rep->user]);
+      $update = Reason::find($id);
       $update->update(['phone'=>$rep->phone]);
       $update->update(['reason'=>$rep->reason]);
+      $update->update(['deletereason'=>$rep->deletereason]);
       $update->update(['creator'=>$rep->creator]);
+      $update->update(['violation'=>$rep->violation]);
+
+      $user = User::where('phone','=',$rep->phone);
+      $user->update(['violation'=>$rep->violation]);
       return redirect('/admin/reasons');
     }
     //搜尋違規紀錄

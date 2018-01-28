@@ -15,9 +15,9 @@ class CreateReasonsTable extends Migration
     {
         Schema::create('reasons', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user')->nullable()->default("無資料");
-            $table->string('phone')->nullable()->default("無資料");
-            $table->string('reason')->nullable()->default("無資料");
+            $table->string('user')->nullable()->default('無資料');
+            $table->string('phone')->nullable()->default('無資料');
+            $table->string('reason')->nullable()->default('無資料');
             $table->string('creator')->nullable()->default('無資料');
             $table->timestamps();
         });
