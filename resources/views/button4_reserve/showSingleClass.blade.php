@@ -117,6 +117,20 @@
     border-color: #285e8e;
 }
 
+.curClassBtn {
+    background-color: #d2322d;
+    color: #FFF;
+    border-color: #ff0000;
+    border-radius: 25px;
+}
+/*.curClassBtn:hover,
+.curClassBtn:focus,
+.curClassBtn:active    {
+    background-color: #3276b1;
+    color: #FFF;
+    border-color: #285e8e;
+}*/
+
 .nextWeek {
   margin-top:2%;
   background-color: #FFF;
@@ -199,7 +213,7 @@ $preString = date('Y-m-d',$pre);
 $nextString = date('Y-m-d',$next);
 
 
-echo "現在所在教室: ", $currentClassroom;
+// echo "現在所在教室: ", $currentClassroom;
 ?>
 
 <div class="container" style="padding-top: 0px;">
@@ -1212,17 +1226,22 @@ var end=-1;
 
 var curId;
 
-    
+
 $( document ).ready(function() {
 
-    /* alert進入的教室 */
-    $(".classBtn").click(function() {
+    /* 目前教室按鈕變色 */
+    var curClassBtn = "<?php echo $currentClassroom ?>";
+    $("#"+curClassBtn).addClass("curClassBtn").removeClass("classBtn");
+
+
+    // /* alert進入的教室 */
+    // $(".classBtn").click(function() {
         
-        // var curClassBtn;// 所在教室
-        // curClassBtn = this.id;
+    //     var curClassBtn;// 所在教室
+    //     curClassBtn = this.id;
         
-        // alert("你進入了 " + classroomBtn + " 教室頁面");
-    });
+    //     alert("你進入了 " + classroomBtn + " 教室頁面");
+    // });
     
 
     /* 在對應的格子放入資料 */
@@ -1286,7 +1305,6 @@ $( document ).ready(function() {
     
         @endif
     @endforeach
-    
     
 
     /* 按下課表內格子顯示cellModal */
