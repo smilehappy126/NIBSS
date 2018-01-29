@@ -8,10 +8,30 @@
                 display: none;
             }
 
+            .brButton{
+                float: right;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 20px;
+                background-color:#CCCCFF;
+                width: 200px;
+                height: 40px;
+                border-radius: 100px; 
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+            .brButton:hover{
+                background-color: #E8CCFF;
+                width:210px;
+                transition: 0.3s;
+
+            }
+
             .LoginButton{
                 float: center;
                 font-family: Microsoft JhengHei;
-                font-weight: bolder;
+                /*font-weight: bolder;*/
                 font-size: 20px;
                 background-color: #B0C4DE;
                 width: 100px;
@@ -166,7 +186,7 @@
         <li><a href="{{ url('/borrow') }}">借用狀況</a></li>
         <li><a href="{{ url('/return') }}">已歸還資料</a></li>
         <li><a href="{{ url('/reserve') }}">教室預約狀況</a></li>
-        <li><a href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a></li>
+        <!-- <li><a href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a></li> -->
         
         <!-- 管理者模式 -->
         @if (Route::has('login'))
@@ -176,13 +196,17 @@
                 @endif
             @endif
         @endif
+        <!-- PC版本 書籍借用放旁邊 -->
+        <div>
+            <li style="right: 10px; bottom:6px; position: absolute;"><button class="brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
+        </div>
     <!-- PC版本登入登出 -->
         <!-- 登出登入按鍵 -->
         @if (Route::has('login'))
                 <div class="top-right links" id="PClogout">
                     @if (Auth::check())
                         <form action=" {{ asset('/logout') }}" method="post" >{{ csrf_field() }} 
-                          <li class="dropdown-submenu" style="right: 10px; bottom:6px; position: absolute;">
+                          <li class="dropdown-submenu" style="right: 220px; bottom:6px; position: absolute;">
                             <button class="LogoutButton" type="submit">Logout </button>
                           </li>  
                         </form>
@@ -194,7 +218,7 @@
         @unless(Auth::check())
             <div class="LoginPanel" id="PClogin">
                 <!-- Trigger the LoginModal with a button -->
-                <li style="right: 10px; bottom:6px; position: absolute;">
+                <li style="right: 220px; bottom:6px; position: absolute;">
                     <a>
                         <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
                     </a>
@@ -202,7 +226,6 @@
             </div>
         @endunless
     <!-- PC版本結束 -->
-
     <!-- Mobile版本登入登出 -->
         <!-- 登出登入按鍵 -->
         @if (Route::has('login'))
