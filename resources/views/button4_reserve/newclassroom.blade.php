@@ -54,7 +54,8 @@
     </div>
     <div class="form-group">
        <label for="classword">教室位置、設備、軟體描述:</label>
-       <input type="text" class="form-control" id="classword" name="word" required="必填！">
+       <textarea  class="form-control" rows="5" name="word" id="classword" required="必填！"></textarea>
+     <!--   <input type="text" class="form-control" id="classword" name="word" required="必填！"> -->
     </div>
         <div class="form-group">
        <label for="classpic">教室照片路由:</label>
