@@ -2,6 +2,26 @@
 @section('title', '預約狀況')
 @section('css')
 <style >
+    .panel-body{
+        width: 100%;
+        height: 100%;
+        float: left;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        cursor: default;
+        margin-top:0%;
+    }
+/*    .modal-body{
+        width: 100%;
+        height: 100%;
+        float: left;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        cursor: default;
+        margin-top:0%;*/
+    }
     .returnButton{
         border-radius: 40px;
         font-weight: bolder;
@@ -94,6 +114,8 @@
         </button>
       </div>
       <div class="modal-body">
+<!--         <img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" height="200" width="300">
+        <input type="file" class="form-control" name="imgurl" required="必填！"> 沒成功 -->
         <textarea  class="form-control" rows="5" name="word">{{ $classroom->word }}</textarea>
       </div>
       <div class="modal-footer">
