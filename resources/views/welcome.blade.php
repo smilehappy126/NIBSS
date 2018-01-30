@@ -358,7 +358,7 @@
                             @endif
                             <a  href="{{ url('/borrow') }}">借用狀況</a>|
                             <a  href="{{ url('/return') }}">已歸還資料</a>|
-                            <a  href="{{ url('/reserve') }}">預約狀況</a>|
+                            <a  href="{{ url('/reserve') }}">教室預約狀況</a>|
                             <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                         @if (Route::has('login'))
                             @if(Auth::check())
@@ -377,7 +377,7 @@
                             @endif
                             <a  href="{{ url('/borrow') }}">借用狀況</a><br>
                             <a  href="{{ url('/return') }}">已歸還資料</a><br>
-                            <a  href="{{ url('/reserve') }}">預約狀況</a><br>
+                            <a  href="{{ url('/reserve') }}">教室預約狀況</a><br>
                             <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                         @if (Route::has('login'))
                             @if(Auth::check())
@@ -399,7 +399,7 @@
                             @endif
                             <a  href="{{ url('/borrow') }}">借用狀況</a>|
                             <a  href="{{ url('/return') }}">已歸還資料</a>|
-                            <a  href="{{ url('/reserve') }}">預約狀況</a>|
+                            <a  href="{{ url('/reserve') }}">教室預約狀況</a>|
                             <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                         @if (Route::has('login'))
                             @if(Auth::check())
@@ -418,7 +418,7 @@
                             @endif
                             <a  href="{{ url('/borrow') }}">借用狀況</a><br>
                             <a  href="{{ url('/return') }}">已歸還資料</a><br>
-                            <a  href="{{ url('/reserve') }}">預約狀況</a><br>
+                            <a  href="{{ url('/reserve') }}">教室預約狀況</a><br>
                             <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                         @if (Route::has('login'))
                             @if(Auth::check())
