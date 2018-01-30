@@ -15,7 +15,7 @@
         line-height: 20px;　　　          　
         letter-spacing: 15px;　
     }
-    @media only screen and (min-width: 768px) {
+    
     .border1{
         border-color: #99FF99; /*邊框顏色*/
         -moz-box-shadow: 0px 0px 5px #99FF99;
@@ -40,8 +40,24 @@
         padding:15px 15px;
         margin-top: 20px;
     }
+    @media only screen and (max-width: 768px) {
+    .addFormButton{
+        float:center;
+        font-family: Microsoft JhengHei;
+        font-weight: bolder;
+        font-size: 20px;
+        background-color: #B0C4DE;
+        width: 135px;
+        height: 40px;
+        border-radius: 100px;
+        border-width: 0px;
+        margin-top: 30px;
+        margin-right: 10px;
+        transition: 0.3s;
+        cursor: pointer;
+    }   
     }
-
+    
     /*radio按鈕*/
     .optionRadio{
         -webkit-appearance: none;
@@ -50,9 +66,9 @@
         -o-appearance: none;
         appearance: none;
         position: relative;
-        top: 13.33333px;
+
         right: 0;
-        bottom: 0;
+
         left: 0;
         height: 40px;
         width: 40px;
@@ -121,6 +137,10 @@
 
     }
     /*新增刪除按鈕*/
+    .phone_border{
+        margin-bottom:20px;
+    }
+    @media only screen and (min-width: 768px) {
     .addFormButton{
         float:center;
         font-family: Microsoft JhengHei;
@@ -145,6 +165,7 @@
         width: 15%;
         transition: 0.3s;
     }
+    }
     .removeFormButton{
         float:center;
         font-family: Microsoft JhengHei;
@@ -167,6 +188,7 @@
         width: 15%;
         transition: 0.3s;
     }
+    
 </style>
 @stop
 
@@ -196,10 +218,14 @@
             echo nl2br($rules[0]->personinfo)
             ?>
                 </label>
-                <input  type="radio" class="optionRadio" name="person" id="person1" value="yes" onclick="show2()">
-                <label class="labelSet">本人已確實詳閱上述之同意書內容，並且同意提供個人之資料以供中央大學資訊管理學系使用。
+            <div class="phone_border">
+             <input  type="radio" class="optionRadio" name="person" id="person1" value="yes" onclick="show2()">
+            <label class="labelSet">本人已確實詳閱上述之同意書內容，並且同意提供個人之資料以供中央大學資訊管理學系使用。
                 </label>
-            </div>    
+            </div>   
+                
+            </div>
+                   
             <div id="border3" class="border3">
             <br>    
                 <label class="labelSet">
@@ -207,8 +233,10 @@
                 echo nl2br($rules[0]->note)
                 ?>
                 </label>
+            <div class="phone_border">    
                 <input  type="radio" class="optionRadio optionRadio2" name="ruler" id="ruler"  onclick="show()" checked disabled>
                 <label class="labelSet">本人已確實詳閱上述之同意書內容，並且同意以上器材借用規則。</label>
+            </div>   
             </div>
         </h4>
         </div>
@@ -332,14 +360,14 @@
                 <div id="menu1" class="tab-pane fade">
                     <div id="myForm1">
                         <h2>借用種類：</h2>
-                        <select id="group1" class="form-control ,itemgroup" width="auto" name="itemgroup" onchange="selitem()" >
+                        <select id="myGroup1" class="form-control ,itemgroup" width="auto" name="itemgroup" onchange="selitem()" >
                                 <option disabled selected>請選擇借用種類</option>
                             @foreach($itemgroups as $itemgroup)
                                 <option value="{{ $itemgroup->groupname }}">{{ $itemgroup->groupname }}</option>
                             @endforeach
                         </select>
                         <h2>借用項目：</h2>  
-                        <select id="group2" class="form-control , item"  name="item[]" onchange="selnum()" disabled="disabled" required>
+                        <select id="myItem1" class="form-control , item"  name="item[]" onchange="selnum()" disabled="disabled" required>
                                 <option disabled selected>借用項目</option>
                             @foreach($items as $item)
                                     <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" label="{{ $item->itemname }}" style="display:none;">{{ $item->itemgroup }}
@@ -348,9 +376,11 @@
                             @endforeach
                         </select>    
                         <h2>借用數量：</h2>
-                        <input type="number"  class="form-control" id="group3"  name="itemnum[]" min="0" max="5" disabled="disabled" onchange="limit()" required>
+                        <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5" disabled="disabled" onchange="limit()" required>
                     
-                    </div>             
+                    </div> 
+                    <div id="add">
+                    </div>            
             
                     <div>
                         <button type="button" class="addFormButton" onclick="appendForm()">點此借用更多</button>
@@ -438,18 +468,19 @@
         
     }
 
+    
     function selitem(){
-        $("#group2").removeAttr("disabled");
+        $("#myItem1").removeAttr("disabled");
         var $I1 = $("select[name='itemgroup']").val();
-        var $L2 = document.getElementById("group2").length;
-        var g2 = document.getElementById("group2");
+        var $L2 = document.getElementById("myItem1").length;
+        var g2 = document.getElementById("myItem1");
         for (var i = 0; i < $L2; i++) {
-            document.getElementById('group2').options[i].setAttribute("style", "display:none");
+            document.getElementById('myItem1').options[i].setAttribute("style", "display:none");
         }
         for (var i = 0; i < $L2; i++) {
             var x =g2.options[i].text;
             if(x == $I1){
-                document.getElementById('group2').options[i].removeAttribute("style", "display:none");
+                document.getElementById('myItem1').options[i].removeAttribute("style", "display:none");
             }
         }
 
@@ -457,16 +488,16 @@
     }
     
     function selnum(){
-        $("#group3").removeAttr("disabled");
-        var id = $("#group2 option:selected").attr("id");
+        $("#myNum1").removeAttr("disabled");
+        var id = $("#myItem1 option:selected").attr("id");
         var g3 = parseInt(id, 10);
-        document.getElementById("group3").value= 0;
-        $("#group3").attr("max", g3);
+        document.getElementById("myNum1").value= 0;
+        $("#myNum1").attr("max", g3);
     }
     function limit(){
-        var x = document.getElementById("group3").value;
-        if(x > $("#group3").attr("max")){
-            document.getElementById("group3").value = $("#group3").attr("max");
+        var x = document.getElementById("myNum1").value;
+        if(x > $("#myNum1" ).attr("max")){
+            document.getElementById("myNum1").value = $("#myNum1").attr("max");
             alert("已經超出物品數量");
             
         }
@@ -476,16 +507,15 @@
     
     function appendForm() {
         //複製myForm1表單，更改id變成myForm2,myForm3...
-        var $L2 = document.getElementById("group2").length;
-        var g2 = document.getElementById("group2");
-        for (var i = 0; i < $L2; i++) {
-            document.getElementById('group2').options[i].removeAttribute("style", "display:none");
-        }
-
         
+        $("#myItem1").removeAttr("disabled");
+        $("#myNum1").removeAttr("disabled");
         $("#myForm1").clone(true)
                     .attr("id","myForm" + (formCount+=1))
                     .insertAfter($("[id^=myForm]:last"));
+                    
+        
+
         if(formCount > 1){
                 document.getElementById('removeButton').style.display="inline";
         }
