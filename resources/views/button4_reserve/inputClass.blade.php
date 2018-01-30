@@ -58,7 +58,20 @@
         <button class="btn btn-primary">Import CSV or Excel File</button>
 
     </form> -->
-<div class="container">
+<div class="container" style="padding-top: 10px;">
+
+    <!--顯示出錯訊息(課程重疊了)-->
+    @if (session('alert'))
+    <div class="alert alert-danger alert-dismissable fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
+        <br><br>
+        <label>重複課堂資訊:</label>
+        <p>該週週一: {{ session('weekFirst') }}</p>
+        <!-- <p>開始時間: </p>
+        <p>結束時間: </p> -->
+    </div>
+    @endif
 
     <form action="{{ asset('/inputClass/save') }}" method="post">
         {{ csrf_field() }}

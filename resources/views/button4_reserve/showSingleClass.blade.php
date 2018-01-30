@@ -253,9 +253,10 @@ $nextString = date('Y-m-d',$next);
         <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
     </div>
     @endif
-     @if (Route::has('login'))
+
+    @if (Route::has('login'))
         @if (Auth::check())
-             @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+            @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     <!--新增教室資料按鈕-->
     <button type="button" class="btn btn-link btn-lg">
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>

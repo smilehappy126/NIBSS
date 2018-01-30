@@ -185,7 +185,6 @@ class CourseController extends Controller
             ->where('weekFirst', $request->weekFirst)
             ->where('id', '!=', $id); //除了自己以外
             
-
         foreach($query as $item){
             if( isOverlap($item->start_classTime, $item->end_classTime, 
                      $request->start_classTime, $request->end_classTime) ){
