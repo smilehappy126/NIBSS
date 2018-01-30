@@ -1155,6 +1155,7 @@ $nextString = date('Y-m-d',$next);
             <div class="modal-footer">
                 <button class="btn btn-close" type="button" data-dismiss="modal">Close</button>
                 <button class="btn btn-save form_submit" type="submit">新增課程</button>
+                </form>
                 <!-- <div class="row">
                     <div class="col-10 col-xs-offset- col-xs-3">
                     <button class="btn btn-primary form_submit" type="submit">新增</button>
@@ -1216,7 +1217,8 @@ $nextString = date('Y-m-d',$next);
             </div>
             <div class="modal-footer">
                 <button class="btn btn-close" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-save form_submit" type="submit">儲存</button>
+                <button class="btn btn-save form_submit" type="submit" formaction="{{ asset('reserve/updateCourse/'.$course->id) }}">儲存</button>
+                </form>
                 <!-- <div class="row">    
                     <div class="col-md-10">
                     <button class="btn btn-primary form_submit" type="submit" formaction="{{ asset('reserve/updateCourse/'.$course->id) }}">儲存</button>
