@@ -71,7 +71,7 @@
 @section('content')
 
   <div class="returnSection">
-      <form action=" {{ asset('/reserve')}}" method="get" }}">
+      <form action=" {{ asset('/reserve')}}" method="get">
           <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
       </form>
   </div>

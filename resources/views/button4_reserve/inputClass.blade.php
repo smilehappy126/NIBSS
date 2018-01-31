@@ -9,6 +9,23 @@
 .errorMessage {
     color: red;
 }
+
+.returnButton{
+        border-radius: 40px;
+        font-weight: bolder;
+        font-family: Microsoft JhengHei;
+        width: 17%;
+        font-size: 18px;
+        transition: 0.3s;
+        background-color: transparent;
+        border-width: 1px;  
+    }
+    .returnButton:hover{
+        width: 19%;
+        transition: 0.3s;
+        background-color: #DDDDDD;
+    }
+
 </style>
 @stop
 
@@ -58,6 +75,15 @@
         <button class="btn btn-primary">Import CSV or Excel File</button>
 
     </form> -->
+
+<div>
+  <form action="{{ asset('reserve/'.$currentClassroom)}}" method="get">
+      <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回 {{$currentClassroom}} 教室預約狀況</button>
+  </form>
+</div>
+
+<br>
+
 <div class="container" style="padding-top: 10px;">
 
     <!--顯示出錯訊息(課程重疊了)-->
@@ -164,7 +190,12 @@ $( document ).ready(function(){
         formatSubmit: 'yyyy-mm-dd'
     });
 
+
     $("#submit_btn").click(function() {
+
+        // 清空錯誤訊息
+        $("#err_startDate").text("");
+        $("#err_endDate").text("");
 
         if($("#start_date").val() == ""){
             // alert("請選擇課堂起始日期!");
@@ -172,7 +203,7 @@ $( document ).ready(function(){
         }
         if($("#end_date").val() == ""){
             // alert("請選擇課堂結束日期!");
-            $("#err_endDate").text("請選擇課堂起始日期!");
+            $("#err_endDate").text("請選擇課堂結束日期!");
         }
         else{
             $("#err_startDate").text("");
