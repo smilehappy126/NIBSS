@@ -109,13 +109,13 @@
     border-color: #3276b1;
     border-radius: 25px;
 }
-.classBtn:hover,
-.classBtn:focus,
-.classBtn:active    {
-    background-color: #f2f2f2;
-    color: #000000;
-    border-color: #285e8e;
-}
+    .classBtn:hover,
+    .classBtn:focus,
+    .classBtn:active    {
+        background-color: #f2f2f2;
+        color: #000000;
+        border-color: #285e8e;
+    }
 
 .curClassBtn {
     background-color: #d2322d;
@@ -198,6 +198,34 @@
   left: 0;
 }
 
+
+.btn-save {
+        background-color: #FFF;
+        color: #285e8e;
+        border-color: #3276b1;
+        border-radius: 25px;
+    }
+    .btn-save:hover,
+    .btn-save:focus,
+    .btn-save:active    {
+        background-color: #3276b1;
+        color: #FFF;
+        border-color: #285e8e;
+    }
+
+.btn-close {
+        background-color: #FFF;
+        color: #ac2925;
+        border-color: #d2322d;
+        border-radius: 25px;
+    }
+    .btn-close:hover,
+    .btn-close:focus,
+    .btn-close:active {
+        background-color: #d2322d;
+        color: #FFF;
+        border-color: #ac2925;
+    }
 </style>
 @stop 
 
@@ -225,9 +253,10 @@ $nextString = date('Y-m-d',$next);
         <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
     </div>
     @endif
-     @if (Route::has('login'))
+
+    @if (Route::has('login'))
         @if (Auth::check())
-             @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+            @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     <!--新增教室資料按鈕-->
     <button type="button" class="btn btn-link btn-lg">
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
@@ -304,7 +333,7 @@ $nextString = date('Y-m-d',$next);
 
     @endforeach
     
-    <br/>
+    <br>
 
     <!--上一週/下一週按鈕-->
     <div class="row">
@@ -1125,15 +1154,18 @@ $nextString = date('Y-m-d',$next);
                     </div> 
             </div>
             <div class="modal-footer">
-                <div class="row">    
-                    <div class="col-md-10">
+                <button class="btn btn-close" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-save form_submit" type="submit">新增課程</button>
+                </form>
+                <!-- <div class="row">
+                    <div class="col-10 col-xs-offset- col-xs-3">
                     <button class="btn btn-primary form_submit" type="submit">新增</button>
                     </div>
                     </form>
-                    <div class="col-md-2">
+                    <div class="col-2 col-xs-2">
                     <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -1185,7 +1217,10 @@ $nextString = date('Y-m-d',$next);
                     </div> 
             </div>
             <div class="modal-footer">
-                <div class="row">    
+                <button class="btn btn-close" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-save form_submit" type="submit" formaction="{{ asset('reserve/updateCourse/'.$course->id) }}">儲存</button>
+                </form>
+                <!-- <div class="row">    
                     <div class="col-md-10">
                     <button class="btn btn-primary form_submit" type="submit" formaction="{{ asset('reserve/updateCourse/'.$course->id) }}">儲存</button>
                     </div>
@@ -1193,7 +1228,7 @@ $nextString = date('Y-m-d',$next);
                     <div class="col-md-2">
                     <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
