@@ -6,7 +6,7 @@
     color: red;
 }
 
-.rwd-table {
+/*.rwd-table {
             background: #fff;
             overflow: hidden;
         }
@@ -35,7 +35,7 @@
                     
                     font-weight: bold;
                     /*width: 6.5em;*/
-                    display: inline-block;
+                    /*display: inline-block;
                 }
 
             .rwd-table th, .rwd-table td {
@@ -68,7 +68,7 @@
             .rwd-table th, .rwd-table td {
                 padding: 1em !important;
             }
-        }
+        }*/
 
 .classBtn {
     background-color: #FFF;
@@ -239,61 +239,14 @@ $nextString = date('Y-m-d',$next);
         <a href="{{ asset('/inputClass/' . $currentClassroom) }}"><div>固定課程預約</div></a>
     </button>
     
-    <!-- <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal">
-        Excel匯入單一多筆資料
-    </button> -->
             @endif
         @endif
     @endif
-    <!-- <div class="modal fade" id="excelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-
-        <h5 class="modal-title" id="exampleModalLabel">Excel匯入單一多筆資料</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        
-      </div>
-      <div class="modal-body">
-        
-    <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-        <input type="file" name="import_file" />
-                    {{ csrf_field() }}
-        <br/>
-
-        <button class="btn btn-md btn-primary">Import CSV or Excel File</button>
-
-    </form>
     <br>
-    <a href="{{asset('/downloadExcel')}}" class="btn btn-success" role="button">Excel單一多筆範本下載</a>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-      </div>
-    </div>
-  </div>
-</div>   -->
-<br>          
-<!-- excel -->
-   <!--  <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-        <input type="file" name="import_file" />
-                    {{ csrf_field() }}
-        <br/>
-
-        <button class="btn btn-primary">Import CSV or Excel File</button>
-
-    </form>
-     -->
+     <br>
     <!--教室按鈕-->
     @foreach ($classrooms as $classroom)
-<!--
-    <button id="{{ $classroom->roomname }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#classModal{{ $classroom->roomname }}">
-        <a href="{{ asset('/reserve/017') }}">{{ $classroom->roomname }}</a>
-    </button>
--->
+
     <div class="btn-group btn-group-lg">
         <a href="{{ asset('/reserve/' . $classroom->roomname ) }}" class="btn btn-primary classBtn" id="{{ $classroom->roomname }}">{{ $classroom->roomname }}</a>
     </div>
@@ -310,10 +263,11 @@ $nextString = date('Y-m-d',$next);
         <a href="{{ asset('/reserve/'.$currentClassroom.'/'.$nextString) }}" class="btn btn-success nextWeek col-sm-offset-4 col-sm-3"><span>下一週</span></a>
         
     </div>
-
+<br>
 
 <div class="container">
-    <table BORDER="5" align=center width="1200" height="800" class="table table-bordered rwd-table" style="border:8px #00BBFF groove;">
+    <div class="table-responsive">
+    <table BORDER="5" align=center width="1200" height="800" class="table table-bordered rwd-table table-striped" style="border:8px #00BBFF groove;">
 
         <tr style="font-weight:bold;" id="monitor">
             <th> </th>
@@ -1061,9 +1015,10 @@ $nextString = date('Y-m-d',$next);
             </td>
         </tr>
     </table>
+    </div>
 </div>
 
-
+<!-- 
 @foreach ($results as $course)
 
     <ul>
@@ -1072,7 +1027,7 @@ $nextString = date('Y-m-d',$next);
          {{$course->start_classTime}}, {{$course->end_classTime}},{{$course->weekFirst}}
         </li>
     </ul>
-@endforeach
+@endforeach -->
 
 
 </div>

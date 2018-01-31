@@ -126,13 +126,58 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Excel匯入固定多筆資料</h5>
+        
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        <h4 align="center" class="modal-title" id="exampleModalLabel">Excel匯入固定多筆資料</h4>
       </div>
       <div class="modal-body">
-       
+      <div class="alert alert-success" role="alert">
+  <h5 class="alert-heading">【 說明 】</h5>
+  <p>Excel的欄位對應送出表單欄位。</p><br>
+  <a href="{{asset('/longdownloadExcel')}}" class="btn btn-success" role="button">範本下載</a>
+  <hr>
+  <p class="mb-0">【 範例 (可以多筆新增) 】</p><br>
+  <div class="table-responsive">
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">roomname</th>
+      <th scope="col">start_date</th>
+      <th scope="col">end_date</th>
+      <th scope="col">start_classtime</th>
+      <th scope="col">end_classtime</th>
+      <th scope="col">content</th>
+      <th scope="col">teacher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>107</td>
+      <td>2018/2/22</td>
+      <td>2018/6/21</td>
+      <td>1</td>
+      <td>4</td>
+      <td>會計學</td>
+      <td>謝依靜</td>
+    </tr>
+    <tr>
+      <td>107</td>
+      <td>2018/2/20</td>
+      <td>2018/6/19</td>
+      <td>5</td>
+      <td>7</td>
+      <td>微積分</td>
+      <td>須上苑</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p>即可在 <b>教室107</b> <b>2018/2/22~6/21</b>每個禮拜四 <b>1~4節</b> 填上 <b>會計學謝依靜</b> <br><b>以此類推</b>其他筆的資料新增</p>
+</div> 
+
     <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('inputClass/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
         <input type="file" name="import_file" />
                     {{ csrf_field() }}
@@ -141,7 +186,6 @@
     <!-- <a href="{{asset('/longdownloadExcel')}}" class="btn btn-success" role="button">Excel固定多筆範本下載</a> -->
       </div>
       <div class="modal-footer">
-        <a href="{{asset('/longdownloadExcel')}}" class="btn btn-success" role="button">範本下載</a>
         <button class="btn btn-primary" type="submit">上傳固定課程</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         
