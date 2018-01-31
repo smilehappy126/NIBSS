@@ -71,7 +71,7 @@
 @section('content')
 
   <div class="returnSection">
-      <form action=" {{ asset('/reserve')}}" method="get" }}">
+      <form action=" {{ asset('/reserve')}}" method="get">
           <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
       </form>
   </div>
@@ -90,7 +90,7 @@
     @if (Route::has('login'))
       @if (Auth::check())
         @if(Auth::user()->level === '管理員')
-        <form action="{{ asset('/editclassroom/'.$classroom->id) }}" method="POST" onclick="if(confirm('您確定刪除嗎?')) return true;else return false">
+        <form action="{{ asset('/editclassroom/'.$classroom->id) }}" method="POST" onclick="if(confirm('您確定刪除嗎? \n\n注意:該教室內的課程資料不會被刪除')) return true;else return false">
             {!! csrf_field() !!}
             {!! method_field('DELETE') !!}
             <button type="submit" class="btn btn-secondary btn-block" id="{{ $classroom->id }}">
