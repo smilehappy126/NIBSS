@@ -2,6 +2,7 @@
 @section('title', '預約狀況')
 @section('css')
 <style >
+  @media screen and (min-width: 900px){
     .panel-body{
         width: 100%;
         height: 100%;
@@ -22,6 +23,50 @@
         cursor: default;
         margin-top:0%;
     }
+    .returnButton{
+        border-radius: 40px;
+        font-weight: bolder;
+        font-family: Microsoft JhengHei;
+        width: 10%;
+        font-size: 20px;
+        transition: 0.3s;
+        background-color: transparent;
+        border-width: 1px;  
+    }
+    .returnButton:hover{
+        width: 7%;
+        transition: 0.3s;
+        background-color: #DDDDDD;
+    }
+    .btn-primary {
+        background-color: #FFF;
+        color: #285e8e;
+        border-color: #3276b1;
+        border-radius: 25px;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active    {
+        background-color: #3276b1;
+        color: #FFF;
+        border-color: #285e8e;
+    }
+    .btn-secondary {
+        background-color: #FFF;
+        color: #ac2925;
+        border-color: #d2322d;
+        border-radius: 25px;
+    }
+    .btn-secondary:hover,
+    .btn-secondary:focus,
+    .btn-secondary:active {
+        background-color: #d2322d;
+        color: #FFF;
+        border-color: #ac2925;
+    }
+}
+
+  @media screen and (max-width: 900px) and (min-width: 300px) and (max-height: 1024px){
     .returnButton{
         border-radius: 40px;
         font-weight: bolder;
@@ -63,6 +108,8 @@
         color: #FFF;
         border-color: #ac2925;
     }
+}
+
 
 </style>
 
@@ -83,7 +130,7 @@
   
        <div class="panel-body"><img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" style="height: 300px; width: 500px; display:block; margin:auto;"></br></br>
               教室描述：
-              <textarea readonly class="form-control" rows="5" name="word" style="width: 100%;">{{ $classroom->word }}</textarea>
+              <textarea readonly class="form-control" rows="5" name="word" id="TX">{{ $classroom->word }}</textarea>
             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
                修改
             </button>
