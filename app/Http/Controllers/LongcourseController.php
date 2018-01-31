@@ -116,25 +116,38 @@ class LongcourseController extends Controller
                 
                 if(!empty($insert)){
                     Course::insert($insert);
-                    return back()->with('success','Insert Record successfully.');
+                    // return back()->with('success','Insert Record successfully.');
+                    return redirect('reserve/'.$v['roomname']);
                 }
 
             }
-
+            
+        // return redirect('reserve/'.$roomname);
         }
 
         return back()->with('error','Please Check your file, Something is wrong there.');
+
     }
     //download excel
-    public function downloadExcel(Request $request)
-    { 
-        $data = Course::get()->toArray();
-        return Excel::create('2_exceldemo', function($excel){
-            $excel->sheet('2_exceldemo', function($sheet)
-            {
-                $sheet->loadView('longdownloadExcel');
-            });
-        })->export('xlsx');
+    // public function downloadExcel(Request $request)
+    // { 
+    //     $data = Course::get()->toArray();
+    //     return Excel::create('2_exceldemo', function($excel){
+    //         $excel->sheet('2_exceldemo', function($sheet)
+    //         {
+    //             $sheet->loadView('longdownloadExcel');
+    //         });
+    //     })->export('xlsx');
+    // }
+    public function downloadExcel()
+    {
+        $myFile = public_path("exceldemo.ods");
+        $headers = ['Content-Type: application/ods'];
+        $t=time();
+        $newName = 'exceldemo'.date("Y-m-d",$t).'.ods';
+
+
+        return response()->download($myFile, $newName, $headers);
     }
     /**
      * Display the specified resource.
