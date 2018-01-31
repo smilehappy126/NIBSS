@@ -273,17 +273,20 @@
 					<td id="id-{{$mis->id}}">{{$mis->id}}</td>
 					<td id="date-{{$mis->id}}">{{$mis->date}}</td>
 					<td id="class-{{$mis->id}}">{{$mis->class}}</td>
-					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-	   					<td id="name-{{$mis->id}}">
-	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
-	   					</td>
-	   				@endif
-	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-						<td id="name-{{$mis->id}}">{{$mis->name}}</td>
-					@endunless
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+			   					<td id="name-{{$mis->id}}">
+			   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
+			   					</td>
+			   				@else
+			   					<td id="name-{{$mis->id}}">{{$mis->name}}</td>
+			   				@endif
+			   			@endif
+	    			@endif
+					@if (Route::has('login'))
+						@if (Auth::check())
+							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level) ==='工讀生')
 					<td id="phone-{{$mis->id}}">{{$mis->phone}}</td>
 							@endif
 						@endif
@@ -296,7 +299,7 @@
 					<td id="status-{{$mis->id}}">{{$mis->status}}</td>
 					@if (Route::has('login'))
 						@if (Auth::check())
-							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
 					<td>
 					 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
 					 		<span class="glyphicon glyphicon-pencil"></span> 編輯
@@ -352,20 +355,23 @@
 	   				<th class="TableTop" style="text-align: center;">
 						<button id="nameSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
 					</th>
-					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-	   					<td id="name-{{$mis->id}}">
-	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
-	   					</td>
-	   				@endif
-	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-					<td class="TableContent" id="name-{{$mis->id}}">
-						{{$mis->name}}
-					</td>
-					@endunless
+					@if (Route::has('login'))
+						@if (Auth::check())
+							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
+			   					<td id="name-{{$mis->id}}">
+			   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
+			   					</td>
+			   				@else
+			   					<td class="TableContent" id="name-{{$mis->id}}">
+									{{$mis->name}}
+								</td>
+			   				@endif
+			   			@endif
+			   		@endif
 				</tr>
 				@if (Route::has('login'))
 					@if (Auth::check())
-						@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
+						@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 				<!-- 電話 -->
 				<tr>
 	   				<th class="TableTop" style="text-align: center;">
@@ -434,7 +440,7 @@
 				</tr>
 				@if (Route::has('login'))
 					@if (Auth::check())
-						@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+						@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
 				<!-- 編輯資料 -->
 				<tr>
 	   	 			<th class="TableTop" style="text-align: center;">
