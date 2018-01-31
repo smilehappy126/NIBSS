@@ -26,14 +26,14 @@
         border-radius: 40px;
         font-weight: bolder;
         font-family: Microsoft JhengHei;
-        width: 10%;
+        width: 14%;
         font-size: 20px;
         transition: 0.3s;
         background-color: transparent;
         border-width: 1px;  
     }
     .returnButton:hover{
-        width: 7%;
+        width: 16%;
         transition: 0.3s;
         background-color: #DDDDDD;
     }
@@ -72,9 +72,10 @@
 
   <div class="returnSection">
       <form action=" {{ asset('/reserve')}}" method="get">
-          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
+          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回教室列表</button>
       </form>
   </div>
+  <br>
   @foreach ($classrooms as $classroom)
   <div class="col-md-4">
     <div class="panel panel-default">
