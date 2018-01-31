@@ -13,14 +13,14 @@
         border-radius: 40px;
         font-weight: bolder;
         font-family: Microsoft JhengHei;
-        width: 10%;
+        width: 18%;
         font-size: 16px;
         transition: 0.3s;
         background-color: transparent;
         border-width: 1px;  
     }
     .returnButton:hover{
-        width: 7%;
+        width: 20%;
         transition: 0.3s;
         background-color: #DDDDDD;
     }
