@@ -29,7 +29,6 @@ Route::get('/create/setphone', 'ApplicationController@set');
 Route::post('/create','ApplicationController@store');
 Route::post('/create/setphone','ApplicationController@setphone');
 //借用狀況
-
 Route::get('/borrow', 'BorrowController@index');
 Route::post('/borrow/update/{id}','BorrowController@update');
 Route::post('/borrow/userupdate','BorrowController@userupdate');
@@ -56,15 +55,15 @@ Route::post('/return/reasonupdate','returncontroller@reasonupdate');
 
 
 
-//預約狀況(主畫面，請先選擇教室，可再思考畫面設計)
+//教室預約狀況(主畫面，教室列表)
 Route::get('/reserve', 'CourseController@index');
-//預約狀況(點選教室後)
+//教室預約狀況(點選教室後)
 Route::get('/reserve/{roomname}', 'CourseController@show');
-//(點選上下一週後)
+//教室預約狀況(點選上下一週後)
 Route::get('/reserve/{roomname}/{weekfirst}', 'CourseController@showOtherWeek');
-//單筆excel
-Route::post('/importExcel', 'CourseController@importExcel');
-Route::get('/downloadExcel', 'CourseController@downloadExcel');
+// //單筆excel
+// Route::post('/importExcel', 'CourseController@importExcel');
+// Route::get('/downloadExcel', 'CourseController@downloadExcel');
 
 
 //新增課程資料
@@ -75,10 +74,10 @@ Route::post('/reserve/updateCourse/{id}','CourseController@update');
 Route::delete('reserve/deleteCourse/{id}','CourseController@destroy');
 
 
-//以下尚未處理
 //新增教室資料
-Route::post('/newclassroom','ClassroomController@store');
 Route::get('/newclassroom', 'ClassroomController@newClassroomPage');
+Route::post('/newclassroom/create', 'ClassroomController@store');
+
 //修改教室資料
 Route::get('/editclassroom', 'ClassroomController@editClassroomPage');
 Route::post('/editclassroom/{classroom}','ClassroomController@update');

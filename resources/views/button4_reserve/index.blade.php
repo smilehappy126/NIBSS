@@ -119,17 +119,9 @@
 @section('content')
 
 <?php
-$date = new DateTime($weekfirst);
-$dateString = $date->format('Y-m-d');
-
-$pre = strtotime('previous monday', strtotime($dateString));
-$next = strtotime('next monday', strtotime($dateString)); 
-
 // echo "主畫面<br>";
 // echo "(請先選擇教室)<br>";
 //echo "(可在思考此處畫面設計)";
-
-
 ?>
 @if (Route::has('login'))
   @if (Auth::check())
@@ -186,13 +178,13 @@ $next = strtotime('next monday', strtotime($dateString));
     </div>
 </div> -->
 
-<!--classModal先不顯示，等跳轉之後再顯示-->
+<!--classModal-->
   <div class="col-md-4">
      <div class="panel panel-default">
        <div class="panel-heading">    <a href="{{ asset('/reserve/' . $classroom->roomname ) }}" class="btn btn-secondary btn-block classBtn" id="{{ $classroom->roomname }}">{{ $classroom->roomname }} 預約狀況</a></div>
           <div class="panel-body">    
               <div class="hovereffect">
-                  <img class="img-responsive" src="{{ url('/uploadimg/'.$classroom->imgurl) }}" alt="" style="height: 200px; width:400px;">
+                  <img class="img-responsive" src="{{ url('/uploadimg/'.$classroom->imgurl) }}" alt="" style="height: 300px; width: 500px; display:block; margin:auto;">
                   <div class="overlay">
                       <h2> 教室描述：
                              {{ $classroom->word }} 

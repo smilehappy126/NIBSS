@@ -9,56 +9,46 @@
 .errorMessage {
     color: red;
 }
+.returnButton{
+        border-radius: 40px;
+        font-weight: bolder;
+        font-family: Microsoft JhengHei;
+        width: 18%;
+        font-size: 16px;
+        transition: 0.3s;
+        background-color: transparent;
+        border-width: 1px;  
+    }
+    .returnButton:hover{
+        width: 20%;
+        transition: 0.3s;
+        background-color: #DDDDDD;
+    }
 </style>
 @stop
 
 @section('content')
 
-
-
-<button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal2">
-        Excel匯入固定多筆資料
-    </button>
-
-    <div class="modal fade" id="excelModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Excel匯入固定多筆資料</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       
-    <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('inputClass/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-        <input type="file" name="import_file" />
-                    {{ csrf_field() }}
-        <br/>
-
-        <button class="btn btn-primary">Import CSV or Excel File</button>
-
-    </form>
-    <br>
-    <a href="{{asset('/longdownloadExcel')}}" class="btn btn-success" role="button">Excel固定多筆範本下載</a>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-      </div>
+<div class="container" style="padding-top: 10px;">
+    <!--顯示出錯訊息(課程重疊了)-->
+    @if (session('alert'))
+    <div class="alert alert-danger alert-dismissable fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
+        <br><br>
+        <label>重複課堂資訊:</label>
+        <p>該週週一: {{ session('weekFirst') }}</p>
+        <!-- <p>開始時間: </p>
+        <p>結束時間: </p> -->
     </div>
-  </div>
-</div>        
+    @endif
+    <div>
+      <form action="{{ asset('reserve/'.$currentClassroom)}}" method="get">
+          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回 {{$currentClassroom}} 教室預約狀況</button>
+      </form>
+    </div>
 
-    <!-- <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('inputClass/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-        <input type="file" name="import_file" />
-                    {{ csrf_field() }}
-        <br/>
-
-        <button class="btn btn-primary">Import CSV or Excel File</button>
-
-    </form> -->
-<div class="container">
+    <br>
 
     <form action="{{ asset('/inputClass/save') }}" method="post">
         {{ csrf_field() }}
@@ -127,10 +117,83 @@
         </div>
         <div>
             <button id="submit_btn" class="btn btn-primary" type="submit">送出</button>
+            <button type="button" class="btn btn-success " data-toggle="modal" data-target="#excelModal2">Excel匯入固定多筆資料
+    </button>
         </div>
     </form>
 </div>
+    <div class="modal fade" id="excelModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 align="center" class="modal-title" id="exampleModalLabel">Excel匯入固定多筆資料</h4>
+      </div>
+      <div class="modal-body">
+      <div class="alert alert-success" role="alert">
+  <h5 class="alert-heading">【 說明 】</h5>
+  <p>Excel的欄位對應送出表單欄位。</p><br>
+  <a href="{{asset('/longdownloadExcel')}}" class="btn btn-success" role="button">範本下載</a>
+  <hr>
+  <p class="mb-0">【 範例 (可以多筆新增) 】</p><br>
+  <div class="table-responsive">
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">roomname</th>
+      <th scope="col">start_date</th>
+      <th scope="col">end_date</th>
+      <th scope="col">start_classtime</th>
+      <th scope="col">end_classtime</th>
+      <th scope="col">content</th>
+      <th scope="col">teacher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>107</td>
+      <td>2018/2/22</td>
+      <td>2018/6/21</td>
+      <td>1</td>
+      <td>4</td>
+      <td>會計學</td>
+      <td>謝依靜</td>
+    </tr>
+    <tr>
+      <td>107</td>
+      <td>2018/2/20</td>
+      <td>2018/6/19</td>
+      <td>5</td>
+      <td>7</td>
+      <td>微積分</td>
+      <td>須上苑</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<p>即可在 <b>教室107</b> <b>2018/2/22~6/21</b>每個禮拜四 <b>1~4節</b> 填上 <b>會計學謝依靜</b> <br><b>以此類推</b>其他筆的資料新增</p>
+</div> 
 
+    <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('inputClass/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+        <input type="file" name="import_file" />
+                    {{ csrf_field() }}
+        <!-- <br/> -->
+   
+    <!-- <a href="{{asset('/longdownloadExcel')}}" class="btn btn-success" role="button">Excel固定多筆範本下載</a> -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">上傳固定課程</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+      </form>
+    </div>
+  </div>
+</div>        
 
 @endsection
 
@@ -151,7 +214,12 @@ $( document ).ready(function(){
         formatSubmit: 'yyyy-mm-dd'
     });
 
+
     $("#submit_btn").click(function() {
+
+        // 清空錯誤訊息
+        $("#err_startDate").text("");
+        $("#err_endDate").text("");
 
         if($("#start_date").val() == ""){
             // alert("請選擇課堂起始日期!");
@@ -159,7 +227,7 @@ $( document ).ready(function(){
         }
         if($("#end_date").val() == ""){
             // alert("請選擇課堂結束日期!");
-            $("#err_endDate").text("請選擇課堂起始日期!");
+            $("#err_endDate").text("請選擇課堂結束日期!");
         }
         else{
             $("#err_startDate").text("");

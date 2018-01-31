@@ -6,7 +6,7 @@
     color: red;
 }
 
-.rwd-table {
+/*.rwd-table {
             background: #fff;
             overflow: hidden;
         }
@@ -32,10 +32,10 @@
             }
 
                 .rwd-table td:before {
-                    content: attr(data-th) " : ";
+                    
                     font-weight: bold;
-                    width: 6.5em;
-                    display: inline-block;
+                    /*width: 6.5em;*/
+                    /*display: inline-block;
                 }
 
             .rwd-table th, .rwd-table td {
@@ -68,44 +68,131 @@
             .rwd-table th, .rwd-table td {
                 padding: 1em !important;
             }
-        }
-/*
-        .rwd-table {
-  border: 1px solid #000000;
-  border-collapse: collapse;
+        }*/
+
+.classBtn {
+    background-color: #FFF;
+    color: #285e8e;
+    border-color: #3276b1;
+    border-radius: 25px;
 }
-  .rwd-table th, td {
-    border: 1px solid #000000;
-    padding: 2px 4px;
-    text-align: center;
-  }
-   
-@media screen and (max-width: 451px) {
-   
-  .rwd-table tr {
-    border: 1px solid #000000;
-  }
-   
-  .rwd-table th {
-      display: none;
-  }
-   
-  .rwd-table td {
-      display: block;
-      border: none;
-  }
-   
-  .rwd-table td:before {
-      content: attr(data-th) " ";
-      float: left;
-      font-weight: bold;
-  }
+    .classBtn:hover,
+    .classBtn:focus,
+    .classBtn:active    {
+        background-color: #f2f2f2;
+        color: #000000;
+        border-color: #285e8e;
+    }
+
+.curClassBtn {
+    background-color: #d2322d;
+    color: #FFF;
+    border-color: #ff0000;
+    border-radius: 25px;
 }
-*/
+/*.curClassBtn:hover,
+.curClassBtn:focus,
+.curClassBtn:active    {
+    background-color: #3276b1;
+    color: #FFF;
+    border-color: #285e8e;
+}*/
+
+.nextWeek {
+  margin-top:2%;
+  background-color: #FFF;
+  color: #5cb85c;
+  border-color: #5cb85c;
+  border-radius: 25px;
+}
+
+.nextWeek span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.nextWeek span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.01s;
+}
+
+.nextWeek:hover span {
+  padding-right: 25px;
+}
+
+.nextWeek:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.prevWeek {
+  margin-top:2%;
+  background-color: #FFF;
+  color: #5cb85c;
+  border-color: #5cb85c;
+  border-radius: 25px;
+}
+
+.prevWeek span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.prevWeek span:after {
+  content: '\00AB';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.01s;
+}
+
+.prevWeek:hover span {
+  
+  padding-left: 25px;
+}
+
+.prevWeek:hover span:after {
+  opacity: 1;
+  left: 0;
+}
 
 
+.btn-save {
+        background-color: #FFF;
+        color: #285e8e;
+        border-color: #3276b1;
+        border-radius: 25px;
+    }
+    .btn-save:hover,
+    .btn-save:focus,
+    .btn-save:active    {
+        background-color: #3276b1;
+        color: #FFF;
+        border-color: #285e8e;
+    }
 
-
+.btn-close {
+        background-color: #FFF;
+        color: #ac2925;
+        border-color: #d2322d;
+        border-radius: 25px;
+    }
+    .btn-close:hover,
+    .btn-close:focus,
+    .btn-close:active {
+        background-color: #d2322d;
+        color: #FFF;
+        border-color: #ac2925;
+    }
 </style>
 @stop 
 
@@ -124,7 +211,7 @@ $nextString = date('Y-m-d',$next);
 // echo "現在所在教室: ", $currentClassroom;
 ?>
 
-<div class="container">
+<div class="container" style="padding-top: 0px;">
     
     <!--顯示出錯訊息(課程重疊了)-->
     @if (session('alert'))
@@ -133,9 +220,10 @@ $nextString = date('Y-m-d',$next);
         <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
     </div>
     @endif
-     @if (Route::has('login'))
+
+    @if (Route::has('login'))
         @if (Auth::check())
-             @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+            @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     <!--新增教室資料按鈕-->
     <button type="button" class="btn btn-link btn-lg">
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
@@ -151,103 +239,35 @@ $nextString = date('Y-m-d',$next);
         <a href="{{ asset('/inputClass/' . $currentClassroom) }}"><div>固定課程預約</div></a>
     </button>
     
-    <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal">
-        Excel匯入單一多筆資料
-    </button>
             @endif
         @endif
     @endif
-    <div class="modal fade" id="excelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-
-        <h5 class="modal-title" id="exampleModalLabel">Excel匯入單一多筆資料</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        
-      </div>
-      <div class="modal-body">
-        
-    <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-        <input type="file" name="import_file" />
-                    {{ csrf_field() }}
-        <br/>
-
-        <button class="btn btn-md btn-primary">Import CSV or Excel File</button>
-
-    </form>
     <br>
-    <a href="{{asset('/downloadExcel')}}" class="btn btn-success" role="button">Excel單一多筆範本下載</a>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-      </div>
-    </div>
-  </div>
-</div>   
-<br>         
-<!-- excel -->
-   <!--  <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-        <input type="file" name="import_file" />
-                    {{ csrf_field() }}
-        <br/>
-
-        <button class="btn btn-primary">Import CSV or Excel File</button>
-
-    </form>
-     -->
+     <br>
     <!--教室按鈕-->
     @foreach ($classrooms as $classroom)
-<!--
-    <button id="{{ $classroom->roomname }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#classModal{{ $classroom->roomname }}">
-        <a href="{{ asset('/reserve/017') }}">{{ $classroom->roomname }}</a>
-    </button>
--->
-<!--classModal先不顯示，等跳轉之後再顯示-->
+
     <div class="btn-group btn-group-lg">
         <a href="{{ asset('/reserve/' . $classroom->roomname ) }}" class="btn btn-primary classBtn" id="{{ $classroom->roomname }}">{{ $classroom->roomname }}</a>
     </div>
-<!--   classModal   -->
-    <!-- <div class="modal fade" id="classModal{{ $classroom->roomname }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ $classroom->roomname }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {{ $classroom->word }}
-                    <img id="image" src="{{$classroom->imgurl}}" height="200" width="400">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     @endforeach
     
-    <p></p>
+    <br>
 
     <!--上一週/下一週按鈕-->
     <div class="row">
         
-        <a href="{{ asset('/reserve/'.$currentClassroom.'/'.$preString) }}" class="btn btn-info col col-md-offset-1 col-md-1"><<上一週</a>
-
-        <a href="{{ asset('/reserve/'.$currentClassroom.'/'.$nextString) }}" class="btn btn-info col col-md-offset-8 col-md-1">下一週>></a>
+        <a href="{{ asset('/reserve/'.$currentClassroom.'/'.$preString) }}" class="btn btn-success prevWeek col-sm-offset-1 col-sm-3"><span>上一週</span></a>
+    
+        <a href="{{ asset('/reserve/'.$currentClassroom.'/'.$nextString) }}" class="btn btn-success nextWeek col-sm-offset-4 col-sm-3"><span>下一週</span></a>
         
     </div>
-
+<br>
 
 <div class="container">
-    <table BORDER="5" align=center width="1200" height="800" class="table table-bordered rwd-table" style="border:8px #00BBFF groove;">
+    <div class="table-responsive">
+    <table BORDER="5" align=center width="1200" height="800" class="table table-bordered rwd-table table-striped" style="border:8px #00BBFF groove;">
 
         <tr style="font-weight:bold;" id="monitor">
             <th> </th>
@@ -995,9 +1015,10 @@ $nextString = date('Y-m-d',$next);
             </td>
         </tr>
     </table>
+    </div>
 </div>
 
-
+<!-- 
 @foreach ($results as $course)
 
     <ul>
@@ -1006,7 +1027,7 @@ $nextString = date('Y-m-d',$next);
          {{$course->start_classTime}}, {{$course->end_classTime}},{{$course->weekFirst}}
         </li>
     </ul>
-@endforeach
+@endforeach -->
 
 
 </div>
@@ -1055,15 +1076,18 @@ $nextString = date('Y-m-d',$next);
                     </div> 
             </div>
             <div class="modal-footer">
-                <div class="row">    
-                    <div class="col-md-10">
+                <button class="btn btn-close" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-save form_submit" type="submit">新增課程</button>
+                </form>
+                <!-- <div class="row">
+                    <div class="col-10 col-xs-offset- col-xs-3">
                     <button class="btn btn-primary form_submit" type="submit">新增</button>
                     </div>
                     </form>
-                    <div class="col-md-2">
+                    <div class="col-2 col-xs-2">
                     <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -1115,7 +1139,10 @@ $nextString = date('Y-m-d',$next);
                     </div> 
             </div>
             <div class="modal-footer">
-                <div class="row">    
+                <button class="btn btn-close" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-save form_submit" type="submit" formaction="{{ asset('reserve/updateCourse/'.$course->id) }}">儲存</button>
+                </form>
+                <!-- <div class="row">    
                     <div class="col-md-10">
                     <button class="btn btn-primary form_submit" type="submit" formaction="{{ asset('reserve/updateCourse/'.$course->id) }}">儲存</button>
                     </div>
@@ -1123,7 +1150,7 @@ $nextString = date('Y-m-d',$next);
                     <div class="col-md-2">
                     <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -1155,18 +1182,22 @@ var end=-1;
 
 var curId;
 
-    
+
 $( document ).ready(function() {
-    
-    /* alert進入的教室 */
-    $(".classBtn").click(function() {
+
+    /* 目前教室按鈕變色 */
+    var curClassBtn = "<?php echo $currentClassroom ?>";
+    $("#"+curClassBtn).addClass("curClassBtn").removeClass("classBtn");
+
+
+    // /* alert進入的教室 */
+    // $(".classBtn").click(function() {
         
-        var classroomBtn;// 所在教室
-        classroomBtn = this.id;
+    //     var curClassBtn;// 所在教室
+    //     curClassBtn = this.id;
         
-        alert("你進入了 " + classroomBtn + " 教室頁面");
-        
-    });
+    //     alert("你進入了 " + classroomBtn + " 教室頁面");
+    // });
     
 
     /* 在對應的格子放入資料 */
@@ -1230,7 +1261,6 @@ $( document ).ready(function() {
     
         @endif
     @endforeach
-    
     
 
     /* 按下課表內格子顯示cellModal */

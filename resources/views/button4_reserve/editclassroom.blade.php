@@ -71,14 +71,14 @@
         border-radius: 40px;
         font-weight: bolder;
         font-family: Microsoft JhengHei;
-        width: 10%;
+        width: 14%;
         font-size: 20px;
         transition: 0.3s;
         background-color: transparent;
         border-width: 1px;  
     }
     .returnButton:hover{
-        width: 7%;
+        width: 16%;
         transition: 0.3s;
         background-color: #DDDDDD;
     }
@@ -118,16 +118,17 @@
 @section('content')
 
   <div class="returnSection">
-      <form action=" {{ asset('/reserve')}}" method="get" }}">
-          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
+      <form action=" {{ asset('/reserve')}}" method="get">
+          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回教室列表</button>
       </form>
   </div>
+  <br>
   @foreach ($classrooms as $classroom)
   <div class="col-md-4">
     <div class="panel panel-default">
        <div class="panel-heading">{{ $classroom->roomname }}</div>
   
-       <div class="panel-body"><img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" height="200" width="300"></br></br>
+       <div class="panel-body"><img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" style="height: 300px; width: 500px; display:block; margin:auto;"></br></br>
               教室描述：
               <textarea readonly class="form-control" rows="5" name="word" id="TX">{{ $classroom->word }}</textarea>
             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
@@ -137,7 +138,7 @@
     @if (Route::has('login'))
       @if (Auth::check())
         @if(Auth::user()->level === '管理員')
-        <form action="{{ asset('/editclassroom/'.$classroom->id) }}" method="POST" onclick="if(confirm('您確定刪除嗎?')) return true;else return false">
+        <form action="{{ asset('/editclassroom/'.$classroom->id) }}" method="POST" onclick="if(confirm('您確定刪除嗎? \n\n注意:該教室內的課程資料不會被刪除')) return true;else return false">
             {!! csrf_field() !!}
             {!! method_field('DELETE') !!}
             <button type="submit" class="btn btn-secondary btn-block" id="{{ $classroom->id }}">

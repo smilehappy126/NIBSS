@@ -36,10 +36,21 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
+
+        /* 檢查教室名稱是否已存在 */
+        $query = Classroom::all()->where('roomname', $request->roomname);
+
+        foreach ($query as $item){
+            if($item->roomname == $request->roomname){
+                return redirect('/newclassroom')
+                    ->with('alert', '您輸入的教室名稱已存在!');
+            }
+        }
+
+        /* 建立新教室 */
         $classrooms = new Classroom;
         $classrooms->roomname= $request->roomname;
         $classrooms->word= $request->word;
-        
 
         $this->validate($request, [
             'imgurl' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -51,8 +62,7 @@ class ClassroomController extends Controller
         $classrooms->save();
 
 
-
-    return redirect('/newclassroom');
+        return redirect('/reserve');
     }
 
     /**
@@ -117,12 +127,12 @@ class ClassroomController extends Controller
         return redirect('/editclassroom');
     }
 
-    //取名注意！！！別取new
+    //新增教室資料頁面
     public function newClassroomPage()
     {
         $classrooms = Classroom::all();
         return view('button4_reserve.newclassroom',[
-                'classrooms'=> $classrooms,
+                'classrooms'=> $classrooms
             ]);
     }
 
