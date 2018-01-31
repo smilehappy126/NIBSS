@@ -38,35 +38,42 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container" style="padding-top: 0px;">
 
-<button type="button" class="btn btn-link">
+    <!--顯示出錯訊息(教室名稱已存在)-->
+    @if (session('alert'))
+    <div class="alert alert-danger alert-dismissable fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
+    </div>
+    @endif
+
+    <button type="button" class="btn btn-link">
         <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
     </button>
-    <!-- <a  href="{{ url('/reserve') }}">預約狀況</a> -->
-</br>
+        <!-- <a  href="{{ url('/reserve') }}">預約狀況</a> -->
+    <br><br>
 
- <form action="{{ asset('/reserve') }}" method="post" enctype="multipart/form-data"> <!-- //enctype="multipart/form-data"加ㄉ  -->
+    <form action="{{ asset('/reserve') }}" method="post" enctype="multipart/form-data"> <!-- //enctype="multipart/form-data"加ㄉ  -->
  	    {{ csrf_field() }}
-    <div class="form-group">
-       <label for="classid">教室名稱或編號:</label>
-       <input type="text" class="form-control" id="classid" name="roomname" required="必填！">
-    </div>
-    <div class="form-group">
-       <label for="classword">教室位置、設備、軟體描述:</label>
-       <textarea  class="form-control" rows="5" name="word" id="classword" required="必填！"></textarea>
-     <!--   <input type="text" class="form-control" id="classword" name="word" required="必填！"> -->
-    </div>
         <div class="form-group">
-       <label for="classpic">教室照片路由:</label>
-       <input type="file" class="form-control" id="classpic" name="imgurl" required="必填！">  <!-- input type="file" 改ㄉ  -->
-    </div>
-    <div>
-        <button class="btn btn-primary" type="submit">送出</button>
-    </div>
+           <label for="classid">教室名稱或編號:</label>
+           <input type="text" class="form-control" id="classid" name="roomname" required="必填！">
+        </div>
+        <div class="form-group">
+           <label for="classword">教室位置、設備、軟體描述:</label>
+           <textarea  class="form-control" rows="5" name="word" id="classword" required="必填！"></textarea>
+         <!--   <input type="text" class="form-control" id="classword" name="word" required="必填！"> -->
+        </div>
+        <div class="form-group">
+           <label for="classpic">教室照片路由:</label>
+           <input type="file" class="form-control" id="classpic" name="imgurl" required="必填！">  <!-- input type="file" 改ㄉ  -->
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">送出</button>
+        </div>
 
- 
-  </form>
+    </form>
 
 </div>
 
