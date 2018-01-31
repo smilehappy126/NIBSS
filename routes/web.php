@@ -55,7 +55,7 @@ Route::post('/return/reasonupdate','returncontroller@reasonupdate');
 
 
 
-//教室預約狀況(主畫面)
+//教室預約狀況(主畫面，教室列表)
 Route::get('/reserve', 'CourseController@index');
 //教室預約狀況(點選教室後)
 Route::get('/reserve/{roomname}', 'CourseController@show');
@@ -75,8 +75,9 @@ Route::delete('reserve/deleteCourse/{id}','CourseController@destroy');
 
 
 //新增教室資料
-Route::post('/reserve','ClassroomController@store');
 Route::get('/newclassroom', 'ClassroomController@newClassroomPage');
+Route::post('/newclassroom/create', 'ClassroomController@store');
+
 //修改教室資料
 Route::get('/editclassroom', 'ClassroomController@editClassroomPage');
 Route::post('/editclassroom/{classroom}','ClassroomController@update');
