@@ -12,7 +12,7 @@
         cursor: default;
         margin-top:0%;
     }
-/*    .modal-body{
+    .modal-body{
         width: 100%;
         height: 100%;
         float: left;
@@ -20,7 +20,7 @@
         position: relative;
         text-align: center;
         cursor: default;
-        margin-top:0%;*/
+        margin-top:0%;
     }
     .returnButton{
         border-radius: 40px;
