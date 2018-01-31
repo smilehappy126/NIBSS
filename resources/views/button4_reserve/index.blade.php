@@ -184,7 +184,7 @@
        <div class="panel-heading">    <a href="{{ asset('/reserve/' . $classroom->roomname ) }}" class="btn btn-secondary btn-block classBtn" id="{{ $classroom->roomname }}">{{ $classroom->roomname }} 預約狀況</a></div>
           <div class="panel-body">    
               <div class="hovereffect">
-                  <img class="img-responsive" src="{{ url('/uploadimg/'.$classroom->imgurl) }}" alt="" height="500" width="500">
+                  <img class="img-responsive" src="{{ url('/uploadimg/'.$classroom->imgurl) }}" alt="" style="height: 300px; width: 500px; display:block; margin:auto;">
                   <div class="overlay">
                       <h2> 教室描述：
                              {{ $classroom->word }} 

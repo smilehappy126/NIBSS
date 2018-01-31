@@ -14,7 +14,7 @@
         font-weight: bolder;
         font-family: Microsoft JhengHei;
         width: 10%;
-        font-size: 20px;
+        font-size: 16px;
         transition: 0.3s;
         background-color: transparent;
         border-width: 1px;  
@@ -29,52 +29,7 @@
 
 @section('content')
 
-
-<div class="modal fade" id="excelModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Excel匯入固定多筆資料</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       
-    <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('inputClass/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-        <input type="file" name="import_file" />
-                    {{ csrf_field() }}
-        <br/>
-
-        <button class="btn btn-primary">Import CSV or Excel File</button>
-
-    </form>
-    <br>
-    <a href="{{asset('/longdownloadExcel')}}" class="btn btn-success" role="button">Excel固定多筆範本下載</a>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-      </div>
-    </div>
-  </div>
-</div>        
-
-    <!-- <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 20px;" action="{{ URL::to('inputClass/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-        <input type="file" name="import_file" />
-                    {{ csrf_field() }}
-        <br/>
-
-        <button class="btn btn-primary">Import CSV or Excel File</button>
-
-    </form> -->
-
 <div class="container" style="padding-top: 10px;">
-<div class="returnSection">
-      <form action=" {{ asset('/reserve/'.$currentClassroom)}}" method="get" }}">
-          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回</button>
-      </form>
-  </div>
     <!--顯示出錯訊息(課程重疊了)-->
     @if (session('alert'))
     <div class="alert alert-danger alert-dismissable fade in">
@@ -87,13 +42,6 @@
         <p>結束時間: </p> -->
     </div>
     @endif
-
-    <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal2">
-        Excel匯入固定多筆資料
-    </button>
-
-    <br>
-
     <div>
       <form action="{{ asset('reserve/'.$currentClassroom)}}" method="get">
           <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回 {{$currentClassroom}} 教室預約狀況</button>
