@@ -14,14 +14,14 @@
         border-radius: 40px;
         font-weight: bolder;
         font-family: Microsoft JhengHei;
-        width: 18%;
+        width: 20%;
         font-size: 18px;
         transition: 0.3s;
         background-color: transparent;
         border-width: 1px;  
     }
     .returnButton:hover{
-        width: 20%;
+        width: 22%;
         transition: 0.3s;
         background-color: #DDDDDD;
     }
@@ -32,12 +32,7 @@
 @section('content')
 
 
-
-<button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal2">
-        Excel匯入固定多筆資料
-    </button>
-
-    <div class="modal fade" id="excelModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="excelModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -76,14 +71,6 @@
 
     </form> -->
 
-<div>
-  <form action="{{ asset('reserve/'.$currentClassroom)}}" method="get">
-      <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回 {{$currentClassroom}} 教室預約狀況</button>
-  </form>
-</div>
-
-<br>
-
 <div class="container" style="padding-top: 10px;">
 
     <!--顯示出錯訊息(課程重疊了)-->
@@ -98,6 +85,20 @@
         <p>結束時間: </p> -->
     </div>
     @endif
+
+    <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#excelModal2">
+        Excel匯入固定多筆資料
+    </button>
+
+    <br>
+
+    <div>
+      <form action="{{ asset('reserve/'.$currentClassroom)}}" method="get">
+          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回 {{$currentClassroom}} 教室預約狀況</button>
+      </form>
+    </div>
+
+    <br>
 
     <form action="{{ asset('/inputClass/save') }}" method="post">
         {{ csrf_field() }}

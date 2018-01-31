@@ -127,12 +127,12 @@ class ClassroomController extends Controller
         return redirect('/editclassroom');
     }
 
-    //取名注意！！！別取new
+    //新增教室資料頁面
     public function newClassroomPage()
     {
         $classrooms = Classroom::all();
         return view('button4_reserve.newclassroom',[
-                'classrooms'=> $classrooms,
+                'classrooms'=> $classrooms
             ]);
     }
 
