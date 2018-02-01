@@ -359,7 +359,7 @@
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
 			   					<td id="name-{{$mis->id}}">
-			   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
+			   						<button class="UserModalButton" style="width: 130px;" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
 			   					</td>
 			   				@else
 			   					<td class="TableContent" id="name-{{$mis->id}}">

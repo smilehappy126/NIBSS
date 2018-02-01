@@ -196,7 +196,7 @@
 @stop
 
 @section('content')
-<div class="container" style=" padding-top: 0px;">
+<div class="container" style="  width: 100%; padding-top: 0px;">
   @if(Auth::check())
     @if((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     <!-- PC section -->
@@ -341,7 +341,7 @@
                       <button id="levelSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">修改資料</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
-                      <button class="EditButton" type="button" data-toggle="modal" data-target="#EditModal{{$user->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
+                      <button class="EditButton"  style="width: 100px;" type="button" data-toggle="modal" data-target="#EditModal{{$user->id}}"><span class="glyphicon glyphicon-wrench"></span> 修改</button>
                   </th>
               </tr>
               @endif

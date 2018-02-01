@@ -211,34 +211,36 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-.LoginButton{
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 32px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.LoginButton:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
-}
-
+            .PortalLoginButton{
+                background-color: #C63300;
+                color: white;
+                border-width: 0px;
+                border-radius: 80px;
+                font-size: 20px;
+                width: 250px;
+                height: 35px;
+                transition: 0.3s;
+            }
+            .PortalLoginButton:hover{
+                background-color: #CC6600;
+                transition: 0.3s;
+                width: 280px;
+            }
+            .LoginButton{  
+                background-color: #0044BB;
+                color: white;
+                border-width: 0px;
+                border-radius: 80px;
+                font-size: 20px;
+                width: 250px;
+                height: 35px;
+                transition: 0.3s;
+            }
+            .LoginButton:hover{
+                background-color: #191970;
+                transition: 0.3s;
+                width: 280px;
+            }
 
 }
 /*Mobile CSS Section*/
@@ -274,33 +276,36 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-.LoginButton{
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 24px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.LoginButton:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
-}
+            .PortalLoginButton{
+                background-color: #C63300;
+                color: white;
+                border-width: 0px;
+                border-radius: 80px;
+                font-size: 20px;
+                width: 250px;
+                height: 35px;
+                transition: 0.3s;
+            }
+            .PortalLoginButton:hover{
+                background-color: #CC6600;
+                transition: 0.3s;
+                width: 280px;
+            }
+            .LoginButton{  
+                background-color: #0044BB;
+                color: white;
+                border-width: 0px;
+                border-radius: 80px;
+                font-size: 20px;
+                width: 250px;
+                height: 35px;
+                transition: 0.3s;
+            }
+            .LoginButton:hover{
+                background-color: #191970;
+                transition: 0.3s;
+                width: 280px;
+            }
 
 }
 
@@ -413,12 +418,12 @@
                 @endif
             @endif
                 @unless(Auth::check())
-                
+                <!-- Trigger the Login modal with a button -->
                 <div style="text-align:center;">
-                    <button class="portalLogin" type="button" onclick="location.href='/signin'">Login via Portal</button>
-                    <br><br>              
-                    <!-- Trigger the Login modal with a button -->
-                    <button class="emailLogin" data-toggle="modal" data-target="#LoginModal">Email Login</button>
+                <button class="PortalLoginButton" type="button" onclick="location.href='/signin'">Login via Portal</button>
+                </div><br>
+                <div style="text-align:center;">
+                <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Normal Login</button>
                 </div>
                 @endunless
             </div>
