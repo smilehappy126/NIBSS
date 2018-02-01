@@ -211,27 +211,35 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-            .LoginButton{
-                float: center;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 30px;
-                background-color: #00008B;
-                width: 180px;
-                height: 70px;
-                border-radius: 100px;
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-                opacity: 0.6;
-            }
+.LoginButton{
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 32px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-            .LoginButton:hover{
-                background-color:#003377;
-                width:280px;
-                transition: 0.3s;
+.LoginButton:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
 
-            }
+
 }
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
@@ -266,28 +274,33 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-            .LoginButton{
-                float: center;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 30px;
-                background-color:#00008B;
-                width: 180px;
-                height: 65px;
-                border-radius: 100px;
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-                opacity: 0.6;
-                z-index: 1;
-            }
+.LoginButton{
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 24px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-            .LoginButton:hover{
-                background-color: #003377;
-                width:280px;
-                transition: 0.3s;
-
-            }
+.LoginButton:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
 
 }
 
@@ -319,7 +332,10 @@
             @endif
                 @unless(Auth::check())
                 <!-- Trigger the Login modal with a button -->
-                <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
+                <button class="LoginButton" type="button" onclick="location.href='/signin'">Login with Portal</button>
+                <div style="text-align:center;">
+                <a class="nonportal" data-toggle="modal" data-target="#LoginModal" style="color: #3498db; font-family: Arial; cursor: pointer;">非portal login</a>
+                </div>
                 @endunless
             </div>
             <!-- 登入錯誤的系統提示 -->
@@ -494,9 +510,6 @@
                                     </div>
                                     <!-- 額外功能區 -->
                                     <div class="form-group" align="center">
-                                        <!-- 透過Portal登入的按鈕 -->
-                                        <button class="portal" type="button" onclick="location.href='/signin'">Portal登入</button>
-                                        <br><br>
                                         <!-- 註冊 -->
                                         <button class="RegisterButton" id="RegisterButton" type="button" onclick="switch()"  data-toggle="modal"  data-target="#RegisterModal">Register</button>
                                     </div>    
