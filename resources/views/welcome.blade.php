@@ -158,7 +158,7 @@
                
             }
             .title{
-                background-color: black;
+                background-color: #262626;
                 opacity: 0.6;
                 color: white;
                 font-weight: bolder;
@@ -181,7 +181,7 @@
             
 /*PC CSS Section*/
 @media screen and (min-width: 900px){
-            .MobleSection{
+            .MobileSection{
                 display: none;
             }
 
@@ -251,7 +251,8 @@
             .BlurEffect{
                 -webkit-filter: blur(10px);
                 filter: blur(2px);
-                height: 250px;
+                width: 300px;
+                height: 280px;
             }
             .LinkText{
                 background-color: transparent;
@@ -306,23 +307,11 @@
                           
             
         </style>
-        <script type="text/javascript">
-        function movetoPortal(){
-            document.getElementById('loginemail').removeAttribute('required');
-            document.getElementById('loginpassword').removeAttribute('required');
-        }
-        function backtologin(){
-            document.getElementById('loginemail').setAttributeNode(document.createAttribute("required"));
-            document.getElementById('loginpassword')..setAttributeNode(document.createAttribute("required"));
-        }
-      
-        </script>
+        
     </head>
     <body>
         
-      <div class="flex-center position-ref full-height background">
-         
-            
+        <div class="flex-center position-ref full-height background">
             <!-- 登出按鈕 -->
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -370,59 +359,96 @@
             <!-- 主選單 -->
             <div class="content" style="position: relative;">
                 <div style="position: relative;">
-                <!-- 標題 -->
-                <div style="align-items: center;">
-                    <div class="title m-b-md BlurEffect">
-                        &nbsp
+                    <!-- 標題 -->
+                    <div style="align-items: center;">
+                        <div class="title m-b-md BlurEffect">
+                            &nbsp
+                        </div>
+                        <span class="TitleText">
+                            設備管理系統
+                        </span>
+                        <!-- PC版本的連結 -->
+                        <span class="links LinkText PCSection" >    
+                            @if(Auth::check())
+                                <a  href="{{ url('/create') }}">新增申請單</a>|
+                            @endif
+                            <a  href="{{ url('/borrow') }}">借用狀況</a>|
+                            <a  href="{{ url('/return') }}">已歸還資料</a>|
+                            <a  href="{{ url('/reserve') }}">教室預約狀況</a>|
+                            <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
+                        @if (Route::has('login'))
+                            @if(Auth::check())
+                                @if( (Auth::user()->level)==='管理員')   
+                            | <br> | <a  href="{{ url('/admin') }}">管理者模式</a>|
+                                @endif
+                            @endif
+                        @endif
+                        </span>
+                        <!-- End of PC Section -->
+
+                        <!-- Mobile版本的連結 -->
+                        <span class="links LinkText MobileSection" >    
+                            @if(Auth::check())
+                                <a  href="{{ url('/create') }}">新增申請單</a><br>
+                            @endif
+                            <a  href="{{ url('/borrow') }}">借用狀況</a><br>
+                            <a  href="{{ url('/return') }}">已歸還資料</a><br>
+                            <a  href="{{ url('/reserve') }}">教室預約狀況</a><br>
+                            <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
+                        @if (Route::has('login'))
+                            @if(Auth::check())
+                                @if( (Auth::user()->level)==='管理員')   
+                             <br>  <a  href="{{ url('/admin') }}">管理者模式</a>
+                                @endif
+                            @endif
+                        @endif
+                        </span>
+                        <!-- End of Mobile Section -->
                     </div>
-                    <span class="TitleText">
-                        設備管理系統
-                    </span>
                     
-                    <span class="links LinkText">    
-                        @if(Auth::check())
+                    <!-- 分頁連結 看不見區域-->
+                    <div class="links" style="align-items: center; visibility: hidden;" >
+                        <!-- PC版本的遮罩 -->
+                        <span class="links PCSection">
+                            @if(Auth::check())
                             <a  href="{{ url('/create') }}">新增申請單</a>|
-                        @endif
-                        <a  href="{{ url('/borrow') }}">借用狀況</a>|
-                        <a  href="{{ url('/return') }}">已歸還資料</a>|
-                        <a  href="{{ url('/reserve') }}">預約狀況</a>|
-                        <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
-                    @if (Route::has('login'))
-                        @if(Auth::check())
-                            @if( (Auth::user()->level)==='管理員')   
-                        | <br> | <a  href="{{ url('/admin') }}">管理者模式</a>|
+                            @endif
+                            <a  href="{{ url('/borrow') }}">借用狀況</a>|
+                            <a  href="{{ url('/return') }}">已歸還資料</a>|
+                            <a  href="{{ url('/reserve') }}">教室預約狀況</a>|
+                            <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
+                        @if (Route::has('login'))
+                            @if(Auth::check())
+                                @if( (Auth::user()->level)==='管理員')   
+                            |<a  href="{{ url('/admin') }}">管理者模式</a>
+                                @endif
                             @endif
                         @endif
-                    @endif
-                    </span>
-                    
-                </div>
-                
-                <!-- 分頁連結 看不見區域-->
-                <div class="links" style="align-items: center; visibility: hidden;" >
-                    <span class="links">
-                        @if(Auth::check())
-                        <a  href="{{ url('/create') }}">新增申請單</a>|
-                        @endif
-                        <a  href="{{ url('/borrow') }}">借用狀況</a>|
-                        <a  href="{{ url('/return') }}">已歸還資料</a>|
-                        <a  href="{{ url('/reserve') }}">預約狀況</a>|
-                        <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
-                    @if (Route::has('login'))
-                        @if(Auth::check())
-                            @if( (Auth::user()->level)==='管理員')   
-                        |<a  href="{{ url('/admin') }}">管理者模式</a>
+                        </span>
+                        <!-- End of PC Section -->
+
+                        <!-- Mobile版本的遮罩 -->
+                        <span class="links LinkText MobileSection" >    
+                            @if(Auth::check())
+                                <a  href="{{ url('/create') }}">新增申請單</a><br>
+                            @endif
+                            <a  href="{{ url('/borrow') }}">借用狀況</a><br>
+                            <a  href="{{ url('/return') }}">已歸還資料</a><br>
+                            <a  href="{{ url('/reserve') }}">教室預約狀況</a><br>
+                            <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
+                        @if (Route::has('login'))
+                            @if(Auth::check())
+                                @if( (Auth::user()->level)==='管理員')   
+                             <br>  <a  href="{{ url('/admin') }}">管理者模式</a>
+                                @endif
                             @endif
                         @endif
-                    @endif
-                    </span>
-                    
-                </div>
-            </div>
-                
-            </div><!-- End of Content -->
-        
-      </div>
+                        </span>
+                        <!-- End of Mobile Section -->
+                    </div>
+                </div><!-- End of Postion Relative div -->
+            </div><!--  End of Content  -->
+        </div> <!--  End of Background  -->
         
         
         
