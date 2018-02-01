@@ -238,9 +238,22 @@
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+.portaldiv{
+                text-align:center; 
+                margin-left:auto; 
+                margin-right:auto;  
+                display:inline-block;
+            }
 
+}
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
+            .portaldiv{
+                text-align:center; 
+                margin-left:auto; 
+                margin-right:auto;  
+                display:inline-block;
+            }
             .PCSection{
                 display: none;
             }
@@ -412,7 +425,7 @@
             @endif
                 @unless(Auth::check())
                 <br>
-                <div style="text-align:center;">
+                <div class="portaldiv">
                     <button class="portalLogin" type="button" onclick="location.href='/signin'">Login via Portal</button>
                     <br><br>              
                     <!-- Trigger the Login modal with a button -->
