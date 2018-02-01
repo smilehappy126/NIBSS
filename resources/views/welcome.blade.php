@@ -239,8 +239,6 @@
   text-decoration: none;
 }
 
-
-}
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
             .PCSection{
@@ -413,7 +411,7 @@
                 @endif
             @endif
                 @unless(Auth::check())
-                
+                <br>
                 <div style="text-align:center;">
                     <button class="portalLogin" type="button" onclick="location.href='/signin'">Login via Portal</button>
                     <br><br>              
