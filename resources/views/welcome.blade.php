@@ -216,30 +216,30 @@
                 color: white;
                 border-width: 0px;
                 border-radius: 80px;
-                font-size: 40px;
-                width: 340px;
-                height: 50px;
+                font-size: 20px;
+                width: 250px;
+                height: 35px;
                 transition: 0.3s;
             }
             .PortalLoginButton:hover{
                 background-color: #CC6600;
                 transition: 0.3s;
-                width: 380px;
+                width: 280px;
             }
             .LoginButton{  
                 background-color: #0044BB;
                 color: white;
                 border-width: 0px;
                 border-radius: 80px;
-                font-size: 40px;
-                width: 340px;
-                height: 50px;
+                font-size: 20px;
+                width: 250px;
+                height: 35px;
                 transition: 0.3s;
             }
             .LoginButton:hover{
                 background-color: #191970;
                 transition: 0.3s;
-                width: 380px;
+                width: 280px;
             }
 
 }
@@ -275,35 +275,36 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
-            }.PortalLoginButton{
+            }
+            .PortalLoginButton{
                 background-color: #C63300;
                 color: white;
                 border-width: 0px;
                 border-radius: 80px;
-                font-size: 40px;
-                width: 340px;
-                height: 50px;
+                font-size: 20px;
+                width: 250px;
+                height: 35px;
                 transition: 0.3s;
             }
             .PortalLoginButton:hover{
                 background-color: #CC6600;
                 transition: 0.3s;
-                width: 380px;
+                width: 280px;
             }
             .LoginButton{  
                 background-color: #0044BB;
                 color: white;
                 border-width: 0px;
                 border-radius: 80px;
-                font-size: 40px;
-                width: 340px;
-                height: 50px;
+                font-size: 20px;
+                width: 250px;
+                height: 35px;
                 transition: 0.3s;
             }
             .LoginButton:hover{
                 background-color: #191970;
                 transition: 0.3s;
-                width: 380px;
+                width: 280px;
             }
 
 }
