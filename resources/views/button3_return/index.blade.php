@@ -381,7 +381,7 @@
 					</th>
 					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 	   					<td id="name-{{$re->id}}">
-	   						<button class="UserModalButton"  style="width: 130px;" type="button" data-toggle="modal" data-target="EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
+	   						<button class="UserModalButton"  style="width: 130px;" type="button" data-toggle="modal" data-target="#EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$re->name}}</button>
 	   					</td>
 	   				@endif
 	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
