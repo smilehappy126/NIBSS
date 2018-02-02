@@ -120,7 +120,8 @@ class AdminController extends Controller
     // 進入可借用物品頁面
     public function item(){
       $items=Item::all();
-      $itemsgroups=Itemgroup::all();
+      $itemsgroups=Itemgroup::orderBy('groupname','asc')
+                  ->get();
       return view('button5_admin.item',['items'=> $items,'itemsgroups'=> $itemsgroups]);
     }
     //創建新的物品

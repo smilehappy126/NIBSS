@@ -325,7 +325,7 @@
 
 <!-- ↓↓↓ Modal Section ↓↓↓ -->
     <!-- Search Modal -->
-        <div id="SearchModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" style="opacity: 0.9;">
+        <div id="SearchModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
 
                     <!-- Search Modal content-->
