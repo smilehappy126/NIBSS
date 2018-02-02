@@ -261,9 +261,11 @@
                 transition: 0.3s;
                 width: 130px;
                 border-width: 1px;
-                border-color: black;
+                border-color: #AAAAAA;
             }
             .emailLogin:hover{
+                background-color:#444444;
+                color: white;
                 width: 160px;
                 transition: 0.3s;
             }
