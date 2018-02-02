@@ -96,7 +96,7 @@
                 font-weight: bolder;
                 font-size: 22px;
                 background-color:#FFE4B5;
-                width: 100px;
+                width: 120px;
                 height: 40px;
                 border-radius: 100px;
                 border-width: 0px;
