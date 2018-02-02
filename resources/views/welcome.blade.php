@@ -399,6 +399,8 @@
                 border-color: black;
             }
             .emailLogin:hover{
+                background-color:#444444;
+                color: white;
                 width: 160px;
                 transition: 0.3s;
             }
