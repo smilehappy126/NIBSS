@@ -269,6 +269,17 @@
                 width: 160px;
                 transition: 0.3s;
             }
+            .adminpage{
+                background-color: transparent;
+                border-width: 0px;
+                color:  #FFE4B5;
+                padding: 0 25px;
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
 
 }
 /*Mobile CSS Section*/
@@ -337,8 +348,18 @@
               background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
               text-decoration: none;
             }
-
+            .adminpage{
+                background-color: transparent;
+                border-width: 0px;
+                color:  #FFE4B5;
+                padding: 0 25px;
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
             }
+}
 
             .portalLogin {
                 -moz-box-shadow:inset 0px 1px 15px 3px #23395e;
@@ -404,7 +425,7 @@
                 width: 160px;
                 transition: 0.3s;
             }
-            
+
         </style>
         
     </head>
@@ -480,7 +501,7 @@
                         @if (Route::has('login'))
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
-                            | <br> | <a  href="{{ url('/admin') }}">管理者模式</a>|
+                            | <br> | <button class="adminpage" type="button" onclick="location.href='/admin'">管理者模式</button>|
                                 @endif
                             @endif
                         @endif
@@ -499,7 +520,7 @@
                         @if (Route::has('login'))
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
-                             <br>  <a  href="{{ url('/admin') }}">管理者模式</a>
+                             <br>  <button class="adminpage" type="button" onclick="location.href='/admin'">管理者模式</button>
                                 @endif
                             @endif
                         @endif
