@@ -178,6 +178,70 @@
                 right: 0px;
                 left: 0px;
             }
+            .portalLogin {
+                -moz-box-shadow:inset 0px 1px 15px 3px #23395e;
+                -webkit-box-shadow:inset 0px 1px 15px 3px #23395e;
+                box-shadow:inset 0px 1px 15px 3px #23395e;
+                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2e466e), color-stop(1, #415989));
+                background:-moz-linear-gradient(top, #2e466e 5%, #415989 100%);
+                background:-webkit-linear-gradient(top, #2e466e 5%, #415989 100%);
+                background:-o-linear-gradient(top, #2e466e 5%, #415989 100%);
+                background:-ms-linear-gradient(top, #2e466e 5%, #415989 100%);
+                background:linear-gradient(to bottom, #2e466e 5%, #415989 100%);
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e466e', endColorstr='#415989',GradientType=0);
+                background-color:#2e466e;
+                -moz-border-radius:17px;
+                -webkit-border-radius:17px;
+                border-radius:17px;
+                border:2px solid #1f2f47;
+                display:inline-block;
+                cursor:pointer;
+                color:#ffffff;
+                font-family:Arial;
+                font-size:25px;
+                padding:10px 27px;
+                text-decoration:none;
+                text-shadow:0px 0px 22px #263666;
+            }
+            .portalLogin:hover {
+                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #415989), color-stop(1, #2e466e));
+                background:-moz-linear-gradient(top, #415989 5%, #2e466e 100%);
+                background:-webkit-linear-gradient(top, #415989 5%, #2e466e 100%);
+                background:-o-linear-gradient(top, #415989 5%, #2e466e 100%);
+                background:-ms-linear-gradient(top, #415989 5%, #2e466e 100%);
+                background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#415989', endColorstr='#2e466e',GradientType=0);
+                background-color:#415989;
+            }
+            .portalLogin:active {
+                position:relative;
+                top:1px;
+            }
+            .emailLogin{
+                background-color:#DDDDDD;
+                -moz-border-radius:6px;
+                -webkit-border-radius:6px;
+                border-radius:6px;
+                display:inline-block;
+                cursor:pointer;
+                color:#666666;
+                font-family:Arial;
+                font-size:12px;
+                font-weight:bold;
+                padding:6px 11px;
+                text-decoration:none;
+                text-shadow:0px 1px 0px #ffffff;
+                transition: 0.3s;
+                width: 130px;
+                border-width: 1px;
+                border-color: black;
+            }
+            .emailLogin:hover{
+                background-color:#444444;
+                color: white;
+                width: 160px;
+                transition: 0.3s;
+            }
             
 /*PC CSS Section*/
 @media screen and (min-width: 900px){
@@ -244,44 +308,23 @@
                 margin-right:auto;  
                 display:inline-block;
             }
-            .emailLogin{
-                background-color:#DDDDDD;
-                -moz-border-radius:6px;
-                -webkit-border-radius:6px;
-                border-radius:6px;
-                display:inline-block;
-                cursor:pointer;
-                color:#666666;
-                font-family:Arial;
-                font-size:12px;
-                font-weight:bold;
-                padding:6px 11px;
-                text-decoration:none;
-                text-shadow:0px 1px 0px #ffffff;
-                transition: 0.3s;
-                width: 130px;
-                border-width: 1px;
-                border-color: #AAAAAA;
-            }
-            .emailLogin:hover{
-                background-color:#444444;
-                color: white;
-                width: 160px;
-                transition: 0.3s;
-            }
             .adminpage{
-                background-color: transparent;
                 border-width: 0px;
-                color:  #FFE4B5;
                 padding: 0 25px;
-                font-size: 24px;
+                font-size: 40px;
                 font-weight: 600;
+                font-family: Microsoft JhengHei;
+                color: rgb(255, 145, 145);
+                background-color:transparent;
+                text-shadow: rgb(3, 3, 3) 4px 1px 8px;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
             }
 
 }
+/*End of PC CSS Section*/
+
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
             .portaldiv{
@@ -349,85 +392,22 @@
               text-decoration: none;
             }
             .adminpage{
-                background-color: transparent;
                 border-width: 0px;
-                color:  #FFE4B5;
                 padding: 0 25px;
-                font-size: 24px;
+                font-size: 30px;
                 font-weight: 600;
+                font-family: Microsoft JhengHei;
+                color: rgb(255, 145, 145);
+                background-color:transparent;
+                text-shadow: rgb(3, 3, 3) 4px 1px 8px;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
             }
 }
-
-            .portalLogin {
-                -moz-box-shadow:inset 0px 1px 15px 3px #23395e;
-                -webkit-box-shadow:inset 0px 1px 15px 3px #23395e;
-                box-shadow:inset 0px 1px 15px 3px #23395e;
-                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2e466e), color-stop(1, #415989));
-                background:-moz-linear-gradient(top, #2e466e 5%, #415989 100%);
-                background:-webkit-linear-gradient(top, #2e466e 5%, #415989 100%);
-                background:-o-linear-gradient(top, #2e466e 5%, #415989 100%);
-                background:-ms-linear-gradient(top, #2e466e 5%, #415989 100%);
-                background:linear-gradient(to bottom, #2e466e 5%, #415989 100%);
-                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e466e', endColorstr='#415989',GradientType=0);
-                background-color:#2e466e;
-                -moz-border-radius:17px;
-                -webkit-border-radius:17px;
-                border-radius:17px;
-                border:2px solid #1f2f47;
-                display:inline-block;
-                cursor:pointer;
-                color:#ffffff;
-                font-family:Arial;
-                font-size:25px;
-                padding:10px 27px;
-                text-decoration:none;
-                text-shadow:0px 0px 22px #263666;
-            }
-            .portalLogin:hover {
-                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #415989), color-stop(1, #2e466e));
-                background:-moz-linear-gradient(top, #415989 5%, #2e466e 100%);
-                background:-webkit-linear-gradient(top, #415989 5%, #2e466e 100%);
-                background:-o-linear-gradient(top, #415989 5%, #2e466e 100%);
-                background:-ms-linear-gradient(top, #415989 5%, #2e466e 100%);
-                background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
-                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#415989', endColorstr='#2e466e',GradientType=0);
-                background-color:#415989;
-            }
-            .portalLogin:active {
-                position:relative;
-                top:1px;
-            }
-            .emailLogin{
-                background-color:#DDDDDD;
-                -moz-border-radius:6px;
-                -webkit-border-radius:6px;
-                border-radius:6px;
-                display:inline-block;
-                cursor:pointer;
-                color:#666666;
-                font-family:Arial;
-                font-size:12px;
-                font-weight:bold;
-                padding:6px 11px;
-                text-decoration:none;
-                text-shadow:0px 1px 0px #ffffff;
-                transition: 0.3s;
-                width: 130px;
-                border-width: 1px;
-                border-color: black;
-            }
-            .emailLogin:hover{
-                background-color:#444444;
-                color: white;
-                width: 160px;
-                transition: 0.3s;
-            }
-
-        </style>
-        
+/*End of Mobile CSS Section*/
+    
+    </style>
     </head>
     <body>
         
@@ -501,7 +481,10 @@
                         @if (Route::has('login'))
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
-                            | <br> | <button class="adminpage" type="button" onclick="location.href='/admin'">管理者模式</button>|
+                                <br>
+                                <span class="glyphicon glyphicon-fire" style="color: red;"></span>
+                                <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
+                                <span class="glyphicon glyphicon-fire" style="color: red;"></span>
                                 @endif
                             @endif
                         @endif
@@ -520,7 +503,10 @@
                         @if (Route::has('login'))
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
-                             <br>  <button class="adminpage" type="button" onclick="location.href='/admin'">管理者模式</button>
+                                <br>
+                                <span class="glyphicon glyphicon-fire" style="color: red;"></span>
+                                <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
+                                <span class="glyphicon glyphicon-fire" style="color: red;"></span>
                                 @endif
                             @endif
                         @endif
@@ -542,7 +528,7 @@
                         @if (Route::has('login'))
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
-                            |<a  href="{{ url('/admin') }}">管理者模式</a>
+                            |<a  href="{{ url('/admin') }}">管理者專區</a>
                                 @endif
                             @endif
                         @endif
@@ -561,7 +547,7 @@
                         @if (Route::has('login'))
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
-                             <br>  <a  href="{{ url('/admin') }}">管理者模式</a>
+                             <br>  <a  href="{{ url('/admin') }}">管理者專區</a>
                                 @endif
                             @endif
                         @endif
