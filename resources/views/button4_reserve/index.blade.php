@@ -194,7 +194,6 @@
                       <form>
                          <button type="button" class="btn btn-outline-success" id="{{ $classroom->id }}" data-toggle="modal" data-target="#editModal{{$classroom->id}}">詳細資訊</button>
                       </form>
-                    
           </div>
        </div>
   </div>

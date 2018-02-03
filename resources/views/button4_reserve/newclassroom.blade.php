@@ -94,7 +94,7 @@
          <!--   <input type="text" class="form-control" id="classword" name="word" required="必填！"> -->
         </div>
         <div class="form-group">
-           <label for="classpic">教室照片路由:</label>
+           <label for="classpic">上傳教室圖片:</label>
            <input type="file" class="form-control" id="classpic" name="imgurl" required="必填！">  <!-- input type="file" 改ㄉ  -->
         </div>
         <div>
