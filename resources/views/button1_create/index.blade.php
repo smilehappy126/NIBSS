@@ -359,7 +359,7 @@
                 </div>
  
                 <div id="menu1" class="tab-pane fade">
-                    <div id="myForm1">
+                    <div id="myForm1" onmouseover="chooseid(this)">
                         <br>
                         <hr class="hr1" />
                         <h2>借用種類：</h2>
@@ -379,7 +379,7 @@
                             @endforeach
                         </select>    
                         <h2>借用數量：</h2>
-                        <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5"  onchange="limit()" required>
+                        <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5"  onkeyup="limit()" required>
                         
                     </div> 
                     <div id="add">
@@ -470,38 +470,51 @@
         }
         
     }
-
-    function selitem(){
-        var $I1 = $("#myForm"+ formCount).find("select[name='itemgroup']").val();
-        var $L2 = document.getElementById("myItem" + formCount).length;
-        var g2 = document.getElementById("myItem" + formCount);
-        for (var i = 0; i < $L2; i++) {
-            document.getElementById('myItem'+ formCount).options[i].setAttribute("style", "display:none");
-        }
-        for (var i = 0; i < $L2; i++) {
-            var x =g2.options[i].text;
-            if(x == $I1){
-                document.getElementById('myItem' + formCount).options[i].removeAttribute("style", "display:none");
-            }
-        }
-
+    function chooseid(myform)
+    {
+        formid = myform.id ;
+        kind = $("#"+formid).find("select[name='itemgroup']")
+                           .attr("id");
+        object = $("#"+formid).find("select[name='item[]']")
+                           .attr("id");
+        number = $("#"+formid).find("input[name='itemnum[]']")
+                           .attr("id");
         
     }
-    
+    function selitem()
+    {
+        var $I1 = $("#"+formid).find("select[name='itemgroup']").val();
+        var $L2 = document.getElementById(''+ object).length;
+        var g2 = document.getElementById(''+ object);
+        for (var i = 0; i < $L2; i++) 
+        {
+            document.getElementById(''+ object).options[i].setAttribute("style", "display:none");
+        }
+        for (var i = 0; i < $L2; i++) 
+        {
+            var x =g2.options[i].text;
+            if(x == $I1)
+            {
+                document.getElementById(''+ object).options[i].removeAttribute("style", "display:none");
+            }
+        }
+    }
+
     function selnum(){
-        var id = $("#myItem" + formCount).find(":selected").attr("id");
+        var id = $("#" + object).find(":selected").attr("id");
         var g3 = parseInt(id, 10);
-        document.getElementById("myNum" + formCount).value= 0;
-        $("#myNum" + formCount).attr("max", g3);
+        document.getElementById('' + number).value= 0;
+        $("#" + number).attr("max", g3);
     }
     function limit(){
-        var x = document.getElementById("myNum" + formCount).value;
-        if(x > $("#myNum" + formCount).attr("max")){
-            document.getElementById("myNum" + formCount).value = $("#myNum" + formCount).attr("max");
+        var x = document.getElementById('' + number).value;
+        if(x > $("#" + number).attr("max")){
+            document.getElementById('' + number).value = $("#" + number).attr("max");
             alert("已經超出物品數量");
             
         }
-    }
+    }  
+
 
     var formCount = 1;
     
@@ -525,6 +538,7 @@
         $("#myForm"+ formCount).find("input[name='itemnum[]']")
                                .attr("id","myNum" + (formCount));                           
         }
+        
         if(formCount > 1){
                 document.getElementById('removeButton').style.display="inline";
         }
