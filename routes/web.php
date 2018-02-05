@@ -80,7 +80,7 @@ Route::post('/newclassroom/create', 'ClassroomController@store');
 
 //修改教室資料
 Route::get('/editclassroom', 'ClassroomController@editClassroomPage');
-Route::post('/editclassroom/{classroom}','ClassroomController@update');
+Route::post('/editclassroom/{id}','ClassroomController@update');
 //刪除教室資料
 Route::delete('/editclassroom/{classroom}','ClassroomController@destroy');
 
