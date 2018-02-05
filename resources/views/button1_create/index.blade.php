@@ -188,6 +188,12 @@
         width: 15%;
         transition: 0.3s;
     }
+    .hr1{   
+        height:10px;
+        border:none;
+        border-top:10px ;
+        background-color: #b6c6c6;
+    }
     
 </style>
 @stop
@@ -290,14 +296,14 @@
                     </div> 
             
                     <div class="form-group">
-                        @if( (Auth::user()->phone)==='無資料')
+                        @if( (Auth::user()->phone)==='')
                         <label><h2>電話(必填)：</h2></label>
-                        <input type="text"  class="form-control" id="phone" name="phone" required>
+                        <input type="tel"  class="form-control" id="phone1" name="phone" required>
                         <input type="text"  name="email" value="{{ Auth::user()->email }}" style="display:none;">
                         @endif
-                        @unless( (Auth::user()->phone)==='無資料')
+                        @unless( (Auth::user()->phone)==='')
                         <label><h2>電話：{{ Auth::user()->phone }}</h2></label>
-                        <input type="text" class="form-control" id="phone" name="phone" value="{{ Auth::user()->phone }}" style="display:none;">
+                        <input type="text" class="form-control" id="phone1" name="phone" value="{{ Auth::user()->phone }}" style="display:none;">
                         @endunless
                     </div>
 
@@ -325,22 +331,17 @@
                         <div id="classroom" style="display:none;"  >
                             <label><h2>授課教室：</h2></label>
                             <select class="form-control" name="classroom" id=Sclassroom>
-                                <option value="" disabled selected></option>
-                                <option value="I1-223"" >I1-223</option>
-                                <option value="I1-002">I1-002</option>
-                                <option value="I1-017">I1-017</option>
-                                <option value="I1-105">I1-105</option>
-                                <option value="I1-107">I1-107</option>
-                                <option value="I1-404">I1-404</option>
-                                <option value="I1-314">I-314</option>
-                                <option value="I1-315">I-315</option>
+                                <option disabled selected>請選擇教室</option>
+                            @foreach($classrooms as $classroom)
+                                <option value="{{ $classroom->roomname }}">{{ $classroom->roomname }}</option>
+                            @endforeach
                             </select>
                         </div>
 
                         <div id="keyselect" style="display:none;">
                             <label><h2>鑰匙種類：</h2></label>
                             <select class="form-control" name="key" id="Skey">
-                                <option value="" disabled selected></option>
+                                <option disabled selected>請選擇鑰匙</option>
                                 <option value="一般鑰匙">一般鑰匙</option>
                                 <option value="備用鑰匙">備用鑰匙</option>
                                 <option value="服務學習鑰匙">服務學習鑰匙</option>
@@ -358,7 +359,9 @@
                 </div>
  
                 <div id="menu1" class="tab-pane fade">
-                    <div id="myForm1">
+                    <div id="myForm1" onmouseover="chooseid(this)">
+                        <br>
+                        <hr class="hr1" />
                         <h2>借用種類：</h2>
                         <select id="myGroup1" class="form-control ,itemgroup" width="auto" name="itemgroup" onchange="selitem()" >
                                 <option disabled selected>請選擇借用種類</option>
@@ -367,7 +370,7 @@
                             @endforeach
                         </select>
                         <h2>借用項目：</h2>  
-                        <select id="myItem1" class="form-control , item"  name="item[]" onchange="selnum()" disabled="disabled" required>
+                        <select id="myItem1" class="form-control , item"  name="item[]" onchange="selnum()"  required>
                                 <option disabled selected>借用項目</option>
                             @foreach($items as $item)
                                     <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" label="{{ $item->itemname }}" style="display:none;">{{ $item->itemgroup }}
@@ -376,8 +379,8 @@
                             @endforeach
                         </select>    
                         <h2>借用數量：</h2>
-                        <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5" disabled="disabled" onchange="limit()" required>
-                    
+                        <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5"  onkeyup="limit()" required>
+                        
                     </div> 
                     <div id="add">
                     </div>            
@@ -453,69 +456,89 @@
 
     function next()
     {    
-        var $phone = document.getElementById("phone").value ;
-        /*if($phone == null){
+        var $phone = document.getElementById('phone1').value ;
+        if($phone == ""){
             alert("請確實填寫電話！"); 
         }
-        if($phone !== null){*/
+        if($phone !== ""){
             document.getElementById('home').style.display="none";
             document.getElementById('menu1').style.display="inline";
             $("#L1").removeClass("active");
             $("#L2").addClass("active");
             $('#b1').attr('href','#menu1');
             $('#B3').attr('value','#menu1') 
-        /*}*/
+        }
         
     }
-
-    
-    function selitem(){
-        $("#myItem1").removeAttr("disabled");
-        var $I1 = $("select[name='itemgroup']").val();
-        var $L2 = document.getElementById("myItem1").length;
-        var g2 = document.getElementById("myItem1");
-        for (var i = 0; i < $L2; i++) {
-            document.getElementById('myItem1').options[i].setAttribute("style", "display:none");
+    function chooseid(myform)
+    {
+        formid = myform.id ;
+        kind = $("#"+formid).find("select[name='itemgroup']")
+                           .attr("id");
+        object = $("#"+formid).find("select[name='item[]']")
+                           .attr("id");
+        number = $("#"+formid).find("input[name='itemnum[]']")
+                           .attr("id");
+        
+    }
+    function selitem()
+    {
+        var $I1 = $("#"+formid).find("select[name='itemgroup']").val();
+        var $L2 = document.getElementById(''+ object).length;
+        var g2 = document.getElementById(''+ object);
+        for (var i = 0; i < $L2; i++) 
+        {
+            document.getElementById(''+ object).options[i].setAttribute("style", "display:none");
         }
-        for (var i = 0; i < $L2; i++) {
+        for (var i = 0; i < $L2; i++) 
+        {
             var x =g2.options[i].text;
-            if(x == $I1){
-                document.getElementById('myItem1').options[i].removeAttribute("style", "display:none");
+            if(x == $I1)
+            {
+                document.getElementById(''+ object).options[i].removeAttribute("style", "display:none");
             }
         }
-
-        
     }
-    
+
     function selnum(){
-        $("#myNum1").removeAttr("disabled");
-        var id = $("#myItem1 option:selected").attr("id");
+        var id = $("#" + object).find(":selected").attr("id");
         var g3 = parseInt(id, 10);
-        document.getElementById("myNum1").value= 0;
-        $("#myNum1").attr("max", g3);
+        document.getElementById('' + number).value= 0;
+        $("#" + number).attr("max", g3);
     }
     function limit(){
-        var x = document.getElementById("myNum1").value;
-        if(x > $("#myNum1" ).attr("max")){
-            document.getElementById("myNum1").value = $("#myNum1").attr("max");
+        var x = document.getElementById('' + number).value;
+        if(x > $("#" + number).attr("max")){
+            document.getElementById('' + number).value = $("#" + number).attr("max");
             alert("已經超出物品數量");
             
         }
-    }
+    }  
+
 
     var formCount = 1;
     
     function appendForm() {
         //複製myForm1表單，更改id變成myForm2,myForm3...
-        
-        $("#myItem1").removeAttr("disabled");
-        $("#myNum1").removeAttr("disabled");
+        var $I1 = $("#myForm"+ formCount).find("select[name='item[]']").val();
+        if ($I1 == null) {
+            alert("請先選擇借用項目！");
+        }
+        if($I1 !== null){
         $("#myForm1").clone(true)
                     .attr("id","myForm" + (formCount+=1))
                     .insertAfter($("[id^=myForm]:last"));
-                    
         
+        $("#myForm"+ formCount).find("select[name='itemgroup']")
+                               .attr("id","myGroup" + (formCount));
+        
+        $("#myForm"+ formCount).find("select[name='item[]']")
+                               .attr("id","myItem" + (formCount));
 
+        $("#myForm"+ formCount).find("input[name='itemnum[]']")
+                               .attr("id","myNum" + (formCount));                           
+        }
+        
         if(formCount > 1){
                 document.getElementById('removeButton').style.display="inline";
         }
