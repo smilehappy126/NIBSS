@@ -381,7 +381,7 @@
 					</th>
 					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 	   					<td id="name-{{$re->id}}">
-	   						<button class="UserModalButton"  style="width: 130px;" type="button" data-toggle="modal" data-target="EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
+	   						<button class="UserModalButton"  style="width: 130px;" type="button" data-toggle="modal" data-target="#EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$re->name}}</button>
 	   					</td>
 	   				@endif
 	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
@@ -583,7 +583,7 @@
                                                 <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}" disabled></th></tr>
                                                 <tr><th>電話 :</th> <th><input class="form-control" type="phone" value="{{ $user->phone }}" disabled></th></tr>
                                                 <tr><th>違規點數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}" min="0"></th></tr>
-                                                <tr><th>違規事由 :</th><th> <input  class="form-control" type="text" name="reason" ></th></tr>
+                                                <tr><th>違規事由 :</th><th> <input  class="form-control" type="text" name="reason" required ></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
                                                         <input class="form-control" type="text" value="{{ $user->level }}" disabled></th>

@@ -191,7 +191,7 @@
 
 <!-- ↓↓↓ Modal Section ↓↓↓ -->
     <!-- CreateItem Modal -->
-        <div id="CreateItemModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" style="opacity: 0.9;">
+        <div id="CreateItemModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
 
                     <!-- CreateItem Modal content-->

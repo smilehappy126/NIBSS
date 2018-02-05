@@ -126,14 +126,14 @@
         border-radius: 40px;
         font-weight: bolder;
         font-family: Microsoft JhengHei;
-        width: 25%;
+        width: 30%;
         font-size: 20px;
         transition: 0.3s;
         background-color: transparent;
         border-width: 1px;  
     }
     .returnButton:hover{
-        width: 27%;
+        width: 35%;
         transition: 0.3s;
         background-color: #DDDDDD;
     }

@@ -1,13 +1,4 @@
 <style type="text/css">
-    /*PC版本登入登出*/
-    @media screen and (min-width: 900px){
-            .Mobilelogout{
-                display: none;
-            }
-            .Mobilelogin{
-                display: none;
-            }
-
             .brButton{
                 float: right;
                 font-family: Microsoft JhengHei;
@@ -27,7 +18,6 @@
                 transition: 0.3s;
 
             }
-
             .LoginButton{
                 float: center;
                 font-family: Microsoft JhengHei;
@@ -45,7 +35,6 @@
                 background-color: #CCDDFF;
                 width:150px;
                 transition: 0.3s;
-
             }
             .LogoutButton{
                 float: center;
@@ -75,7 +64,6 @@
                 border-width: 0px;
                 font-size: 15px;
                 font-weight: bold;
-
             }
             .portal:hover{
                 background-color: #B0E0E6;
@@ -83,16 +71,6 @@
                 height: 20px;
                 transition: 0.3s;
             }
-        }
-    /*Mobile版本登入登出*/
-        @media screen and (max-width: 900px) and (min-width: 300px) and (max-height: 1024px){
-            #PClogout{
-                display: none;
-            }
-            #PClogin{
-                display: none;
-            }
-        }
             .RegisterButton{
                 background-color: transparent;
                 transition: 0.3s;
@@ -103,7 +81,6 @@
                 border-width: 0px;
                 font-size: 15px;
                 font-weight: bold;
-
             }
             .RegisterButton:hover{
                 background-color: #FF8888;
@@ -152,7 +129,6 @@
                 border-width: 0px;
                 font-size: 15px;
                 font-weight: bold;
-
             }
             .portal:hover{
                 background-color: #B0E0E6;
@@ -160,7 +136,55 @@
                 height: 20px;
                 transition: 0.3s;
             }
+        
+    /*PC CSS Section*/
+    @media screen and (min-width: 900px){
+            .Mobilelogout{
+                display: none;
+            }
+            .Mobilelogin{
+                display: none;
+            }
+            .adminpage{
+                border-width: 0px;
+                padding: 0 25px;
+                font-size: 30px;
+                font-weight: 600;
+                font-family: Microsoft JhengHei;
+                color: rgb(255, 145, 145);
+                background-color:transparent;
+                text-shadow: rgb(3, 3, 3) 1px 0px 10px;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+    }
+    /*End of PC CSS Section*/
 
+
+    /*Mobile CSS Section*/
+        @media screen and (max-width: 900px) and (min-width: 300px) and (max-height: 1024px){
+            #PClogout{
+                display: none;
+            }
+            #PClogin{
+                display: none;
+            }
+            .adminpage{
+                border-width: 0px;
+                padding: 0 25px;
+                font-size: 15px;
+                font-weight: 600;
+                font-family: Microsoft JhengHei;
+                color: rgb(255, 145, 145);
+                background-color:transparent;
+                text-align: left;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+        }
+    /*End of Mobile CSS Section*/
 </style>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -192,7 +216,9 @@
         @if (Route::has('login'))
             @if(Auth::check())
                 @if( (Auth::user()->level)==='管理員')   
-                    <li><a  href="{{ url('/admin') }}">管理者專區</a></li>
+                    <li>
+                        <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
+                    </li>
                 @endif
             @endif
         @endif
