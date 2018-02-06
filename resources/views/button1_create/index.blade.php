@@ -296,7 +296,7 @@
                     </div> 
             
                     <div class="form-group">
-                        @if( (Auth::user()->phone)==='')
+                        @if( (Auth::user()->phone)==='無資料')
                         <label><h2>電話(必填)：</h2></label>
                         <input type="tel"  class="form-control" id="phone1" name="phone" required>
                         <input type="text"  name="email" value="{{ Auth::user()->email }}" style="display:none;">

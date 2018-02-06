@@ -189,15 +189,20 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+    <div class="navbar-header"> 
+      
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <!-- 之後可以加圖片 -->
-      <!-- <a class="navbar-brand" href="#">Brand</a> -->
+      <!-- <button type="button" class="navbar-toggle btn btn-default" onclick="location.href='/'">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        </button> -->
+      <a class="navbar-brand" href="{{ url('/') }}">
+        <img alt="Brand" src="{{asset('img/layout/mis.png')}}">
+      </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
