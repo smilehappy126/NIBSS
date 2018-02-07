@@ -301,7 +301,7 @@
                         <input type="tel"  class="form-control" id="phone1" name="phone" required>
                         <input type="text"  name="email" value="{{ Auth::user()->email }}" style="display:none;">
                         @endif
-                        @unless( (Auth::user()->phone)==='')
+                        @unless( (Auth::user()->phone)==='無資料')
                         <label><h2>電話：{{ Auth::user()->phone }}</h2></label>
                         <input type="text" class="form-control" id="phone1" name="phone" value="{{ Auth::user()->phone }}" style="display:none;">
                         @endunless
