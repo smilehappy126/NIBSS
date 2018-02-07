@@ -519,7 +519,7 @@
 									<tr><th>租借日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $re->date }}"></th></tr>
 									<tr><th>班級 :</th><th> <input  class="form-control" type="text" name="class" value="{{ $re->class }}"></th></tr>
     								<tr><th>申請人 : </th><th> <input  class="form-control" type="text" name="name" value="{{ $re->name }}"></th></tr>
-    								<tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" value="{{ $re->phone }}"></th></tr>
+    								<tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" disabled value="{{ $re->phone }}"></th></tr>
     								<tr><th>借用物品 :</th> <th> <input  class="form-control" type="text" name="item" value="{{ $re->item }}"> </th></tr>
     								<tr><th>借用數量 :</th><th><input class="form-control" type="number" name="itemnum" value="{{ $re->itemnum }}"></th></tr>
     								<tr><th>抵押證件 :</th><th> <input class="form-control" type="text" name="license" value="{{ $re->license }}"></th></tr>
