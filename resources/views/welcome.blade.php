@@ -482,9 +482,7 @@
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
                                 <br>
-                                <span class="glyphicon glyphicon-fire" style="color: red;"></span>
                                 <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
-                                <span class="glyphicon glyphicon-fire" style="color: red;"></span>
                                 @endif
                             @endif
                         @endif
@@ -504,9 +502,7 @@
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
                                 <br>
-                                <span class="glyphicon glyphicon-fire" style="color: red;"></span>
                                 <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
-                                <span class="glyphicon glyphicon-fire" style="color: red;"></span>
                                 @endif
                             @endif
                         @endif
