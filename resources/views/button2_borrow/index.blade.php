@@ -118,6 +118,12 @@
 	    	background-color: #483D8B;
 	    	transition: 0.3s;
 	    }
+	    .note7button{
+	    	width: 100%;
+	    	transition: 0.3s;
+	    	border-width: 0px;
+	    	border-radius: 20px;
+	    }
 	}
 /*End of PC section*/
 	
@@ -286,7 +292,7 @@
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 			   					<!-- 是管理員的話可以更改違規點數 -->
 			   					<td id="name-{{$mis->id}}">
-			   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}</button>
+			   						<button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}</button>
 			   					</td>
 			   				@endif
 			   				@if( (Auth::user()->level)==='一般使用者' )
@@ -319,7 +325,12 @@
 					<!-- 借用狀態 -->
 					<!-- <td id="status-{{$mis->id}}">{{$mis->status}}</td>
  -->				<!-- 備註 -->
-					<td id="note7-{{$mis->id}}">{{$mis->note7}}</td>
+					<td id="note7-{{$mis->id}}">
+						<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
+							<span class="glyphicon glyphicon-pencil"></span>
+							備註
+						</button>
+					</td>
 					<!-- 編輯按鈕 -->
 					@if (Route::has('login'))
 						@if (Auth::check())
@@ -383,7 +394,7 @@
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
 			   					<td id="name-{{$mis->id}}">
-			   						<button class="UserModalButton" style="width: 130px;" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
+			   						<button class="UserModalButton" style="width: 130px;" data-toggle="modal" data-target="#UserModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}</button>
 			   					</td>
 			   				@else
 			   					<td class="TableContent" id="name-{{$mis->id}}">
@@ -467,8 +478,11 @@
 	   				<th class="TableTop" style="text-align: center;">
 						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
 					</th>
-					<td class="TableContent" id="note7-{{$mis->id}}">
-						{{$mis->note7}}
+					<td class="TableContent" id="note7-{{$mis->id}}" >
+						<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
+							<span class="glyphicon glyphicon-pencil"></span>
+							備註
+						</button>
 					</td>
 				</tr>
 				<!-- 編輯資料 -->
@@ -499,8 +513,9 @@
 
 
 	<!-- Modal Section -->
+	
+	<!-- Edit Modal -->
 	@foreach($miss as $mis)
-	<!-- Modal 浮現式視窗-->
 	<div class="modal fade" id="myModal{{$mis->id}}" role="dialog"  style="height: 600px;">
 	    <div class="modal-dialog" >
 	    	<!-- Edit Modal content-->
@@ -508,7 +523,7 @@
 	        	<!-- Edit Modal Header -->
 	        	<div class="modal-header">
 	           		<button type="button" class="close" data-dismiss="modal">&times;</button>
-	           		<h4 class="modal-title">租借詳細資料</h4>
+	           		<h4 class="modal-title">借用詳細資料</h4>
 	        	</div>
 	        	<!-- End of Edit Modal Header -->
 	        	<!-- Edit Modal Body -->
@@ -558,14 +573,13 @@
 	    </div>
 	    <!-- End of Edit Modal Dialog -->
 	</div>
-	<!-- End of Edit Modal -->
 	@endforeach
-	<!-- End of Foreach -->
+	<!-- End of Edit Modal -->
 	
-
+	
+<!-- User Modal -->
 	@foreach($users as $user)
-        <!-- Edit Modal -->
-        <div id="EditModal{{$user->phone}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
+        <div id="UserModal{{$user->phone}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
             <div class="modal-dialog">
 
                     <!-- Edit Modal content-->
@@ -624,8 +638,49 @@
                     <!-- End of Edit Modal Content -->
             </div>
         </div>
-<!-- End of Edit Modal -->
     @endforeach
+    <!-- End of Edit Modal -->
+
+    <!-- Note Modal -->
+
+    @foreach($miss as $mis)
+    <div class="modal fade" id="Note{{$mis->id}}" role="dialog"  style="height: 600px;">
+	    <div class="modal-dialog" >
+	    	<!-- Note Modal content-->
+	    	<div class="modal-content">
+	        	<!-- Note Modal Header -->
+	        	<div class="modal-header">
+	           		<button type="button" class="close" data-dismiss="modal">&times;</button>
+	           		<h4 class="modal-title">備註</h4>
+	        	</div>
+	        	<!-- End of Edit Modal Header -->
+	        	<!-- Edit Modal Body -->
+	     		<div class="modal-body">
+	        		<div class="EditPage">
+	           			<form action="{{asset ( '/borrow/updatenote/'.$mis->id) }}" method="post">{{ csrf_field()}}
+							<div class="EditInfo">
+								<textarea class="form-control" name="note7">{{$mis->note7}}</textarea>
+							</div>
+	        		</div>
+	        	</div>
+	        	<!-- End of Note Modal Body -->
+	        	<!-- Modal Footer -->
+	        	<div class="modal-footer">
+	          		<button type="submit" class="btn btn-default">變更</button>	
+	           			</form>
+	          		<button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+	        	</div>
+	        	<!-- End of Note Modal Footer -->
+	    	</div>
+	    	<!-- End of Note Modal Content -->
+	    </div>
+	    <!-- End of Note Modal Dialog -->
+	</div>
+	<!-- End of Note Modal -->
+	@endforeach
+	<!-- End of Note Modal -->
+
+	<!-- End of Modal Section -->
 
 	<div style="text-align: center;">
 		<form action="{{ asset('/borrow') }}" method="get">
