@@ -16,8 +16,7 @@ class BorrowController extends Controller
                   ->get();
     $users = User::all();
     $reasons = Reason::all();
-    $counter=1;
-		return view('button2_borrow.index',['miss'=> $miss],['users'=> $users],['counter'=>$counter],['reasons'=>$reasons]);
+		return view('button2_borrow.index',['miss'=> $miss],['users'=> $users],['reasons'=>$reasons]);
 
 	}
 	
@@ -35,6 +34,7 @@ class BorrowController extends Controller
       $update->update(['teacher'=>$rep->teacher]);
       $update->update(['status'=>$rep->status]);
       $update->update(['audit'=>$rep->audit]);
+      $update->update(['note7'=>$rep->note7]);
       return redirect('/borrow');
   }
   public function userupdate(Request $rep)

@@ -247,13 +247,17 @@
 						<button id="teacherSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
 					</th>
 				    <!-- 狀態 -->
-	   				<th style="text-align: center;">
+	   				<!-- <th style="text-align: center;">
 						<button id="statusSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
+					</th> -->
+					<!-- 備註 -->
+					<th style="text-align: center;">
+						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
 					</th>
+					<!-- 編輯資料 -->
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
-					<!-- 編輯資料 -->
 	   	 			<th style="text-align: center;">
 						<button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
 					</th>
@@ -270,20 +274,31 @@
 			<table class="table" id="content" style="table-layout: fixed; text-align: center" >
 				@foreach($miss as $mis)
 				<tr class="contentdata" id="tr-{{$mis->id}}">
+					<!-- 序號 -->
 					<td id="id-{{$mis->id}}">{{$mis->id}}</td>
+					<!-- 借用日期 -->
 					<td id="date-{{$mis->id}}">{{$mis->date}}</td>
+					<!-- 班級 -->
 					<td id="class-{{$mis->id}}">{{$mis->class}}</td>
+					<!-- 借用者 -->
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+			   					<!-- 是管理員的話可以更改違規點數 -->
 			   					<td id="name-{{$mis->id}}">
-			   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$mis->name}}</button>
+			   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}</button>
 			   					</td>
-			   				@else
+			   				@endif
+			   				@if( (Auth::user()->level)==='一般使用者' )
+			   					<!-- 不是管理員的話不可以更改 -->
 			   					<td id="name-{{$mis->id}}">{{$mis->name}}</td>
 			   				@endif
+			   			@else
+			   				<!-- 沒登入的話也不可以更改 -->
+			   					<td id="name-{{$mis->id}}">{{$mis->name}}</td>
 			   			@endif
 	    			@endif
+	    			<!-- 借用者電話 -->
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level) ==='工讀生')
@@ -291,12 +306,21 @@
 							@endif
 						@endif
 	    			@endif
+	    			<!-- 借用物品 -->
 					<td id="item-{{$mis->id}}">{{$mis->item}}</td>
+					<!-- 借用數量 -->
 					<td id="itemnum-{{$mis->id}}">{{$mis->itemnum}}</td>
+					<!-- 抵押證件 -->
 					<td id="license-{{$mis->id}}">{{$mis->license}}</td>
+					<!-- 借用教室 -->
 					<td id="classroom-{{$mis->id}}">{{$mis->classroom}}</td>
+					<!-- 指導老師 -->
 					<td id="teacher-{{$mis->id}}">{{$mis->teacher}}</td>
-					<td id="status-{{$mis->id}}">{{$mis->status}}</td>
+					<!-- 借用狀態 -->
+					<!-- <td id="status-{{$mis->id}}">{{$mis->status}}</td>
+ -->				<!-- 備註 -->
+					<td id="note7-{{$mis->id}}">{{$mis->note7}}</td>
+					<!-- 編輯按鈕 -->
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
@@ -430,18 +454,27 @@
 					</td>
 				</tr>
 			    <!-- 狀態 -->
-			    <tr>
+			    <!-- <tr>
 	   				<th class="TableTop" style="text-align: center;">
 						<button id="statusSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
 					</th>
 					<td class="TableContent" id="status-{{$mis->id}}">
 						{{$mis->status}}
 					</td>
+				</tr> -->
+				<!-- 備註 -->
+				<tr>
+	   				<th class="TableTop" style="text-align: center;">
+						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
+					</th>
+					<td class="TableContent" id="note7-{{$mis->id}}">
+						{{$mis->note7}}
+					</td>
 				</tr>
+				<!-- 編輯資料 -->
 				@if (Route::has('login'))
 					@if (Auth::check())
 						@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
-				<!-- 編輯資料 -->
 				<tr>
 	   	 			<th class="TableTop" style="text-align: center;">
 						<button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
@@ -502,10 +535,13 @@
     										</select>
     									</th>
     								</tr>
+    								<tr><th>備註 :</th><th> <textarea class="form-control" name="note7">{{ $mis->note7 }}</textarea></th></tr>
 								</table>
 								<!-- End of Edit Modal Table -->
+								@if(Auth::check())
 								<input name="audit" value="{{Auth::user()->name}}" hidden>
     								<!-- ↑抓取登入使用者的名字，不會顯示在頁面上 -->
+    							@endif
 							</div>
 	        		</div>
 	        	</div>
@@ -566,8 +602,10 @@
                                             <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
                                             <input name="username" value="{{$user->name}}" hidden >
                                             <!-- ↑視為傳遞User names的變數 不會顯示在頁面上 -->
+                                            @if(Auth::check())
                                             <input name="reasoncreator" value="{{Auth::user()->name}}" hidden >
                                             <!-- ↑視為傳遞Creator的變數 不會顯示在頁面上 -->
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

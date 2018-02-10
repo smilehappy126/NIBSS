@@ -299,14 +299,20 @@
 					          {{$re->updated_at}}
 					     </td>
 					<td id="class-{{$re->id}}">{{$re->class}}</td>
-					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-	   					<td id="name-{{$re->id}}">
-	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}" style="width: 120%;" ><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
-	   					</td>
-	   				@endif
-	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-						<td id="name-{{$re->id}}">{{$re->name}}</td>
-					@endunless
+					@if (Route::has('login'))
+						@if (Auth::check())
+							@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
+			   					<td id="name-{{$re->id}}">
+			   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}" style="width: 120%;" ><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
+			   					</td>
+			   				@endif
+			   				@if(Auth::user()->level==='一般使用者')
+			   				<td id="name-{{$re->id}}">{{$re->name}}</td>
+			   				@endif
+			   			@else
+			   				<td id="name-{{$re->id}}">{{$re->name}}</td>
+			   			@endif
+			   		@endif
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
@@ -379,16 +385,20 @@
 	   				<th class="TableTop" style="text-align: center;">
 						<button id="nameSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
 					</th>
-					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-	   					<td id="name-{{$re->id}}">
-	   						<button class="UserModalButton"  style="width: 130px;" type="button" data-toggle="modal" data-target="#EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$re->name}}</button>
-	   					</td>
-	   				@endif
-	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-					<td class="TableContent" id="name-{{$re->id}}">
-						{{$re->name}}
-					</td>
-					@endunless
+					@if (Route::has('login'))
+						@if (Auth::check())
+							@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
+			   					<td id="name-{{$re->id}}">
+			   						<button class="UserModalButton"  style="width: 130px;" type="button" data-toggle="modal" data-target="#EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$re->name}}</button>
+			   					</td>
+			   				@endif
+			   				@if(Auth::user()->level==='一般使用者')
+			   					<td class="TableContent" id="name-{{$re->id}}">{{$re->name}}</td>
+			   				@endif
+			   			@else
+			   				<td class="TableContent" id="name-{{$re->id}}">{{$re->name}}</td>
+			   			@endif
+			   		@endif
 				</tr>
 				@if (Route::has('login'))
 					@if (Auth::check())
@@ -479,7 +489,7 @@
 						<button id="auditSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">審核者</button>
 					</th>
 					<td  class="TableContent" id="audit-{{$re->id}}">
-						{{Auth::user()->name}}
+						{{$re->audit}}
 					</td>
 				</tr>
 						@endif
@@ -534,8 +544,10 @@
     								</tr>
 								</table>
 								<!-- End of Edit Modal Table -->
+								@if(Auth::check())
 								<input name="audit" value="{{Auth::user()->name}}" hidden>
     								<!-- ↑抓取登入使用者的名字，不會顯示在頁面上 -->
+    							@endif
 							</div>
 	        		</div>
 	        	</div>
@@ -595,8 +607,10 @@
                                             <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
                                             <input name="username" value="{{$user->name}}" hidden >
                                             <!-- ↑視為傳遞User names的變數 不會顯示在頁面上 -->
-                                            <input name="reasoncreator" value="{{Auth::user()->name}}" hidden >
+                                            @if(Auth::check())
+                                            	<input name="reasoncreator" value="{{Auth::user()->name}}" hidden >
                                             <!-- ↑視為傳遞Creator的變數 不會顯示在頁面上 -->
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

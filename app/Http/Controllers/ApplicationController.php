@@ -54,6 +54,8 @@ class ApplicationController extends Controller
     $application->date = Carbon::today()->format('Y-m-d');
     // echo($application->date);
     $application->status = '借用中';
+    $application->audit = '無';
+    $application->note7 = '無';
     $application->save();
     // $socialaccount=SocialAccount::where('email','=',$request->email);
     // $socialaccount->update(['phone'=>$request->phone])

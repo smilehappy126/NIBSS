@@ -62,6 +62,7 @@ class AdminController extends Controller
                 ->orWhere('classroom','like','%'.$rep->searchcontent.'%')
                 ->orWhere('license','like','%'.$rep->searchcontent.'%')
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
+                ->orWhere('note7','like','%'.$rep->searchcontent.'%')
                   ->get();
         return view('button5_admin.search',['miss'=> $miss],['content'=>$rep->searchcontent]);
     }
