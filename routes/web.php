@@ -32,14 +32,7 @@ Route::post('/create/setphone','ApplicationController@setphone');
 Route::get('/borrow', 'BorrowController@index');
 Route::post('/borrow/update/{id}','BorrowController@update');
 Route::post('/borrow/userupdate','BorrowController@userupdate');
-
-//透過名字尋找
-Route::post('/borrow/search','BorrowController@search');
-//已歸還資料
-// Route::get('/return', function () {
-//     return view('button3_return.index');
-// });
-
+Route::post('/borrow/updatenote/{id})','BorrowController@updatenote');
 
 //已歸還資料
 Route::get('/return', 'returnController@index');

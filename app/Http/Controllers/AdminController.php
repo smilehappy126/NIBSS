@@ -36,6 +36,10 @@ class AdminController extends Controller
       $update->update(['phone'=>$rep->phone]);
       $update->update(['violation'=>$rep->violation]);
       $update->update(['level'=>$rep->level]);
+      // 更改使用者電話，借用資料記錄裡面一併更改
+      $miss=Miss::where('phone','=',$rep->oldphone);
+      $miss->update(['phone'=>$rep->phone]);
+      // 檢查違規紀錄中是否有此使用者，一併修改他的違規點數
       $reason = Reason::where('phone','=',$rep->phone);
       if(count($reason)==1){
         $reason->update(['violation'=>$rep->violation]);
@@ -62,6 +66,7 @@ class AdminController extends Controller
                 ->orWhere('classroom','like','%'.$rep->searchcontent.'%')
                 ->orWhere('license','like','%'.$rep->searchcontent.'%')
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
+                ->orWhere('note7','like','%'.$rep->searchcontent.'%')
                   ->get();
         return view('button5_admin.search',['miss'=> $miss],['content'=>$rep->searchcontent]);
     }
