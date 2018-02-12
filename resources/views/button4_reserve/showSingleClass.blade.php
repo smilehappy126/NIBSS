@@ -193,6 +193,31 @@
         color: #FFF;
         border-color: #ac2925;
     }
+    
+.funcBtn{
+        float:center;
+        font-family: Microsoft JhengHei;
+        font-weight: bolder;
+        font-size: 16px;
+        background-color: #B0C4DE;
+        width: 165px;
+        height: 40px;
+        border-radius: 100px;
+        border-width: 0px;
+        margin-top: 30px;
+        margin-right: 10px;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    .funcBtn:border{
+        border-width: 1px;
+        border-style:none;
+    }
+    .funcBtn:hover{
+        background-color: #CCDDFF;
+        transition: 0.3s;
+    }
+    
 </style>
 @stop 
 
@@ -224,26 +249,39 @@ $nextString = date('Y-m-d',$next);
     @if (Route::has('login'))
         @if (Auth::check())
             @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
-    <!--新增教室資料按鈕-->
-    <button type="button" class="btn btn-link btn-lg">
-        <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
-    </button>
+            
+    <div>
+        <!--新增教室資料按鈕-->
+        <button type="button" class="btn btn-link btn-lg funcBtn">
+            <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
+        </button>
 
-    <!--修改刪除教室資料按鈕-->
-    <button type="button" class="btn btn-link btn-lg">
-        <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
-    </button>
+        <!--修改刪除教室資料按鈕-->
+        <button type="button" class="btn btn-link btn-lg funcBtn">
+            <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
+        </button>
 
-    <!--新增課程資訊按鈕-->
-    <button type="button" class="btn btn-link btn-lg">
-        <a href="{{ asset('/inputClass/' . $currentClassroom) }}"><div>固定課程預約</div></a>
-    </button>
+        <!--新增課程資訊按鈕-->
+        <button type="button" class="btn btn-link btn-lg funcBtn">
+            <a href="{{ asset('/inputClass/' . $currentClassroom) }}"><div>{{$currentClassroom}} 固定課程預約</div></a>
+        </button>
+    </div>
+    
+<!--
+    <form action="{{ asset('/editclassroom') }}" method="get">
+        <button class="funcBtn">修改刪除/教室資料</button>
+    </form>
+    
+    <form action="{{ asset('/inputClass/' . $currentClassroom) }}" method="get">
+      <button class="funcBtn">固定課程預約</button>
+    </form>
+-->
     
             @endif
         @endif
     @endif
     <br>
-     <br>
+    <br>
     <!--教室按鈕-->
     @foreach ($classrooms as $classroom)
 
