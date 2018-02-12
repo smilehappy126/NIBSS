@@ -339,18 +339,20 @@
 					<td id="classroom-{{$mis->id}}">{{$mis->classroom}}</td>
 					<!-- 指導老師 -->
 					<td id="teacher-{{$mis->id}}">{{$mis->teacher}}</td>
-					<!-- 借用狀態 -->
-					<!-- <td id="status-{{$mis->id}}">{{$mis->status}}</td> -->
+					<!-- 備註 -->
 					@if (Route::has('login'))
 						@if (Auth::check())
-							@if( (Auth::user()->level)==='一般使用者')
-					<!-- 備註 -->
-					<td id="note7-{{$mis->id}}">
-						<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
-							<span class="glyphicon glyphicon-pencil"></span>
-							備註
-						</button>
-					</td>
+							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
+								@if( ($mis->note7)==='無')
+									<td></td>
+								@else
+						<td id="note7-{{$mis->id}}">
+							<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
+								<span class="glyphicon glyphicon-pencil"></span>
+								備註
+							</button>
+						</td>
+								@endif
 							@endif
 						@endif
 	    			@endif
@@ -499,7 +501,7 @@
 				<!-- 備註 -->
 				@if (Route::has('login'))
 					@if (Auth::check())
-						@if( (Auth::user()->level)==='一般使用者')
+						@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
 				<tr>
 	   				<th class="TableTop" style="text-align: center;">
 						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
