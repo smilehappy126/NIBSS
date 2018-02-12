@@ -67,17 +67,17 @@
         <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
     </div>
     @endif
-
-    <button type="button" class="btn btn-link btn-lg">
-        <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
-    </button>
-        
-    <br>
-
+    
+    
     <div>
-      <form action="{{ asset('/reserve') }}" method="get">
-          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回教室列表</button>
-      </form>
+        <form action="{{ asset('/reserve') }}" method="get">
+            <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回教室列表</button>
+        </form>
+<!--
+        <button type="button" class="btn btn-link btn-lg">
+            <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
+        </button>
+-->
     </div>
 
     <br>
