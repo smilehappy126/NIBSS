@@ -123,6 +123,11 @@
 	    	transition: 0.3s;
 	    	border-width: 0px;
 	    	border-radius: 20px;
+	    	background-color: #99BBFF;
+	    }
+	    .note7button:hover{
+	    	transition: 0.3s;
+	    	background-color: #5599FF;
 	    }
 	}
 /*End of PC section*/
@@ -190,6 +195,12 @@
 	    	background-color: #483D8B;
 	    	transition: 0.3s;
 	    }
+	    .note7button{
+	    	width: 100%;
+	    	transition: 0.3s;
+	    	border-width: 0px;
+	    	border-radius: 20px;
+	    }
     }
 /*End of Mobile CSS Section*/
     
@@ -256,10 +267,16 @@
 	   				<!-- <th style="text-align: center;">
 						<button id="statusSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
 					</th> -->
+					@if (Route::has('login'))
+						@if (Auth::check())
+							@if( (Auth::user()->level)==='一般使用者')
 					<!-- 備註 -->
 					<th style="text-align: center;">
 						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
 					</th>
+							@endif
+						@endif
+	    			@endif
 					<!-- 編輯資料 -->
 					@if (Route::has('login'))
 						@if (Auth::check())
@@ -323,14 +340,20 @@
 					<!-- 指導老師 -->
 					<td id="teacher-{{$mis->id}}">{{$mis->teacher}}</td>
 					<!-- 借用狀態 -->
-					<!-- <td id="status-{{$mis->id}}">{{$mis->status}}</td>
- -->				<!-- 備註 -->
+					<!-- <td id="status-{{$mis->id}}">{{$mis->status}}</td> -->
+					@if (Route::has('login'))
+						@if (Auth::check())
+							@if( (Auth::user()->level)==='一般使用者')
+					<!-- 備註 -->
 					<td id="note7-{{$mis->id}}">
 						<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
 							<span class="glyphicon glyphicon-pencil"></span>
 							備註
 						</button>
 					</td>
+							@endif
+						@endif
+	    			@endif
 					<!-- 編輯按鈕 -->
 					@if (Route::has('login'))
 						@if (Auth::check())
@@ -474,6 +497,9 @@
 					</td>
 				</tr> -->
 				<!-- 備註 -->
+				@if (Route::has('login'))
+					@if (Auth::check())
+						@if( (Auth::user()->level)==='一般使用者')
 				<tr>
 	   				<th class="TableTop" style="text-align: center;">
 						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
@@ -485,6 +511,9 @@
 						</button>
 					</td>
 				</tr>
+						@endif
+					@endif
+	    		@endif
 				<!-- 編輯資料 -->
 				@if (Route::has('login'))
 					@if (Auth::check())
