@@ -101,7 +101,6 @@
     .sortButton:hover{
       background-color: #DDDDDD;
     }
-    
     .resetButton{
       width:100px ;
       height:40px;
@@ -118,6 +117,22 @@
       background-color: #DDDDDD;
       transition: 0.3s;
       width:150px;
+    }
+    .UserModalButton{
+      background-color: #4169E1;
+      border-width: 0px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: Microsoft JhengHei;
+      font-weight: bolder;
+      color: #F5F5F5;
+      height: 30px;
+      width: 100%;
+      transition: 0.3s;
+    }
+    .UserModalButton:hover{
+      background-color: #483D8B;
+      transition: 0.3s;
     }
 }
 /*End of PC CSS Section*/
@@ -180,16 +195,31 @@
       transition: 0.3s;
       width:150px;
     }
-/*End of Mobile CSS Section*/
+    .UserModalButton{
+        background-color: #4169E1;
+        border-width: 0px;
+        border-radius: 7px;
+        font-size: 15px;
+        font-family: Microsoft JhengHei;
+        font-weight: bolder;
+        color: #F5F5F5;
+        height: 30px;
+        width: 55%;
+        transition: 0.3s;
+      }
+      .UserModalButton:hover{
+        background-color: #483D8B;
+        transition: 0.3s;
+      }
 }
-    
+/*End of Mobile CSS Section*/    
 
     </style>
   
 @stop
 
 @section('content')
-<div class="container" style=" padding-top: 0px;">
+<div class="container" style=" padding-top: 0px; width: 100%;">
     <div class="TopTitle">
       查詢結果<br>
     </div>
@@ -220,6 +250,8 @@
       <div class="TableTop">
         <table class="table" id="TitleTable" style="text-align: center; table-layout: fixed;">
           <tr>
+            <!-- 備註提示欄 -->
+            <th style="width: 1px;"></th>
             <!-- 序號 -->
             <th style="text-align: center;">
               <button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
@@ -288,10 +320,20 @@
         <table class="table" id="content" style="table-layout: fixed; text-align: center" >
           @foreach($miss as $mis)
           <tr class="contentdata" id="tr-{{$mis->id}}">
+            <!-- 若是有備註，出現提示 -->
+            @if(($mis->note7)==='無')
+              <td style="width: 1px;"></td>
+            @else
+              <td style="width: 1px;">※</td>
+            @endif
             <td id="id-{{$mis->id}}">{{$mis->id}}</td>
             <td id="date-{{$mis->id}}">{{$mis->date}}</td>
             <td id="class-{{$mis->id}}">{{$mis->class}}</td>
-            <td id="name-{{$mis->id}}">{{$mis->name}}</td>
+            <td id="name-{{$mis->id}}">
+              <button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$mis->phone}}">
+                <span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}
+              </button>
+            </td>
             @if (Route::has('login'))
               @if (Auth::check())
             <td id="phone-{{$mis->id}}" style="width: 10%;">{{$mis->phone}}</td>
@@ -305,11 +347,11 @@
             <td id="status-{{$mis->id}}">{{$mis->status}}</td>
             @if (Route::has('login'))
               @if (Auth::check())
-                @if( (Auth::user()->name)==='admin')
+                @if( (Auth::user()->level)==='管理員')
             <td>
-              <a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+              <button class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
                 <span class="glyphicon glyphicon-pencil"></span> 編輯
-              </a>
+              </button> 
             </td>
                 @endif
               @endif
@@ -333,7 +375,7 @@
                     </form>
                   </th>
                   <th style="text-align: center;">
-                    <label style="font-size: 17px; font-family: Microsoft JhengHei;">以「{{ $content }}」搜尋</label>
+                    <label style="font-size: 15px; font-family: Microsoft JhengHei;">以「{{ $content }}」搜尋</label>
                   </th>
                   <th style="text-align: center;">
                     <!-- 再次搜尋 -->
@@ -344,7 +386,6 @@
             </table>
       </div>
       <br>
-      
       <!-- Mobile Table -->
       <div class="TableTop">
         @foreach($miss as $mis)
@@ -454,23 +495,23 @@
                 {{$mis->status}}
               </th>
           </tr>
-          <!-- 編輯資料 -->
-            @if (Route::has('login'))
+          @if (Route::has('login'))
               @if (Auth::check())
                 @if( (Auth::user()->level)==='管理員')
+          <!-- 編輯資料 -->
           <tr>
               <th style="text-align: center;">
                 <button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
               </th>
               <th>
-                <a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
-                  <span class="glyphicon glyphicon-pencil"></span> 編輯
-                </a>
+                <button class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                <span class="glyphicon glyphicon-pencil"></span> 編輯
+              </button> 
               </th>
-          </tr> 
-                @endif
-              @endif
-            @endif
+          </tr>
+               @endif
+             @endif
+          @endif
         </table>
         <br>
         @endforeach
@@ -480,10 +521,10 @@
     <!-- End of Mobile Section -->
 
 
+  <!-- Modal Section -->
 
-
+  <!-- Edit Modal-->
   @foreach($miss as $mis)
-  <!-- Modal 浮現式視窗-->
   <div class="modal fade" id="myModal{{$mis->id}}" role="dialog"  style="height: 600px;">
       <div class="modal-dialog" >
         <!-- Edit Modal content-->
@@ -505,7 +546,7 @@
                   <tr><th>借用日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $mis->date }}"></th></th>
                   <tr><th>班級 :</th><th> <input  class="form-control" type="text" name="class" value="{{ $mis->class }}"></th></tr>
                     <tr><th>申請人 : </th><th> <input  class="form-control" type="text" name="name" value="{{ $mis->name }}"></th></tr>
-                    <tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" value="{{ $mis->phone }}"></th></tr>
+                    <tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" value="{{ $mis->phone }}" disabled></th></tr>
                     <tr><th>借用物品 :</th> <th> <input  class="form-control" type="text" name="item" value="{{ $mis->item }}"> </th></tr>
                     <tr><th>借用數量 :</th><th><input class="form-control" type="number" name="itemnum" value="{{ $mis->itemnum }}"></th></tr>
                     <tr><th>抵押證件 :</th><th> <input class="form-control" type="text" name="license" value="{{ $mis->license }}"></th></tr>
@@ -513,11 +554,14 @@
                     <tr><th>授課教師 :</th><th> <input  class="form-control" type="text" name="teacher" value="{{ $mis->teacher }}"></th></tr>
                     <tr><th>狀態 :</th>
                       <th> 
-                        <select class="form-control" name="status" value="{{ $mis->status }}">
-                          <option value="已歸還">已歸還</option><option value="借用中">借用中</option>
+                        <select class="form-control" name="status" required>
+                          <option selected disabled style="display: none;"></option>
+                          <option value="借用中">借用中</option>
+                          <option value="已歸還">已歸還</option>
                         </select>
                       </th>
                     </tr>
+                    <tr><th>備註 :</th><th> <textarea class="form-control" name="note7">{{ $mis->note7 }}</textarea></th></tr>
                 </table>
                 <!-- End of Edit Modal Table -->
               </div>
@@ -537,9 +581,116 @@
       </div>
       <!-- End of Edit Modal Dialog -->
   </div>
-  <!-- End of Edit Modal -->
   @endforeach
-  <!-- End of Foreach -->
+  <!-- End of Edit Modal -->
+
+  <!-- User Modal -->
+  @foreach($users as $user)
+        <div id="UserModal{{$user->phone}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
+            <div class="modal-dialog">
+
+                    <!-- User Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="EditPage">
+                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">修改 Edit</h4>
+                            </div>
+                        </div> <!-- End of User Modal Header -->
+                         
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form class="form-horizontal" method="post" action="{{ asset('/borrow/userupdate')}}">
+                                     {{ csrf_field() }}
+                                    <div class="EditPage">
+                                        <div class="EditInfo">
+                                            <!-- Edit Modal Table -->
+                                            <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
+                                                <tr><th>使用者 : </th><th><label style="text-align: center; width: 100%;">{{ $user->name}}</label> </th></tr>
+                                                <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}" disabled></th></tr>
+                                                <tr><th>電話 :</th> <th><input class="form-control" type="phone" value="{{ $user->phone }}" disabled></th></tr>
+                                                <tr><th>違規點數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}" min="0"></th></tr>
+                                                <tr><th>違規事由 :</th><th> <input  class="form-control" type="text" name="reason" required></th></tr>
+                                                <tr><th>權限等級 :</th>
+                                                    <th> 
+                                                        <input class="form-control" type="text" value="{{ $user->level }}" disabled></th>
+                                                    </th>
+                                                </tr>
+                                            </table>
+                                            <!-- End of Edit Modal Table -->
+                                            <input name="phone" value="{{$user->phone}}" hidden >
+                                            <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
+                                            <input name="username" value="{{$user->name}}" hidden >
+                                            <!-- ↑視為傳遞User names的變數 不會顯示在頁面上 -->
+                                            @if(Auth::check())
+                                            <input name="reasoncreator" value="{{Auth::user()->name}}" hidden >
+                                            <!-- ↑視為傳遞Creator的變數 不會顯示在頁面上 -->
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- End of Modal Body -->
+                        <div class="modal-footer">
+                              <div class="form-group">
+                              <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Edit</button>
+                              <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                              </div>
+                        </div> 
+                        <!-- End of User Modal Footer -->
+                                    </form>
+                    </div> 
+                    <!-- End of User Modal Content -->
+            </div>
+        </div>
+    @endforeach
+    <!-- End of User Modal -->
+
+    <!-- Search Modal -->
+    <div id="SearchModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" style="opacity: 0.9;">
+        <div class="modal-dialog">
+          <!-- Search Modal content-->
+          <div class="modal-content">
+            <!-- Begin of Modal Header -->
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div id="SearchPage">
+                      <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">搜尋 Search</h4>
+                  </div>
+              </div>
+              <!-- End of Modal Header -->
+
+              <!-- Begin of Modal Body -->
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-8 col-md-offset-2">
+                          <form action="{{ asset ('/admin/searchall')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+                              <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp</label>
+                              <input  class="searchcontent" name="searchcontent" id="searchcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 70%;" autofocus>
+                      </div>    
+                  </div>
+              </div>
+              <!--  End of Modal Body -->
+
+              <!-- Begin of Modal Footer -->
+              <div class="modal-footer">
+                  <div class="form-group">
+                      <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Search</button>
+                      <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+              <!-- End of Modal Footer -->
+                          </form>
+          </div>
+          <!-- End of Search Modal Conent -->
+        </div>
+    </div>        
+    <!-- End of Search Modal -->
+
+  <!-- End of Modal Section -->
+
   @unless(count($miss)>= 1)
   <div style=" font-family: Microsoft JhengHei; text-align: center; font-weight: bolder; font-size: 40px; color: red;" >
     查無此資料!!!
@@ -554,48 +705,7 @@
 
 </div>
 <!-- End of Container -->
-<!-- Search Modal -->
-        <div id="SearchModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" style="opacity: 0.9;">
-            <div class="modal-dialog">
 
-                    <!-- Search Modal content-->
-                    <div class="modal-content">
-                        <!-- Begin of Modal Header -->
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <div id="SearchPage">
-                               <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">搜尋 Search</h4>
-                            </div>
-                        </div>
-                        <!-- End of Modal Header -->
-
-                        <!-- Begin of Modal Body -->
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <form action="{{ asset ('/admin/searchall')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-                    <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp</label>
-                                        <input  class="searchcontent" name="searchcontent" id="searchcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 70%;" autofocus>
-                            </div>    
-                            </div>
-                        </div>
-
-                        <!--  End of Modal Body -->
-
-                        <!-- Begin of Modal Footer -->
-                        <div class="modal-footer">
-                              <div class="form-group">
-                                    <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Search</button>
-                                    <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
-                              </div>
-                        </div>
-                        <!-- End of Modal Footer -->
-                                </form>
-                    </div>
-                    <!-- End of Search Modal Conent -->
-            </div>
-        </div>        
-        <!-- End of Search Modal -->
 
 
 @endsection

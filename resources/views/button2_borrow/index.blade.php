@@ -608,19 +608,19 @@
 	<!-- End of Edit Modal -->
 	
 	
-<!-- User Modal -->
+	<!-- User Modal -->
 	@foreach($users as $user)
         <div id="UserModal{{$user->phone}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
             <div class="modal-dialog">
 
-                    <!-- Edit Modal content-->
+                    <!-- User Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <div id="EditPage">
                                 <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">修改 Edit</h4>
                             </div>
-                        </div> <!-- End of Modal Header -->
+                        </div> <!-- End of User Modal Header -->
                          
                         <div class="modal-body">
                             <div class="row">
@@ -663,14 +663,14 @@
                               <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
                               </div>
                         </div> 
-                        <!-- End of Modal Footer -->
+                        <!-- End of User Modal Footer -->
                                     </form>
                     </div> 
-                    <!-- End of Edit Modal Content -->
+                    <!-- End of User Modal Content -->
             </div>
         </div>
     @endforeach
-    <!-- End of Edit Modal -->
+    <!-- End of User Modal -->
 
     <!-- Note Modal -->
 

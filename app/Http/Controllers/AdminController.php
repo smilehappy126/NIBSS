@@ -68,7 +68,8 @@ class AdminController extends Controller
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
                 ->orWhere('note7','like','%'.$rep->searchcontent.'%')
                   ->get();
-        return view('button5_admin.search',['miss'=> $miss],['content'=>$rep->searchcontent]);
+        $users=User::all();
+        return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
     //在管理者頁面裡的搜尋更改內容(歷史紀錄中的再次搜尋) 
     public function updateContentData(Request $rep, $id)
@@ -76,7 +77,6 @@ class AdminController extends Controller
       $update= Miss::find($id);
       $update->update(['date'=>$rep->date]);
       $update->update(['class'=>$rep->class]);
-      $update->update(['phone'=>$rep->phone]);
       $update->update(['name'=>$rep->name]);
       $update->update(['item'=>$rep->item]);
       $update->update(['itemnum'=>$rep->itemnum]);
@@ -84,6 +84,7 @@ class AdminController extends Controller
       $update->update(['classroom'=>$rep->classroom]);
       $update->update(['teacher'=>$rep->teacher]);
       $update->update(['status'=>$rep->status]);
+      $update->update(['note7'=>$rep->note7]);
       //按下確認編輯之後重新導向回搜尋頁面
       $miss=Miss::where('name','like','%'.$rep->searchcontent.'%')
                 ->orWhere('class','like','%'.$rep->searchcontent.'%')
@@ -96,7 +97,8 @@ class AdminController extends Controller
                 ->orWhere('license','like','%'.$rep->searchcontent.'%')
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
                   ->get();
-        return view('button5_admin.search',['miss'=> $miss],['content'=>$rep->searchcontent]);
+      $users=User::all();
+      return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
 
 //編輯條例
