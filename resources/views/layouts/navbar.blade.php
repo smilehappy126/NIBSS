@@ -148,7 +148,7 @@
             .adminpage{
                 border-width: 0px;
                 padding: 0 25px;
-                font-size: 30px;
+                font-size: 15px;
                 font-weight: 600;
                 font-family: Microsoft JhengHei;
                 color: rgb(255, 145, 145);
@@ -214,14 +214,12 @@
         <li><a href="{{ url('/borrow') }}">借用狀況</a></li>
         <li><a href="{{ url('/return') }}">已歸還資料</a></li>
         <li><a href="{{ url('/reserve') }}">教室預約狀況</a></li>
-        <!-- <li><a href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a></li> -->
-        
         <!-- 管理者模式 -->
         @if (Route::has('login'))
             @if(Auth::check())
                 @if( (Auth::user()->level)==='管理員')   
                     <li>
-                        <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
+                        <a  style="color: rgb(255, 145, 145); font-family: Microsoft JhengHei;" href="{{ url('/admin') }}">管理者專區</a>
                     </li>
                 @endif
             @endif
@@ -256,6 +254,7 @@
             </div>
         @endunless
     <!-- PC版本結束 -->
+    
     <!-- Mobile版本登入登出 -->
         <!-- 登出登入按鍵 -->
         @if (Route::has('login'))
@@ -292,7 +291,8 @@
       </form> -->
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-
+  	<!-- Modal Section -->
+     
      <!-- Login Modal -->
         <div id="LoginModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
