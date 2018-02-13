@@ -101,18 +101,17 @@
     .FormButton{
     		border: 0px;
     		border-radius: 8px;
-    		background-color: pink;
+    		background-color:#D1BBFF;
     		left: 0px;
     		right: 0px;
-    		width: 100%;
+    		width: 50%;
     		height: 100%;
     		bottom: :0;
-    		float: left;
     		font-family: Microsoft JhengHei;
     		font-size: 80px;
 	}
 	.FormButton:hover{
-		    background-color: #FF8888;
+		    background-color: #9955FF;
 	}
   .searchButton{
     		width: 41px;
@@ -159,18 +158,17 @@
     .FormButton{
         border: 0px;
         border-radius: 8px;
-        background-color: pink;
+        background-color: #D1BBFF;
         left: 0px;
         right: 0px;
         width: 100%;
         height: 100%;
         bottom: :0;
-        float: left;
         font-family: Microsoft JhengHei;
         font-size: 40px;
     }
     .FormButton:hover{
-        background-color: #FF8888;
+        background-color: #9955FF;
     }
     .searchButton{
         width: 41px;
@@ -215,34 +213,34 @@
         @if(Auth::check())
     		@if(Auth::user()->level === '管理員')
     			<div class="content" style="position: relative;">
-    				<table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
+    				<table class="table" style="border: 0px;  table-layout: fixed; text-align: center;">
     					<tr>
-    						<th>
+    						<th style="text-align: right;">
     							<button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">歷史紀錄</button>
     						</th>
-    						<th>
+    						<th style="text-align: left;">
     						  <form action=" {{asset('/admin/userlists')}} " method="get" >{{ csrf_field() }}
     						      <button class="FormButton" type="submit">使用者清單</button>
     						  </form>
     						</th>
     					</tr>
     					<tr>
-    						<th>
+    						<th style="text-align: right;">
     							<form action=" {{asset('/admin/rule')}} " method="get"> {{ csrf_field() }}
                     <button class="FormButton" type="submit">編輯條例</button>
                   </form>
     						</th>
-    						<th>
+    						<th style="text-align: left;">
                   <form action=" {{asset('/admin/item')}}" method="get" >{{ csrf_field() }}
     							   <button class="FormButton" type="submit">可借用物品</button>
                   </form>
     						</th>
     					</tr>
               <tr>
-                <th>
+                <th style="text-align: right;">
                     <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規上限</button>
                 </th>
-                <th>
+                <th style="text-align: left;">
                   <form action=" {{asset('/admin/reasons')}}" method="get" >{{ csrf_field() }}
                      <button class="FormButton" type="submit">違規紀錄</button>
                   </form>
