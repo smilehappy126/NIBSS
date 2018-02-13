@@ -219,11 +219,11 @@
 				<tr>
 					<!-- 序號 -->
 					<th style="text-align: center;">
-						<button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">租借序號</button>
+						<button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
 					</th>  
 					<!-- 日期 -->
 	  				<th style="text-align: center;">
-						<button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">租借日期</button>
+						<button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
 					</th>
 				    <!-- 班級 -->
 	  	    		<th style="text-align: center;">
@@ -386,7 +386,7 @@
 				<!-- 序號 -->
 				<tr>
 					<th class="TableTop" style="text-align: center;">
-						<button id="idSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">租借序號</button>
+						<button id="idSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
 					</th>
 					<td class="TableContent" id="id-{{$mis->id}}">
 						{{$mis->id}}
@@ -395,7 +395,7 @@
 				<!-- 日期 -->
 				<tr> 
 	  				<th class="TableTop" style="text-align: center;">
-						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">租借日期</button>
+						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
 					</th>
 					<td class="TableContent" id="date-{{$mis->id}}">
 						{{$mis->date}}
@@ -564,8 +564,8 @@
 							<div class="EditInfo">
 								<!-- Edit Modal Table -->
 								<table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
-									<tr><th>租借序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $mis->id}}"> </th></tr>
-									<tr><th>租借日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $mis->date }}"></th></tr>
+									<tr><th>借用序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $mis->id}}"> </th></tr>
+									<tr><th>借用日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $mis->date }}"></th></tr>
 									<tr><th>班級 :</th><th> <input  class="form-control" type="text" name="class" value="{{ $mis->class }}"></th></tr>
     								<tr><th>申請人 : </th><th> <input  class="form-control" type="text" name="name" value="{{ $mis->name }}"></th></tr>
     								<tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" value="{{ $mis->phone }}" disabled></th></tr>
