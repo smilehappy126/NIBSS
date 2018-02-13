@@ -153,7 +153,6 @@
                 font-family: Microsoft JhengHei;
                 color: rgb(255, 145, 145);
                 background-color:transparent;
-                text-shadow: rgb(3, 3, 3) 1px 0px 10px;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
