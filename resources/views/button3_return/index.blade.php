@@ -210,11 +210,11 @@
 				<tr>
 					<!-- 序號 -->
 					<th style="text-align: center;">
-						<button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">租借序號</button>
+						<button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
 					</th>  
 					<!-- 日期 -->
 	  				<th style="text-align: center;">
-						<button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">租借日期</button>
+						<button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
 					</th>
 					<!-- 歸還日期 -->
 					<th style=" text-align: center;">
@@ -299,14 +299,20 @@
 					          {{$re->updated_at}}
 					     </td>
 					<td id="class-{{$re->id}}">{{$re->class}}</td>
-					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-	   					<td id="name-{{$re->id}}">
-	   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}" style="width: 120%;" ><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
-	   					</td>
-	   				@endif
-	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-						<td id="name-{{$re->id}}">{{$re->name}}</td>
-					@endunless
+					@if (Route::has('login'))
+						@if (Auth::check())
+							@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
+			   					<td id="name-{{$re->id}}">
+			   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}" style="width: 120%;" ><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
+			   					</td>
+			   				@endif
+			   				@if(Auth::user()->level==='一般使用者')
+			   				<td id="name-{{$re->id}}">{{$re->name}}</td>
+			   				@endif
+			   			@else
+			   				<td id="name-{{$re->id}}">{{$re->name}}</td>
+			   			@endif
+			   		@endif
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
@@ -350,7 +356,7 @@
 				<!-- 序號 -->
 				<tr>
 					<th class="TableTop" style="text-align: center;">
-						<button id="idSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">租借序號</button>
+						<button id="idSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
 					</th>
 					<td class="TableContent" id="id-{{$re->id}}">
 						{{$re->id}}
@@ -359,7 +365,7 @@
 				<!-- 日期 -->
 				<tr> 
 	  				<th class="TableTop" style="text-align: center;">
-						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">租借日期</button>
+						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
 					</th>
 					<td class="TableContent" id="date-{{$re->id}}">
 						{{$re->date}}
@@ -379,16 +385,20 @@
 	   				<th class="TableTop" style="text-align: center;">
 						<button id="nameSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
 					</th>
-					@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-	   					<td id="name-{{$re->id}}">
-	   						<button class="UserModalButton"  style="width: 130px;" type="button" data-toggle="modal" data-target="EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
-	   					</td>
-	   				@endif
-	   				@unless(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
-					<td class="TableContent" id="name-{{$re->id}}">
-						{{$re->name}}
-					</td>
-					@endunless
+					@if (Route::has('login'))
+						@if (Auth::check())
+							@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
+			   					<td id="name-{{$re->id}}">
+			   						<button class="UserModalButton"  style="width: 130px;" type="button" data-toggle="modal" data-target="#EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$re->name}}</button>
+			   					</td>
+			   				@endif
+			   				@if(Auth::user()->level==='一般使用者')
+			   					<td class="TableContent" id="name-{{$re->id}}">{{$re->name}}</td>
+			   				@endif
+			   			@else
+			   				<td class="TableContent" id="name-{{$re->id}}">{{$re->name}}</td>
+			   			@endif
+			   		@endif
 				</tr>
 				@if (Route::has('login'))
 					@if (Auth::check())
@@ -479,7 +489,7 @@
 						<button id="auditSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">審核者</button>
 					</th>
 					<td  class="TableContent" id="audit-{{$re->id}}">
-						{{Auth::user()->name}}
+						{{$re->audit}}
 					</td>
 				</tr>
 						@endif
@@ -505,7 +515,7 @@
 	        	<!-- Edit Modal Header -->
 	        	<div class="modal-header">
 	           		<button type="button" class="close" data-dismiss="modal">&times;</button>
-	           		<h4 class="modal-title">租借詳細資料</h4>
+	           		<h4 class="modal-title">借用詳細資料</h4>
 	        	</div>
 	        	<!-- End of Edit Modal Header -->
 	        	<!-- Edit Modal Body -->
@@ -515,11 +525,11 @@
 							<div class="EditInfo">
 								<!-- Edit Modal Table -->
 								<table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
-									<tr><th>租借序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $re->id}}"> </th></tr>
-									<tr><th>租借日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $re->date }}"></th></tr>
+									<tr><th>借用序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $re->id}}"> </th></tr>
+									<tr><th>借用日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $re->date }}"></th></tr>
 									<tr><th>班級 :</th><th> <input  class="form-control" type="text" name="class" value="{{ $re->class }}"></th></tr>
     								<tr><th>申請人 : </th><th> <input  class="form-control" type="text" name="name" value="{{ $re->name }}"></th></tr>
-    								<tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" value="{{ $re->phone }}"></th></tr>
+    								<tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" disabled value="{{ $re->phone }}"></th></tr>
     								<tr><th>借用物品 :</th> <th> <input  class="form-control" type="text" name="item" value="{{ $re->item }}"> </th></tr>
     								<tr><th>借用數量 :</th><th><input class="form-control" type="number" name="itemnum" value="{{ $re->itemnum }}"></th></tr>
     								<tr><th>抵押證件 :</th><th> <input class="form-control" type="text" name="license" value="{{ $re->license }}"></th></tr>
@@ -534,8 +544,10 @@
     								</tr>
 								</table>
 								<!-- End of Edit Modal Table -->
+								@if(Auth::check())
 								<input name="audit" value="{{Auth::user()->name}}" hidden>
     								<!-- ↑抓取登入使用者的名字，不會顯示在頁面上 -->
+    							@endif
 							</div>
 	        		</div>
 	        	</div>
@@ -583,7 +595,7 @@
                                                 <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}" disabled></th></tr>
                                                 <tr><th>電話 :</th> <th><input class="form-control" type="phone" value="{{ $user->phone }}" disabled></th></tr>
                                                 <tr><th>違規點數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}" min="0"></th></tr>
-                                                <tr><th>違規事由 :</th><th> <input  class="form-control" type="text" name="reason" ></th></tr>
+                                                <tr><th>違規事由 :</th><th> <input  class="form-control" type="text" name="reason" required ></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
                                                         <input class="form-control" type="text" value="{{ $user->level }}" disabled></th>
@@ -595,8 +607,10 @@
                                             <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
                                             <input name="username" value="{{$user->name}}" hidden >
                                             <!-- ↑視為傳遞User names的變數 不會顯示在頁面上 -->
-                                            <input name="reasoncreator" value="{{Auth::user()->name}}" hidden >
+                                            @if(Auth::check())
+                                            	<input name="reasoncreator" value="{{Auth::user()->name}}" hidden >
                                             <!-- ↑視為傳遞Creator的變數 不會顯示在頁面上 -->
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

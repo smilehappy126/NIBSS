@@ -9,6 +9,7 @@ use App\Rules;
 use App\Violation;
 use App\Item;
 use App\Itemgroup;
+use App\Classroom;
 // use App\SocialAccount;
 use Carbon\Carbon;
 class ApplicationController extends Controller
@@ -16,13 +17,14 @@ class ApplicationController extends Controller
 {
  	public function index()
  	{
+        $rules=Rules::all();
         $users=User::all();
         $violations=Violation::all();
-        $rules=Rules::all();
-        $items=Item::all();
-        $itemgroups=Itemgroup::all();
+        $items=Item::orderBy('itemname','asc')->get();
+        $itemgroups=Itemgroup::orderBy('groupname','asc')->get();
+        $classrooms=Classroom::all();
        return view('button1_create.index',['rules'=> $rules,'users'=> $users,
-       'violations'=>$violations,'items'=>$items,'itemgroups'=>$itemgroups]);//
+       'violations'=>$violations,'items'=>$items,'itemgroups'=>$itemgroups,'classrooms'=>$classrooms]);//
  	}
 
     public function store(Request $request)
@@ -52,6 +54,8 @@ class ApplicationController extends Controller
     $application->date = Carbon::today()->format('Y-m-d');
     // echo($application->date);
     $application->status = '借用中';
+    $application->audit = '無';
+    $application->note7 = '無';
     $application->save();
     // $socialaccount=SocialAccount::where('email','=',$request->email);
     // $socialaccount->update(['phone'=>$request->phone])

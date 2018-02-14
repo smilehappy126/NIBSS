@@ -37,6 +37,7 @@
         <p><label>半人碼團隊</label></p>
         <p><i class="fa fa-info-circle"></i> &nbsp;由一群大三生組成，志在成為人與程式碼之間的橋樑</p>
         <p><i class="fa fa-info-circle"></i> &nbsp;聯絡我們&nbsp;:&nbsp;halfhumancode@gmail.com
+        <p><i class="fa fa-info-circle"></i> &nbsp;FB&nbsp;:&nbsp;https://www.facebook.com/halfhumancode/
     </div>
 </div>
 </div>

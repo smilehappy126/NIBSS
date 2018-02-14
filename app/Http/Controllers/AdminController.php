@@ -36,6 +36,10 @@ class AdminController extends Controller
       $update->update(['phone'=>$rep->phone]);
       $update->update(['violation'=>$rep->violation]);
       $update->update(['level'=>$rep->level]);
+      // 更改使用者電話，借用資料記錄裡面一併更改
+      $miss=Miss::where('phone','=',$rep->oldphone);
+      $miss->update(['phone'=>$rep->phone]);
+      // 檢查違規紀錄中是否有此使用者，一併修改他的違規點數
       $reason = Reason::where('phone','=',$rep->phone);
       if(count($reason)==1){
         $reason->update(['violation'=>$rep->violation]);
@@ -62,8 +66,10 @@ class AdminController extends Controller
                 ->orWhere('classroom','like','%'.$rep->searchcontent.'%')
                 ->orWhere('license','like','%'.$rep->searchcontent.'%')
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
+                ->orWhere('note7','like','%'.$rep->searchcontent.'%')
                   ->get();
-        return view('button5_admin.search',['miss'=> $miss],['content'=>$rep->searchcontent]);
+        $users=User::all();
+        return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
     //在管理者頁面裡的搜尋更改內容(歷史紀錄中的再次搜尋) 
     public function updateContentData(Request $rep, $id)
@@ -71,7 +77,6 @@ class AdminController extends Controller
       $update= Miss::find($id);
       $update->update(['date'=>$rep->date]);
       $update->update(['class'=>$rep->class]);
-      $update->update(['phone'=>$rep->phone]);
       $update->update(['name'=>$rep->name]);
       $update->update(['item'=>$rep->item]);
       $update->update(['itemnum'=>$rep->itemnum]);
@@ -79,6 +84,7 @@ class AdminController extends Controller
       $update->update(['classroom'=>$rep->classroom]);
       $update->update(['teacher'=>$rep->teacher]);
       $update->update(['status'=>$rep->status]);
+      $update->update(['note7'=>$rep->note7]);
       //按下確認編輯之後重新導向回搜尋頁面
       $miss=Miss::where('name','like','%'.$rep->searchcontent.'%')
                 ->orWhere('class','like','%'.$rep->searchcontent.'%')
@@ -91,7 +97,8 @@ class AdminController extends Controller
                 ->orWhere('license','like','%'.$rep->searchcontent.'%')
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
                   ->get();
-        return view('button5_admin.search',['miss'=> $miss],['content'=>$rep->searchcontent]);
+      $users=User::all();
+      return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
 
 //編輯條例
@@ -120,7 +127,8 @@ class AdminController extends Controller
     // 進入可借用物品頁面
     public function item(){
       $items=Item::all();
-      $itemsgroups=Itemgroup::all();
+      $itemsgroups=Itemgroup::orderBy('groupname','asc')
+                  ->get();
       return view('button5_admin.item',['items'=> $items,'itemsgroups'=> $itemsgroups]);
     }
     //創建新的物品

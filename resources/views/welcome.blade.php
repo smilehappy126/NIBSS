@@ -96,7 +96,7 @@
                 font-weight: bolder;
                 font-size: 22px;
                 background-color:#FFE4B5;
-                width: 100px;
+                width: 120px;
                 height: 40px;
                 border-radius: 100px;
                 border-width: 0px;
@@ -178,6 +178,70 @@
                 right: 0px;
                 left: 0px;
             }
+            .portalLogin {
+                -moz-box-shadow:inset 0px 1px 15px 3px #23395e;
+                -webkit-box-shadow:inset 0px 1px 15px 3px #23395e;
+                box-shadow:inset 0px 1px 15px 3px #23395e;
+                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2e466e), color-stop(1, #415989));
+                background:-moz-linear-gradient(top, #2e466e 5%, #415989 100%);
+                background:-webkit-linear-gradient(top, #2e466e 5%, #415989 100%);
+                background:-o-linear-gradient(top, #2e466e 5%, #415989 100%);
+                background:-ms-linear-gradient(top, #2e466e 5%, #415989 100%);
+                background:linear-gradient(to bottom, #2e466e 5%, #415989 100%);
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e466e', endColorstr='#415989',GradientType=0);
+                background-color:#2e466e;
+                -moz-border-radius:17px;
+                -webkit-border-radius:17px;
+                border-radius:17px;
+                border:2px solid #1f2f47;
+                display:inline-block;
+                cursor:pointer;
+                color:#ffffff;
+                font-family:Arial;
+                font-size:25px;
+                padding:10px 27px;
+                text-decoration:none;
+                text-shadow:0px 0px 22px #263666;
+            }
+            .portalLogin:hover {
+                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #415989), color-stop(1, #2e466e));
+                background:-moz-linear-gradient(top, #415989 5%, #2e466e 100%);
+                background:-webkit-linear-gradient(top, #415989 5%, #2e466e 100%);
+                background:-o-linear-gradient(top, #415989 5%, #2e466e 100%);
+                background:-ms-linear-gradient(top, #415989 5%, #2e466e 100%);
+                background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#415989', endColorstr='#2e466e',GradientType=0);
+                background-color:#415989;
+            }
+            .portalLogin:active {
+                position:relative;
+                top:1px;
+            }
+            .emailLogin{
+                background-color:#DDDDDD;
+                -moz-border-radius:6px;
+                -webkit-border-radius:6px;
+                border-radius:6px;
+                display:inline-block;
+                cursor:pointer;
+                color:#666666;
+                font-family:Arial;
+                font-size:12px;
+                font-weight:bold;
+                padding:6px 11px;
+                text-decoration:none;
+                text-shadow:0px 1px 0px #ffffff;
+                transition: 0.3s;
+                width: 130px;
+                border-width: 1px;
+                border-color: black;
+            }
+            .emailLogin:hover{
+                background-color:#444444;
+                color: white;
+                width: 160px;
+                transition: 0.3s;
+            }
             
 /*PC CSS Section*/
 @media screen and (min-width: 900px){
@@ -211,41 +275,56 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-.LoginButton{
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 32px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  cursor: pointer;
-}
+            .LoginButton{
+                background: #3498db;
+                background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+                background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+                background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+                background-image: -o-linear-gradient(top, #3498db, #2980b9);
+                background-image: linear-gradient(to bottom, #3498db, #2980b9);
+                -webkit-border-radius: 28;
+                -moz-border-radius: 28;
+                border-radius: 28px;
+                font-family: Arial;
+                color: #ffffff;
+                font-size: 32px;
+                padding: 10px 20px 10px 20px;
+                text-decoration: none;
+                cursor: pointer;
+            }
 
-.LoginButton:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
-}
-.portaldiv{
+            .LoginButton:hover {
+                background: #3cb0fd;
+                background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+                text-decoration: none;
+            }
+            .portaldiv{
                 text-align:center; 
                 margin-left:auto; 
                 margin-right:auto;  
                 display:inline-block;
             }
+            .adminpage{
+                border-width: 0px;
+                padding: 0 25px;
+                font-size: 30px;
+                font-weight: 600;
+                font-family: Microsoft JhengHei;
+                color: rgb(255, 145, 145);
+                background-color:transparent;
+                text-shadow: rgb(3, 3, 3) 4px 1px 8px;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
 
 }
+/*End of PC CSS Section*/
+
 /*Mobile CSS Section*/
 @media screen and (max-width: 900px) and (min-width: 300px){
             .portaldiv{
@@ -285,122 +364,50 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-.LoginButton{
-  background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 24px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  cursor: pointer;
-}
+            .LoginButton{
+              background: #3498db;
+              background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+              background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+              background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+              background-image: -o-linear-gradient(top, #3498db, #2980b9);
+              background-image: linear-gradient(to bottom, #3498db, #2980b9);
+              -webkit-border-radius: 28;
+              -moz-border-radius: 28;
+              border-radius: 28px;
+              font-family: Arial;
+              color: #ffffff;
+              font-size: 24px;
+              padding: 10px 20px 10px 20px;
+              text-decoration: none;
+              cursor: pointer;
+            }
 
-.LoginButton:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
+            .LoginButton:hover {
+              background: #3cb0fd;
+              background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+              background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+              background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+              background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+              background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+              text-decoration: none;
+            }
+            .adminpage{
+                border-width: 0px;
+                padding: 0 25px;
+                font-size: 30px;
+                font-weight: 600;
+                font-family: Microsoft JhengHei;
+                color: rgb(255, 145, 145);
+                background-color:transparent;
+                text-shadow: rgb(3, 3, 3) 4px 1px 8px;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
 }
-
-}
-
-.portalLogin {
-    -moz-box-shadow:inset 0px 1px 15px 3px #23395e;
-    -webkit-box-shadow:inset 0px 1px 15px 3px #23395e;
-    box-shadow:inset 0px 1px 15px 3px #23395e;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2e466e), color-stop(1, #415989));
-    background:-moz-linear-gradient(top, #2e466e 5%, #415989 100%);
-    background:-webkit-linear-gradient(top, #2e466e 5%, #415989 100%);
-    background:-o-linear-gradient(top, #2e466e 5%, #415989 100%);
-    background:-ms-linear-gradient(top, #2e466e 5%, #415989 100%);
-    background:linear-gradient(to bottom, #2e466e 5%, #415989 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e466e', endColorstr='#415989',GradientType=0);
-    background-color:#2e466e;
-    -moz-border-radius:17px;
-    -webkit-border-radius:17px;
-    border-radius:17px;
-    border:2px solid #1f2f47;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:25px;
-    padding:10px 27px;
-    text-decoration:none;
-    text-shadow:0px 0px 22px #263666;
-}
-.portalLogin:hover {
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #415989), color-stop(1, #2e466e));
-    background:-moz-linear-gradient(top, #415989 5%, #2e466e 100%);
-    background:-webkit-linear-gradient(top, #415989 5%, #2e466e 100%);
-    background:-o-linear-gradient(top, #415989 5%, #2e466e 100%);
-    background:-ms-linear-gradient(top, #415989 5%, #2e466e 100%);
-    background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#415989', endColorstr='#2e466e',GradientType=0);
-    background-color:#415989;
-}
-.portalLogin:active {
-    position:relative;
-    top:1px;
-}
-
-.emailLogin {
-    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-    box-shadow:inset 0px 1px 0px 0px #ffffff;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
-    background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-    background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-    background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-    background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
-    background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
-    background-color:#ffffff;
-    -moz-border-radius:6px;
-    -webkit-border-radius:6px;
-    border-radius:6px;
-    border:1px solid #dcdcdc;
-    display:inline-block;
-    cursor:pointer;
-    color:#666666;
-    font-family:Arial;
-    font-size:12px;
-    font-weight:bold;
-    padding:6px 11px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #ffffff;
-}
-.emailLogin:hover {
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
-    background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-    background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-    background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-    background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
-    background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
-    background-color:#f6f6f6;
-}
-.emailLogin:active {
-    position:relative;
-    top:1px;
-}
-
-
-                          
-            
-        </style>
-        
+/*End of Mobile CSS Section*/
+    
+    </style>
     </head>
     <body>
         
@@ -419,7 +426,7 @@
                 @if(Auth::check())
                     <label class="notice" style="text-transform: uppercase; text-align: center;">
                         Welcome, {{ Auth::user()->name }} <br><br>
-                        目前違規次數 : {{ Auth::user()->violation }}
+                        目前違規點數 : {{ Auth::user()->violation }}
                     </label> 
                 @endif
             @endif
@@ -474,7 +481,8 @@
                         @if (Route::has('login'))
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
-                            | <br> | <a  href="{{ url('/admin') }}">管理者模式</a>|
+                                <br>
+                                <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
                                 @endif
                             @endif
                         @endif
@@ -493,7 +501,8 @@
                         @if (Route::has('login'))
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
-                             <br>  <a  href="{{ url('/admin') }}">管理者模式</a>
+                                <br>
+                                <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
                                 @endif
                             @endif
                         @endif
@@ -515,7 +524,7 @@
                         @if (Route::has('login'))
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
-                            |<a  href="{{ url('/admin') }}">管理者模式</a>
+                            |<a  href="{{ url('/admin') }}">管理者專區</a>
                                 @endif
                             @endif
                         @endif
@@ -534,7 +543,7 @@
                         @if (Route::has('login'))
                             @if(Auth::check())
                                 @if( (Auth::user()->level)==='管理員')   
-                             <br>  <a  href="{{ url('/admin') }}">管理者模式</a>
+                             <br>  <a  href="{{ url('/admin') }}">管理者專區</a>
                                 @endif
                             @endif
                         @endif
@@ -663,7 +672,7 @@
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label for="email" class="col-md-4 control-label">電子信箱</label>
                                         <div class="col-md-6">
-                                            <input id="email" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="registeremail" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
 
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
@@ -683,7 +692,7 @@
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
                                         <label for="password" class="col-md-4 control-label">密碼</label>
                                         <div class="col-md-6">
-                                            <input id="password" type="password" class="LoginInput" name="password" placeholder="At least 6 characters..." style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="registerpassword" type="password" class="LoginInput" name="password" placeholder="At least 6 characters..." style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
                                             
                                             @if ($errors->has('password'))
                                                 <span class="help-block">

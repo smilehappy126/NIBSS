@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Classroom;
+use Image;
 
 class ClassroomController extends Controller
 {
@@ -49,19 +50,21 @@ class ClassroomController extends Controller
 
         /* 建立新教室 */
         $classrooms = new Classroom;
-        $classrooms->roomname= $request->roomname;
-        $classrooms->word= $request->word;
+        $classrooms->roomname = $request->roomname;
+        $classrooms->word = $request->word;
 
         $this->validate($request, [
             'imgurl' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480',
         ]);
-
         $imageName = time().'.'.$request->imgurl->getClientOriginalExtension();
         $request->imgurl->move(public_path('uploadimg'), $imageName);
         $classrooms->imgurl= $imageName;
+
         $classrooms->save();
 
-
+        // echo public_path('uploadimg');
+        // echo "imageName: ".$imageName;
+        
         return redirect('/reserve');
     }
 
@@ -97,22 +100,35 @@ class ClassroomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Classroom $classroom)
+    public function update(Request $request, $id)
     {
 
+        $classroom = Classroom::find($id);
+
         $classroom->word = $request->word;
-        //  $this->validate($request, [
-        //     'imgurl' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
 
-        // $imageName = time().'.'.$request->imgurl->getClientOriginalExtension();
-        // $request->imgurl->move(public_path('uploadimg'), $imageName);
-        // $classrooms->imgurl= $imageName;沒成功
+        /* 如果有更換教室圖片 */
+        if($request->imgurl){
+
+            $this->validate($request, [
+                'imgurl' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $image = $request->file('imgurl');
+
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('uploadimg/' . $imageName);
+            Image::make($image)->save($location);
+
+            $classroom->imgurl = $imageName;
+        }
+
         $classroom->save();
-
         
+
         return redirect('/editclassroom');
         // return $classroom->id;
+
     }
 
     /**

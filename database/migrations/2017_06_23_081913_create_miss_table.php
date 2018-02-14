@@ -18,8 +18,8 @@ class CreateMissTable extends Migration
             $table->string('class');
             $table->string('name');
             $table->date('date');            
-            $table->string('item');
-            $table->string('itemnum');
+            $table->string('item')->nullable();
+            $table->string('itemnum')->nullable();
             $table->string('license');
             $table->string('classroom')->nullable();
             $table->string('teacher')->nullable();

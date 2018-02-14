@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class, //for excel
         Kozz\Laravel\Providers\Guzzle::class, //for oauth
+        Intervention\Image\ImageServiceProvider::class, // for Image
     ],
 
     /*
@@ -228,7 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class, //for excel
         'Guzzle' => Kozz\Laravel\Facades\Guzzle::class, // for ouath
-
+        'Image' => Intervention\Image\Facades\Image::class, // for Image
     ],
 
 ];

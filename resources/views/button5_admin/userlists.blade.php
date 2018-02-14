@@ -394,7 +394,8 @@
                                                         </select>
                                                     </th>
                                                 </tr>
-                                                
+                                                <input type="text" name="oldphone" value="{{$user->phone}}" style="display: none;">
+                                                <!-- ↑視為傳遞原本電話的變數 不會顯示在頁面上 -->
                                             </table>
                                             <!-- End of Edit Modal Table -->
                                         </div>

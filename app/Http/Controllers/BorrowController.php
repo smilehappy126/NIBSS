@@ -16,8 +16,7 @@ class BorrowController extends Controller
                   ->get();
     $users = User::all();
     $reasons = Reason::all();
-    $counter=1;
-		return view('button2_borrow.index',['miss'=> $miss],['users'=> $users],['counter'=>$counter],['reasons'=>$reasons]);
+		return view('button2_borrow.index',['miss'=> $miss],['users'=> $users],['reasons'=>$reasons]);
 
 	}
 	
@@ -26,7 +25,6 @@ class BorrowController extends Controller
       $update= Miss::find($id);
       $update->update(['date'=>$rep->date]);
       $update->update(['class'=>$rep->class]);
-      $update->update(['phone'=>$rep->phone]);
       $update->update(['name'=>$rep->name]);
       $update->update(['item'=>$rep->item]);
       $update->update(['itemnum'=>$rep->itemnum]);
@@ -35,8 +33,16 @@ class BorrowController extends Controller
       $update->update(['teacher'=>$rep->teacher]);
       $update->update(['status'=>$rep->status]);
       $update->update(['audit'=>$rep->audit]);
+      $update->update(['note7'=>$rep->note7]);
       return redirect('/borrow');
   }
+  public function updatenote(Request $rep, $id)
+  {
+    $update=Miss::find($id);
+    $update->update(['note7'=>$rep->note7]);
+    return redirect('/borrow');
+  }
+
   public function userupdate(Request $rep)
     {
       $update= User::where('phone','=',$rep->phone);
@@ -49,18 +55,19 @@ class BorrowController extends Controller
       $reason->save();
       return redirect('/borrow');
     }
+
   
   // 透過Name來搜尋
-  public function search(Request $rep)
-  {
-      $miss=Miss::where('name','like','%'.$rep->searchname.'%')
-                  ->get();
-      if (count($miss)>=1) {
-        return view('button2_borrow.index',['miss'=> $miss]);
-      } else if (count($miss)<1){
-        return view('button2_borrow.fail',['miss'=> $miss]);
-      }
-  }
+  // public function search(Request $rep)
+  // {
+  //     $miss=Miss::where('name','like','%'.$rep->searchname.'%')
+  //                 ->get();
+  //     if (count($miss)>=1) {
+  //       return view('button2_borrow.index',['miss'=> $miss]);
+  //     } else if (count($miss)<1){
+  //       return view('button2_borrow.fail',['miss'=> $miss]);
+  //     }
+  // }
  //  // ID排序
  //  public function idasc(){
  //    $miss=Miss::where('status','=','借用中')

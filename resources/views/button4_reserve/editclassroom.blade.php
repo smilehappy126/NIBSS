@@ -129,7 +129,7 @@
        <div class="panel-heading">{{ $classroom->roomname }}</div>
   
        <div class="panel-body"><img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" style="height: 300px; width: 500px; display:block; margin:auto;"></br></br>
-              教室描述：
+              <label>教室描述</label>
               <textarea readonly class="form-control" rows="5" name="word" id="TX">{{ $classroom->word }}</textarea>
             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editModal{{$classroom->id}}">
                修改
@@ -153,7 +153,7 @@
  <div class="modal fade" id="editModal{{$classroom->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    <form action="{{ asset('/editclassroom/'.$classroom->id) }}" method="post">
+    <form action="{{ asset('/editclassroom/'.$classroom->id) }}" method="post" enctype="multipart/form-data">
        {{ csrf_field() }}
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{ $classroom->roomname }}</h5>
@@ -162,8 +162,12 @@
         </button>
       </div>
       <div class="modal-body">
-<!--         <img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" height="200" width="300">
-        <input type="file" class="form-control" name="imgurl" required="必填！"> 沒成功 -->
+        <img src="{{  url('/uploadimg/'.$classroom->imgurl) }}" height="200" width="300">
+        <hr>
+        <label>更換教室圖片</label>
+        <input type="file" class="form-control" name="imgurl">
+        <hr>
+        <label>教室描述</label>
         <textarea  class="form-control" rows="5" name="word">{{ $classroom->word }}</textarea>
       </div>
       <div class="modal-footer">

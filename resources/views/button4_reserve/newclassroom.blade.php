@@ -67,17 +67,17 @@
         <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
     </div>
     @endif
-
-    <button type="button" class="btn btn-link btn-lg">
-        <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
-    </button>
-        
-    <br>
-
+    
+    
     <div>
-      <form action="{{ asset('/reserve') }}" method="get">
-          <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回教室列表</button>
-      </form>
+        <form action="{{ asset('/reserve') }}" method="get">
+            <button class="returnButton"><span class="glyphicon glyphicon-chevron-left"></span>返回教室列表</button>
+        </form>
+<!--
+        <button type="button" class="btn btn-link btn-lg">
+            <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
+        </button>
+-->
     </div>
 
     <br>
@@ -94,7 +94,7 @@
          <!--   <input type="text" class="form-control" id="classword" name="word" required="必填！"> -->
         </div>
         <div class="form-group">
-           <label for="classpic">教室照片路由:</label>
+           <label for="classpic">上傳教室圖片:</label>
            <input type="file" class="form-control" id="classpic" name="imgurl" required="必填！">  <!-- input type="file" 改ㄉ  -->
         </div>
         <div>

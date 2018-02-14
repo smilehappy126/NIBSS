@@ -112,6 +112,30 @@
         color: #FFF;
         border-color: #0000ff;
     }
+    
+.funcBtn{
+        float:center;
+        font-family: Microsoft JhengHei;
+        font-weight: bolder;
+        font-size: 16px;
+        background-color: #B0C4DE;
+        width: 165px;
+        height: 40px;
+        border-radius: 100px;
+        border-width: 0px;
+        margin-top: 30px;
+        margin-right: 10px;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    .funcBtn:border{
+        border-width: 1px;
+        border-style:none;
+    }
+    .funcBtn:hover{
+        background-color: #CCDDFF;
+        transition: 0.3s;
+    }
 
 </style>
 @stop 
@@ -126,20 +150,24 @@
 @if (Route::has('login'))
   @if (Auth::check())
     @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+    
 <!--新增教室資料按鈕-->
-<div class="btn-group btn-group-lg"> 
-    <button type="button" class="btn btn-link">
+<div> 
+    <button type="button" class="btn btn-link funcBtn">
         <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
     </button>
     
     <!--修改刪除教室資料按鈕-->
-    <button type="button" class="btn btn-link">
+    <button type="button" class="btn btn-link funcBtn">
         <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
     </button>
-</div></br>
+</div>
+   
     @endif
   @endif
 @endif
+    
+    <br>
 
     <!--教室按鈕-->
     @foreach ($classrooms as $classroom)
@@ -194,7 +222,6 @@
                       <form>
                          <button type="button" class="btn btn-outline-success" id="{{ $classroom->id }}" data-toggle="modal" data-target="#editModal{{$classroom->id}}">詳細資訊</button>
                       </form>
-                    
           </div>
        </div>
   </div>

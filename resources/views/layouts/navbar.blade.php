@@ -1,13 +1,4 @@
 <style type="text/css">
-    /*PC版本登入登出*/
-    @media screen and (min-width: 900px){
-            .Mobilelogout{
-                display: none;
-            }
-            .Mobilelogin{
-                display: none;
-            }
-
             .brButton{
                 float: right;
                 font-family: Microsoft JhengHei;
@@ -27,7 +18,6 @@
                 transition: 0.3s;
 
             }
-
             .LoginButton{
                 float: center;
                 font-family: Microsoft JhengHei;
@@ -45,7 +35,6 @@
                 background-color: #CCDDFF;
                 width:150px;
                 transition: 0.3s;
-
             }
             .LogoutButton{
                 float: center;
@@ -75,7 +64,6 @@
                 border-width: 0px;
                 font-size: 15px;
                 font-weight: bold;
-
             }
             .portal:hover{
                 background-color: #B0E0E6;
@@ -83,16 +71,6 @@
                 height: 20px;
                 transition: 0.3s;
             }
-        }
-    /*Mobile版本登入登出*/
-        @media screen and (max-width: 900px) and (min-width: 300px) and (max-height: 1024px){
-            #PClogout{
-                display: none;
-            }
-            #PClogin{
-                display: none;
-            }
-        }
             .RegisterButton{
                 background-color: transparent;
                 transition: 0.3s;
@@ -103,7 +81,6 @@
                 border-width: 0px;
                 font-size: 15px;
                 font-weight: bold;
-
             }
             .RegisterButton:hover{
                 background-color: #FF8888;
@@ -152,7 +129,6 @@
                 border-width: 0px;
                 font-size: 15px;
                 font-weight: bold;
-
             }
             .portal:hover{
                 background-color: #B0E0E6;
@@ -160,20 +136,72 @@
                 height: 20px;
                 transition: 0.3s;
             }
+        
+    /*PC CSS Section*/
+    @media screen and (min-width: 900px){
+            .Mobilelogout{
+                display: none;
+            }
+            .Mobilelogin{
+                display: none;
+            }
+            .adminpage{
+                border-width: 0px;
+                padding: 0 25px;
+                font-size: 15px;
+                font-weight: 600;
+                font-family: Microsoft JhengHei;
+                color: rgb(255, 145, 145);
+                background-color:transparent;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+    }
+    /*End of PC CSS Section*/
 
+
+    /*Mobile CSS Section*/
+        @media screen and (max-width: 900px) and (min-width: 300px) and (max-height: 1024px){
+            #PClogout{
+                display: none;
+            }
+            #PClogin{
+                display: none;
+            }
+            .adminpage{
+                border-width: 0px;
+                padding: 0 25px;
+                font-size: 15px;
+                font-weight: 600;
+                font-family: Microsoft JhengHei;
+                color: rgb(255, 145, 145);
+                background-color:transparent;
+                text-align: left;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+        }
+    /*End of Mobile CSS Section*/
 </style>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+    <div class="navbar-header"> 
+      
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <!-- 之後可以加圖片 -->
-      <!-- <a class="navbar-brand" href="#">Brand</a> -->
+      <!-- <button type="button" class="navbar-toggle btn btn-default" onclick="location.href='/'">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        </button> -->
+      <a class="navbar-brand" href="{{ url('/') }}">
+        <img alt="Brand" src="{{asset('img/layout/mis.png')}}">
+      </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -186,13 +214,13 @@
         <li><a href="{{ url('/borrow') }}">借用狀況</a></li>
         <li><a href="{{ url('/return') }}">已歸還資料</a></li>
         <li><a href="{{ url('/reserve') }}">教室預約狀況</a></li>
-        <!-- <li><a href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a></li> -->
-        
         <!-- 管理者模式 -->
         @if (Route::has('login'))
             @if(Auth::check())
                 @if( (Auth::user()->level)==='管理員')   
-                    <li><a  href="{{ url('/admin') }}">管理者專區</a></li>
+                    <li>
+                        <a  style="color: rgb(255, 145, 145); font-family: Microsoft JhengHei;" href="{{ url('/admin') }}">管理者專區</a>
+                    </li>
                 @endif
             @endif
         @endif
@@ -226,6 +254,7 @@
             </div>
         @endunless
     <!-- PC版本結束 -->
+    
     <!-- Mobile版本登入登出 -->
         <!-- 登出登入按鍵 -->
         @if (Route::has('login'))
@@ -262,7 +291,8 @@
       </form> -->
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-
+  	<!-- Modal Section -->
+     
      <!-- Login Modal -->
         <div id="LoginModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
@@ -368,7 +398,7 @@
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label for="email" class="col-md-4 control-label">電子信箱</label>
                                         <div class="col-md-6">
-                                            <input id="email" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="registeremail" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
 
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
@@ -388,7 +418,7 @@
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
                                         <label for="password" class="col-md-4 control-label">密碼</label>
                                         <div class="col-md-6">
-                                            <input id="password" type="password" class="LoginInput" name="password"  placeholder="At least 6 characters..." style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="registerpassword" type="password" class="LoginInput" name="password"  placeholder="At least 6 characters..." style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
                                             
                                             @if ($errors->has('password'))
                                                 <span class="help-block">
