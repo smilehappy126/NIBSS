@@ -561,6 +561,9 @@
                         </select>
                       </th>
                     </tr>
+                    @if(($mis->status)==='已歸還')
+                    <tr><th>審核者 :</th><th>  <input class="form-control" type="text" name="audit" value="{{ $mis->audit }}" disabled></th></tr>
+                    @endif
                     <tr><th>備註 :</th><th> <textarea class="form-control" name="note7">{{ $mis->note7 }}</textarea></th></tr>
                 </table>
                 <!-- End of Edit Modal Table -->
