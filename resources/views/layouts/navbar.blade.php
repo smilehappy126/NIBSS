@@ -398,7 +398,7 @@
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label for="email" class="col-md-4 control-label">電子信箱</label>
                                         <div class="col-md-6">
-                                            <input id="email" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="registeremail" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
 
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
@@ -418,7 +418,7 @@
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
                                         <label for="password" class="col-md-4 control-label">密碼</label>
                                         <div class="col-md-6">
-                                            <input id="password" type="password" class="LoginInput" name="password"  placeholder="At least 6 characters..." style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="registerpassword" type="password" class="LoginInput" name="password"  placeholder="At least 6 characters..." style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
                                             
                                             @if ($errors->has('password'))
                                                 <span class="help-block">
