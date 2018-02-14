@@ -707,7 +707,6 @@
 	    </div>
 	    <!-- End of Note Modal Dialog -->
 	</div>
-	<!-- End of Note Modal -->
 	@endforeach
 	<!-- End of Note Modal -->
 

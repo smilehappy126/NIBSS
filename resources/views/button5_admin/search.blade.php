@@ -211,6 +211,13 @@
         background-color: #483D8B;
         transition: 0.3s;
       }
+      .note7button{
+        width: 70%;
+        transition: 0.3s;
+        border-width: 0px;
+        border-radius: 20px;
+        background-color:   #9999FF;
+      }
 }
 /*End of Mobile CSS Section*/    
 
@@ -395,7 +402,7 @@
               <th style="text-align: center;">
                 <button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
               </th>
-              <th id="id-{{$mis->id}}">
+              <th id="id-{{$mis->id}}" style="text-align: center;">
                 {{$mis->id}}
               </th>
           </tr>
@@ -404,7 +411,7 @@
               <th style="text-align: center;">
                 <button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
               </th>
-              <th id="date-{{$mis->id}}">
+              <th id="date-{{$mis->id}}" style="text-align: center;">
                 {{$mis->date}}
               </th>
           </tr>
@@ -413,7 +420,7 @@
               <th style="text-align: center;">
                 <button id="classSortButton" type="submit" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">班級</button>
               </th>
-              <th id="class-{{$mis->id}}">
+              <th id="class-{{$mis->id}}" style="text-align: center;">
                 {{$mis->class}}
               </th>
           </tr>
@@ -422,7 +429,7 @@
               <th style="text-align: center;">
                 <button id="nameSortButton" type="submit" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
               </th>
-              <th id="name-{{$mis->id}}">
+              <th id="name-{{$mis->id}}" style="text-align: center;">
                 {{$mis->name}}
               </th>
           </tr>
@@ -434,7 +441,7 @@
               <th style="text-align: center;"">
                 <button id="phoneSortButton" type="submit" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
               </th>
-              <th id="phone-{{$mis->id}}">
+              <th id="phone-{{$mis->id}}" style="text-align: center;">
                 {{$mis->phone}}
               </th>
           </tr>
@@ -446,7 +453,7 @@
               <th style="text-align: center;">
                 <button id="itemSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">借用物品</button>
               </th>
-              <th id="item-{{$mis->id}}">
+              <th id="item-{{$mis->id}}" style="text-align: center;">
                 {{$mis->item}}
               </th>
           </tr>
@@ -455,7 +462,7 @@
               <th style="text-align: center;">
                 <button id="itemnumSortButton" type="submit" onclick="sortTable(6)" style="border-radius: 100px; border: none; background-color: transparent;">借用數量</button>
               </th>
-              <th id="itemnum-{{$mis->id}}">
+              <th id="itemnum-{{$mis->id}}" style="text-align: center;">
                 {{$mis->itemnum}}
               </th>
           </tr>
@@ -464,7 +471,7 @@
               <th style="text-align: center;">
                 <button id="licenseSortButton" type="submit" onclick="sortTable(7)" style="border-radius: 100px; border: none; background-color: transparent;">抵押證件</button>
               </th>
-              <th id="license-{{$mis->id}}">
+              <th id="license-{{$mis->id}}" style="text-align: center;">
                 {{$mis->license}}
               </th>
           </tr>
@@ -473,7 +480,7 @@
               <th style="text-align: center;">
                 <button id="classroomSortButton" type="button" onclick="sortTable(8)" style="border-radius: 100px; border: none; background-color: transparent;">授課教室</button>
               </th>
-              <th id="classroom-{{$mis->id}}">
+              <th id="classroom-{{$mis->id}}" style="text-align: center;">
                 {{$mis->classroom}}
               </th>
           </tr>
@@ -482,7 +489,7 @@
               <th style="text-align: center;">
                 <button id="teacherSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
               </th>
-              <th id="teacher-{{$mis->id}}">
+              <th id="teacher-{{$mis->id}}" style="text-align: center;">
                 {{$mis->teacher}}
               </th>
           </tr>
@@ -491,19 +498,34 @@
               <th style="text-align: center;">
                 <button id="statusSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
               </th>
-              <th id="status-{{$mis->id}}">
+              <th id="status-{{$mis->id}}" style="text-align: center;">
                 {{$mis->status}}
               </th>
           </tr>
+          <!-- 備註 -->
+          @if(($mis->note7)==='無')
+          @else
+          <tr>
+            <th class="TableTop" style="text-align: center;">
+            <button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
+          </th>
+          <td class="TableContent" id="note7-{{$mis->id}}"  style="text-align: center;">
+            <button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
+              <span class="glyphicon glyphicon-pencil"></span>
+              備註
+            </button>
+          </td>
+          </tr>
+          @endif
+          <!-- 編輯資料 -->
           @if (Route::has('login'))
               @if (Auth::check())
                 @if( (Auth::user()->level)==='管理員')
-          <!-- 編輯資料 -->
           <tr>
               <th style="text-align: center;">
                 <button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
               </th>
-              <th>
+              <th style="text-align: center;">
                 <button class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
                 <span class="glyphicon glyphicon-pencil"></span> 編輯
               </button> 
@@ -691,6 +713,44 @@
         </div>
     </div>        
     <!-- End of Search Modal -->
+
+    <!-- Note Modal -->
+
+    @foreach($miss as $mis)
+    <div class="modal fade" id="Note{{$mis->id}}" role="dialog"  style="height: 600px;">
+      <div class="modal-dialog" >
+        <!-- Note Modal content-->
+        <div class="modal-content">
+            <!-- Note Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">備註</h4>
+            </div>
+            <!-- End of Edit Modal Header -->
+            <!-- Edit Modal Body -->
+          <div class="modal-body">
+              <div class="EditPage">
+                  <form action="{{asset ( '/borrow/updatenote/'.$mis->id) }}" method="post">{{ csrf_field()}}
+              <div class="EditInfo">
+                <textarea class="form-control" name="note7">{{$mis->note7}}</textarea>
+              </div>
+              </div>
+            </div>
+            <!-- End of Note Modal Body -->
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default">變更</button> 
+                  </form>
+                <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+            </div>
+            <!-- End of Note Modal Footer -->
+        </div>
+        <!-- End of Note Modal Content -->
+      </div>
+      <!-- End of Note Modal Dialog -->
+  </div>
+  @endforeach
+  <!-- End of Note Modal -->
 
   <!-- End of Modal Section -->
 
