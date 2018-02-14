@@ -149,12 +149,14 @@ class CourseController extends Controller
         $classrooms = Classroom::all();
 
         $courses = Course::where('roomname', '=', $roomname)->get();
+        $img = Classroom::where('roomname', '=', $roomname)->pluck('imgurl')->first();
 
         return view('button4_reserve.showSingleClass',[
             'thisMonday' => $weekfirst,
             'classrooms'=> $classrooms,
             'currentClassroom'=> $roomname,    
-            'results'=> $courses
+            'results'=> $courses,
+            'currentImgurl'=>$img
         ]);
     }
 
