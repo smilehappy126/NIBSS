@@ -148,12 +148,11 @@
             .adminpage{
                 border-width: 0px;
                 padding: 0 25px;
-                font-size: 30px;
+                font-size: 15px;
                 font-weight: 600;
                 font-family: Microsoft JhengHei;
                 color: rgb(255, 145, 145);
                 background-color:transparent;
-                text-shadow: rgb(3, 3, 3) 1px 0px 10px;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
@@ -215,14 +214,12 @@
         <li><a href="{{ url('/borrow') }}">借用狀況</a></li>
         <li><a href="{{ url('/return') }}">已歸還資料</a></li>
         <li><a href="{{ url('/reserve') }}">教室預約狀況</a></li>
-        <!-- <li><a href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a></li> -->
-        
         <!-- 管理者模式 -->
         @if (Route::has('login'))
             @if(Auth::check())
                 @if( (Auth::user()->level)==='管理員')   
                     <li>
-                        <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
+                        <a  style="color: rgb(255, 145, 145); font-family: Microsoft JhengHei;" href="{{ url('/admin') }}">管理者專區</a>
                     </li>
                 @endif
             @endif
@@ -257,6 +254,7 @@
             </div>
         @endunless
     <!-- PC版本結束 -->
+    
     <!-- Mobile版本登入登出 -->
         <!-- 登出登入按鍵 -->
         @if (Route::has('login'))
@@ -293,7 +291,8 @@
       </form> -->
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-
+  	<!-- Modal Section -->
+     
      <!-- Login Modal -->
         <div id="LoginModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
@@ -399,7 +398,7 @@
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label for="email" class="col-md-4 control-label">電子信箱</label>
                                         <div class="col-md-6">
-                                            <input id="email" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="registeremail" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
 
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
@@ -419,7 +418,7 @@
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
                                         <label for="password" class="col-md-4 control-label">密碼</label>
                                         <div class="col-md-6">
-                                            <input id="password" type="password" class="LoginInput" name="password"  placeholder="At least 6 characters..." style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="registerpassword" type="password" class="LoginInput" name="password"  placeholder="At least 6 characters..." style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
                                             
                                             @if ($errors->has('password'))
                                                 <span class="help-block">

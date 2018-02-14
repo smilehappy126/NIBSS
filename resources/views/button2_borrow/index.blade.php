@@ -219,11 +219,11 @@
 				<tr>
 					<!-- 序號 -->
 					<th style="text-align: center;">
-						<button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">租借序號</button>
+						<button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
 					</th>  
 					<!-- 日期 -->
 	  				<th style="text-align: center;">
-						<button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">租借日期</button>
+						<button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
 					</th>
 				    <!-- 班級 -->
 	  	    		<th style="text-align: center;">
@@ -386,7 +386,7 @@
 				<!-- 序號 -->
 				<tr>
 					<th class="TableTop" style="text-align: center;">
-						<button id="idSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">租借序號</button>
+						<button id="idSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
 					</th>
 					<td class="TableContent" id="id-{{$mis->id}}">
 						{{$mis->id}}
@@ -395,7 +395,7 @@
 				<!-- 日期 -->
 				<tr> 
 	  				<th class="TableTop" style="text-align: center;">
-						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">租借日期</button>
+						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
 					</th>
 					<td class="TableContent" id="date-{{$mis->id}}">
 						{{$mis->date}}
@@ -564,8 +564,8 @@
 							<div class="EditInfo">
 								<!-- Edit Modal Table -->
 								<table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
-									<tr><th>租借序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $mis->id}}"> </th></tr>
-									<tr><th>租借日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $mis->date }}"></th></tr>
+									<tr><th>借用序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $mis->id}}"> </th></tr>
+									<tr><th>借用日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $mis->date }}"></th></tr>
 									<tr><th>班級 :</th><th> <input  class="form-control" type="text" name="class" value="{{ $mis->class }}"></th></tr>
     								<tr><th>申請人 : </th><th> <input  class="form-control" type="text" name="name" value="{{ $mis->name }}"></th></tr>
     								<tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" value="{{ $mis->phone }}" disabled></th></tr>
@@ -608,19 +608,19 @@
 	<!-- End of Edit Modal -->
 	
 	
-<!-- User Modal -->
+	<!-- User Modal -->
 	@foreach($users as $user)
         <div id="UserModal{{$user->phone}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
             <div class="modal-dialog">
 
-                    <!-- Edit Modal content-->
+                    <!-- User Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <div id="EditPage">
                                 <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">修改 Edit</h4>
                             </div>
-                        </div> <!-- End of Modal Header -->
+                        </div> <!-- End of User Modal Header -->
                          
                         <div class="modal-body">
                             <div class="row">
@@ -663,14 +663,14 @@
                               <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
                               </div>
                         </div> 
-                        <!-- End of Modal Footer -->
+                        <!-- End of User Modal Footer -->
                                     </form>
                     </div> 
-                    <!-- End of Edit Modal Content -->
+                    <!-- End of User Modal Content -->
             </div>
         </div>
     @endforeach
-    <!-- End of Edit Modal -->
+    <!-- End of User Modal -->
 
     <!-- Note Modal -->
 
@@ -707,7 +707,6 @@
 	    </div>
 	    <!-- End of Note Modal Dialog -->
 	</div>
-	<!-- End of Note Modal -->
 	@endforeach
 	<!-- End of Note Modal -->
 
