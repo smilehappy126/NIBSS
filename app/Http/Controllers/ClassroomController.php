@@ -54,7 +54,7 @@ class ClassroomController extends Controller
         $classrooms->word = $request->word;
 
         $this->validate($request, [
-            'imgurl' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imgurl' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480',
         ]);
         $imageName = time().'.'.$request->imgurl->getClientOriginalExtension();
         $request->imgurl->move(public_path('uploadimg'), $imageName);

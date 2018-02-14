@@ -128,14 +128,16 @@ class CourseController extends Controller
     {
         $thisMonday = date( 'Y-m-d', strtotime( 'monday this week' ) );
         $classrooms = Classroom::all();
-
+        $img = Classroom::where('roomname', '=', $roomname)->pluck('imgurl')->first();
         $courses = Course::where('roomname', '=', $roomname)->get();
 
         return view('button4_reserve.showSingleClass',[
             'thisMonday' => $thisMonday,
             'classrooms'=> $classrooms,
             'currentClassroom'=> $roomname,    
-            'results'=> $courses
+            'results'=> $courses,
+            'currentImgurl'=>$img
+
         ]);
 
         

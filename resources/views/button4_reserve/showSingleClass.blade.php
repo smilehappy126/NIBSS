@@ -281,10 +281,11 @@ $nextString = date('Y-m-d',$next);
         @endif
     @endif
     <br>
-    <br>
+     <br>
+
+
     <!--教室按鈕-->
     @foreach ($classrooms as $classroom)
-
     <div class="btn-group btn-group-lg">
         <a href="{{ asset('/reserve/' . $classroom->roomname ) }}" class="btn btn-primary classBtn" id="{{ $classroom->roomname }}">{{ $classroom->roomname }}</a>
     </div>
@@ -292,6 +293,10 @@ $nextString = date('Y-m-d',$next);
     @endforeach
     
     <br>
+
+
+
+      <div class="panel-body"><img src="{{  url('/uploadimg/'. $currentImgurl ) }}" style="height: 200px; width: 100%; display:block; margin:auto;"></div>
 
     <!--上一週/下一週按鈕-->
     <div class="row">
