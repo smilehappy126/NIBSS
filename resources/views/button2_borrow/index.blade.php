@@ -269,7 +269,7 @@
 					</th> -->
 					@if (Route::has('login'))
 						@if (Auth::check())
-							@if( (Auth::user()->level)==='一般使用者')
+							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<!-- 備註 -->
 					<th style="text-align: center;">
 						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
@@ -506,12 +506,16 @@
 	   				<th class="TableTop" style="text-align: center;">
 						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
 					</th>
+					@if(($mis->note7)==='無')
+					<td class="TableContent" id="note7-{{$mis->id}}" ></td>
+					@else
 					<td class="TableContent" id="note7-{{$mis->id}}" >
 						<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
 							<span class="glyphicon glyphicon-pencil"></span>
 							備註
 						</button>
 					</td>
+					@endif
 				</tr>
 						@endif
 					@endif
