@@ -196,10 +196,15 @@
 	    	transition: 0.3s;
 	    }
 	    .note7button{
-	    	width: 100%;
+	    	width: 70%;
 	    	transition: 0.3s;
 	    	border-width: 0px;
 	    	border-radius: 20px;
+	    	background-color: #99BBFF;
+	    }
+	    .note7button:hover{
+	    	transition: 0.3s;
+	    	background-color: #5599FF;
 	    }
     }
 /*End of Mobile CSS Section*/
