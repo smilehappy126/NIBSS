@@ -118,6 +118,17 @@
 	    	background-color: #483D8B;
 	    	transition: 0.3s;
 	    }
+	    .note7button{
+	    	width: 100%;
+	    	transition: 0.3s;
+	    	border-width: 0px;
+	    	border-radius: 20px;
+	    	background-color: #99BBFF;
+	    }
+	    .note7button:hover{
+	    	transition: 0.3s;
+	    	background-color: #5599FF;
+	    }
 	}
 /*End of PC section*/
 	
@@ -183,6 +194,12 @@
 	    .UserModalButton:hover{
 	    	background-color: #483D8B;
 	    	transition: 0.3s;
+	    }
+	    .note7button{
+	    	width: 100%;
+	    	transition: 0.3s;
+	    	border-width: 0px;
+	    	border-radius: 20px;
 	    }
     }
 /*End of Mobile CSS Section*/
@@ -258,10 +275,21 @@
 	   				<th style="text-align: center;">
 						<button id="teacherSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
 					</th>
-				    <!-- 狀態 -->
+				    <!-- 狀態 
 	   				<th style="text-align: center;">
 						<button id="statusSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
+					</th>-->
+					@if (Route::has('login'))
+						@if (Auth::check())
+							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+					<!-- 備註 -->
+					<th style="text-align: center;">
+						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
 					</th>
+					       @endif
+						@endif
+	    			@endif
+							
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
@@ -325,7 +353,22 @@
 					<td id="license-{{$re->id}}">{{$re->license}}</td>
 					<td id="classroom-{{$re->id}}">{{$re->classroom}}</td>
 					<td id="teacher-{{$re->id}}">{{$re->teacher}}</td>
-					<td id="status-{{$re->id}}">{{$re->status}}</td>
+					@if (Route::has('login'))
+						@if (Auth::check())
+							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
+								@if( ($re->note7)==='無')
+									<td></td>
+								@else
+						<td id="note7-{{$re->id}}">
+							<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$re->id}}">
+								<span class="glyphicon glyphicon-pencil"></span>
+								備註
+							</button>
+						</td>
+								@endif
+							@endif
+						@endif
+	    			@endif
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
@@ -460,7 +503,7 @@
 						{{$re->teacher}}
 					</td>
 				</tr>
-			    <!-- 狀態 -->
+			    <!-- 狀態 
 			    <tr>
 	   				<th class="TableTop" style="text-align: center;">
 						<button id="statusSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
@@ -468,10 +511,27 @@
 					<td class="TableContent" id="status-{{$re->id}}">
 						{{$re->status}}
 					</td>
-				</tr>
+				</tr>-->
 				@if (Route::has('login'))
 					@if (Auth::check())
-						@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+						@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
+				<tr>
+	   				<th class="TableTop" style="text-align: center;">
+						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
+					</th>
+					<td class="TableContent" id="note7-{{$re->id}}" >
+						<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$re->id}}">
+							<span class="glyphicon glyphicon-pencil"></span>
+							備註
+						</button>
+					</td>
+				</tr>
+						@endif
+					@endif
+	    		@endif
+	    		@if (Route::has('login'))
+					@if (Auth::check())
+						@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
 				<!-- 編輯資料 -->
 				<tr>
 	   	 			<th class="TableTop" style="text-align: center;">
@@ -542,6 +602,7 @@
     										</select>
     									</th>
     								</tr>
+    								<tr><th>備註 :</th><th> <textarea class="form-control" name="note7">{{ $re->note7 }}</textarea></th></tr>
 								</table>
 								<!-- End of Edit Modal Table -->
 								@if(Auth::check())
@@ -631,6 +692,47 @@
         </div>
 <!-- End of Edit Modal -->
     @endforeach
+
+<!-- Note Modal -->
+
+    @foreach($res as $re)
+    <div class="modal fade" id="Note{{$re->id}}" role="dialog"  style="height: 600px;">
+	    <div class="modal-dialog" >
+	    	<!-- Note Modal content-->
+	    	<div class="modal-content">
+	        	<!-- Note Modal Header -->
+	        	<div class="modal-header">
+	           		<button type="button" class="close" data-dismiss="modal">&times;</button>
+	           		<h4 class="modal-title">備註</h4>
+	        	</div>
+	        	<!-- End of Edit Modal Header -->
+	        	<!-- Edit Modal Body -->
+	     		<div class="modal-body">
+	        		<div class="EditPage">
+	           			<form action="{{asset ( '/return/updatenote/'.$re->id) }}" method="post">{{ csrf_field()}}
+							<div class="EditInfo">
+								<textarea class="form-control" name="note7">{{$re->note7}}</textarea>
+							</div>
+	        		</div>
+	        	</div>
+	        	<!-- End of Note Modal Body -->
+	        	<!-- Modal Footer -->
+	        	<div class="modal-footer">
+	          		<button type="submit" class="btn btn-default">變更</button>	
+	           			</form>
+	          		<button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+	        	</div>
+	        	<!-- End of Note Modal Footer -->
+	    	</div>
+	    	<!-- End of Note Modal Content -->
+	    </div>
+	    <!-- End of Note Modal Dialog -->
+	</div>
+	@endforeach
+	<!-- End of Note Modal -->
+
+	<!-- End of Modal Section -->
+
 
 	<div style="text-align: center;">
 		<form action="{{ asset('/return') }}" method="get">

@@ -34,6 +34,7 @@ class returnController extends Controller
       $update->update(['teacher'=>$rep->teacher]);
       $update->update(['status'=>$rep->status]);
       $update->update(['audit'=>$rep->audit]);
+      $update->update(['note7'=>$rep->note7]);
       $update->save();
       return redirect('/return');
 	}
@@ -60,6 +61,12 @@ class returnController extends Controller
       $reason->save();
       return redirect('/return');
     }
+  public function updatenote(Request $rep, $id)
+  {
+    $update=Miss::find($id);
+    $update->update(['note7'=>$rep->note7]);
+    return redirect('/return');
+  }
 
 
 
