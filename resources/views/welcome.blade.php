@@ -230,7 +230,6 @@
                 font-weight:bold;
                 padding:6px 11px;
                 text-decoration:none;
-                text-shadow:0px 1px 0px #ffffff;
                 transition: 0.3s;
                 width: 130px;
                 border-width: 1px;
