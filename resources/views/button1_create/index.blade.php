@@ -194,6 +194,12 @@
         border-top:10px ;
         background-color: #b6c6c6;
     }
+    .hr2{   
+        height:5px;
+        border:none;
+        border-top:5px ;
+        background-color: #b6c6c6;
+    }
     
 </style>
 @stop
@@ -265,7 +271,7 @@
                     </div>             
 
                     <div class="form-group">
-                        <label><h2>班級（必選）：</h2></label>
+                        <label><h2>班級：</h2></label>
                         <select class="form-control" id="class" name="class"  required>
                             <optgroup label="資管系">
                             <option value="資管1A">1A</option>
@@ -292,6 +298,7 @@
                             <option value="外系學生">外系學生</option>
                             <option value="教職員">教職員</option>
                             <option value="其他">其他</option>
+                            </optgroup>
                         </select>
                     </div> 
             
@@ -400,11 +407,14 @@
     
                 <div id="menu2" class="tab-pane fade">
                     <div id="confirm"></div>
+                    <hr class="hr2" />
+                    <h2>借用備註：</h2>
+                        <input type="text"  class="form-control" id="note7" name="note7" placeholder="如有特殊需求請告知" required>
                     <div>
                         <button type="button" class="addFormButton next1Button" onclick="Previous2()" 
                         id="B3">上一步</button>
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                        <button type="button"  class="removeFormButton next1Button" id="b3" onclick="submit()">送出申請</button>
+                        <button type="button"  class="removeFormButton next1Button" id="b3" onclick="send()">送出申請</button>
                     </div>
                 </div>
             </form>
@@ -466,7 +476,7 @@
             $("#L1").removeClass("active");
             $("#L2").addClass("active");
             $('#b1').attr('href','#menu1');
-            $('#B3').attr('value','#menu1') 
+            $('#B3').attr('value','#menu1');
         }
         
     }
@@ -503,7 +513,7 @@
     function selnum(){
         var id = $("#" + object).find(":selected").attr("id");
         var g3 = parseInt(id, 10);
-        document.getElementById('' + number).value= 0;
+        document.getElementById('' + number).value= 1;
         $("#" + number).attr("max", g3);
     }
     function limit(){
@@ -609,8 +619,14 @@
         
     }*/
 
-    function submit(){
-        document.getElementById("#Form5").submit();
+    function send(){
+    var note = document.getElementById("note7").value;
+        if(note =="")
+        {
+            document.getElementById("note7").value="無";  
+        }        
+        $('#form5').submit();
+        
     }
    
 </script>
