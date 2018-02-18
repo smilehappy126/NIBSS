@@ -55,7 +55,7 @@ class ApplicationController extends Controller
     // echo($application->date);
     $application->status = '借用中';
     $application->audit = '無';
-    $application->note7 = '無';
+    $application->note7 = $request->note7;
     $application->save();
     // $socialaccount=SocialAccount::where('email','=',$request->email);
     // $socialaccount->update(['phone'=>$request->phone])
