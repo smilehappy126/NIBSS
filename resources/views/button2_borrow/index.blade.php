@@ -268,10 +268,6 @@
 	   				<th style="text-align: center;">
 						<button id="teacherSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
 					</th>
-				    <!-- 狀態 -->
-	   				<!-- <th style="text-align: center;">
-						<button id="statusSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
-					</th> -->
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
@@ -287,7 +283,7 @@
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 	   	 			<th style="text-align: center;">
-						<button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
+						<button id="editSortButton" type="button" onclick="sortTable(11)" style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
 					</th>
 				</tr> 
 							@endif
@@ -365,11 +361,19 @@
 					@if (Route::has('login'))
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
-					<td>
-					 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
-					 		<span class="glyphicon glyphicon-pencil"></span> 編輯
-					 	</a>
-					</td>
+								@if( ($mis->status)==='借用中' )
+									<td>
+									 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+									 		<span class="glyphicon glyphicon-pencil"></span> 編輯
+									 	</a>
+									</td>
+								@elseif( ($mis->status)==='待審核' )
+									<td>
+									 	<a href="#" class="btn btn-sm btn-danger" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+									 		待審核
+									 	</a>
+									</td>
+								@endif
 							@endif
 						@endif
 	    			@endif
@@ -529,16 +533,24 @@
 				@if (Route::has('login'))
 					@if (Auth::check())
 						@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
-				<tr>
-	   	 			<th class="TableTop" style="text-align: center;">
-						<button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
-					</th>
-					<td class="TableContent">
-					 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
-					 		<span class="glyphicon glyphicon-pencil"></span> 編輯
-					 	</a>
-					</td>
-				</tr> 
+						<tr>
+			   	 			<th class="TableTop" style="text-align: center;">
+								<button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
+							</th>
+							@if(($mis->status)==='借用中')
+								<td class="TableContent">
+								 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+								 		<span class="glyphicon glyphicon-pencil"></span>編輯
+								 	</a>
+								</td>
+							@elseif( ($mis->status)==='待審核' )
+								<td class="TableContent">
+								 	<a href="#" class="btn btn-sm btn-danger" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+								 		待審核
+								 	</a>
+								</td>
+							@endif
+						</tr> 
 						@endif
 					@endif
 	    		@endif
@@ -585,8 +597,11 @@
     								<tr><th>授課教師 :</th><th> <input  class="form-control" type="text" name="teacher" value="{{ $mis->teacher }}"></th></tr>
     								<tr><th>狀態 :</th>
     									<th> 
-    										<select class="form-control" name="status" value="{{ $mis->status }}">
-    											<option value="借用中">借用中</option><option value="已歸還">已歸還</option>
+    										<select class="form-control" name="status" value="{{ $mis->status }}" required>
+    											<option selected disabled style="display: none;"></option>
+    											<option value="借用中">借用中</option>
+    											<option value="待審核">待審核</option>
+    											<option value="已歸還">已歸還</option>
     										</select>
     									</th>
     								</tr>

@@ -13,6 +13,7 @@ class BorrowController extends Controller
 	public function index()
 	{
 		$miss = Miss::where('status','=','借用中')
+                  ->orWhere('status','=','待審核')
                   ->get();
     $users = User::all();
     $reasons = Reason::all();
