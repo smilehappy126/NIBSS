@@ -301,7 +301,7 @@
 					<!-- 序號 -->
 					<td id="id-{{$mis->id}}">{{$mis->id}}</td>
 					<!-- 借用日期 -->
-					<td id="date-{{$mis->id}}">{{$mis->date}}</td>
+					<td id="date-{{$mis->id}}">{{$mis->borrowat}}</td>
 					<!-- 班級 -->
 					<td id="class-{{$mis->id}}">{{$mis->class}}</td>
 					<!-- 借用者 -->
@@ -407,7 +407,7 @@
 						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
 					</th>
 					<td class="TableContent" id="date-{{$mis->id}}">
-						{{$mis->date}}
+						{{$mis->borrowat}}
 					</td>
 				</tr>
 				<!-- 班級 -->
@@ -586,7 +586,7 @@
 								<!-- Edit Modal Table -->
 								<table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
 									<tr><th>借用序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $mis->id}}"> </th></tr>
-									<tr><th>借用日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $mis->date }}"></th></tr>
+									<tr><th>借用日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $mis->borrowat }}"></th></tr>
 									<tr><th>班級 :</th><th> <input  class="form-control" type="text" name="class" value="{{ $mis->class }}"></th></tr>
     								<tr><th>申請人 : </th><th> <input  class="form-control" type="text" name="name" value="{{ $mis->name }}"></th></tr>
     								<tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" value="{{ $mis->phone }}" disabled></th></tr>
