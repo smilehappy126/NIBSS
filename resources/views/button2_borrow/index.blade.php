@@ -364,7 +364,7 @@
 								@if( ($mis->status)==='借用中' )
 									<td>
 									 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
-									 		<span class="glyphicon glyphicon-pencil"></span> 編輯
+									 		借用中
 									 	</a>
 									</td>
 								@elseif( ($mis->status)==='待審核' )
@@ -540,7 +540,7 @@
 							@if(($mis->status)==='借用中')
 								<td class="TableContent">
 								 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
-								 		<span class="glyphicon glyphicon-pencil"></span>編輯
+								 		借用中
 								 	</a>
 								</td>
 							@elseif( ($mis->status)==='待審核' )
