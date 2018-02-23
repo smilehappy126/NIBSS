@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Miss;
 use App\User;
 use App\Reason;
+use Carbon\Carbon;
 
 class BorrowController extends Controller
 {
@@ -24,7 +25,6 @@ class BorrowController extends Controller
 	public function update(Request $rep, $id)
 	{
       $update= Miss::find($id);
-      $update->update(['date'=>$rep->date]);
       $update->update(['class'=>$rep->class]);
       $update->update(['name'=>$rep->name]);
       $update->update(['item'=>$rep->item]);
@@ -35,6 +35,11 @@ class BorrowController extends Controller
       $update->update(['status'=>$rep->status]);
       $update->update(['audit'=>$rep->audit]);
       $update->update(['note7'=>$rep->note7]);
+      if ($rep->status==='已歸還') {
+        $time = Carbon::now();
+        $update->update(['returnat'=>$time]);
+      }
+      
       return redirect('/borrow');
   }
   public function updatenote(Request $rep, $id)

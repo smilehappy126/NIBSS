@@ -14,7 +14,7 @@ class AddReturnatToMissTable extends Migration
     public function up()
     {
         Schema::table('miss', function (Blueprint $table) {
-            $table->date('returnat')->nullable();
+            $table->dateTime('returnat')->nullable();
         });
     }
 

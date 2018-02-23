@@ -218,7 +218,7 @@
                                 <button id="numSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">物品數量</button>
                             </th>
                             <th>
-                                <button id="userSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
+                                <button id="userSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">修改人</button>
                             </th>
                             <th>
                                 <button id="updatedSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">更新日期</button>
@@ -274,7 +274,7 @@
                         <td>{{$item->itemnum}}</td>
                     </tr>
                     <tr>
-                        <th>負責人</th>
+                        <th>修改人</th>
                         <td>{{$item->creator}}</td>
                     </tr>
                     <tr>
@@ -337,12 +337,13 @@
                                                     </th>
                                                 </tr>
                                                 <tr>
-                                                    <th>負責人 :</th>
+                                                    <th>修改人 :</th>
                                                     <th> 
-                                                        <input  class="form-control" type="string" name="creator" value="{{ $item->creator }}">
+                                                        <input  class="form-control" type="string" value="{{ $item->creator }}" disabled>
                                                     </th>
                                                 </tr>
                                             </table>
+                                                    <input  class="form-control" type="string" name="creator" value="{{ Auth::user()->name }}" style="display: none;">
                                             <!-- End of Edit Modal Table -->
                                         </div>
                                     </div>
@@ -408,7 +409,7 @@
                                                     </th>
                                                 </tr>
                                                 <tr>
-                                                    <th>負責人 :</th>
+                                                    <th>修改人 :</th>
                                                     <th> 
                                                         <input  class="form-control" type="string" name="creator" value="{{ $item->creator }}" disabled>
                                                     </th>

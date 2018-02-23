@@ -104,7 +104,7 @@
     		background-color:#D1BBFF;
     		left: 0px;
     		right: 0px;
-    		width: 50%;
+    		width: 100%;
     		height: 100%;
     		bottom: :0;
     		font-family: Microsoft JhengHei;
@@ -215,37 +215,35 @@
     			<div class="content" style="position: relative;">
     				<table class="table" style="border: 0px;  table-layout: fixed; text-align: center;">
     					<tr>
-    						<th style="text-align: right;">
-    							<button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">歷史紀錄</button>
+    						<th style="text-align: center;">
+    							<button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">借用紀錄查詢</button>
     						</th>
-    						<th style="text-align: left;">
+    						<th style="text-align: center;">
     						  <form action=" {{asset('/admin/userlists')}} " method="get" >{{ csrf_field() }}
     						      <button class="FormButton" type="submit">使用者清單</button>
     						  </form>
     						</th>
+                <th style="text-align: center;">
+                  <form action=" {{asset('/admin/rule')}} " method="get"> {{ csrf_field() }}
+                    <button class="FormButton" type="submit">編輯借用條例</button>
+                  </form>
+                </th>
     					</tr>
     					<tr>
-    						<th style="text-align: right;">
-    							<form action=" {{asset('/admin/rule')}} " method="get"> {{ csrf_field() }}
-                    <button class="FormButton" type="submit">編輯條例</button>
-                  </form>
-    						</th>
-    						<th style="text-align: left;">
+                <th style="text-align: center;">
                   <form action=" {{asset('/admin/item')}}" method="get" >{{ csrf_field() }}
     							   <button class="FormButton" type="submit">可借用物品</button>
                   </form>
     						</th>
-    					</tr>
-              <tr>
-                <th style="text-align: right;">
-                    <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規上限</button>
+                <th style="text-align: center;">
+                    <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規點數上限</button>
                 </th>
-                <th style="text-align: left;">
+                <th style="text-align: center;">
                   <form action=" {{asset('/admin/reasons')}}" method="get" >{{ csrf_field() }}
-                     <button class="FormButton" type="submit">違規紀錄</button>
+                     <button class="FormButton" type="submit">借用違規紀錄</button>
                   </form>
                 </th>
-              </tr>
+    					</tr>
             </table>
     			</div>
           <!-- End of Content -->
@@ -272,7 +270,7 @@
                     <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
                         <tr>
                             <th>
-                                <button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">歷史紀錄</button>
+                                <button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">借用紀錄查詢</button>
                             </th>
                             <th>
                             <form action=" {{asset('/admin/userlists')}} " method="get" >{{ csrf_field() }}
@@ -283,7 +281,7 @@
                         <tr>
                             <th>
                                 <form action=" {{asset('/admin/rule')}} " method="get"> {{ csrf_field() }}
-                                    <button class="FormButton" type="submit">編輯條例</button>
+                                    <button class="FormButton" type="submit">編輯借用條例</button>
                                 </form>
                             </th>
                             <th>
@@ -293,11 +291,11 @@
                             </th>
                             <tr>
                                 <th>
-                                    <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規上限</button>
+                                    <button class="FormButton" type="button" data-toggle="modal" data-target="#ViolationModal">違規點數上限</button>
                                 </th>
                                 <th>
                                     <form action=" {{asset('/admin/reasons')}}" method="get" >{{ csrf_field() }}
-                                       <button class="FormButton" type="submit">違規紀錄</button>
+                                       <button class="FormButton" type="submit">借用違規紀錄</button>
                                     </form>
                                 </th>
                             </tr>

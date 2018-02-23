@@ -261,59 +261,55 @@
             <th style="width: 1px;"></th>
             <!-- 序號 -->
             <th style="text-align: center;">
-              <button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
+              <button id="idSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
             </th>  
             <!-- 日期 -->
               <th style="text-align: center;">
-              <button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
+              <button id="dateSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">更新日期</button>
             </th>
               <!-- 班級 -->
                 <th style="text-align: center;">
-              <button id="classSortButton" type="submit" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">班級</button>
+              <button id="classSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">班級</button>
             </th>
               <!-- 申請人 -->
               <th style="text-align: center;">
-              <button id="nameSortButton" type="submit" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
+              <button id="nameSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
             </th>
             @if (Route::has('login'))
               @if (Auth::check())
             <!-- 電話 -->
               <th style="text-align: center; width: 10%;">
-              <button id="phoneSortButton" type="submit" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+              <button id="phoneSortButton" type="button" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
             </th>
                 @endif
               @endif
             <!-- 借用物品-->
               <th style="text-align: center;">
-              <button id="itemSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">借用物品</button>
+              <button id="itemSortButton" type="button" onclick="sortTable(6)" style="border-radius: 100px; border: none; background-color: transparent;">借用物品</button>
             </th>
             <!-- 借用數量 -->
               <th style="text-align: center;">
-              <button id="itemnumSortButton" type="submit" onclick="sortTable(6)" style="border-radius: 100px; border: none; background-color: transparent;">借用數量</button>
+              <button id="itemnumSortButton" type="button" onclick="sortTable(7)" style="border-radius: 100px; border: none; background-color: transparent;">借用數量</button>
             </th>
             <!-- 抵押證件 -->
               <th style="text-align: center;">
-              <button id="licenseSortButton" type="submit" onclick="sortTable(7)" style="border-radius: 100px; border: none; background-color: transparent;">抵押證件</button>
+              <button id="licenseSortButton" type="button" onclick="sortTable(8)" style="border-radius: 100px; border: none; background-color: transparent;">抵押證件</button>
             </th>
               <!-- 授課教室 -->
               <th style="text-align: center;">
-              <button id="classroomSortButton" type="button" onclick="sortTable(8)" style="border-radius: 100px; border: none; background-color: transparent;">授課教室</button>
+              <button id="classroomSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教室</button>
             </th>
             <!-- 授課教師 -->
               <th style="text-align: center;">
-              <button id="teacherSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
+              <button id="teacherSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
             </th>
-              <!-- 狀態 -->
-              <th style="text-align: center;">
-              <button id="statusSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
-            </th>
+             <!-- 編輯資料 -->
             @if (Route::has('login'))
               @if (Auth::check())
                 @if( (Auth::user()->level)==='管理員')
-            <!-- 編輯資料 -->
               <th style="text-align: center;">
-              <button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
-            </th>
+              <button id="editSortButton" type="button" onclick="sortTable(11)"  style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
+              </th>
           </tr> 
                 @endif
               @endif
@@ -334,7 +330,13 @@
               <td style="width: 1px;">※</td>
             @endif
             <td id="id-{{$mis->id}}">{{$mis->id}}</td>
-            <td id="date-{{$mis->id}}">{{$mis->date}}</td>
+            @if(($mis->status)==='待審核')
+              <td id="date-{{$mis->id}}">{{$mis->created_at}}</td>
+            @elseif(($mis->status)==='借用中')
+              <td id="date-{{$mis->id}}">{{$mis->borrowat}}</td>
+            @elseif(($mis->status)==='已歸還')
+              <td id="date-{{$mis->id}}">{{$mis->returnat}}</td>
+            @endif
             <td id="class-{{$mis->id}}">{{$mis->class}}</td>
             <td id="name-{{$mis->id}}">
               <button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$mis->phone}}">
@@ -351,15 +353,28 @@
             <td id="license-{{$mis->id}}">{{$mis->license}}</td>
             <td id="classroom-{{$mis->id}}">{{$mis->classroom}}</td>
             <td id="teacher-{{$mis->id}}">{{$mis->teacher}}</td>
-            <td id="status-{{$mis->id}}">{{$mis->status}}</td>
             @if (Route::has('login'))
               @if (Auth::check())
                 @if( (Auth::user()->level)==='管理員')
-            <td>
-              <button class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
-                <span class="glyphicon glyphicon-pencil"></span> 編輯
-              </button> 
-            </td>
+                  @if(($mis->status)==='借用中')
+                  <td>
+                    <button class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                      借用中
+                    </button> 
+                  </td>
+                  @elseif(($mis->status)==='已歸還')
+                  <td>
+                    <button class="btn btn-sm btn-success" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                      已歸還
+                    </button> 
+                  </td>
+                  @elseif(($mis->status)==='待審核')
+                  <td>
+                    <button class="btn btn-sm btn-danger" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                      待審核
+                    </button> 
+                  </td>
+                  @endif
                 @endif
               @endif
             @endif
@@ -400,7 +415,7 @@
             <!-- 序號 -->
           <tr>
               <th style="text-align: center;">
-                <button id="idSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
+                <button id="idSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
               </th>
               <th id="id-{{$mis->id}}" style="text-align: center;">
                 {{$mis->id}}
@@ -409,16 +424,20 @@
           <!-- 日期 -->
           <tr>
               <th style="text-align: center;">
-                <button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
+                <button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">更新日期</button>
               </th>
-              <th id="date-{{$mis->id}}" style="text-align: center;">
-                {{$mis->date}}
-              </th>
+              @if(($mis->status)==='待審核')
+                <th id="date-{{$mis->id}}">{{$mis->created_at}}</th>
+              @elseif(($mis->status)==='借用中')
+                <th id="date-{{$mis->id}}">{{$mis->borrowat}}</th>
+              @elseif(($mis->status)==='已歸還')
+                <th id="date-{{$mis->id}}">{{$mis->returnat}}</th>
+              @endif
           </tr>
           <!-- 班級 -->
           <tr>
               <th style="text-align: center;">
-                <button id="classSortButton" type="submit" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">班級</button>
+                <button id="classSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">班級</button>
               </th>
               <th id="class-{{$mis->id}}" style="text-align: center;">
                 {{$mis->class}}
@@ -427,7 +446,7 @@
           <!-- 申請人 -->
           <tr>
               <th style="text-align: center;">
-                <button id="nameSortButton" type="submit" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
+                <button id="nameSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
               </th>
               <th id="name-{{$mis->id}}" style="text-align: center;">
                 {{$mis->name}}
@@ -439,7 +458,7 @@
                 @if ((Auth::user()->level)==='管理員')
           <tr>
               <th style="text-align: center;"">
-                <button id="phoneSortButton" type="submit" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+                <button id="phoneSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
               </th>
               <th id="phone-{{$mis->id}}" style="text-align: center;">
                 {{$mis->phone}}
@@ -451,7 +470,7 @@
           <!-- 借用物品-->
           <tr>
               <th style="text-align: center;">
-                <button id="itemSortButton" type="submit" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">借用物品</button>
+                <button id="itemSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用物品</button>
               </th>
               <th id="item-{{$mis->id}}" style="text-align: center;">
                 {{$mis->item}}
@@ -460,7 +479,7 @@
           <!-- 借用數量 -->
           <tr>
               <th style="text-align: center;">
-                <button id="itemnumSortButton" type="submit" onclick="sortTable(6)" style="border-radius: 100px; border: none; background-color: transparent;">借用數量</button>
+                <button id="itemnumSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用數量</button>
               </th>
               <th id="itemnum-{{$mis->id}}" style="text-align: center;">
                 {{$mis->itemnum}}
@@ -469,7 +488,7 @@
           <!-- 抵押證件 -->
           <tr>
               <th style="text-align: center;">
-                <button id="licenseSortButton" type="submit" onclick="sortTable(7)" style="border-radius: 100px; border: none; background-color: transparent;">抵押證件</button>
+                <button id="licenseSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">抵押證件</button>
               </th>
               <th id="license-{{$mis->id}}" style="text-align: center;">
                 {{$mis->license}}
@@ -478,7 +497,7 @@
           <!-- 授課教室 -->
           <tr>
               <th style="text-align: center;">
-                <button id="classroomSortButton" type="button" onclick="sortTable(8)" style="border-radius: 100px; border: none; background-color: transparent;">授課教室</button>
+                <button id="classroomSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">授課教室</button>
               </th>
               <th id="classroom-{{$mis->id}}" style="text-align: center;">
                 {{$mis->classroom}}
@@ -487,7 +506,7 @@
           <!-- 授課教師 -->
           <tr>
               <th style="text-align: center;">
-                <button id="teacherSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
+                <button id="teacherSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
               </th>
               <th id="teacher-{{$mis->id}}" style="text-align: center;">
                 {{$mis->teacher}}
@@ -496,7 +515,7 @@
           <!-- 狀態 -->
           <tr>
               <th style="text-align: center;">
-                <button id="statusSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
+                <button id="statusSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">狀態</button>
               </th>
               <th id="status-{{$mis->id}}" style="text-align: center;">
                 {{$mis->status}}
@@ -525,11 +544,25 @@
               <th style="text-align: center;">
                 <button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
               </th>
-              <th style="text-align: center;">
-                <button class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
-                <span class="glyphicon glyphicon-pencil"></span> 編輯
-              </button> 
-              </th>
+              @if(($mis->status)==='借用中')
+                  <td>
+                    <button class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                      借用中
+                    </button> 
+                  </td>
+                  @elseif(($mis->status)==='已歸還')
+                  <td>
+                    <button class="btn btn-sm btn-success" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                      已歸還
+                    </button> 
+                  </td>
+                  @elseif(($mis->status)==='待審核')
+                  <td>
+                    <button class="btn btn-sm btn-danger" id="edit-message-{{ $mis->id }}" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                      待審核
+                    </button> 
+                  </td>
+              @endif
           </tr>
                @endif
              @endif
@@ -565,7 +598,18 @@
                 <!-- Edit Modal Table -->
                 <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
                   <tr><th>借用序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $mis->id}}"> </th></tr>
-                  <tr><th>借用日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $mis->date }}"></th></th>
+                  <tr>
+                    <th>更新日期 :</th> 
+                    <th>
+                      @if(($mis->status)==='待審核')
+                      <input  class="form-control" type="datetime" name="date" value="{{ $mis->created_at }}" disabled>
+                      @elseif(($mis->status)==='借用中')
+                      <input  class="form-control" type="datetime" name="date" value="{{ $mis->borrowat }}" required>
+                      @elseif(($mis->status)==='已歸還')
+                      <input  class="form-control" type="datetime" name="date" value="{{ $mis->returnat }}" required>
+                      @endif
+                    </th>
+                  </tr>
                   <tr><th>班級 :</th><th> <input  class="form-control" type="text" name="class" value="{{ $mis->class }}"></th></tr>
                     <tr><th>申請人 : </th><th> <input  class="form-control" type="text" name="name" value="{{ $mis->name }}"></th></tr>
                     <tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" value="{{ $mis->phone }}" disabled></th></tr>
@@ -579,6 +623,7 @@
                         <select class="form-control" name="status" required>
                           <option selected disabled style="display: none;"></option>
                           <option value="借用中">借用中</option>
+                          <option value="待審核">待審核</option>
                           <option value="已歸還">已歸還</option>
                         </select>
                       </th>
@@ -692,7 +737,7 @@
                   <div class="row">
                       <div class="col-md-8 col-md-offset-2">
                           <form action="{{ asset ('/admin/searchall')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-                              <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp</label>
+                              <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp;</label>
                               <input  class="searchcontent" name="searchcontent" id="searchcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 70%;" autofocus>
                       </div>    
                   </div>

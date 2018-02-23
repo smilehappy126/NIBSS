@@ -14,7 +14,7 @@ class AddBorrowatToMissTable extends Migration
     public function up()
     {
          Schema::table('miss', function (Blueprint $table) {
-            $table->date('borrowat')->nullable();
+            $table->dateTime('borrowat')->nullable();
         });
     }
 
