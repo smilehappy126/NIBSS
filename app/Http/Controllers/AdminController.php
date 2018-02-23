@@ -73,7 +73,7 @@ class AdminController extends Controller
         $users=User::all();
         return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
-    //在管理者頁面裡的搜尋更改內容(歷史紀錄中的再次搜尋) 
+    //在管理者頁面裡的搜尋更改內容 
     public function updateContentData(Request $rep, $id)
     {
       $update= Miss::find($id);
