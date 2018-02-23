@@ -25,7 +25,6 @@ class BorrowController extends Controller
 	public function update(Request $rep, $id)
 	{
       $update= Miss::find($id);
-      $update->update(['date'=>$rep->date]);
       $update->update(['class'=>$rep->class]);
       $update->update(['name'=>$rep->name]);
       $update->update(['item'=>$rep->item]);

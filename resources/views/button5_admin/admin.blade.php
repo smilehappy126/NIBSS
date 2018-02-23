@@ -216,7 +216,7 @@
     				<table class="table" style="border: 0px;  table-layout: fixed; text-align: center;">
     					<tr>
     						<th style="text-align: center;">
-    							<button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">借用歷史紀錄</button>
+    							<button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">借用紀錄查詢</button>
     						</th>
     						<th style="text-align: center;">
     						  <form action=" {{asset('/admin/userlists')}} " method="get" >{{ csrf_field() }}
@@ -270,7 +270,7 @@
                     <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
                         <tr>
                             <th>
-                                <button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">借用歷史紀錄</button>
+                                <button class="FormButton" type="button" data-toggle="modal" data-target="#SearchModal">借用紀錄查詢</button>
                             </th>
                             <th>
                             <form action=" {{asset('/admin/userlists')}} " method="get" >{{ csrf_field() }}

@@ -65,6 +65,8 @@ class AdminController extends Controller
                 ->orWhere('teacher','like','%'.$rep->searchcontent.'%')
                 ->orWhere('classroom','like','%'.$rep->searchcontent.'%')
                 ->orWhere('license','like','%'.$rep->searchcontent.'%')
+                ->orWhere('borrowat','like','%'.$rep->searchcontent.'%')
+                ->orWhere('returnat','like','%'.$rep->searchcontent.'%')
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
                 ->orWhere('note7','like','%'.$rep->searchcontent.'%')
                   ->get();
@@ -75,7 +77,11 @@ class AdminController extends Controller
     public function updateContentData(Request $rep, $id)
     {
       $update= Miss::find($id);
-      $update->update(['date'=>$rep->date]);
+      if(($rep->status)==='借用中'){
+        $update->update(['borrowat'=>$rep->date]);
+      }elseif (($rep->status)==='已歸還') {
+        $update->update(['returnat'=>$rep->date]);
+      }
       $update->update(['class'=>$rep->class]);
       $update->update(['name'=>$rep->name]);
       $update->update(['item'=>$rep->item]);
@@ -96,6 +102,8 @@ class AdminController extends Controller
                 ->orWhere('classroom','like','%'.$rep->searchcontent.'%')
                 ->orWhere('license','like','%'.$rep->searchcontent.'%')
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
+                ->orWhere('borrowat','like','%'.$rep->searchcontent.'%')
+                ->orWhere('returnat','like','%'.$rep->searchcontent.'%')
                   ->get();
       $users=User::all();
       return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
