@@ -258,7 +258,7 @@ $nextString = date('Y-m-d',$next);
 
 
 
-      <div class="panel-body"><img src="{{  url('/uploadimg/'. $currentImgurl ) }}" style="height: 200px; width: 100%; display:block; margin:auto;"></div>
+      <div class="panel-body"><img src="{{  url('/uploadimg/'. $currentImgurl ) }}" style="height: 350px; width: 95%; display:block; margin:auto;"></div>
 
     <!--上一週/下一週按鈕-->
     <div class="row">
