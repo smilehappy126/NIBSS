@@ -56,7 +56,7 @@ class ApplicationController extends Controller
     $application->status = '待審核';
     $application->audit = '無';
     $application->note7 = $request->note7;
-    $application->borrowat = $application->created_at;
+    $application->borrowat = Carbon::now();
     $application->save();
     // $socialaccount=SocialAccount::where('email','=',$request->email);
     // $socialaccount->update(['phone'=>$request->phone])

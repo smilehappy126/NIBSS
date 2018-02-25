@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->string('itemgroup')->nullable()->default('無資料');
             $table->string('itemname')->nullable()->default('無資料');;
-            $table->string('itemnum')->nullable()->default(1);
+            $table->integer('itemnum')->nullable()->default(1);
             $table->string('creator')->nullable()->default('無資料');
             $table->timestamps();
         });
