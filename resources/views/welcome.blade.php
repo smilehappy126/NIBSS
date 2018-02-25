@@ -75,6 +75,12 @@
                 margin-right: 10px;
                 top: 70%;
                 z-index: 1;
+                
+                float: right\9;
+                position: absolute\9;
+                margin-right: 10px\9;
+                top: 70%\9;
+                z-index: 1\9;
             }
             .ErrorMessages{
                 float: right;
