@@ -586,7 +586,8 @@
 								<!-- Edit Modal Table -->
 								<table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
 									<tr><th>借用序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $mis->id}}"> </th></tr>
-									<tr><th>借用日期 :</th> 
+									<tr>
+										<th>借用日期 :</th> 
 										<th>
 											@if($mis->status==='待審核')
 												<input  class="form-control" type="datetime" name="date" value="{{ $mis->created_at }}" disabled>
