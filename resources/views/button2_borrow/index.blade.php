@@ -228,7 +228,7 @@
 					</th>  
 					<!-- 日期 -->
 	  				<th style="text-align: center;">
-						<button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
+						<button id="dateSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">更新日期</button>
 					</th>
 				    <!-- 班級 -->
 	  	    		<th style="text-align: center;">
@@ -300,7 +300,7 @@
 				<tr class="contentdata" id="tr-{{$mis->id}}">
 					<!-- 序號 -->
 					<td id="id-{{$mis->id}}">{{$mis->id}}</td>
-					<!-- 借用日期 -->
+					<!-- 更新日期 -->
 					<td id="date-{{$mis->id}}">{{$mis->borrowat}}</td>
 					<!-- 班級 -->
 					<td id="class-{{$mis->id}}">{{$mis->class}}</td>
@@ -404,7 +404,7 @@
 				<!-- 日期 -->
 				<tr> 
 	  				<th class="TableTop" style="text-align: center;">
-						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
+						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">更新日期</button>
 					</th>
 					<td class="TableContent" id="date-{{$mis->id}}">
 						{{$mis->borrowat}}
@@ -587,7 +587,7 @@
 								<table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
 									<tr><th>借用序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $mis->id}}"> </th></tr>
 									<tr>
-										<th>借用日期 :</th> 
+										<th>更新日期 :</th> 
 										<th>
 											@if($mis->status==='待審核')
 												<input  class="form-control" type="datetime" name="date" value="{{ $mis->created_at }}" disabled>
@@ -610,7 +610,9 @@
     											<option selected disabled style="display: none;"></option>
     											<option value="借用中">借用中</option>
     											<option value="待審核">待審核</option>
+    											@if($mis->status==='借用中')
     											<option value="已歸還">已歸還</option>
+    											@endif
     										</select>
     									</th>
     								</tr>

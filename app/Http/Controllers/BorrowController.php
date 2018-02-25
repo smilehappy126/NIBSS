@@ -39,7 +39,7 @@ class BorrowController extends Controller
         $time = Carbon::now();
         $update->update(['returnat'=>$time]);
       }elseif($rep->status==='借用中'){
-        $update->update(['borrowat'=>$rep->date]);
+        $update->update(['borrowat'=>Carbon::now()]);
       }
       return redirect('/borrow');
   }

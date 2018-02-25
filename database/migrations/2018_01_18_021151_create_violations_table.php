@@ -15,7 +15,7 @@ class CreateViolationsTable extends Migration
     {
         Schema::create('violations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('violationnum')->nullable()->default(3);
+            $table->integer('violationnum')->nullable()->default(3);
             $table->string('creator')->nullable()->default('系統預設');
             $table->timestamps();
         });
