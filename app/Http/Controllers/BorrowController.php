@@ -41,7 +41,6 @@ class BorrowController extends Controller
       }elseif($rep->status==='借用中'){
         $update->update(['borrowat'=>$rep->date]);
       }
-
       return redirect('/borrow');
   }
   public function updatenote(Request $rep, $id)
