@@ -35,7 +35,7 @@ class BorrowController extends Controller
       $update->update(['status'=>$rep->status]);
       $update->update(['audit'=>$rep->audit]);
       $update->update(['note7'=>$rep->note7]);
-      if ($rep->status==='已歸還') {
+      if ($rep->status === '已歸還') {
         $time = Carbon::now();
         $update->update(['returnat'=>$time]);
       }elseif($rep->status==='借用中'){

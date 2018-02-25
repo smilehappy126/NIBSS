@@ -25,8 +25,6 @@ class returnController extends Controller
       $update->update(['class'=>$rep->class]);
       $update->update(['name'=>$rep->name]);
       $update->update(['phone'=>$rep->phone]);
-      $update->update(['date'=>$rep->date]);
-      $update->update(['updated_at'=>$rep->updated_at]);
       $update->update(['item'=>$rep->item]);
       $update->update(['itemnum'=>$rep->itemnum]);
       $update->update(['license'=>$rep->license]);

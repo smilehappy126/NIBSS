@@ -315,17 +315,8 @@
 				@foreach($res as $re)
 				<tr class="contentdata" id="tr-{{$re->id}}">
 					<td id="id-{{$re->id}}">{{$re->id}}</td>
-					<td id="date-{{$re->id}}">{{$re->date}}</td>
-					<td>
-					      <?php
-					       if ($re->status == "已歸還") 
-					       $re->timestamps = false;
-					       $re->save();
-					       if ($re->status == "借用中")
-					       $re->timestamps = ture;
-					      ?>
-					          {{$re->updated_at}}
-					     </td>
+					<td id="date-{{$re->id}}">{{$re->borrowat}}</td>
+					<td id="date-{{$re->id}}">{{$re->returnat}}</td>
 					<td id="class-{{$re->id}}">{{$re->class}}</td>
 					@if (Route::has('login'))
 						@if (Auth::check())
@@ -405,13 +396,22 @@
 						{{$re->id}}
 					</td>
 				</tr>
-				<!-- 日期 -->
+				<!-- 借用日期 -->
 				<tr> 
 	  				<th class="TableTop" style="text-align: center;">
 						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
 					</th>
 					<td class="TableContent" id="date-{{$re->id}}">
-						{{$re->date}}
+						{{$re->borrowat}}
+					</td>
+				</tr>
+				<!-- 歸還日期 -->
+				<tr> 
+	  				<th class="TableTop" style="text-align: center;">
+						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">歸還日期</button>
+					</th>
+					<td class="TableContent" id="date-{{$re->id}}">
+						{{$re->returnat}}
 					</td>
 				</tr>
 				<!-- 班級 -->
@@ -586,7 +586,7 @@
 								<!-- Edit Modal Table -->
 								<table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
 									<tr><th>借用序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $re->id}}"> </th></tr>
-									<tr><th>借用日期 :</th> <th><input  class="form-control" type="date" name="date" value="{{ $re->date }}"></th></tr>
+									<tr><th>借用日期 :</th> <th><input  class="form-control" type="datetime" disabled name="borrowat" value="{{ $re->borrowat }}"></th></tr>
 									<tr><th>班級 :</th><th> <input  class="form-control" type="text" name="class" value="{{ $re->class }}"></th></tr>
     								<tr><th>申請人 : </th><th> <input  class="form-control" type="text" name="name" value="{{ $re->name }}"></th></tr>
     								<tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" disabled value="{{ $re->phone }}"></th></tr>
