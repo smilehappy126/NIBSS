@@ -32,31 +32,41 @@ class ApplicationController extends Controller
     $eq = array();
     $num = array();
     $classroom = "$request->classroom$request->key"; 
-
+    
     $eq = $request->item;
-    $num =$request->itemnum;
+    $num = $request->itemnum;
 
     /*$str_eq = json_encode($eq);
     $str_num = json_encode($num);*/
-    $str_eq = join(" , ",$eq);
-    $str_num = join(" , ",$num);
-
+    if($eq !== null){
+        $str_eq = implode(" , ",$eq);
+        $str_num = implode(" , ",$num);
+    }
+    
+    $dt = Carbon::now();
+    $dt->timezone = 'Asia/Taipei';
     
     $application = new Miss;
     $application->name = $request->name;
     $application->class = $request->class;
-    $application->item =  $str_eq;
-    $application->itemnum = $str_num;
+    if($request->item == null){
+        $application->item ='無';
+        $application->itemnum = 0;
+    }
+    if($request->item !== null){
+        $application->item =  $str_eq;
+        $application->itemnum = $str_num;
+    }
     $application->license = $request->license;
     $application->classroom = $classroom;
     $application->teacher = $request->teacher;
     $application->phone = $request->phone;
-    $application->date = Carbon::today()->format('Y-m-d');
+    $application->date = $dt;
     // echo($application->date);
     $application->status = '待審核';
     $application->audit = '無';
     $application->note7 = $request->note7;
-    $application->borrowat = $application->created_at;
+    $application->borrowat = $dt;
     $application->save();
     // $socialaccount=SocialAccount::where('email','=',$request->email);
     // $socialaccount->update(['phone'=>$request->phone])

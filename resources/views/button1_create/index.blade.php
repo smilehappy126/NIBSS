@@ -246,7 +246,7 @@
                 ?>
                 </label>
             <div class="phone_border">    
-                <input  type="radio" class="optionRadio optionRadio2" name="ruler" id="ruler"  onclick="show()" checked disabled>
+                <input  type="radio" class="optionRadio optionRadio2" name="ruler" id="ruler"  onclick="show()"  disabled>
                 <label class="labelSet">本人已確實詳閱上述之同意書內容，並且同意以上器材借用規則。</label>
             </div>   
             </div>
@@ -386,15 +386,17 @@
                             @endforeach
                         </select>    
                         <h2>借用數量：</h2>
-                        <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5"  onkeyup="limit()" required>
-                        
+                        <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5"  onkeyup="limit()" required>   
+                    
                     </div> 
                     <div id="add">
-                    </div>            
+                    
+                    </div>
+
             
                     <div>
-                        <button type="button" class="addFormButton" onclick="appendForm()">點此借用更多</button>
-                        <button type="button" class="removeFormButton" style="display:none;" id="removeButton" onclick="removeForm()" >點此刪除</button>
+                        <button type="button" id="appendForm" class="addFormButton" onclick="appendForm()">點此借用更多</button>
+                        
                     </div>   
             
                     <div>
@@ -430,26 +432,31 @@
 @section('js')
 
 <script language="JavaScript" type="text/javascript">  
-    function show2(){
+    function show2()
+    {
         document.getElementById("ruler").disabled=false;
     }    
-    function show(){
+    function show()
+    {
 
         document.getElementById('container1').style.display="none";
         document.getElementById('container2').style.display="inline";
 
     }
 
-    function selectroom(){
+    function selectroom()
+    {
         var $slc1
             $slc1 = $(':radio[name="needClassroom"]:checked').val();
         
-        if($slc1 == "yes"){
+        if($slc1 == "yes")
+        {
             document.getElementById('classroom').style.display="inline";
             document.getElementById('keyselect').style.display="inline";
             document.getElementById('teacher').style.display="inline";    
         }
-        if($slc1 == "no"){ 
+        if($slc1 == "no")
+        { 
             document.getElementById('classroom').style.display="none";
             document.getElementById('keyselect').style.display="none";
             document.getElementById('teacher').style.display="none";
@@ -467,10 +474,12 @@
     function next()
     {    
         var $phone = document.getElementById('phone1').value ;
-        if($phone == ""){
+        if($phone == "")
+        {
             alert("請確實填寫電話！"); 
         }
-        if($phone !== ""){
+        if($phone !== "")
+        {
             document.getElementById('home').style.display="none";
             document.getElementById('menu1').style.display="inline";
             $("#L1").removeClass("active");
@@ -482,6 +491,7 @@
     }
     function chooseid(myform)
     {
+        form = myform;
         formid = myform.id ;
         kind = $("#"+formid).find("select[name='itemgroup']")
                            .attr("id");
@@ -510,15 +520,18 @@
         }
     }
 
-    function selnum(){
+    function selnum()
+    {
         var id = $("#" + object).find(":selected").attr("id");
         var g3 = parseInt(id, 10);
         document.getElementById('' + number).value= 1;
         $("#" + number).attr("max", g3);
     }
-    function limit(){
+    function limit()
+    {
         var x = document.getElementById('' + number).value;
-        if(x > $("#" + number).attr("max")){
+        if(x > $("#" + number).attr("max"))
+        {
             document.getElementById('' + number).value = $("#" + number).attr("max");
             alert("已經超出物品數量");
             
@@ -526,19 +539,24 @@
     }  
 
 
-    var formCount = 1;
-    
-    function appendForm() {
+$(function()
+{   
+    $("#appendForm").click(function() 
+    {
         //複製myForm1表單，更改id變成myForm2,myForm3...
-        var $I1 = $("#myForm"+ formCount).find("select[name='item[]']").val();
-        if ($I1 == null) {
+        var formCount = $("[id^=myForm]").size() + 1;
+            alert(formCount);
+        var $I1 = document.getElementById('' + object).value;
+        if ($I1 == null) 
+        {
             alert("請先選擇借用項目！");
         }
-        if($I1 !== null){
+        if($I1 !== null)
+        {
         $("#myForm1").clone(true)
-                    .attr("id","myForm" + (formCount+=1))
+                    .attr("id","myForm" + (formCount))
                     .insertAfter($("[id^=myForm]:last"));
-        
+
         $("#myForm"+ formCount).find("select[name='itemgroup']")
                                .attr("id","myGroup" + (formCount));
         
@@ -546,28 +564,51 @@
                                .attr("id","myItem" + (formCount));
 
         $("#myForm"+ formCount).find("input[name='itemnum[]']")
-                               .attr("id","myNum" + (formCount));                           
-        }
+                               .attr("id","myNum" + (formCount));             
+
+
+        var removeButton = $("<input type=\"button\" class=\"removeFormButton\" id=\"removeButton\" value=\"刪除此筆\" />");
         
-        if(formCount > 1){
-                document.getElementById('removeButton').style.display="inline";
+        $("#myForm" + (formCount)).append(removeButton);
         }
+    
+    $("[id=removeButton]").click(function(myform)
+    {
+        // 刪除當前的myForm表單並重置id
+        form.remove();
+        var myforms = $("[id^=myForm]");
+        var newId = 1;
+            myforms.each(function()
+                {
+                    $(this).attr("id","myForm" + (newId));      
+                    
+                    $(this).find("select[name='itemgroup']")
+                           .attr("id","myGroup" + (newId));
+                    
+                    $(this).find("select[name='item[]']")
+                           .attr("id","myItem" + (newId));
+                    
+                    $(this).find("select[name='itemnum[]']")
+                           .attr("id","myNum" + (newId));              
+                    newId++;
+                });
+    });
 
-//        window.alert("現在的formCount: " + formCount);
-    }
-    function removeForm(){
-        // 刪除最後一個myForm表單
-
-        if(formCount !== 1)
+            
+    
+            
+        
+        
+        /*if(formCount !== 1)
         {
             $("[id^=myForm]:last").remove();
             formCount-=1;
             if(formCount == 1){
                 document.getElementById('removeButton').style.display="none";
             }
-       }
-    } 
-
+       }*/
+    }); 
+});
     
     function Previous1() {
     document.getElementById('home').style.display="inline";
@@ -586,21 +627,25 @@
     $('#B3').attr('href','#menu1');
     }
 
-    var $s1, $s2, $s3, $s4, $s5; 
+    var $s1, $s2, $s3, $s4, $s5 , $s6 ; 
     
     function confirm(){
         document.getElementById('menu1').style.display="none";
         document.getElementById('menu2').style.display="inline";
         $s5 = document.getElementById("username").value;
+        $s6 = $("[id^=myForm]").size();
         $("#confirm").empty();
         $("#confirm").append("<h2>借用者:" + $s5 + "</h2>")
-        for(var i = 1; i<=formCount; i++){
+        
+        for(var i = 1; i<=$s6; i++)
+        {
             $s1 = $("#myForm"+i).find("select[name='item[]']").val();
             $s2 = $("#myForm"+i).find("input[name='itemnum[]']").val();
-
-
-            $("#confirm").append("<h2>借用項目" + i + ": </h2>" + "項目: " + $s1 + "<br>")
+                if($s1 !== null)
+                {
+                $("#confirm").append("<h2>借用項目" + i + ": </h2>" + "項目: " + $s1 + "<br>")
                         .append("數量: " + $s2 + "<br>")
+                }    
 
         }
 
