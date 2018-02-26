@@ -231,13 +231,13 @@
                                                 <tr>
                                                     <th>物品名稱 :</th> 
                                                     <th>
-                                                        <input  class="form-control" type="text" name="itemname" style="text-align: center;" required >
+                                                        <input  class="form-control" type="text" name="itemname" style="text-align: center;" required onchange="setitemnum()">
                                                     </th>
                                                 </tr>
                                                 <tr>
                                                     <th>物品數量 :</th> 
                                                     <th>
-                                                        <input  class="form-control" type="number" name="itemnum" style="text-align: center;" value="1" required>
+                                                        <input  class="form-control" id="newitemnum" type="number" name="itemnum" style="text-align: center;" required>
                                                     </th>
                                                 </tr>
                                             </table>
@@ -292,6 +292,10 @@
             newgroup.style.display="none";
             newgroup.setAttribute("value", "");
         }
+    }
+
+    function setitemnum(){
+        document.getElementById('newitemnum').setAttribute("value","1");
     }
 </script>
 
