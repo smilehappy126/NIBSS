@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Miss;
 use App\User;
 use App\Reason;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class returnController extends Controller
@@ -33,6 +34,11 @@ class returnController extends Controller
       $update->update(['status'=>$rep->status]);
       $update->update(['audit'=>$rep->audit]);
       $update->update(['note7'=>$rep->note7]);
+      if ($rep->status === '已歸還') {
+        $update->update(['returnat'=>$rep->returnat]);
+      }elseif($rep->status==='借用中'){
+        $update->update(['borrowat'=>$rep->borrowat]);
+      }
       $update->save();
       return redirect('/return');
 	}
