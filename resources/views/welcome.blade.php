@@ -656,9 +656,10 @@
                                      {{ csrf_field() }}
                                     <!-- Register 姓名 -->
                                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                        <label for="name" class="col-md-4 control-label">姓名</label>
+                                        <label for="name" class="col-md-4 control-label" style="font-weight: bold;">姓名</label>
                                         <div class="col-md-6">
-                                            <input id="name" type="text" class="LoginInput" name="name" value="{{ old('name') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required autofocus>
+                                            <input id="name" type="text" class="LoginInput" name="name" value="{{ old('name') }}" size="20" style="display:
+                                                inline-block; text-align: left; font-size: 18px; font-family: Microsoft JhengHei;" required autofocus>
 
                                             @if ($errors->has('name'))
                                                <span class="help-block">
@@ -669,9 +670,9 @@
                                     </div>
                                     <!-- Register E-Mail -->
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                        <label for="email" class="col-md-4 control-label">電子信箱</label>
+                                        <label for="registeremail" class="col-md-4 control-label" style="font-weight: bold;">電子信箱</label>
                                         <div class="col-md-6">
-                                            <input id="registeremail" type="email" class="LoginInput" name="email" value="{{ old('email') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="registeremail" type="email" class="LoginInput" name="email" value="{{ old('email') }}" size="20" style="display: inline-block; text-align: left; font-size: 18px; font-family: Microsoft JhengHei;" required>
 
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
@@ -682,16 +683,16 @@
                                     </div>
                                     <!-- Register Phone -->
                                     <div class="form-group">
-                                        <label for="phone" class="col-md-4 control-label">電話號碼</label>
+                                        <label for="phone" class="col-md-4 control-label" style="font-weight: bold;">電話號碼</label>
                                         <div class="col-md-6">
-                                            <input id="phone" type="text" class="LoginInput" name="phone" value="{{ old('phone') }}" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="phone" type="text" class="LoginInput" name="phone" value="{{ old('phone') }}" size="20" style="display:inline-block; text-align: left; font-size: 18px; font-family: Microsoft JhengHei;" required>
                                         </div>
                                     </div>
                                     <!-- Register 密碼 -->
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
-                                        <label for="password" class="col-md-4 control-label">密碼</label>
+                                        <label for="registerpassword" class="col-md-4 control-label" style="font-weight: bold;">密碼</label>
                                         <div class="col-md-6">
-                                            <input id="registerpassword" type="password" class="LoginInput" name="password" placeholder="At least 6 characters..." style="text-align:left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="registerpassword" type="password" class="LoginInput" name="password" placeholder="At least 6 characters" size="20" style="display:inline-block; text-align:left; font-size: 18px; font-family: Microsoft JhengHei;" required>
                                             
                                             @if ($errors->has('password'))
                                                 <span class="help-block">
@@ -702,9 +703,9 @@
                                     </div>
                                     <!-- Register 確認密碼 -->
                                     <div class="form-group">
-                                        <label for="password-confirm" class="col-md-4 control-label">確認密碼</label>
+                                        <label for="password-confirm" class="col-md-4 control-label" style="font-weight: bold;">確認密碼</label>
                                         <div class="col-md-6">
-                                            <input id="password-confirm" type="password" class="LoginInput" name="password_confirmation" style="text-align: left; font-size: 20px; font-family: Microsoft JhengHei; display:inline-block;" required>
+                                            <input id="password-confirm" type="password" class="LoginInput" name="password_confirmation" size="20" style="display:inline-block; text-align: left; font-size: 18px; font-family: Microsoft JhengHei;" required>
                                         </div>
                                     </div>
                                 </div>
