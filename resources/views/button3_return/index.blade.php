@@ -586,7 +586,7 @@
 								<!-- Edit Modal Table -->
 								<table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
 									<tr><th>借用序號 : </th><th><input  class="form-control" type="text" disabled value="{{ $re->id}}"> </th></tr>
-									<tr><th>借用日期 :</th> <th><input  class="form-control" type="datetime" disabled name="borrowat" value="{{ $re->borrowat }}"></th></tr>
+									<tr><th>歸還日期 :</th> <th><input  class="form-control" type="datetime"  name="returnat" value="{{ $re->returnat }}"></th></tr>
 									<tr><th>班級 :</th><th> <input  class="form-control" type="text" name="class" value="{{ $re->class }}"></th></tr>
     								<tr><th>申請人 : </th><th> <input  class="form-control" type="text" name="name" value="{{ $re->name }}"></th></tr>
     								<tr><th>電話 : </th><th> <input  class="form-control" type="text" name="phone" disabled value="{{ $re->phone }}"></th></tr>
