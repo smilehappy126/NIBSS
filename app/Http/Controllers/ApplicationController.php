@@ -43,8 +43,7 @@ class ApplicationController extends Controller
         $str_num = implode(" , ",$num);
     }
     
-    $dt = Carbon::now();
-    $dt->timezone = 'Asia/Taipei';
+    $dt = Carbon::now('Asia/Taipei');
     
     $application = new Miss;
     $application->name = $request->name;
