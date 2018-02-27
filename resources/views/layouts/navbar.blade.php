@@ -327,7 +327,7 @@
         @endif
         <!-- PC版本 書籍借用放中間 -->
         <div class="PCSection">
-            <li style="right: 140px; bottom:6px; position: absolute;"><button class="brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
+            <li style="right: 134px; bottom:6px; position: absolute;"><button class="brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
         </div>
         <!-- Mobile版本 書籍借用放中間 -->
         <div class="MobileSection">
