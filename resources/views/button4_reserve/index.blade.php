@@ -150,18 +150,16 @@
 // echo "(請先選擇教室)<br>";
 //echo "(可在思考此處畫面設計)";
 ?>
+
 @if (Route::has('login'))
   @if (Auth::check())
     @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
-    
-
-<div> 
-    <!--新增教室資料按鈕-->
-    <a href="{{ asset('/newclassroom') }}" class="btn btn-primary funcBtn">新增教室資料</a>
-    <!--修改刪除教室資料按鈕-->
-    <a href="{{ asset('/editclassroom') }}" class="btn btn-primary funcBtn">修改/刪除教室資料</a>
-</div>
-   
+      <div> 
+          <!--新增教室資料按鈕-->
+          <a href="{{ asset('/newclassroom') }}" class="btn btn-primary funcBtn">新增教室資料</a>
+          <!--修改刪除教室資料按鈕-->
+          <a href="{{ asset('/editclassroom') }}" class="btn btn-primary funcBtn">修改/刪除教室資料</a>
+      </div>
     @endif
   @endif
 @endif
