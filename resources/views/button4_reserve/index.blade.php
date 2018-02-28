@@ -115,16 +115,18 @@
     
 .funcBtn{
         float:center;
+        color: #004d80;
         font-family: Microsoft JhengHei;
         font-weight: bolder;
         font-size: 16px;
         background-color: #B0C4DE;
-        width: 165px;
-        height: 40px;
+        width: 190px;
+        height: 35px;
         border-radius: 100px;
         border-width: 0px;
-        margin-top: 30px;
-        margin-right: 10px;
+        margin-top: 20px;
+        margin-right: 5px;
+        margin-left: 5px;
         transition: 0.3s;
         cursor: pointer;
     }
@@ -133,6 +135,7 @@
         border-style:none;
     }
     .funcBtn:hover{
+        color: #007acc;
         background-color: #CCDDFF;
         transition: 0.3s;
     }
@@ -151,16 +154,12 @@
   @if (Auth::check())
     @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     
-<!--新增教室資料按鈕-->
+
 <div> 
-    <button type="button" class="btn btn-link funcBtn">
-        <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
-    </button>
-    
+    <!--新增教室資料按鈕-->
+    <a href="{{ asset('/newclassroom') }}" class="btn btn-primary funcBtn">新增教室資料</a>
     <!--修改刪除教室資料按鈕-->
-    <button type="button" class="btn btn-link funcBtn">
-        <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
-    </button>
+    <a href="{{ asset('/editclassroom') }}" class="btn btn-primary funcBtn">修改/刪除教室資料</a>
 </div>
    
     @endif
@@ -219,9 +218,9 @@
                       </h2>
                   </div>
               </div>
-                      <form>
-                         <button type="button" class="btn btn-outline-success" id="{{ $classroom->id }}" data-toggle="modal" data-target="#editModal{{$classroom->id}}">詳細資訊</button>
-                      </form>
+              <form>
+                 <button type="button" class="btn btn-outline-success" id="{{ $classroom->id }}" data-toggle="modal" data-target="#editModal{{$classroom->id}}">詳細資訊</button>
+              </form>
           </div>
        </div>
   </div>

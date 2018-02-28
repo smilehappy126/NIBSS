@@ -83,11 +83,13 @@
                 z-index: 1\9;
             }
             .ErrorMessages{
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 25px;
                 float: right;
                 position: absolute;
                 margin-right: 10px;
-                top: 70%;
-
+                top: 60%;
             }
             .notice{
                 float: center;
@@ -448,17 +450,15 @@
             <!-- 登入錯誤的系統提示 -->
             <div class="ErrorMessages">
             @if ($errors->has('email'))
-                <br>
                 <span class="help-block">
-                    <strong style="color:red;">{{ $errors->first('email') }} Please try again.</strong>
+                    <!-- <strong>{{ $errors->first('email') }} Please try again.</strong> -->
+                    <strong style="color: red">登入失敗，帳號或密碼有誤</strong>
                 </span>
             @elseif($errors->has('LoginPassword'))
-                <br>
                 <span class="help-block">
                     <strong>{{ $errors->first('password') }}</strong>
                 </span>
             @endif
-            
             </div>
             
             
