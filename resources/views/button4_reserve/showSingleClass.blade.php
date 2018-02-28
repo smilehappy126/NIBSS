@@ -196,15 +196,16 @@
     
 .funcBtn{
         float:center;
+        color: #004d80;
         font-family: Microsoft JhengHei;
         font-weight: bolder;
         font-size: 16px;
         background-color: #B0C4DE;
-        width: 165px;
-        height: 40px;
+        width: 190px;
+        height: 35px;
         border-radius: 100px;
         border-width: 0px;
-        margin-top: 30px;
+        margin-top: 20px;
         margin-right: 10px;
         transition: 0.3s;
         cursor: pointer;
@@ -214,6 +215,7 @@
         border-style:none;
     }
     .funcBtn:hover{
+        color: #007acc;
         background-color: #CCDDFF;
         transition: 0.3s;
     }
@@ -249,39 +251,22 @@ $nextString = date('Y-m-d',$next);
     @if (Route::has('login'))
         @if (Auth::check())
             @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
-            
+
     <div>
         <!--新增教室資料按鈕-->
-        <button type="button" class="btn btn-link btn-lg funcBtn">
-            <a href="{{ asset('/newclassroom') }}"><div>新增教室資料</div></a>
-        </button>
-
+        <a href="{{ asset('/newclassroom') }}" class="btn btn-primary funcBtn">新增教室資料</a>
         <!--修改刪除教室資料按鈕-->
-        <button type="button" class="btn btn-link btn-lg funcBtn">
-            <a href="{{ asset('/editclassroom') }}"><div>修改刪除/教室資料</div></a>
-        </button>
-
+        <a href="{{ asset('/editclassroom') }}" class="btn btn-primary funcBtn">修改/刪除教室資料</a>
         <!--新增課程資訊按鈕-->
-        <button type="button" class="btn btn-link btn-lg funcBtn">
-            <a href="{{ asset('/inputClass/' . $currentClassroom) }}"><div>{{$currentClassroom}} 固定課程預約</div></a>
-        </button>
+        <a href="{{ asset('/inputClass/' . $currentClassroom) }}" class="btn btn-primary funcBtn">{{$currentClassroom}} 固定課程預約</a>
     </div>
-    
-<!--
-    <form action="{{ asset('/editclassroom') }}" method="get">
-        <button class="funcBtn">修改刪除/教室資料</button>
-    </form>
-    
-    <form action="{{ asset('/inputClass/' . $currentClassroom) }}" method="get">
-      <button class="funcBtn">固定課程預約</button>
-    </form>
--->
+
     
             @endif
         @endif
     @endif
     <br>
-     <br>
+    <br>
 
 
     <!--教室按鈕-->
@@ -295,8 +280,8 @@ $nextString = date('Y-m-d',$next);
     <br>
 
 
-
-      <div class="panel-body"><img src="{{  url('/uploadimg/'. $currentImgurl ) }}" style="height: 350px; width: 95%; display:block; margin:auto;"></div>
+    <!-- 教室圖片 -->
+    <div class="panel-body"><img src="{{  url('/uploadimg/'. $currentImgurl ) }}" style="height: 350px; width: 95%; display:block; margin:auto;"></div>
 
     <!--上一週/下一週按鈕-->
     <div class="row">
