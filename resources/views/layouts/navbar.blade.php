@@ -295,7 +295,7 @@
         @if(Auth::check())
         <li><a href="{{ url('/create') }}">新增申請單</a></li>
         @endif  
-        <li class="active"><a href="{{ url('/borrow') }}">借用狀況</a></li>
+        <li><a href="{{ url('/borrow') }}">借用狀況</a></li>
         <li><a href="{{ url('/return') }}">已歸還資料</a></li>
         <li><a href="{{ url('/reserve') }}">教室預約狀況</a></li>
         <!-- 管理者模式 -->
