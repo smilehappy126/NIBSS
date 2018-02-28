@@ -113,22 +113,6 @@
 	.FormButton:hover{
 		    background-color: #9955FF;
 	}
-  .searchButton{
-    		width: 41px;
-        height: 28px;
-        font-size: 12px;
-     	  font-weight: bold;
-    	  text-align: left;
-    	  border: 0px;
-    	  transition: 0.3s;
-    	  cursor: pointer;
-    	  background-color: transparent;
-    	  font-family:  Microsoft JhengHei;
-    	  border-radius: 5px;	
-	}
-	.searchButton:hover{
-	      background-color: #DDDDDD;
-  }
   .searchcontent{
         height: 35px;
         font-size: 20px;
@@ -169,22 +153,6 @@
     }
     .FormButton:hover{
         background-color: #9955FF;
-    }
-    .searchButton{
-        width: 41px;
-        height: 28px;
-        font-size: 12px;
-        font-weight: bold;
-        text-align: left;
-        border: 0px;
-        transition: 0.3s;
-        cursor: pointer;
-        background-color: transparent;
-        font-family:  Microsoft JhengHei;
-        border-radius: 5px; 
-    }
-    .searchButton:hover{
-        background-color: #DDDDDD;
     }
     .searchcontent{
         height: 35px;
@@ -340,7 +308,7 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <form action="{{ asset ('/admin/searchall')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-										<label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp</label>
+										<label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp;</label>
                                         <input  class="searchcontent" name="searchcontent" id="searchcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 70%;" autofocus>
 		                        </div>    
                             </div>
@@ -383,9 +351,9 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <form action="{{ asset ('/admin/violationupdate')}}" method="post" style="width: 100%; text-align: center;">{{ csrf_field()}}
-                                        <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px; text-align: center;">規則制定者&nbsp:&nbsp{{$violations[0]->creator}}<br></label>
+                                        <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px; text-align: center;">規則制定者&nbsp;:&nbsp;{{$violations[0]->creator}}<br></label>
                                         <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">
-                                        違規次數超過&nbsp</label>
+                                        違規次數超過&nbsp;</label>
                                         <input  class="form-group" name="violationcontent" id="violationcontent" type="number" value="{{$violations[0]->violationnum}}" style="width: 12%; font-family: Microsoft JhengHei" autofocus>
                                         <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">(包含)</label><br>
                                         <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px; color: red;">立即停權</label>

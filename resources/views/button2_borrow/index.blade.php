@@ -301,7 +301,11 @@
 					<!-- 序號 -->
 					<td id="id-{{$mis->id}}">{{$mis->id}}</td>
 					<!-- 更新日期 -->
-					<td id="date-{{$mis->id}}">{{$mis->borrowat}}</td>
+					@if(($mis->status)==='待審核')
+						<td id="date-{{$mis->id}}">{{$mis->created_at}}</td>
+					@elseif(($mis->status)==='借用中')
+						<td id="date-{{$mis->id}}">{{$mis->borrowat}}</td>
+					@endif
 					<!-- 班級 -->
 					<td id="class-{{$mis->id}}">{{$mis->class}}</td>
 					<!-- 借用者 -->

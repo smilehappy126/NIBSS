@@ -1,59 +1,6 @@
 <style type="text/css">
-            .brButton{
-                float: right;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 20px;
-                background-color:#CCCCFF;
-                width: 200px;
-                height: 40px;
-                border-radius: 100px; 
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-            }
-            .brButton:hover{
-                background-color: #E8CCFF;
-                width:210px;
-                transition: 0.3s;
-
-            }
-            .LoginButton{
-                float: center;
-                font-family: Microsoft JhengHei;
-                /*font-weight: bolder;*/
-                font-size: 20px;
-                background-color: #B0C4DE;
-                width: 100px;
-                height: 40px;
-                border-radius: 100px;
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-            }
-            .LoginButton:hover{
-                background-color: #CCDDFF;
-                width:150px;
-                transition: 0.3s;
-            }
-            .LogoutButton{
-                float: center;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 20px;
-                background-color:#FFE4B5;
-                width: 100px;
-                height: 40px;
-                border-radius: 100px;
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-            }
-            .LogoutButton:hover{
-                background-color:#F4A460;
-                width:150px;
-                transition: 0.3s;
-            }
+            
+            
             .portal{
                 background-color: transparent;
                 transition: 0.3s;
@@ -139,10 +86,7 @@
         
     /*PC CSS Section*/
     @media screen and (min-width: 900px){
-            .Mobilelogout{
-                display: none;
-            }
-            .Mobilelogin{
+            .MobileSection{
                 display: none;
             }
             .adminpage{
@@ -157,16 +101,85 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            .SearchButton{
+                transition: 0.3s;
+                cursor: pointer;
+                font-family: Microsoft JhengHei;
+                font-size: 20px;
+                font-weight: bolder;
+                border-width: 0px;
+                width: 100px;
+                height: 40px;
+                border-radius: 100px;
+                background-color: #78B7BB;
+            }
+            .SearchButton:hover{
+                transition: 0.3s;
+                width: 120px;
+                background-color: #3F7B70;
+            }
+            .LoginButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 20px;
+                background-color: #B0C4DE;
+                width: 100px;
+                height: 40px;
+                border-radius: 100px;
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+            .LoginButton:hover{
+                background-color: #CCDDFF;
+                width:120px;
+                transition: 0.3s;
+            }
+            .LogoutButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 20px;
+                background-color:#FFE4B5;
+                width: 100px;
+                height: 40px;
+                border-radius: 100px;
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+            .LogoutButton:hover{
+                background-color:#F4A460;
+                width:120px;
+                transition: 0.3s;
+            }
+            .brButton{
+                float: right;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 20px;
+                background-color:#CCCCFF;
+                width: 200px;
+                height: 40px;
+                border-radius: 100px; 
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+            .brButton:hover{
+                background-color: #E8CCFF;
+                width:210px;
+                transition: 0.3s;
+
+            }
     }
     /*End of PC CSS Section*/
 
 
     /*Mobile CSS Section*/
         @media screen and (max-width: 900px) and (min-width: 300px) and (max-height: 1024px){
-            #PClogout{
-                display: none;
-            }
-            #PClogin{
+            .PCSection{
                 display: none;
             }
             .adminpage{
@@ -181,6 +194,78 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+            }
+            .SearchButton{
+                transition: 0.3s;
+                cursor: pointer;
+                font-family: Microsoft JhengHei;
+                font-size: 20px;
+                font-weight: bolder;
+                border-width: 0px;
+                width: 80px;
+                height: 40px;
+                border-radius: 100px;
+                background-color: #78B7BB;
+            }
+            .SearchButton:hover{
+                transition: 0.3s;
+                width: 90px;
+                background-color: #3F7B70;
+            }
+            .LoginButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 16px;
+                background-color: #B0C4DE;
+                width: 80px;
+                height: 40px;
+                border-radius: 100px;
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+            .LoginButton:hover{
+                background-color: #CCDDFF;
+                width:100px;
+                transition: 0.3s;
+            }
+            .LogoutButton{
+                float: center;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 16px;
+                background-color:#FFE4B5;
+                width: 80px;
+                height: 40px;
+                border-radius: 100px;
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+            .LogoutButton:hover{
+                background-color:#F4A460;
+                width:100px;
+                transition: 0.3s;
+            }
+            .brButton{
+                float: right;
+                font-family: Microsoft JhengHei;
+                font-weight: bolder;
+                font-size: 16px;
+                background-color:#CCCCFF;
+                width: 180px;
+                height: 40px;
+                border-radius: 100px; 
+                border-width: 0px;
+                transition: 0.3s;
+                cursor: pointer;
+            }
+            .brButton:hover{
+                background-color: #E8CCFF;
+                width:200px;
+                transition: 0.3s;
+
             }
         }
     /*End of Mobile CSS Section*/
@@ -221,19 +306,39 @@
                         <a  style="color: rgb(255, 145, 145); font-family: Microsoft JhengHei;" href="{{ url('/admin') }}">管理者專區</a>
                     </li>
                 @endif
+            @else
+                <br><br>
             @endif
         @endif
-        <!-- PC版本 書籍借用放旁邊 -->
-        <div>
-            <li style="right: 10px; bottom:6px; position: absolute;"><button class="brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
+        @if (Route::has('login'))
+            @if(Auth::check())
+                @if( (Auth::user()->level)==='管理員')
+        <!-- PC版本 搜尋放左邊 -->
+        <div class="PCSection">
+            <li style="right: 350px; bottom:6px; position: absolute;"><button class="SearchButton" type="button" data-toggle="modal" data-target="#SearchModal">搜尋</button></li> 
+        </div>
+        <!-- Mobile版本 搜尋放左邊 -->
+        <div class="MobileSection">
+            <li><button class="SearchButton" type="button" data-toggle="modal" data-target="#SearchModal">搜尋</button></li> 
+        </div>
+               @endif
+            @endif
+        @endif
+        <!-- PC版本 書籍借用放中間 -->
+        <div class="PCSection">
+            <li style="right: 134px; bottom:6px; position: absolute;"><button class="brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
+        </div>
+        <!-- Mobile版本 書籍借用放中間 -->
+        <div class="MobileSection">
+            <li style="right: 100px; bottom:6px; position: absolute;"><button class="brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
         </div>
     <!-- PC版本登入登出 -->
         <!-- 登出登入按鍵 -->
         @if (Route::has('login'))
-                <div class="top-right links" id="PClogout">
+                <div class="top-right links PCSection">
                     @if (Auth::check())
                         <form action=" {{ asset('/logout') }}" method="post" >{{ csrf_field() }} 
-                          <li class="dropdown-submenu" style="right: 220px; bottom:6px; position: absolute;">
+                          <li class="dropdown-submenu" style="right: 20px; bottom:6px; position: absolute;">
                             <button class="LogoutButton" type="submit">Logout </button>
                           </li>  
                         </form>
@@ -243,9 +348,9 @@
                 </div>
             @endif
         @unless(Auth::check())
-            <div class="LoginPanel" id="PClogin">
+            <div class="LoginPanel PCSection">
                 <!-- Trigger the LoginModal with a button -->
-                <li style="right: 220px; bottom:6px; position: absolute;">
+                <li style="right: 20px; bottom:6px; position: absolute;">
                     <a>
                         <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
                     </a>
@@ -257,10 +362,10 @@
     <!-- Mobile版本登入登出 -->
         <!-- 登出登入按鍵 -->
         @if (Route::has('login'))
-                <div class="links Mobilelogout">
+                <div class="links MobileSection">
                     @if (Auth::check())
                         <form action=" {{ asset('/logout') }}" method="post" >{{ csrf_field() }} 
-                          <li class="dropdown-submenu">
+                          <li class="dropdown-submenu" style="right: 10px; bottom: 6px; position: absolute;">
                             <button class="LogoutButton" type="submit">Logout </button>
                           </li>  
                         </form>
@@ -268,9 +373,9 @@
                 </div>
         @endif
         @unless(Auth::check())
-            <div class="Mobilelogin">
+            <div class="MobileSection">
                 <!-- Trigger the LoginModal with a button -->
-                <li>
+                <li style="right: 10px; bottom:6px; position: absolute;">
                     <a>
                         <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
                     </a>
@@ -290,7 +395,11 @@
       </form> -->
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-  	<!-- Modal Section -->
+  	
+
+
+
+    <!-- Modal Section -->
      
      <!-- Login Modal -->
         <div id="LoginModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
@@ -451,12 +560,49 @@
             </div>
         </div>
         <!-- End of Register Modal -->
+
+        <!-- Search Modal -->
+        <div id="SearchModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
+            <div class="modal-dialog">
+
+                    <!-- Search Modal content-->
+                    <div class="modal-content">
+                        <!-- Begin of Modal Header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="SearchPage">
+                               <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">搜尋 Search</h4>
+                            </div>
+                        </div>
+                        <!-- End of Modal Header -->
+
+                        <!-- Begin of Modal Body -->
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form action="{{ asset ('/admin/searchall')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+                                        <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp</label>
+                                        <input  class="searchcontent" name="searchcontent" id="searchcontent" type="text"  placeholder="請輸入內容...."  value="" style="width: 70%;" autofocus>
+                                </div>    
+                            </div>
+                        </div>
+
+                        <!--  End of Modal Body -->
+
+                        <!-- Begin of Modal Footer -->
+                        <div class="modal-footer">
+                              <div class="form-group">
+                                    <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">Search</button>
+                                    <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                              </div>
+                        </div>
+                        <!-- End of Modal Footer -->
+                                </form>
+                    </div>
+                    <!-- End of Search Modal Conent -->
+            </div>
+        </div>        
+        <!-- End of Search Modal -->
+
+    <!-- End of Modal Section -->
 </nav>
-<script src="{{ asset('include/jquery/jquery-1.12.4.min.js') }}"></script>
-<script src="{{ asset('include/jquery/jquery.ujs.js') }}"></script>
-<script type="text/javascript">
-    $('.nav li').click(function(){
-    $('.nav li').removeClass('active');
-    $(this).addClass('active');
-})
-</script>
