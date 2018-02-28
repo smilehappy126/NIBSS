@@ -61,7 +61,7 @@
             li.open ul.dropdown-menu>li.open>ul.dropdown-menu>li{
                   padding-left: 20px;
             }
- 
+            
             /* 滑入選單時變換底色 */  
             .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
                   background: rgba(0,0,0,0.1) !important;
@@ -291,12 +291,11 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav ">
-        <li class="active" ><a href="{{ url('/') }}">主選單<span class="sr-only">(current)</span></a></li>
+      <ul class="nav navbar-nav">
         @if(Auth::check())
-        <li><a  href="{{ url('/create') }}">新增申請單</a></li>
+        <li><a href="{{ url('/create') }}">新增申請單</a></li>
         @endif  
-        <li><a href="{{ url('/borrow') }}">借用狀況</a></li>
+        <li class="active"><a href="{{ url('/borrow') }}">借用狀況</a></li>
         <li><a href="{{ url('/return') }}">已歸還資料</a></li>
         <li><a href="{{ url('/reserve') }}">教室預約狀況</a></li>
         <!-- 管理者模式 -->

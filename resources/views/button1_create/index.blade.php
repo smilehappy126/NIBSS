@@ -545,7 +545,7 @@ $(function()
     {
         //複製myForm1表單，更改id變成myForm2,myForm3...
         var formCount = $("[id^=myForm]").size() + 1;
-            alert(formCount);
+            // alert(formCount);
         var $I1 = document.getElementById('' + object).value;
         if ($I1 == null) 
         {
