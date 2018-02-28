@@ -606,3 +606,11 @@
 
     <!-- End of Modal Section -->
 </nav>
+<script src="{{ asset('include/jquery/jquery-1.12.4.min.js') }}"></script>
+<script src="{{ asset('include/jquery/jquery.ujs.js') }}"></script>
+<script type="text/javascript">
+    $('.nav li').click(function(){
+    $('.nav li').removeClass('active');
+    $(this).addClass('active');
+})
+</script>
