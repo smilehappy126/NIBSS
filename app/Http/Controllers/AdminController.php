@@ -108,6 +108,34 @@ class AdminController extends Controller
       $users=User::all();
       return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
+    //在搜尋頁面更改使用者資料
+    public function userupdate(Request $rep)
+    {
+      $update= User::where('email','=',$rep->useremail);
+      $update->update(['violation'=>$rep->violation]);
+      $reason=new Reason();
+      $reason->user = $rep->username;
+      $reason->phone= $rep->phone;
+      $reason->reason = $rep->reason;
+      $reason->creator = $rep->reasoncreator;
+      $reason->save();
+      //按下確認編輯之後重新導向回搜尋頁面
+      $miss=Miss::where('name','like','%'.$rep->searchcontent.'%')
+                ->orWhere('class','like','%'.$rep->searchcontent.'%')
+                ->orWhere('phone','like','%'.$rep->searchcontent.'%')
+                ->orWhere('item','like','%'.$rep->searchcontent.'%')
+                ->orWhere('itemnum','like','%'.$rep->searchcontent.'%')
+                ->orWhere('status','like','%'.$rep->searchcontent.'%')
+                ->orWhere('teacher','like','%'.$rep->searchcontent.'%')
+                ->orWhere('classroom','like','%'.$rep->searchcontent.'%')
+                ->orWhere('license','like','%'.$rep->searchcontent.'%')
+                ->orWhere('date','like','%'.$rep->searchcontent.'%')
+                ->orWhere('borrowat','like','%'.$rep->searchcontent.'%')
+                ->orWhere('returnat','like','%'.$rep->searchcontent.'%')
+                  ->get();
+      $users=User::all();
+      return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
+    }
 
 //編輯條例
     // 進入編輯條例的頁面

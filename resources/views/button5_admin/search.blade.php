@@ -343,9 +343,11 @@
             @endif
             <td id="class-{{$mis->id}}">{{$mis->class}}</td>
             <td id="name-{{$mis->id}}">
-              <button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$mis->phone}}">
-                <span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}
-              </button>
+              <?php 
+                    $oldmisemail = str_replace('@', '.', $mis->email);
+                        $misemail = str_replace('.', '', $oldmisemail)
+              ?>
+              <button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$misemail}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}</button>
             </td>
             @if (Route::has('login'))
               @if (Auth::check())
@@ -450,13 +452,27 @@
           </tr>
           <!-- 申請人 -->
           <tr>
-              <th style="text-align: center;">
-                <button id="nameSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
-              </th>
-              <th id="name-{{$mis->id}}" style="text-align: center;">
-                {{$mis->name}}
-              </th>
-          </tr>
+            <th class="TableTop" style="text-align: center;">
+            <button id="nameSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
+          </th>
+          @if (Route::has('login'))
+            @if (Auth::check())
+              @if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
+                  <td id="name-{{$mis->id}}">
+                    <?php 
+                    $oldmisemail = str_replace('@', '.', $mis->email);
+                        $misemail = str_replace('.', '', $oldmisemail)
+                    ?>
+                    <button class="UserModalButton" style="width: 130px;" data-toggle="modal" data-target="#UserModal{{$misemail}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}</button>
+                  </td>
+                @else
+                  <td class="TableContent" id="name-{{$mis->id}}">
+                  {{$mis->name}}
+                </td>
+                @endif
+              @endif
+            @endif
+        </tr>
           <!-- 電話 -->
             @if (Route::has('login'))
               @if (Auth::check())
@@ -670,7 +686,11 @@
 
   <!-- User Modal -->
   @foreach($users as $user)
-        <div id="UserModal{{$user->phone}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
+        <?php 
+            $olduseremail = str_replace('@', '.', $user->email);
+            $useremail = str_replace('.', '', $olduseremail)
+        ?>
+        <div id="UserModal{{$useremail}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
             <div class="modal-dialog">
 
                     <!-- User Modal content-->
@@ -685,7 +705,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
-                                    <form class="form-horizontal" method="post" action="{{ asset('/borrow/userupdate')}}">
+                                    <form class="form-horizontal" method="post" action="{{ asset('/admin/searchall/userupdate')}}">
                                      {{ csrf_field() }}
                                     <div class="EditPage">
                                         <div class="EditInfo">
@@ -703,14 +723,16 @@
                                                 </tr>
                                             </table>
                                             <!-- End of Edit Modal Table -->
-                                            <input name="phone" value="{{$user->phone}}" hidden >
-                                            <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
+                                            <input name="useremail" value="{{$user->email}}" hidden >
+                                            <!-- ↑視為傳遞User email的變數 不會顯示在頁面上 -->
                                             <input name="username" value="{{$user->name}}" hidden >
                                             <!-- ↑視為傳遞User names的變數 不會顯示在頁面上 -->
                                             @if(Auth::check())
                                             <input name="reasoncreator" value="{{Auth::user()->name}}" hidden >
                                             <!-- ↑視為傳遞Creator的變數 不會顯示在頁面上 -->
                                             @endif
+                                            <input name="searchcontent" value="{{$content}}" hidden>
+                                            <!-- ↑視為傳遞搜尋關鍵字的變數 不會顯示在頁面上 -->
                                         </div>
                                     </div>
                                 </div>

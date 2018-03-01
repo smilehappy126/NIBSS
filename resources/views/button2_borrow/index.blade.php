@@ -218,7 +218,7 @@
 <div class="container" style=" padding-top: 0px;">
 	<div class="PCsection">
 		<div class="TopTitle">借用狀況</div>
-		<label type="number" id="amountofmis"></label>
+		<label type="number" id="amountofmis">{{$number}}</label>
 		<!-- Table Head -->
 		<div class="TableTop">
 			<table class="table" id="TitleTable" style="text-align: center; table-layout: fixed;">
@@ -315,7 +315,11 @@
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 			   					<!-- 是管理員的話可以更改違規點數 -->
 			   					<td id="name-{{$mis->id}}">
-			   						<button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}</button>
+			   						<?php 
+			   						$oldmisemail = str_replace('@', '.', $mis->email);
+            						$misemail = str_replace('.', '', $oldmisemail)
+			   						?>
+			   						<button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$misemail}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}</button>
 			   					</td>
 			   				@endif
 			   				@if( (Auth::user()->level)==='一般使用者' )
@@ -433,7 +437,11 @@
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
 			   					<td id="name-{{$mis->id}}">
-			   						<button class="UserModalButton" style="width: 130px;" data-toggle="modal" data-target="#UserModal{{$mis->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}</button>
+			   						<?php 
+			   						$oldmisemail = str_replace('@', '.', $mis->email);
+            						$misemail = str_replace('.', '', $oldmisemail)
+			   						?>
+			   						<button class="UserModalButton" style="width: 130px;" data-toggle="modal" data-target="#UserModal{{$misemail}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$mis->name}}</button>
 			   					</td>
 			   				@else
 			   					<td class="TableContent" id="name-{{$mis->id}}">
@@ -650,7 +658,11 @@
 	
 	<!-- User Modal -->
 	@foreach($users as $user)
-        <div id="UserModal{{$user->phone}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
+        <?php 
+            $olduseremail = str_replace('@', '.', $user->email);
+            $useremail = str_replace('.', '', $olduseremail)
+		?>
+        <div id="UserModal{{$useremail}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
             <div class="modal-dialog">
 
                     <!-- User Modal content-->
@@ -683,8 +695,8 @@
                                                 </tr>
                                             </table>
                                             <!-- End of Edit Modal Table -->
-                                            <input name="phone" value="{{$user->phone}}" hidden >
-                                            <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
+                                            <input name="useremail" value="{{$user->email}}" hidden >
+                                            <!-- ↑視為傳遞User email的變數 不會顯示在頁面上 -->
                                             <input name="username" value="{{$user->name}}" hidden >
                                             <!-- ↑視為傳遞User names的變數 不會顯示在頁面上 -->
                                             @if(Auth::check())
@@ -832,32 +844,32 @@
 	  }//End While Loop
 	}//End Function
 
-//分頁功能
-	$("#list").load("index.blade.php", null, initPagination);  
-	//初始化
-	var initPagination = function() {   
-	$("#pagination").pagination(30 //資料數目, {   
-	    num_edge_entries: 2, //兩側頁碼數目   
-	    num_display_entries: 3, //中間顯示的頁碼數目   
-	    current_page:0, //目前頁, 預設是0   
-	    ellipse_text:"...", //省略的頁碼用什麼表現, 預設是"..."   
-	    callback: pageselectCallback, //回傳資料   
-	    items_per_page: 10, //每頁呈現筆數   
-	    prev_show_always: true, //是否顯示上一頁按鈕   
-	    next_show_always: true, //是否顯示下一頁按鈕   
-	    prev_text: "prev", //上一頁呈現文字   
-	    next_text: "next" //下一頁呈現文字   
-	});   
-	};   
-	//Callback 呈現資料
-	function pageselectCallback(page_index, jq){   
-	    page_end=page_index+10;   
-	    $("#list li").hide();   
-	    for($i=page_index; $i<page_end; $i++){   
-	        $("#list li").eq($i).show();   
-	    }      
-	    return false;   
-	}  
+// //分頁功能
+// 	$("#list").load("index.blade.php", null, initPagination);  
+// 	//初始化
+// 	var initPagination = function() {   
+// 	$("#pagination").pagination(30 //資料數目, {   
+// 	    num_edge_entries: 2, //兩側頁碼數目   
+// 	    num_display_entries: 3, //中間顯示的頁碼數目   
+// 	    current_page:0, //目前頁, 預設是0   
+// 	    ellipse_text:"...", //省略的頁碼用什麼表現, 預設是"..."   
+// 	    callback: pageselectCallback, //回傳資料   
+// 	    items_per_page: 10, //每頁呈現筆數   
+// 	    prev_show_always: true, //是否顯示上一頁按鈕   
+// 	    next_show_always: true, //是否顯示下一頁按鈕   
+// 	    prev_text: "prev", //上一頁呈現文字   
+// 	    next_text: "next" //下一頁呈現文字   
+// 	});   
+// 	};   
+// 	//Callback 呈現資料
+// 	function pageselectCallback(page_index, jq){   
+// 	    page_end=page_index+10;   
+// 	    $("#list li").hide();   
+// 	    for($i=page_index; $i<page_end; $i++){   
+// 	        $("#list li").eq($i).show();   
+// 	    }      
+// 	    return false;   
+// 	}  
 </script>
 @stop
 

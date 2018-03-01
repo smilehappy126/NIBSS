@@ -56,6 +56,7 @@ class ApplicationController extends Controller
         $application->item =  $str_eq;
         $application->itemnum = $str_num;
     }
+    $application->email = $request->useremail;
     $application->license = $request->license;
     $application->classroom = $classroom;
     $application->teacher = $request->teacher;

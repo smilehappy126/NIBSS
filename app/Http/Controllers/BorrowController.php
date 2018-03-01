@@ -21,7 +21,7 @@ class BorrowController extends Controller
                   ->count();
     $users = User::all();
     $reasons = Reason::all();
-		return view('button2_borrow.index',['miss'=> $miss],['users'=> $users],['reasons'=>$reasons],['number'=>$number]);
+		return view('button2_borrow.index',['miss'=> $miss,'users'=> $users,'reasons'=>$reasons,'number'=>$number]);
 
 	}
 	
@@ -55,7 +55,7 @@ class BorrowController extends Controller
 
   public function userupdate(Request $rep)
     {
-      $update= User::where('phone','=',$rep->phone);
+      $update= User::where('email','=',$rep->useremail);
       $update->update(['violation'=>$rep->violation]);
       $reason=new Reason();
       $reason->user = $rep->username;
