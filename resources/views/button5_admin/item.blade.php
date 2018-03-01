@@ -24,7 +24,7 @@
     }
     .TopTitle{
         background-color: transparent;
-        font-family: DFKai-sb;
+        font-family: Microsoft JhengHei;
         font-size: 80px;
         text-align: center;
         font-weight: bolder;
@@ -78,7 +78,7 @@
     }
     .TopTitle{
         background-color: transparent;
-        font-family: DFKai-sb;
+        font-family: Microsoft JhengHei;
         font-size: 50px;
         text-align: center;
         font-weight: bolder;
