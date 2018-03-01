@@ -211,8 +211,12 @@
               <div class="hovereffect">
                   <img class="img-responsive" src="{{ url('/uploadimg/'.$classroom->imgurl) }}" alt="" style="height: 300px; width: 500px; display:block; margin:auto;">
                   <div class="overlay">
-                      <h2> 教室描述：
-                             {{ $classroom->word }} 
+                      <h2> 教室描述：<br><br>
+                        <?php
+                          $order = array("\r\n", "\n", "\r");
+                          $replace = '<br>';
+                          echo str_replace($order, $replace, $classroom->word);
+                        ?>
                       </h2>
                   </div>
               </div>
