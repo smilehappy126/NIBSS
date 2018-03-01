@@ -218,10 +218,13 @@
                                 <button id="numSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">物品數量</button>
                             </th>
                             <th>
-                                <button id="userSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">修改人</button>
+                                <button id="usingnumSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">借用中數量</button>
                             </th>
                             <th>
-                                <button id="updatedSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">更新日期</button>
+                                <button id="userSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">修改人</button>
+                            </th>
+                            <th>
+                                <button id="updatedSortButton" type="button" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">更新日期</button>
                             </th>
                             <th>編輯</th>
                         </tr>
@@ -232,6 +235,7 @@
                             <th>{{$item->itemgroup}}</th>
                             <th>{{$item->itemname}}</th>
                             <th>{{$item->itemnum}}</th>
+                            <th>{{$item->usingnum}}</th>
                             <th>{{$item->creator}}</th>
                             <th>{{$item->updated_at}}</th>
                             <th>
@@ -272,6 +276,10 @@
                     <tr>
                         <th>物品數量</th>
                         <td>{{$item->itemnum}}</td>
+                    </tr>
+                    <tr>
+                        <th>借用中數量</th>
+                        <td>{{$item->usingnum}}</td>
                     </tr>
                     <tr>
                         <th>修改人</th>
@@ -334,6 +342,12 @@
                                                     <th>物品數量 :</th> 
                                                     <th>
                                                         <input  class="form-control" type="number" name="itemnum" value="{{ $item->itemnum }}">
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th>借用中數量 :</th> 
+                                                    <th>
+                                                        <input  class="form-control" type="number" name="itemnum" value="{{ $item->usingnum }}" disabled>
                                                     </th>
                                                 </tr>
                                                 <tr>
