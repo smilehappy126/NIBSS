@@ -42,6 +42,7 @@ class BorrowController extends Controller
       if ($rep->status === '已歸還') {
         $time = Carbon::now('Asia/Taipei');
         $update->update(['returnat'=>$time]);
+        //若是物品從待審核或借用中 => 已歸還，借用中的物品數量減去
         $usingitem = Item::where('itemname','=',$rep->item)->first();
         $oldnum = $usingitem->usingnum;
         $newnum = $oldnum - $rep->itemnum;

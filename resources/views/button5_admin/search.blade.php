@@ -662,6 +662,9 @@
                     <tr><th>審核者 :</th><th>  <input class="form-control" type="text" name="audit" value="{{ $mis->audit }}" disabled></th></tr>
                     @endif
                     <tr><th>備註 :</th><th> <textarea class="form-control" name="note7">{{ $mis->note7 }}</textarea></th></tr>
+                    
+                    <input type="text" name="oldstatus" value="{{$mis->status}}" hidden>
+                    <!-- ↑↑↑視為傳遞原始狀態的變數 -->
                 </table>
                 <!-- End of Edit Modal Table -->
               </div>

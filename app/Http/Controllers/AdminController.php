@@ -79,9 +79,32 @@ class AdminController extends Controller
       $update= Miss::find($id);
       if(($rep->status)==='借用中'){
         $update->update(['borrowat'=>$rep->date]);
+        //若是由已歸還變更成借用中，借用中的物品數量會加回去
+        if (($rep->oldstatus)==='已歸還') {
+          $usingitem = Item::where('itemname','=',$rep->item)->first();
+          $oldnum = $usingitem->usingnum;
+          $newnum = $oldnum + $rep->itemnum;
+          $usingitem->update(['usingnum'=>$newnum]);
+        }
       }elseif (($rep->status)==='已歸還') {
         $update->update(['returnat'=>$rep->date]);
+        // 若是由借用中變更成已歸還，借用中的物品數量會減去
+        if (($rep->oldstatus)==='借用中') {
+          $usingitem = Item::where('itemname','=',$rep->item)->first();
+          $oldnum = $usingitem->usingnum;
+          $newnum = $oldnum - $rep->itemnum;
+          $usingitem->update(['usingnum'=>$newnum]);
+        }
+      }elseif (($rep->status)==='待審核') {
+        //若是由已歸還變更成借用中，借用中的物品數量會加回去
+        if (($rep->oldstatus)==='已歸還') {
+          $usingitem = Item::where('itemname','=',$rep->item)->first();
+          $oldnum = $usingitem->usingnum;
+          $newnum = $oldnum + $rep->itemnum;
+          $usingitem->update(['usingnum'=>$newnum]);
+        }
       }
+
       $update->update(['class'=>$rep->class]);
       $update->update(['name'=>$rep->name]);
       $update->update(['item'=>$rep->item]);
@@ -108,6 +131,7 @@ class AdminController extends Controller
       $users=User::all();
       return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
+
     //在搜尋頁面更改使用者資料
     public function userupdate(Request $rep)
     {
