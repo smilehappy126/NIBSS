@@ -215,7 +215,7 @@
 @stop
 
 @section('content')
-<div class="container" style=" padding-top: 0px;">
+<div class="container" style=" width: 90%; padding-top: 0px;">
 	<div class="PCsection">
 		<div class="TopTitle">借用狀況</div>
 		<label type="number" id="amountofmis">{{$number}}</label>

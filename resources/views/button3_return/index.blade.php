@@ -210,7 +210,7 @@
 @stop
 
 @section('content')
-<div class="container" style=" padding-top: 0px;">
+<div class="container" style=" width: 90%; padding-top: 0px;">
 	<div class="PCsection">
 		<div class="TopTitle">已歸還資料</div>
 		<!-- 透過名字搜尋 -->
@@ -364,8 +364,8 @@
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<td>
-					 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">
-					 		<span class="glyphicon glyphicon-pencil"></span> 編輯
+					 	<a href="#" class="btn btn-sm btn-success" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">
+					 		已歸還
 					 	</a>
 					</td>
 					<td id="audit-{{$re->id}}">{{$re->audit}}</td>
@@ -538,8 +538,8 @@
 						<button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
 					</th>
 					<td class="TableContent">
-					 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">
-					 		<span class="glyphicon glyphicon-pencil"></span> 編輯
+					 	<a href="#" class="btn btn-sm btn-success" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">
+					 		已歸還
 					 	</a>
 					</td>
 				</tr> 

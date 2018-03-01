@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Miss;
 use App\User;
+use App\Item;
 use App\Reason;
 use Carbon\Carbon;
 
@@ -41,6 +42,8 @@ class BorrowController extends Controller
       if ($rep->status === '已歸還') {
         $time = Carbon::now('Asia/Taipei');
         $update->update(['returnat'=>$time]);
+        $usingitem = Item::where('itemname','=',$rep->item)->get();
+        $usingitem->usingnum -= $rep->itemnum;
       }elseif($rep->status==='借用中'){
         $update->update(['borrowat'=>Carbon::now('Asia/Taipei')]);
       }
