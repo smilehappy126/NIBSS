@@ -33,6 +33,14 @@
     @include('layouts.navbar')
 
     <main>
+        <!-- email登入失敗 -->
+        @if ($errors->has('email'))
+            <div class="alert alert-danger alert-dismissable fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>登入失敗，帳號或密碼有誤</strong>
+            </div>
+        @endif
+        
         @yield('content')
     </main>
 
