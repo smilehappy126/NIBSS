@@ -133,7 +133,7 @@
             }
             .LoginButton:hover{
                 background-color: #CCDDFF;
-                width:120px;
+                width:110px;
                 transition: 0.3s;
             }
             .LogoutButton{
@@ -151,7 +151,7 @@
             }
             .LogoutButton:hover{
                 background-color:#F4A460;
-                width:120px;
+                width:110px;
                 transition: 0.3s;
             }
             .brButton{

@@ -419,6 +419,10 @@
                         <button type="button"  class="removeFormButton next1Button" id="b3" onclick="send()">送出申請</button>
                     </div>
                 </div>
+                    @if(Auth::check())
+                        <input type="text" name="useremail" value="{{Auth::user()->email}}" hidden>
+                        <!-- 視為傳遞使用者信箱的變數 -->
+                    @endif
             </form>
         </div> 
     </div>

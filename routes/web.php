@@ -101,6 +101,7 @@ Route::get('/logout', 'MyLoginController@logout');
 	//歷史紀錄
 	Route::post('/admin/searchall','AdminController@searchall');
 	Route::post('/admin/searchall/update/{id}','AdminController@updateContentData');
+	Route::post('/admin/searchall/userupdate','AdminController@userupdate');
 	//編輯條例
 	Route::get('/admin/rule','AdminController@rule');
 	Route::post('/admin/rules/updatenote','AdminController@noteupdate');
