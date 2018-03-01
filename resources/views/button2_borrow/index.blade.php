@@ -218,6 +218,7 @@
 <div class="container" style=" padding-top: 0px;">
 	<div class="PCsection">
 		<div class="TopTitle">借用狀況</div>
+		<label type="number" id="amountofmis"></label>
 		<!-- Table Head -->
 		<div class="TableTop">
 			<table class="table" id="TitleTable" style="text-align: center; table-layout: fixed;">
@@ -764,71 +765,99 @@
 
 @section('js')
 <script>
-function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("content");
-  switching = true;
-  // Set the sorting direction to ascending:
-  dir = "asc"; 
-  /* Make a loop that will continue until
-  no switching has been done: */
-  while (switching) {
-    // Start by saying: no switching is done:
-    switching = false;
-    rows = table.getElementsByTagName("TR");
-    /* Loop through all table rows (except the
-    first, which contains table headers): */
-    for (i = 0; i < (rows.length - 1); i++) 
-    {
-      // Start by saying there should be no switching:
-      shouldSwitch = false;
-      /* Get the two elements you want to compare,
-      one from current row and one from the next: */
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      /* Check if the two rows should switch place,
-      based on the direction, asc or desc: */
-      if (dir == "asc") 
-      {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
-        {
-          // If so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
-        }
-      } 
-      else if (dir == "desc") 
-      {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
-        {
-          // If so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
-        }
-      }
-    }//End For Loop
-    
-    if (shouldSwitch) 
-    {
-      /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      // Each time a switch is done, increase this count by 1:
-      switchcount ++; 
-    } 
-    else 
-    {
-      /* If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again. */
-      if (switchcount == 0 && dir == "asc") 
-      {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }//End While Loop
-}//End Function
+//表單排序
+	function sortTable(n) {
+	  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+	  table = document.getElementById("content");
+	  switching = true;
+	  // Set the sorting direction to ascending:
+	  dir = "asc"; 
+	  /* Make a loop that will continue until
+	  no switching has been done: */
+	  while (switching) {
+	    // Start by saying: no switching is done:
+	    switching = false;
+	    rows = table.getElementsByTagName("TR");
+	    /* Loop through all table rows (except the
+	    first, which contains table headers): */
+	    for (i = 0; i < (rows.length - 1); i++) 
+	    {
+	      // Start by saying there should be no switching:
+	      shouldSwitch = false;
+	      /* Get the two elements you want to compare,
+	      one from current row and one from the next: */
+	      x = rows[i].getElementsByTagName("TD")[n];
+	      y = rows[i + 1].getElementsByTagName("TD")[n];
+	      /* Check if the two rows should switch place,
+	      based on the direction, asc or desc: */
+	      if (dir == "asc") 
+	      {
+	        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) 
+	        {
+	          // If so, mark as a switch and break the loop:
+	          shouldSwitch= true;
+	          break;
+	        }
+	      } 
+	      else if (dir == "desc") 
+	      {
+	        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) 
+	        {
+	          // If so, mark as a switch and break the loop:
+	          shouldSwitch= true;
+	          break;
+	        }
+	      }
+	    }//End For Loop
+	    
+	    if (shouldSwitch) 
+	    {
+	      /* If a switch has been marked, make the switch
+	      and mark that a switch has been done: */
+	      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+	      switching = true;
+	      // Each time a switch is done, increase this count by 1:
+	      switchcount ++; 
+	    } 
+	    else 
+	    {
+	      /* If no switching has been done AND the direction is "asc",
+	      set the direction to "desc" and run the while loop again. */
+	      if (switchcount == 0 && dir == "asc") 
+	      {
+	        dir = "desc";
+	        switching = true;
+	      }
+	    }
+	  }//End While Loop
+	}//End Function
+
+//分頁功能
+	$("#list").load("index.blade.php", null, initPagination);  
+	//初始化
+	var initPagination = function() {   
+	$("#pagination").pagination(30 //資料數目, {   
+	    num_edge_entries: 2, //兩側頁碼數目   
+	    num_display_entries: 3, //中間顯示的頁碼數目   
+	    current_page:0, //目前頁, 預設是0   
+	    ellipse_text:"...", //省略的頁碼用什麼表現, 預設是"..."   
+	    callback: pageselectCallback, //回傳資料   
+	    items_per_page: 10, //每頁呈現筆數   
+	    prev_show_always: true, //是否顯示上一頁按鈕   
+	    next_show_always: true, //是否顯示下一頁按鈕   
+	    prev_text: "prev", //上一頁呈現文字   
+	    next_text: "next" //下一頁呈現文字   
+	});   
+	};   
+	//Callback 呈現資料
+	function pageselectCallback(page_index, jq){   
+	    page_end=page_index+10;   
+	    $("#list li").hide();   
+	    for($i=page_index; $i<page_end; $i++){   
+	        $("#list li").eq($i).show();   
+	    }      
+	    return false;   
+	}  
 </script>
 @stop
 

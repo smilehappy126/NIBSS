@@ -16,9 +16,12 @@ class BorrowController extends Controller
 		$miss = Miss::where('status','=','借用中')
                   ->orWhere('status','=','待審核')
                   ->get();
+    $number = Miss::where('status','=','借用中')
+                  ->orWhere('status','=','待審核')
+                  ->count();
     $users = User::all();
     $reasons = Reason::all();
-		return view('button2_borrow.index',['miss'=> $miss],['users'=> $users],['reasons'=>$reasons]);
+		return view('button2_borrow.index',['miss'=> $miss],['users'=> $users],['reasons'=>$reasons],['number'=>$number]);
 
 	}
 	

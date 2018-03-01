@@ -260,55 +260,59 @@
             <!-- 備註提示欄 -->
             <th style="width: 1px;"></th>
             <!-- 序號 -->
-            <th style="text-align: center;">
-              <button id="idSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
-            </th>  
+              <th style="text-align: center;">
+                <button id="idSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">借用序號</button>
+              </th>  
             <!-- 日期 -->
               <th style="text-align: center;">
-              <button id="dateSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">更新日期</button>
-            </th>
-              <!-- 班級 -->
-                <th style="text-align: center;">
-              <button id="classSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">班級</button>
-            </th>
-              <!-- 申請人 -->
+                <button id="dateSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">更新日期</button>
+              </th>
+            <!-- 班級 -->
               <th style="text-align: center;">
-              <button id="nameSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
-            </th>
+                <button id="classSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">班級</button>
+              </th>
+            <!-- 申請人 -->
+              <th style="text-align: center;">
+                <button id="nameSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">申請人</button>
+              </th>
             @if (Route::has('login'))
               @if (Auth::check())
             <!-- 電話 -->
               <th style="text-align: center; width: 10%;">
-              <button id="phoneSortButton" type="button" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
-            </th>
+                <button id="phoneSortButton" type="button" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
+              </th>
                 @endif
               @endif
             <!-- 借用物品-->
               <th style="text-align: center;">
-              <button id="itemSortButton" type="button" onclick="sortTable(6)" style="border-radius: 100px; border: none; background-color: transparent;">借用物品</button>
-            </th>
+                <button id="itemSortButton" type="button" onclick="sortTable(6)" style="border-radius: 100px; border: none; background-color: transparent;">借用物品</button>
+              </th>
             <!-- 借用數量 -->
               <th style="text-align: center;">
-              <button id="itemnumSortButton" type="button" onclick="sortTable(7)" style="border-radius: 100px; border: none; background-color: transparent;">借用數量</button>
-            </th>
+                <button id="itemnumSortButton" type="button" onclick="sortTable(7)" style="border-radius: 100px; border: none; background-color: transparent;">借用數量</button>
+              </th>
             <!-- 抵押證件 -->
               <th style="text-align: center;">
-              <button id="licenseSortButton" type="button" onclick="sortTable(8)" style="border-radius: 100px; border: none; background-color: transparent;">抵押證件</button>
-            </th>
+                <button id="licenseSortButton" type="button" onclick="sortTable(8)" style="border-radius: 100px; border: none; background-color: transparent;">抵押證件</button>
+              </th>
               <!-- 授課教室 -->
               <th style="text-align: center;">
-              <button id="classroomSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教室</button>
-            </th>
+                <button id="classroomSortButton" type="button" onclick="sortTable(9)" style="border-radius: 100px; border: none; background-color: transparent;">授課教室</button>
+              </th>
             <!-- 授課教師 -->
               <th style="text-align: center;">
-              <button id="teacherSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
-            </th>
+                <button id="teacherSortButton" type="button" onclick="sortTable(10)" style="border-radius: 100px; border: none; background-color: transparent;">授課教師</button>
+              </th>
+            <!-- 審核人 -->
+              <th style="text-align: center;">
+                <button id="teacherSortButton" type="button" onclick="sortTable(11)" style="border-radius: 100px; border: none; background-color: transparent;">審核人</button>
+              </th>
              <!-- 編輯資料 -->
             @if (Route::has('login'))
               @if (Auth::check())
                 @if( (Auth::user()->level)==='管理員')
               <th style="text-align: center;">
-              <button id="editSortButton" type="button" onclick="sortTable(11)"  style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
+                <button id="editSortButton" type="button" onclick="sortTable(12)"  style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
               </th>
           </tr> 
                 @endif
@@ -353,6 +357,7 @@
             <td id="license-{{$mis->id}}">{{$mis->license}}</td>
             <td id="classroom-{{$mis->id}}">{{$mis->classroom}}</td>
             <td id="teacher-{{$mis->id}}">{{$mis->teacher}}</td>
+            <td id="audit-{{$mis->id}}">{{$mis->audit}}</td>
             @if (Route::has('login'))
               @if (Auth::check())
                 @if( (Auth::user()->level)==='管理員')
@@ -510,6 +515,15 @@
               </th>
               <th id="teacher-{{$mis->id}}" style="text-align: center;">
                 {{$mis->teacher}}
+              </th>
+          </tr>
+          <!-- 審核人 -->
+          <tr>
+              <th style="text-align: center;">
+                <button id="auditSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">審核人</button>
+              </th>
+              <th id="audit-{{$mis->id}}" style="text-align: center;">
+                {{$mis->audit}}
               </th>
           </tr>
           <!-- 狀態 -->
