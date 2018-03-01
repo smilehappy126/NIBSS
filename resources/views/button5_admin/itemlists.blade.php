@@ -244,6 +244,7 @@
                         </tr>
                         @endforeach
                     </table>
+                    {{ $items->links() }}
                 </div>
             @endif
         @endif
@@ -298,6 +299,7 @@
                 </table>
                 <br>
             @endforeach
+            {{ $items->links() }}
         </div>
       </div>  
       <!-- End of Mobile Section -->

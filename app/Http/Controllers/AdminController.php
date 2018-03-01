@@ -25,7 +25,7 @@ class AdminController extends Controller
     //顯示使用者清單頁面
     public function userlists(){
         $users=User::orderBy('level','desc') //預設排列順序為 管理員 → 工讀生 → 一般使用者
-                ->get();
+                ->paginate(10);
         return view('button5_admin.userlists',['users'=>$users]);
     }
     //使用者清單的編輯功能
@@ -49,7 +49,7 @@ class AdminController extends Controller
     //使用者清單的搜尋功能
     public function searchUser(Request $rep){
       $users=User::where('name','like','%'.$rep->searchname.'%')
-              ->get();
+              ->paginate(10);
       return view('button5_admin.userlists',['users'=>$users]);
     }
 
@@ -69,7 +69,7 @@ class AdminController extends Controller
                 ->orWhere('returnat','like','%'.$rep->searchcontent.'%')
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
                 ->orWhere('note7','like','%'.$rep->searchcontent.'%')
-                  ->get();
+                  ->paginate(10);
         $users=User::all();
         return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
@@ -127,7 +127,7 @@ class AdminController extends Controller
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
                 ->orWhere('borrowat','like','%'.$rep->searchcontent.'%')
                 ->orWhere('returnat','like','%'.$rep->searchcontent.'%')
-                  ->get();
+                  ->paginate(10);
       $users=User::all();
       return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
@@ -156,7 +156,7 @@ class AdminController extends Controller
                 ->orWhere('date','like','%'.$rep->searchcontent.'%')
                 ->orWhere('borrowat','like','%'.$rep->searchcontent.'%')
                 ->orWhere('returnat','like','%'.$rep->searchcontent.'%')
-                  ->get();
+                  ->paginate(10);
       $users=User::all();
       return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
@@ -215,7 +215,7 @@ class AdminController extends Controller
     }
     //進入目前清單頁面
     public function itemlists(){
-      $items=Item::all();
+      $items=Item::paginate(10);
       $itemsgroups=Itemgroup::all();
       return view('button5_admin.itemlists',['items'=> $items,'itemsgroups'=> $itemsgroups]);
     }
@@ -256,7 +256,7 @@ class AdminController extends Controller
 //違規紀錄
     //顯示違規紀錄
     public function reasons(){
-      $reasons = Reason::all();
+      $reasons = Reason::paginate(10);
       $users = User::all();
       return view('button5_admin.reason',['reasons'=>$reasons,'users'=>$users]);
     }

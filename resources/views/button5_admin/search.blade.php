@@ -388,6 +388,7 @@
             </tr>
           @endforeach
         </table>
+        {{ $miss->links() }}
       </div>
       <!-- End of Table Content -->
     </div>
@@ -600,6 +601,7 @@
         </table>
         <br>
         @endforeach
+        {{ $miss->links() }}
       </div>
       <!-- End of Mobile Table -->
     </div>

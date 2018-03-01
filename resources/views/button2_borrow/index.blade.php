@@ -296,7 +296,7 @@
 
 		<!-- Table Content -->
 		<div class="TableContent">
-			<table class="table" id="list" style="table-layout: fixed; text-align: center" >
+			<table class="table" style="table-layout: fixed; text-align: center" >
 				@foreach($miss as $mis)
 				<tr class="contentdata" id="tr-{{$mis->id}}">
 					<!-- 序號 -->
@@ -389,6 +389,7 @@
 	    		</tr>
 				@endforeach
 			</table>
+			{{ $miss->links() }}
 		</div>
 		<!-- End of Table Content -->
 	</div>
@@ -844,33 +845,7 @@
 	  }//End While Loop
 	}//End Function
 
-//分頁功能
-	$("#list").load("index.blade.php", null, initPagination);  
-	//初始化
-	var items = document.getElementById('amountofmis');
-	var initPagination = function() {   
-	$("#pagination").pagination(items.innerHTML //資料數目, {   
-	    num_edge_entries: 2, //兩側頁碼數目   
-	    num_display_entries: 3, //中間顯示的頁碼數目   
-	    current_page:0, //目前頁, 預設是0   
-	    ellipse_text:"...", //省略的頁碼用什麼表現, 預設是"..."   
-	    callback: pageselectCallback, //回傳資料   
-	    items_per_page: 10, //每頁呈現筆數   
-	    prev_show_always: true, //是否顯示上一頁按鈕   
-	    next_show_always: true, //是否顯示下一頁按鈕   
-	    prev_text: "prev", //上一頁呈現文字   
-	    next_text: "next" //下一頁呈現文字   
-	});   
-	};   
-	//Callback 呈現資料
-	function pageselectCallback(page_index, jq){   
-	    page_end=page_index+10;   
-	    $("#list tr").hide();   
-	    for($i=page_index; $i<page_end; $i++){   
-	        $("#list tr").eq($i).show();   
-	    }      
-	    return false;   
-	}  
+
 </script>
 @stop
 
