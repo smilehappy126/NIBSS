@@ -269,6 +269,7 @@
               </tr>
               @endforeach
           </table>
+          {{ $reasons->links() }}
       </div>
     </div>
     <!-- End of PC Section -->
@@ -360,6 +361,7 @@
           </table>
           <br>
           @endforeach
+          {{ $reasons->links() }}
       </div>
     </div>
 

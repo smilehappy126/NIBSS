@@ -268,6 +268,7 @@
               </tr>
               @endforeach
           </table>
+          {{ $users->links() }}
       </div>
     </div>
     <!-- End of PC Section -->
@@ -351,6 +352,7 @@
           </table>
           <br>
           @endforeach
+          {{ $users->links() }}
       </div>
     </div>
 
