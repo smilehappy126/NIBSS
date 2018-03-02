@@ -671,7 +671,7 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <div id="EditPage">
-                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">修改 Edit</h4>
+                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">違規紀錄</h4>
                             </div>
                         </div> <!-- End of User Modal Header -->
                          

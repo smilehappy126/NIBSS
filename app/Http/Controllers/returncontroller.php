@@ -25,7 +25,6 @@ class returnController extends Controller
       $update=Miss::find($id);
       $update->update(['class'=>$rep->class]);
       $update->update(['name'=>$rep->name]);
-      $update->update(['phone'=>$rep->phone]);
       $update->update(['item'=>$rep->item]);
       $update->update(['itemnum'=>$rep->itemnum]);
       $update->update(['license'=>$rep->license]);
@@ -36,8 +35,6 @@ class returnController extends Controller
       $update->update(['note7'=>$rep->note7]);
       if ($rep->status === '已歸還') {
         $update->update(['returnat'=>$rep->returnat]);
-      }elseif($rep->status==='借用中'){
-        $update->update(['borrowat'=>$rep->borrowat]);
       }
       $update->save();
       return redirect('/return');
@@ -55,7 +52,7 @@ class returnController extends Controller
   }
   public function userupdate(Request $rep)
     {
-      $update= User::where('phone','=',$rep->phone);
+      $update= User::where('email','=',$rep->useremail);
       $update->update(['violation'=>$rep->violation]);
       $reason=new Reason();
       $reason->user = $rep->username;

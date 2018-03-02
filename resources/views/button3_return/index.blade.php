@@ -119,15 +119,19 @@
 	    	transition: 0.3s;
 	    }
 	    .note7button{
-	    	width: 100%;
-	    	transition: 0.3s;
 	    	border-width: 0px;
-	    	border-radius: 20px;
-	    	background-color: #99BBFF;
+	    	border-radius: 7px;
+	    	font-size: 13px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 100%;
+	    	background-color: #4169E1;
 	    }
 	    .note7button:hover{
 	    	transition: 0.3s;
-	    	background-color: #5599FF;
+	    	background-color: #483D8B;
 	    }
 	}
 /*End of PC section*/
@@ -183,12 +187,12 @@
 	    	background-color: #4169E1;
 	    	border-width: 0px;
 	    	border-radius: 7px;
-	    	font-size: 14px;
+	    	font-size: 13px;
 	    	font-family: Microsoft JhengHei;
 	    	font-weight: bolder;
 	    	color: #F5F5F5;
 	    	height: 30px;
-	    	width: 55%;
+	    	width: 100%;
 	    	transition: 0.3s;
 	    }
 	    .UserModalButton:hover{
@@ -196,10 +200,19 @@
 	    	transition: 0.3s;
 	    }
 	    .note7button{
-	    	width: 100%;
-	    	transition: 0.3s;
 	    	border-width: 0px;
-	    	border-radius: 20px;
+	    	border-radius: 7px;
+	    	font-size: 13px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 100%;
+	    	background-color: #4169E1;
+	    }
+	    .note7button:hover{
+	    	transition: 0.3s;
+	    	background-color: #483D8B;
 	    }
     }
 /*End of Mobile CSS Section*/
@@ -322,7 +335,11 @@
 						@if (Auth::check())
 							@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 			   					<td id="name-{{$re->id}}">
-			   						<button class="UserModalButton" data-toggle="modal" data-target="#EditModal{{$re->phone}}" style="width: 100%;" ><span class="glyphicon glyphicon-pencil"></span>&nbsp {{$re->name}}</button>
+			   					    <?php 
+			   						$oldre_email = str_replace('@', '.', $re->email);
+            						$re_email = str_replace('.', '', $oldre_email)
+			   						?>
+			   						<button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$re_email}}" style="width: 107%;">{{$re->name}}</button>
 			   					</td>
 			   				@endif
 			   				@if(Auth::user()->level==='一般使用者')
@@ -396,15 +413,6 @@
 						{{$re->id}}
 					</td>
 				</tr>
-				<!-- 借用日期 -->
-				<tr> 
-	  				<th class="TableTop" style="text-align: center;">
-						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">借用日期</button>
-					</th>
-					<td class="TableContent" id="date-{{$re->id}}">
-						{{$re->borrowat}}
-					</td>
-				</tr>
 				<!-- 歸還日期 -->
 				<tr> 
 	  				<th class="TableTop" style="text-align: center;">
@@ -432,7 +440,11 @@
 						@if (Auth::check())
 							@if(Auth::user()->level==='管理員'||(Auth::user()->level)==='工讀生')
 			   					<td id="name-{{$re->id}}">
-			   						<button class="UserModalButton"  style="width: 130px;" type="button" data-toggle="modal" data-target="#EditModal{{$re->phone}}"><span class="glyphicon glyphicon-pencil"></span>&nbsp; {{$re->name}}</button>
+			   						<?php 
+			   						$oldre_email = str_replace('@', '.', $re->email);
+            						$re_email = str_replace('.', '', $oldre_email)
+			   						?>
+			   						<button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$re_email}}" style="width: 40%;">{{$re->name}}</button>
 			   					</td>
 			   				@endif
 			   				@if(Auth::user()->level==='一般使用者')
@@ -520,7 +532,7 @@
 						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
 					</th>
 					<td class="TableContent" id="note7-{{$re->id}}" >
-						<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$re->id}}">
+						<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$re->id}}" style="width: 40%";>
 							<span class="glyphicon glyphicon-pencil"></span>
 							備註
 						</button>
@@ -540,6 +552,7 @@
 					<td class="TableContent">
 					 	<a href="#" class="btn btn-sm btn-success" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">
 					 		已歸還
+					 	</a>
 					 	</a>
 					</td>
 				</tr> 
@@ -631,7 +644,11 @@
 
 	@foreach($users as $user)
         <!-- Edit Modal -->
-        <div id="EditModal{{$user->phone}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
+        <?php 
+            $olduseremail = str_replace('@', '.', $user->email);
+            $useremail = str_replace('.', '', $olduseremail)
+		?>
+        <div id="UserModal{{$useremail}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" >
             <div class="modal-dialog">
 
                     <!-- Edit Modal content-->
@@ -639,7 +656,7 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <div id="EditPage">
-                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">修改 Edit</h4>
+                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei">違規紀錄</h4>
                             </div>
                         </div> <!-- End of Modal Header -->
                          
@@ -664,8 +681,8 @@
                                                 </tr>
                                             </table>
                                             <!-- End of Edit Modal Table -->
-                                            <input name="phone" value="{{$user->phone}}" hidden >
-                                            <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
+                                            <input name="useremail" value="{{$user->email}}" hidden >
+                                            <!-- ↑視為傳遞user email的變數 不會顯示在頁面上 -->
                                             <input name="username" value="{{$user->name}}" hidden >
                                             <!-- ↑視為傳遞User names的變數 不會顯示在頁面上 -->
                                             @if(Auth::check())
