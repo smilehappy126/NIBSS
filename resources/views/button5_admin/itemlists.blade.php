@@ -331,7 +331,14 @@
                                                 <tr>
                                                     <th>物品類別 :</th>
                                                     <th>
-                                                        <input class="form-control" name="itemgroup" value="{{ $item->itemgroup}}">
+                                                        <select class="form-control" id="groupselection" type="text" name="itemgroup" style="text-align: center; width: 100%; transition: 0.3s;" onclick="checkselect()" required>
+                                                                <option disabled selected style="display: none;"></option>
+                                                            @foreach($itemsgroups as $itemsgroup)
+                                                                <option value="{{$itemsgroup->groupname}}" onclick="hidecreatebox()">{{$itemsgroup->groupname}}</option>
+                                                            @endforeach
+                                                                <option id="otheritemgroup" value="其他" >其他(創建新類別)</option>
+                                                        </select>
+                                                        <input type="text" id="createbox" name="createinput" placeholder="新的類別..." style=" width: 100%; transition: 0.3s; display: none; " disabled>
                                                     </th>
                                                 </tr>
                                                 <tr>
@@ -540,6 +547,29 @@ function sortTable(n) {
 //     document.getElementById(toshowSection).style.display="inline";
 //     document.getElementById(tohideSection).style.display="none";
 // }
+
+function checkselect(){
+        if (document.getElementById('groupselection').value==="其他") 
+        {
+            document.getElementById('groupselection').setAttribute("name", "itemgroupselection");
+            var newgroup = document.getElementById('createbox');
+            newgroup.removeAttribute("disabled");
+            newgroup.setAttributeNode(document.createAttribute("required"));
+            newgroup.setAttribute("class", "form-control");
+            newgroup.setAttribute("name", "itemgroup");
+            newgroup.style.display="inline";
+        }
+        else if (document.getElementById('groupselection').value!="其他") {
+            document.getElementById('groupselection').setAttribute("name", "itemgroup");
+            var newgroup = document.getElementById('createbox');
+            newgroup.setAttribute("name", "creatinput");
+            newgroup.removeAttribute("required");
+            newgroup.setAttributeNode(document.createAttribute("disabled"));
+            newgroup.removeAttribute("class");
+            newgroup.style.display="none";
+            newgroup.setAttribute("value", "");
+        }
+    }
 </script>
 
 @stop
