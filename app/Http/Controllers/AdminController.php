@@ -222,11 +222,27 @@ class AdminController extends Controller
     //編輯物品相關資訊
     public function updateItemLists(Request $rep, $id){
       $itemsgroups=Itemgroup::all();
+      //檢查此類別是否已存在，不存在的話就創建，存在的話類別物品的數量加1
+      $itemgroupscheck = Itemgroup::where('groupname','=',$rep->itemgroup)->get();
+      if (count($itemgroupscheck)<1){
+         $itemsgroups = new Itemgroup;
+         $itemsgroups->groupname = $rep->itemgroup;
+         $itemsgroups->creator = $rep->creator;
+         $itemsgroups->save();
+      } 
       $update=Item::find($id);
       $update->update(['itemgroup'=>$rep->itemgroup]);
       $update->update(['itemname'=>$rep->itemname]);
       $update->update(['itemnum'=>$rep->itemnum]);
       $update->update(['creator'=>$rep->creator]);
+      //檢查類別物品數量是否為0，物品數量為0時刪除該類別
+      $groupchecks = Itemgroup::all();
+      foreach ($groupchecks as $groupcheck) {
+        $groupitem= Item::where('itemgroup','=',$groupcheck->groupname)->get();
+        if(count($groupitem)<1){
+          $groupcheck->delete();
+        }// End if
+      }//End foreach
       return redirect('/admin/itemlists');
     }
     //刪除物品
