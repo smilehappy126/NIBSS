@@ -56,6 +56,9 @@
         text-align: center;
         font-weight: bold;
     }
+    .contentData:hover{
+      background-color: #CCBBFF;
+    }
     .EditButton{
         font-family: Microsoft JhengHei;
         text-align: center;
@@ -223,7 +226,7 @@
       <div class="TableTop">
           <!-- 表單表頭 -->
           <table class="table" id="TableTitle" style="table-layout: fixed;">
-              <tr>    
+              <tr >    
                   <th style="text-align: center; width: 150px;">
                       <button id="nameSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">名字</button>
                   </th>
@@ -251,7 +254,7 @@
           <!-- 表單內容 -->
           <table class="table" id="content" style="table-layout: fixed;"">
               @foreach($users as $user)
-              <tr>
+              <tr class="contentData">
                   <th style="text-align: center; width: 150px;">{{ $user->name }}</th>
                   <th style="text-align: center;">{{ $user->email }}</th>
                   <th style="text-align: center;">{{ $user->phone}}</th>
@@ -265,6 +268,7 @@
               </tr>
               @endforeach
           </table>
+          {{ $users->links() }}
       </div>
     </div>
     <!-- End of PC Section -->
@@ -348,6 +352,7 @@
           </table>
           <br>
           @endforeach
+          {{ $users->links() }}
       </div>
     </div>
 

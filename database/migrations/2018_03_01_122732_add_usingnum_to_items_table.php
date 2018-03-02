@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddEmailToMissTable extends Migration
+class AddUsingnumToItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddEmailToMissTable extends Migration
      */
     public function up()
     {
-        Schema::table('miss', function (Blueprint $table) {
-            $table->string('email')->nullable();
+        Schema::table('items', function (Blueprint $table) {
+            $table->integer('usingnum')->nullable()->default(0);
         });
     }
 
@@ -25,7 +25,7 @@ class AddEmailToMissTable extends Migration
      */
     public function down()
     {
-        Schema::table('miss', function (Blueprint $table) {
+        Schema::table('items', function (Blueprint $table) {
             //
         });
     }

@@ -223,7 +223,7 @@
 @stop
 
 @section('content')
-<div class="container" style=" padding-top: 0px;">
+<div class="container" style=" width: 100%; padding-top: 0px;">
 	<div class="PCsection">
 		<div class="TopTitle">已歸還資料</div>
 		<!-- 透過名字搜尋 -->
