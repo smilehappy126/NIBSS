@@ -133,6 +133,21 @@
 	    	transition: 0.3s;
 	    	background-color: #483D8B;
 	    }
+	    .returnbutton{
+	    	border-width: 0px;
+	    	border-radius: 7px;
+	    	font-size: 13px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 100%;
+	    	background-color: #008B00;
+	    }
+	    .returnbutton:hover{
+	    	transition: 0.3s;
+	    	background-color: #008B45;
+	    }
 	}
 /*End of PC section*/
 	
@@ -214,6 +229,21 @@
 	    	transition: 0.3s;
 	    	background-color: #483D8B;
 	    }
+	    .returnbutton{
+	    	border-width: 0px;
+	    	border-radius: 7px;
+	    	font-size: 13px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 100%;
+	    	background-color: #4169E1;
+	    }
+	    .returnbutton:hover{
+	    	transition: 0.3s;
+	    	background-color: #483D8B;
+	    }
     }
 /*End of Mobile CSS Section*/
     
@@ -223,7 +253,7 @@
 @stop
 
 @section('content')
-<div class="container" style=" width: 100%; padding-top: 0px;">
+<div class="container" style=" width: 90%; padding-top: 0px;">
 	<div class="PCsection">
 		<div class="TopTitle">已歸還資料</div>
 		<!-- 透過名字搜尋 -->
@@ -381,9 +411,9 @@
 						@if (Auth::check())
 							@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
 					<td>
-					 	<a href="#" class="btn btn-sm btn-success" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">
+					 	<button class="returnbutton" type="button" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">
 					 		已歸還
-					 	</a>
+					 	</button>
 					</td>
 					<td id="audit-{{$re->id}}">{{$re->audit}}</td>
 							@endif

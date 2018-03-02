@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Miss;
 use App\User;
+use App\Item;
 use App\Reason;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -35,7 +36,13 @@ class returnController extends Controller
       $update->update(['note7'=>$rep->note7]);
       if ($rep->status === '已歸還') {
         $update->update(['returnat'=>$rep->returnat]);
-      }
+      }elseif($rep->status==='借用中'){
+        $usingitem = Item::where('itemname','=',$rep->item)->first();
+        $oldnum = $usingitem->usingnum;
+        $newnum = $oldnum + $rep->itemnum;
+        $usingitem->update(['usingnum'=>$newnum]);
+        //若是物品從已歸還 => 借用中，借用中的物品數量加回去
+      }  
       $update->save();
       return redirect('/return');
 	}
