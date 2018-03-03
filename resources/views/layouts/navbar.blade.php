@@ -352,7 +352,7 @@
                 <!-- Trigger the LoginModal with a button -->
                 <li style="right: 20px; bottom:6px; position: absolute;">
                     <a>
-                        <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
+                        <button class="LoginButton" type="button" onclick="location.href='/signin'">Login</button>
                     </a>
                 </li>
             </div>
