@@ -31,31 +31,40 @@ class ApplicationController extends Controller
  	{	   
     $eq = array();
     $num = array();
+    $usnig =array();
     $classroom = "$request->classroom$request->key"; 
     
     $eq = $request->item;
     $num = $request->itemnum;
-
-    /*$str_eq = json_encode($eq);
-    $str_num = json_encode($num);*/
-    if($eq !== null){
+    $using = $request->usingnum;
+    
+    $i=count($eq);
+    /*if($eq !== null){
         $str_eq = implode(" , ",$eq);
         $str_num = implode(" , ",$num);
-    }
+    }*/
     
     $dt = Carbon::now('Asia/Taipei');
     
+    for ($j=0 ; $j<$i ; $j++) 
+    { 
+    $newusing = $num[$j] + $using[$j];
+
     $application = new Miss;
     $application->name = $request->name;
     $application->class = $request->class;
-    if($request->item == null){
-        $application->item ='無';
-        $application->itemnum = 0;
-    }
-    if($request->item !== null){
-        $application->item =  $str_eq;
-        $application->itemnum = $str_num;
-    }
+    
+        if($request->item == null)
+        {
+            $application->item ='無';
+            $application->itemnum = 0;
+            $request->usingnum = 0;
+        }
+        if($request->item !== null)
+        {
+            $application->item =  $eq[$j];
+            $application->itemnum = $num[$j];
+        }
     $application->email = $request->useremail;
     $application->license = $request->license;
     $application->classroom = $classroom;
@@ -68,13 +77,23 @@ class ApplicationController extends Controller
     $application->note7 = $request->note7;
     $application->borrowat = $dt;
     $application->save();
-    // $socialaccount=SocialAccount::where('email','=',$request->email);
-    // $socialaccount->update(['phone'=>$request->phone])
+    
+    $upusing=Item::where('itemname','=',$eq[$j]);      
+    $upusing->update(['usingnum'=>$newusing]);
+    }
     $update=User::where('email','=',$request->email);      
     $update->update(['phone'=>$request->phone]);
     return redirect('/');
+    }
+    
+    
+
+
+
+    // $socialaccount=SocialAccount::where('email','=',$request->email);
+    // $socialaccount->update(['phone'=>$request->phone])
      //
- 	}
+ 	
 
 }
 

@@ -207,7 +207,7 @@
 @section('content')
 <div class="container">
     
-    @if( (Auth::user()->violation) > $violations[0]->violationnum )
+    @if( (Auth::user()->violation) >= $violations[0]->violationnum )
     <div id="container3" class="container3">
         <div class="border1">
         <h2>
@@ -380,7 +380,7 @@
                         <select id="myItem1" class="form-control , item"  name="item[]" onchange="selnum()"  required>
                                 <option disabled selected>借用項目</option>
                             @foreach($items as $item)
-                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" label="{{ $item->itemname }}" style="display:none;">{{ $item->itemgroup }}
+                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" label="{{ $item->itemname }}" class="{{ $item->usingnum }}" style="display:none;">{{ $item->itemgroup }}
                                     </option>
 
                             @endforeach
@@ -388,6 +388,9 @@
                         <h2>借用數量：</h2>
                         <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5"  onkeyup="limit()" required>   
                     
+                        <input type="text" id="myUsing1"  name="usingnum[]" style="display:none;">
+
+
                     </div> 
                     <div id="add">
                     
@@ -478,18 +481,21 @@
     function next()
     {    
         var $phone = document.getElementById('phone1').value ;
-        if($phone == "")
-        {
-            alert("請確實填寫電話！"); 
-        }
-        if($phone !== "")
+        var regExp = /^[0-9|-]{5,}/;
+
+        if(regExp.test($phone))
+        
         {
             document.getElementById('home').style.display="none";
             document.getElementById('menu1').style.display="inline";
             $("#L1").removeClass("active");
             $("#L2").addClass("active");
             $('#b1').attr('href','#menu1');
-            $('#B3').attr('value','#menu1');
+            $('#B3').attr('value','#menu1'); 
+        }
+        else
+        {
+            alert("電話不能空白或少於五碼");
         }
         
     }
@@ -502,6 +508,8 @@
         object = $("#"+formid).find("select[name='item[]']")
                            .attr("id");
         number = $("#"+formid).find("input[name='itemnum[]']")
+                           .attr("id");
+        using = $("#"+formid).find("input[name='usingnum[]']")
                            .attr("id");
         
     }
@@ -523,21 +531,25 @@
             }
         }
     }
-
-    function selnum()
+        function selnum()
     {
         var id = $("#" + object).find(":selected").attr("id");
         var g3 = parseInt(id, 10);
-        document.getElementById('' + number).value= 1;
-        $("#" + number).attr("max", g3);
+        var choosenum = $("#" + object).find(":selected").attr("class");
+        var g4 = parseInt(choosenum, 10);
+        var g5 = g3 - g4;
+        document.getElementById('' + number).value= 0;
+        $("#" + number).attr("max", g5);
+        document.getElementById('' + using).value= g4;
     }
     function limit()
     {
+        
         var x = document.getElementById('' + number).value;
         if(x > $("#" + number).attr("max"))
         {
             document.getElementById('' + number).value = $("#" + number).attr("max");
-            alert("已經超出物品數量");
+            alert("已經超過可借用物品數量,最大值為：" + $("#" + number).attr("max"));
             
         }
     }  
@@ -594,6 +606,9 @@ $(function()
                     
                     $(this).find("select[name='itemnum[]']")
                            .attr("id","myNum" + (newId));              
+                    
+                    $(this).find("input[name='usingnum[]']")
+                           .attr("id","myUsing" + (newId)); 
                     newId++;
                 });
     });
