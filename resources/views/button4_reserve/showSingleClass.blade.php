@@ -1537,7 +1537,7 @@ $( document ).ready(function() {
     });
     
     
-    /* form validation: check結束節次應大於起始節次 */
+    /* form validation: 起始節次應早於結束節次 */
     $(".create_classTime").change(function(){
 
         var index_start = classTime_array.indexOf($(".select_start option:selected").val());
