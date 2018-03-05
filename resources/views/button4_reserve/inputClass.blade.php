@@ -93,7 +93,8 @@
         </div>
         <div>
             <button id="submit_btn" class="btn btn-primary" type="submit">送出</button>
-            <!-- <button type="button" class="btn btn-success " data-toggle="modal" data-target="#excelModal2">Excel匯入固定多筆資料</button> -->
+            <!-- <button type="button" class="btn btn-success " data-toggle="modal" data-target="#excelModal2">Excel匯入固定多筆資料 -->
+    </button>
         </div>
     </form>
 </div>

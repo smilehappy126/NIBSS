@@ -538,20 +538,21 @@
         var choosenum = $("#" + object).find(":selected").attr("class");
         var g4 = parseInt(choosenum, 10);
         var g5 = g3 - g4;
-        document.getElementById('' + number).value= 0;
+        /*document.getElementById('' + number).value= 0;*/
         $("#" + number).attr("max", g5);
-        document.getElementById('' + using).value= g4;
+        document.getElementById('' + using).value = g4;
     }
     function limit()
     {
         
         var x = document.getElementById('' + number).value;
-        if(x > $("#" + number).attr("max"))
-        {
-            document.getElementById('' + number).value = $("#" + number).attr("max");
-            alert("已經超過可借用物品數量,最大值為：" + $("#" + number).attr("max"));
-            
-        }
+        var y = $("#" + number).attr("max");
+        var z =parseInt(x, 10);
+        if (z>y) {
+            document.getElementById('' + number).value = y;
+            alert("已經超過可借用物品數量,最大值為：" + y);
+        }        
+
     }  
 
 
