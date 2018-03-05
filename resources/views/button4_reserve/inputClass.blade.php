@@ -59,48 +59,24 @@
         </div>
         <div class="form-group">
             <label>課堂起始日期:</label>
-            <input id="start_date" class="pickadate form-control" type="text" name="start_date" placeholder="點選以選擇日期" data-value="" required>
+            <input id="start_date" class="start_pickadate form-control" type="text" name="start_date" placeholder="點選以選擇日期" data-value="" required>
             <p class="errorMessage" id="err_startDate"></p>
         </div>
         <div class="form-group">
             <label>課堂結束日期:</label>
-            <input id="end_date" class="pickadate form-control" type="text" name="end_date" placeholder="點選以選擇日期" data-value="" required>
+            <input id="end_date" class="end_pickadate form-control" type="text" name="end_date" placeholder="點選以選擇日期" data-value="" required>
             <p class="errorMessage" id="err_endDate"></p>
         </div>
         <div class="form-group">
             <label>起始節次:</label>
-            <select class="form-control select_start" name="start_classTime">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="noon">午休</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
+            <select class="form-control select_start create_classTime" name="start_classTime">
+                <option disabled selected>請先選擇課堂起始日期</option>
             </select>
         </div>
         <div class="form-group">
             <label>結束節次:</label>
-            <select class="form-control select_end" name="end_classTime">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="noon">午休</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
+            <select class="form-control select_end create_classTime" name="end_classTime">
+                <option disabled selected>請先選擇課堂起始日期</option>
             </select>
         </div>
         <div>
@@ -117,8 +93,7 @@
         </div>
         <div>
             <button id="submit_btn" class="btn btn-primary" type="submit">送出</button>
-            <button type="button" class="btn btn-success " data-toggle="modal" data-target="#excelModal2">Excel匯入固定多筆資料
-    </button>
+            <!-- <button type="button" class="btn btn-success " data-toggle="modal" data-target="#excelModal2">Excel匯入固定多筆資料</button> -->
         </div>
     </form>
 </div>
@@ -206,17 +181,51 @@
 <script language="JavaScript" type="text/javascript">
 
 var classTime_array = ["1", "2", "3", "4", "noon", "5", "6", "7", "8", "9", "A", "B", "C"];
+var curDay; // current day(星期幾)
 
 $( document ).ready(function(){
     
-    $(".pickadate").pickadate({
+    $(".start_pickadate").pickadate({
         format: 'yyyy-mm-dd',
-        formatSubmit: 'yyyy-mm-dd'
+        formatSubmit: 'yyyy-mm-dd',
+
+        onClose: function() {
+          // console.log(this.get('select', 'ddd'));
+          curDay = this.get('select', 'ddd');
+
+          /* select option的text更新 */
+          $(".create_classTime").html(''); // 讓原有select options清空
+          populateDay(".create_classTime");
+        }
     });
 
+    $(".end_pickadate").pickadate({
+        format: 'yyyy-mm-dd',
+        formatSubmit: 'yyyy-mm-dd',
+    });
 
+    function populateDay(selector) {
+        $(selector).html(''); // 讓原有select options清空
+        $(selector)
+          .append('<option value="1">'+curDay+'_1'+'</option>')
+          .append('<option value="2">'+curDay+'_2'+'</option>')
+          .append('<option value="3">'+curDay+'_3'+'</option>')
+          .append('<option value="4">'+curDay+'_4'+'</option>')
+          .append('<option value="noon">'+curDay+'_noon'+'</option>')
+          .append('<option value="5">'+curDay+'_5'+'</option>')
+          .append('<option value="6">'+curDay+'_6'+'</option>')
+          .append('<option value="7">'+curDay+'_7'+'</option>')
+          .append('<option value="8">'+curDay+'_8'+'</option>')
+          .append('<option value="9">'+curDay+'_9'+'</option>')
+          .append('<option value="A">'+curDay+'_A'+'</option>')
+          .append('<option value="B">'+curDay+'_B'+'</option>')
+          .append('<option value="C">'+curDay+'_C'+'</option>')
+    }
+
+
+    /* form validation */
     $("#submit_btn").click(function() {
-
+        
         // 清空錯誤訊息
         $("#err_startDate").text("");
         $("#err_endDate").text("");
@@ -235,7 +244,8 @@ $( document ).ready(function(){
         }
     });
 
-    /* 起始日期應早於結束日期 */
+
+    /* form validation: 起始日期應早於結束日期 */
     var from_$input = $('#start_date').pickadate(),
         from_picker = from_$input.pickadate('picker');
 
@@ -269,22 +279,8 @@ $( document ).ready(function(){
     });
 
 
-    /* 起始節次應早於結束節次 */
-    $(".select_start").change(function(){
-
-        var index_start = classTime_array.indexOf($(".select_start option:selected").val());
-        var index_end = classTime_array.indexOf($(".select_end option:selected").val());
-
-        if(index_start > index_end){
-            $("#err_classTime").text("起始節次應早於結束節次");
-            $("#submit_btn").prop('disabled', true);
-        }else{
-            $("#err_classTime").text("");
-            $("#submit_btn").prop('disabled', false);
-        }
-    });
-
-    $(".select_end").change(function(){
+    /* form validation: 起始節次應早於結束節次 */
+    $(".create_classTime").change(function(){
 
         var index_start = classTime_array.indexOf($(".select_start option:selected").val());
         var index_end = classTime_array.indexOf($(".select_end option:selected").val());
