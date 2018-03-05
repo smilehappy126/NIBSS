@@ -46,14 +46,17 @@
 			font-weight: bold;
 		}
 		.EditButton{
-			background-color: transparent;
-			font-family: Microsoft JhengHei;
-			transition: 0.3s;
-		    cursor: pointer;
-		    border: 0px;
+			border-width: 0px;
+	    	border-radius: 7px;
+	    	font-size: 13px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 100%;
 		}
 		.EditButton:hover{
-			background-color: #FF5511;
+			transition: 0.3s;
 		}
 		.EditPage{
 			font-family: Microsoft JhengHei;
@@ -179,6 +182,19 @@
 		    transition: 0.3s;
 		    width:150px;
 	    }
+	    .EditButton{
+			border-width: 0px;
+	    	border-radius: 7px;
+	    	font-size: 13px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 80%;
+		}
+		.EditButton:hover{
+			transition: 0.3s;
+		}
 	    .UserModalButton{
 	    	background-color: #4169E1;
 	    	border-width: 0px;
@@ -372,15 +388,15 @@
 							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
 								@if( ($mis->status)==='借用中' )
 									<td>
-									 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+										<button class="EditButton" style="background-color: #5599FF;" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
 									 		借用中
-									 	</a>
+									 	</button>
 									</td>
 								@elseif( ($mis->status)==='待審核' )
 									<td>
-									 	<a href="#" class="btn btn-sm btn-danger" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+									 	<button class="EditButton" style="background-color: #FF8888;" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
 									 		待審核
-									 	</a>
+									 	</button>
 									</td>
 								@endif
 							@endif
@@ -553,15 +569,15 @@
 							</th>
 							@if(($mis->status)==='借用中')
 								<td class="TableContent">
-								 	<a href="#" class="btn btn-sm btn-primary" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
-								 		借用中
-								 	</a>
+								 	<button class="EditButton" style="background-color: #5599FF;" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
+										借用中
+									</button>
 								</td>
 							@elseif( ($mis->status)==='待審核' )
 								<td class="TableContent">
-								 	<a href="#" class="btn btn-sm btn-danger" id="edit-message-{{ $mis->id }}" data-toggle="modal" data-target="#myModal{{$mis->id}}">
-								 		待審核
-								 	</a>
+								 	<button class="EditButton" style="background-color: #FF8888;" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
+										待審核
+									</button>
 								</td>
 							@endif
 						</tr> 
