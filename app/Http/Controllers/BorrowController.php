@@ -25,7 +25,7 @@ class BorrowController extends Controller
 		return view('button2_borrow.index',['miss'=> $miss,'users'=> $users,'reasons'=>$reasons,'number'=>$number]);
 
 	}
-	
+	//更新借用資料
 	public function update(Request $rep, $id)
 	{
       $update= Miss::find($id);
@@ -52,13 +52,22 @@ class BorrowController extends Controller
       }
       return redirect('/borrow');
   }
+  //刪除借用資料
+  public function delete(Request $rep, $id){
+      $delete = Miss::find($id);
+      $delete->delete();
+
+      return redirect('/borrow');
+  }
+
+  //更新備註
   public function updatenote(Request $rep, $id)
   {
     $update=Miss::find($id);
     $update->update(['note7'=>$rep->note7]);
     return redirect('/borrow');
   }
-
+  //更新借用者資料
   public function userupdate(Request $rep)
     {
       $update= User::where('email','=',$rep->useremail);

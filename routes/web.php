@@ -31,6 +31,7 @@ Route::post('/create/setphone','ApplicationController@setphone');
 //借用狀況
 Route::get('/borrow', 'BorrowController@index');
 Route::post('/borrow/update/{id}','BorrowController@update');
+Route::post('/borrow/delete/{id}','BorrowController@delete');
 Route::post('/borrow/userupdate','BorrowController@userupdate');
 Route::post('/borrow/updatenote/{id}','BorrowController@updatenote');
 
@@ -102,6 +103,7 @@ Route::get('/logout', 'MyLoginController@logout');
 	Route::post('/admin/searchall','AdminController@searchall');
 	Route::post('/admin/searchall/update/{id}','AdminController@updateContentData');
 	Route::post('/admin/searchall/userupdate','AdminController@userupdate');
+	Route::post('/admin/searchall/delete/{id}','AdminController@searchdelete');
 	//編輯條例
 	Route::get('/admin/rule','AdminController@rule');
 	Route::post('/admin/rules/updatenote','AdminController@noteupdate');
