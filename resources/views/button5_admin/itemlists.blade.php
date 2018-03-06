@@ -38,10 +38,11 @@
     .EditButton{
         font-family: Microsoft JhengHei;
         text-align: center;
-        font-size: 17px;
-        border-width: 1px;
-        border-radius: 40px;
-        width: 70px;
+        font-weight: bolder;
+        font-size: 20px;
+        border-width: 0px;
+        border-radius: 7px;
+        width: 60%;
         background-color: #D8BFD8;
         transition: 0.3s;
     }
@@ -133,10 +134,11 @@
     .EditButton{
         font-family: Microsoft JhengHei;
         text-align: center;
+        font-weight: bolder;
         font-size: 17px;
-        border-width: 1px;
-        border-radius: 40px;
-        width: 70px;
+        border-width: 0px;
+        border-radius: 7px;
+        width: 80%;
         background-color: #D8BFD8;
         transition: 0.3s;
     }
@@ -339,9 +341,8 @@
                                                     <th>物品類別 :</th>
                                                     <th>
                                                         <select class="form-control" id="groupselection" type="text" name="itemgroup" style="text-align: center; width: 100%; transition: 0.3s;" onclick="checkselect()" required>
-                                                                <option disabled selected style="display: none;"></option>
                                                             @foreach($itemsgroups as $itemsgroup)
-                                                                <option value="{{$itemsgroup->groupname}}" onclick="hidecreatebox()">{{$itemsgroup->groupname}}</option>
+                                                                <option value="{{$itemsgroup->groupname}}" onclick="hidecreatebox()" @if(($item->itemgroup)===($itemsgroup->groupname)) selected @endif>{{$itemsgroup->groupname}} </option>
                                                             @endforeach
                                                                 <option id="otheritemgroup" value="其他" >其他(創建新類別)</option>
                                                         </select>
