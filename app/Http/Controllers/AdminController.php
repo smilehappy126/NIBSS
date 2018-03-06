@@ -131,6 +131,28 @@ class AdminController extends Controller
       $users=User::all();
       return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
     }
+    //刪除借用資料
+    public function searchdelete(Request $rep, $id){
+        $delete = Miss::find($id);
+        $delete->delete();
+        //刪除完成之後重新導向搜尋頁面
+        $miss=Miss::where('name','like','%'.$rep->searchcontent.'%')
+                ->orWhere('class','like','%'.$rep->searchcontent.'%')
+                ->orWhere('phone','like','%'.$rep->searchcontent.'%')
+                ->orWhere('item','like','%'.$rep->searchcontent.'%')
+                ->orWhere('itemnum','like','%'.$rep->searchcontent.'%')
+                ->orWhere('status','like','%'.$rep->searchcontent.'%')
+                ->orWhere('teacher','like','%'.$rep->searchcontent.'%')
+                ->orWhere('classroom','like','%'.$rep->searchcontent.'%')
+                ->orWhere('license','like','%'.$rep->searchcontent.'%')
+                ->orWhere('borrowat','like','%'.$rep->searchcontent.'%')
+                ->orWhere('returnat','like','%'.$rep->searchcontent.'%')
+                ->orWhere('date','like','%'.$rep->searchcontent.'%')
+                ->orWhere('note7','like','%'.$rep->searchcontent.'%')
+                  ->paginate(10);
+        $users=User::all();
+        return view('button5_admin.search',['miss'=> $miss,'content'=>$rep->searchcontent,'users'=>$users]);
+    }
 
     //在搜尋頁面更改使用者資料
     public function userupdate(Request $rep)

@@ -580,9 +580,9 @@
 						<button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
 					</th>
 					<td class="TableContent">
-					 	<a href="#" class="btn btn-sm btn-success" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">
+					 	<button class="returnbutton" type="button" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">
 					 		已歸還
-					 	</a>
+					 	</button>
 					 	</a>
 					</td>
 				</tr> 

@@ -807,9 +807,9 @@
 	</div>
 	@endforeach
 	<!-- End of Note Modal -->
-
-	@foreach($miss as $mis)
+	
 	<!-- Delete Modal -->
+	@foreach($miss as $mis)
         <div id="DeleteModal{{$mis->id}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
     <!-- Delete Modal content-->
