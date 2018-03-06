@@ -670,10 +670,10 @@
     									<th> 
     										<select class="form-control" name="status" value="{{ $mis->status }}" required>
     											<option selected disabled style="display: none;"></option>
-    											<option value="借用中">借用中</option>
-    											<option value="待審核">待審核</option>
+    											<option value="借用中" @if(($mis->status)==='借用中') selected @endif>借用中</option>
+    											<option value="待審核" @if(($mis->status)==='待審核') selected @endif>待審核</option>
     											@if($mis->status==='借用中')
-    											<option value="已歸還">已歸還</option>
+    											<option value="已歸還" @if(($mis->status)==='已歸還') selected @endif>已歸還</option>
     											@endif
     										</select>
     									</th>
