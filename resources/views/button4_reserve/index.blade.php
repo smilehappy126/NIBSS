@@ -249,7 +249,6 @@
     @endforeach
 
 
-
 @endsection 
 
 @section('js')
