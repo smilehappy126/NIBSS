@@ -388,13 +388,13 @@
 							@if( (Auth::user()->level)==='管理員'|| (Auth::user()->level)==='工讀生')
 								@if( ($mis->status)==='借用中' )
 									<td>
-										<button class="EditButton" style="background-color: #5599FF;" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
+										<button class="EditButton" style="background-color: #5599FF;" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
 									 		借用中
 									 	</button>
 									</td>
 								@elseif( ($mis->status)==='待審核' )
 									<td>
-									 	<button class="EditButton" style="background-color: #FF8888;" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
+									 	<button class="EditButton" style="background-color: #FF8888;" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
 									 		待審核
 									 	</button>
 									</td>
@@ -569,13 +569,13 @@
 							</th>
 							@if(($mis->status)==='借用中')
 								<td class="TableContent">
-								 	<button class="EditButton" style="background-color: #5599FF;" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
+								 	<button class="EditButton" style="background-color: #5599FF;" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
 										借用中
 									</button>
 								</td>
 							@elseif( ($mis->status)==='待審核' )
 								<td class="TableContent">
-								 	<button class="EditButton" style="background-color: #FF8888;" type="button" data-toggle="modal" data-target="#Note{{$mis->id}}">
+								 	<button class="EditButton" style="background-color: #FF8888;" type="button" data-toggle="modal" data-target="#myModal{{$mis->id}}">
 										待審核
 									</button>
 								</td>
