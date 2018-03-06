@@ -38,10 +38,11 @@
     .EditButton{
         font-family: Microsoft JhengHei;
         text-align: center;
-        font-size: 17px;
-        border-width: 1px;
-        border-radius: 40px;
-        width: 70px;
+        font-weight: bolder;
+        font-size: 20px;
+        border-width: 0px;
+        border-radius: 7px;
+        width: 60%;
         background-color: #D8BFD8;
         transition: 0.3s;
     }
@@ -133,10 +134,11 @@
     .EditButton{
         font-family: Microsoft JhengHei;
         text-align: center;
+        font-weight: bolder;
         font-size: 17px;
-        border-width: 1px;
-        border-radius: 40px;
-        width: 70px;
+        border-width: 0px;
+        border-radius: 7px;
+        width: 80%;
         background-color: #D8BFD8;
         transition: 0.3s;
     }
