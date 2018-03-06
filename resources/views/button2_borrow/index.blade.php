@@ -122,14 +122,16 @@
 	    	transition: 0.3s;
 	    }
 	    .note7button{
-	    	width: 100%;
-	    	transition: 0.3s;
 	    	border-width: 0px;
-	    	border-radius: 20px;
+	    	border-radius: 7px;
+	    	font-size: 13px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	height: 30px;
+	    	width: 60%;
 	    	background-color: #99BBFF;
 	    }
 	    .note7button:hover{
-	    	transition: 0.3s;
 	    	background-color: #5599FF;
 	    }
 	    #ModalEditButton{
@@ -225,10 +227,14 @@
 	    	transition: 0.3s;
 	    }
 	    .note7button{
-	    	width: 70%;
-	    	transition: 0.3s;
 	    	border-width: 0px;
-	    	border-radius: 20px;
+	    	border-radius: 7px;
+	    	font-size: 13px;
+	    	font-family: Microsoft JhengHei;
+	    	font-weight: bolder;
+	    	color: #F5F5F5;
+	    	height: 30px;
+	    	width: 80%;
 	    	background-color: #99BBFF;
 	    }
 	    .note7button:hover{
