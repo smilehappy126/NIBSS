@@ -386,7 +386,7 @@
                   </td>
                   @elseif(($mis->status)==='已歸還')
                   <td>
-                    <button class="EditButton" type="button" style="background-color: #4169E1;" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                    <button class="EditButton" type="button" style="background-color: #008B00;" data-toggle="modal" data-target="#myModal{{$mis->id}}">
                       已歸還
                     </button> 
                   </td>
@@ -598,7 +598,7 @@
                   </td>
                   @elseif(($mis->status)==='已歸還')
                   <td>
-                    <button class="EditButton" type="button" style="background-color: #4169E1;" data-toggle="modal" data-target="#myModal{{$mis->id}}">
+                    <button class="EditButton" type="button" style="background-color: #008B00;" data-toggle="modal" data-target="#myModal{{$mis->id}}">
                       已歸還
                     </button> 
                   </td>
@@ -669,9 +669,9 @@
                       <th> 
                         <select class="form-control" name="status" required>
                           <option selected disabled style="display: none;"></option>
-                          <option value="借用中">借用中</option>
-                          <option value="待審核">待審核</option>
-                          <option value="已歸還">已歸還</option>
+                          <option value="借用中" @if(($mis->status)==='借用中')selected @endif>借用中</option>
+                          <option value="待審核" @if(($mis->status)==='待審核') selected @endif>待審核</option>
+                          <option value="已歸還" @if(($mis->status)==='已歸還') selected @endif>已歸還</option>
                         </select>
                       </th>
                     </tr>

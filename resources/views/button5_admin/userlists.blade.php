@@ -390,12 +390,11 @@
                                                 <tr><th>違規點數 :</th><th> <input  class="form-control" type="number" name="violation" min="0" value="{{ $user->violation }}"></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
-                                                        
                                                         <select class="form-control" name="level" value="{{ $user->level }}" required>
-                                                            <option value="" disabled selected hidden></option>
-                                                            <option value="管理員">管理員</option>
-                                                            <option value="工讀生" >工讀生</option>
-                                                            <option value="一般使用者">一般使用者</option>
+                                                            <!-- <option value="" disabled selected hidden></option> -->
+                                                            <option value="管理員" @if(($user->level)==='管理員')selected @endif>管理員</option>
+                                                            <option value="工讀生" @if(($user->level)==='工讀生')selected @endif>工讀生</option>
+                                                            <option value="一般使用者" @if(($user->level)==='一般使用者') selected @endif>一般使用者</option>
                                                         </select>
                                                     </th>
                                                 </tr>
@@ -450,7 +449,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 <form action="{{ asset ('/admin/searchUser')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-                                    <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp</label>
+                                    <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp;</label>
                                     <input  class="searchcontent" name="searchname" id="searchname" type="text"  placeholder="請輸入名字..."  value="" style="width: 70%;" autofocus>
                             </div>    
                         </div>
