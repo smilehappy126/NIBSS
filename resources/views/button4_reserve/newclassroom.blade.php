@@ -15,25 +15,20 @@
         color: #FFF;
         border-color: #285e8e;
     }*/
-.btn-primary{
-        float: center;
-        font-family: Microsoft JhengHei;
-        font-weight: bolder;
-        font-size: 24px;
-        background-color:#B0C4DE;
+.btn-outline-success{
+        margin-top:1%;
+        background-color: #FFF;
+        color: #0044BB;
+        border-color: #0044BB;
+        border-radius: 25px;
         width: 80px;
-        height: 50px;
-        border-radius: 100px;
-        border-width: 0px;
-        transition: 0.3s;
-        cursor: pointer;
-
     }
-
-   .btn-primary:hover{
-        background-color: #CCDDFF;
-        width:150px;
-        transition: 0.3s;
+.btn-outline-success:hover,
+    .btn-outline-success:focus,
+    .btn-outline-success:active    {
+        background-color: #0044BB;
+        color: #FFF;
+        border-color: #0044BB;
     }
 
 .returnButton{
@@ -98,7 +93,7 @@
            <input type="file" class="form-control" id="classpic" name="imgurl" required="必填！">  <!-- input type="file" 改ㄉ  -->
         </div>
         <div>
-            <button class="btn btn-primary" type="submit">送出</button>
+            <button class="btn btn-outline-success" type="submit">送出</button>
         </div>
 
     </form>
