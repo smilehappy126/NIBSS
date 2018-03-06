@@ -132,6 +132,19 @@
 	    	transition: 0.3s;
 	    	background-color: #5599FF;
 	    }
+	    #ModalEditButton{
+        	background-color: #00FA9A;
+    	}
+    	#ModalEditButton:hover{
+        	background-color: #20B2AA;
+    	}
+    	#ModalDeleteButton{
+        	background-color: #FF0000;
+        	color: white;
+    	}
+	    #ModalDeleteButton:hover{
+	        background-color: #AA0000;
+	    }
 	}
 /*End of PC section*/
 	
@@ -221,6 +234,19 @@
 	    .note7button:hover{
 	    	transition: 0.3s;
 	    	background-color: #5599FF;
+	    }
+	    #ModalEditButton{
+        	background-color: #00FA9A;
+    	}
+    	#ModalEditButton:hover{
+        	background-color: #20B2AA;
+    	}
+    	#ModalDeleteButton{
+        	background-color: #FF0000;
+        	color: white;
+    	}
+	    #ModalDeleteButton:hover{
+	        background-color: #AA0000;
 	    }
     }
 /*End of Mobile CSS Section*/
@@ -659,9 +685,12 @@
 	        	<!-- End of Edit Modal Body -->
 	        	<!-- Modal Footer -->
 	        	<div class="modal-footer">
-	          		<button type="submit" class="btn btn-default">變更</button>	
-	           			</form>
-	          		<button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+	          		<div class="form-group">
+                        <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold; background-color: #00FA9A;">Edit</button>
+                        </form>
+                        <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold; background-color: #FF0000; color: white;" data-toggle="modal" data-target="#DeleteModal{{$mis->id}}">Delete</button>
+                        <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
+                    </div>
 	        	</div>
 	        	<!-- End of Edit Modal Footer -->
 	    	</div>
@@ -778,6 +807,127 @@
 	</div>
 	@endforeach
 	<!-- End of Note Modal -->
+
+	@foreach($miss as $mis)
+	<!-- Delete Modal -->
+        <div id="DeleteModal{{$mis->id}}" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
+            <div class="modal-dialog">
+    <!-- Delete Modal content-->
+                <!-- Delete Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="DeletePage">
+                                <h4 class="modal-title" style="text-align: center; font-size: 45px; font-family: Microsoft JhengHei; font-weight: bolder;">刪除借用資料</h4>
+                            </div>
+                        </div> <!-- End of Modal Header -->
+                         
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <form class="form-horizontal" method="post" action="{{ asset('/borrow/delete/'.$mis->id)}}">
+                                     {{ csrf_field() }}
+                                    <div class="DeletePage">
+                                        <div class="DeleteInfo">
+                                            <!-- Delete Modal Table -->
+                                            <table class="table" id="contentTable" style="table-layout: fixed; text-align: left; line-height: 10px;">
+												<tr>
+													<th>借用序號 : </th>
+													<th>
+														<input  class="form-control" type="text" disabled value="{{ $mis->id}}"> 
+													</th>
+												</tr>
+												<tr>
+													<th>更新日期 :</th> 
+													<th>
+														@if($mis->status==='待審核')
+															<input  class="form-control" type="datetime" name="date" value="{{ $mis->created_at }}" disabled>
+														@elseif($mis->status==='借用中')
+															<input  class="form-control" type="datetime" name="date" value="{{ $mis->borrowat }}" disabled>
+														@endif
+													</th>
+												</tr>
+												<tr>
+													<th>班級 :</th>
+													<th> 
+														<input  class="form-control" type="text" name="class" value="{{ $mis->class }}" disabled>
+													</th>
+												</tr>
+			    								<tr>
+			    									<th>申請人 : </th>
+			    									<th> 
+			    										<input  class="form-control" type="text" name="name" value="{{ $mis->name }}" disabled>
+			    									</th>
+			    								</tr>
+			    								<tr>
+			    									<th>電話 : </th>
+			    									<th> 
+			    										<input  class="form-control" type="text" name="phone" value="{{ $mis->phone }}" disabled>
+			    									</th>
+			    								</tr>
+			    								<tr>
+			    									<th>借用物品 :</th> 
+			    									<th> 
+			    										<input  class="form-control" type="text" name="item" value="{{ $mis->item }}" disabled> 
+			    									</th>
+			    								</tr>
+			    								<tr>
+			    									<th>借用數量 :</th>
+			    									<th>
+			    										<input class="form-control" type="number" name="itemnum" value="{{ $mis->itemnum }}" disabled>
+			    									</th>
+			    								</tr>
+			    								<tr>
+			    									<th>抵押證件 :</th>
+			    									<th> 
+			    										<input class="form-control" type="text" name="license" value="{{ $mis->license }}" disabled>
+			    									</th>
+			    								</tr>
+			    								<tr>
+			    									<th>授課教室 :</th>
+			    									<th> 
+			    										<input class="form-control" type="text" name="classroom" value="{{ $mis->classroom }}" disabled>
+			    									</th>
+			    								</tr>
+			    								<tr>
+			    									<th>授課教師 :</th>
+			    									<th> 
+			    										<input  class="form-control" type="text" name="teacher" value="{{ $mis->teacher }}" disabled>
+			    									</th>
+			    								</tr>
+			    								<tr><th>狀態 :</th>
+			    									<th> 
+			    										<input  class="form-control" type="text" name="teacher" value="{{ $mis->status }}" disabled>
+			    									</th>
+			    								</tr>
+			    								<tr>
+			    									<th>備註 :</th>
+			    									<th> 
+			    										<textarea class="form-control" name="note7" disabled>{{ $mis->note7 }}</textarea>
+			    									</th>
+			    								</tr>
+											</table>
+                                            <!-- End of Delete Modal Table -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- End of Modal Body -->
+                        <div class="modal-footer">
+                              <div class="form-group" style="text-align: center;">
+                                <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold; background-color: #FF0000; color: white;">Delete</button></form>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 20px; font-weight: bold;">Back</button>
+                              </div>
+                        </div> 
+                        <!-- End of Modal Footer -->
+                    </div> 
+                    <!-- End of Delete Modal Content -->
+            </div>
+        </div>
+        @endforeach
+        <!-- End of Delete Modal -->
+
 
 	<!-- End of Modal Section -->
 

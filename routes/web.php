@@ -31,6 +31,7 @@ Route::post('/create/setphone','ApplicationController@setphone');
 //借用狀況
 Route::get('/borrow', 'BorrowController@index');
 Route::post('/borrow/update/{id}','BorrowController@update');
+Route::post('/borrow/delete/{id}','BorrowController@delete');
 Route::post('/borrow/userupdate','BorrowController@userupdate');
 Route::post('/borrow/updatenote/{id}','BorrowController@updatenote');
 
