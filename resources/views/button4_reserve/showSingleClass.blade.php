@@ -6,70 +6,6 @@
     color: red;
 }
 
-/*.rwd-table {
-            background: #fff;
-            overflow: hidden;
-        }
-
-            .rwd-table tr:nth-of-type(2n) {
-                background: #eee;
-            }
-
-            .rwd-table th, .rwd-table td {
-                margin: 0.5em 1em;
-            }
-
-        .rwd-table {
-            min-width: 100%;
-        }
-
-            .rwd-table th {
-                display: none;
-            }
-
-            .rwd-table td {
-                display: block;
-            }
-
-                .rwd-table td:before {
-                    
-                    font-weight: bold;
-                    /*width: 6.5em;*/
-                    /*display: inline-block;
-                }
-
-            .rwd-table th, .rwd-table td {
-                text-align: left;
-            }
-
-                .rwd-table th, .rwd-table td:before {
-                    color: #25517d;
-                    font-weight: bold;
-                }
-
-        @media (min-width: 480px) {
-            .rwd-table td:before {
-                display: none;
-            }
-
-            .rwd-table th, .rwd-table td {
-                display: table-cell;
-                padding: 0.25em 0.5em;
-            }
-
-                .rwd-table th:first-child, .rwd-table td:first-child {
-                    padding-left: 0;
-                }
-
-                .rwd-table th:last-child, .rwd-table td:last-child {
-                    padding-right: 0;
-                }
-
-            .rwd-table th, .rwd-table td {
-                padding: 1em !important;
-            }
-        }*/
-
 .classBtn {
     background-color: #FFF;
     color: #285e8e;
@@ -105,31 +41,27 @@
   border-color: #5cb85c;
   border-radius: 25px;
 }
-
-.nextWeek span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.nextWeek span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.01s;
-}
-
-.nextWeek:hover span {
-  padding-right: 25px;
-}
-
-.nextWeek:hover span:after {
-  opacity: 1;
-  right: 0;
-}
+    .nextWeek span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+    .nextWeek span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.01s;
+    }
+    .nextWeek:hover span {
+      padding-right: 25px;
+    }
+    .nextWeek:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
 
 .prevWeek {
   margin-top:2%;
@@ -138,33 +70,28 @@
   border-color: #5cb85c;
   border-radius: 25px;
 }
-
-.prevWeek span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.prevWeek span:after {
-  content: '\00AB';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  left: -20px;
-  transition: 0.01s;
-}
-
-.prevWeek:hover span {
-  
-  padding-left: 25px;
-}
-
-.prevWeek:hover span:after {
-  opacity: 1;
-  left: 0;
-}
-
+    .prevWeek span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+    .prevWeek span:after {
+      content: '\00AB';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      left: -20px;
+      transition: 0.01s;
+    }
+    .prevWeek:hover span {
+      
+      padding-left: 25px;
+    }
+    .prevWeek:hover span:after {
+      opacity: 1;
+      left: 0;
+    }
 
 .btn-save {
         background-color: #FFF;
@@ -218,8 +145,7 @@
         color: #007acc;
         background-color: #CCDDFF;
         transition: 0.3s;
-    }
-    
+    }   
 </style>
 @stop 
 
@@ -233,7 +159,6 @@ $pre = strtotime('previous monday', strtotime($dateString));
 $next = strtotime('next monday', strtotime($dateString)); 
 $preString = date('Y-m-d',$pre);
 $nextString = date('Y-m-d',$next);
-
 
 // echo "現在所在教室: ", $currentClassroom;
 ?>
@@ -1160,7 +1085,9 @@ $nextString = date('Y-m-d',$next);
                         <select class="form-control select_end modify_classTime" id="modify_end{{$course->id}}" name="end_classTime"></select>
                     </div>
                     <div class="form-group">
-                        <label>此項目id: {{$course->id}}</label>
+                        <label>教室: {{$currentClassroom}}</label>
+                        <br>
+                        <label>該週週一: {{$thisMonday}}</label>
                         <input name="roomname" value="{{$course->roomname}}" hidden>
                         <input name="weekFirst" value="{{$course->weekFirst}}" hidden>
                         <p class="errorMessage"></p>
@@ -1327,37 +1254,38 @@ $( document ).ready(function() {
         
         var thisId = $(this).children("p.cell_id").text();
         
-        if(thisId == ""){ // 沒資料: 新增課程Modal
+        /*------新增課程Modal------*/
+        if(thisId == ""){ 
             
             var day = this.id;// 直接取該格子id作為起始結束節次
             
             if(day.match("^Mon")){ // 以"Mon"開頭
-                populate_Mon(".select_start");
-                populate_Mon(".select_end");
+                populate_start_Mon(".select_start");
+                populate_end_Mon(".select_end");
             }
             else if(day.match("^Tue")){
-                populate_Tue(".select_start");
-                populate_Tue(".select_end");
+                populate_start_Tue(".select_start");
+                populate_end_Tue(".select_end");
             }
             else if(day.match("^Wed")){
-                populate_Wed(".select_start");
-                populate_Wed(".select_end");
+                populate_start_Wed(".select_start");
+                populate_end_Wed(".select_end");
             }
             else if(day.match("^Thu")){
-                populate_Thu(".select_start");
-                populate_Thu(".select_end");
+                populate_start_Thu(".select_start");
+                populate_end_Thu(".select_end");
             }
             else if(day.match("^Fri")){
-                populate_Fri(".select_start");
-                populate_Fri(".select_end");
+                populate_start_Fri(".select_start");
+                populate_end_Fri(".select_end");
             }
             else if(day.match("^Sat")){
-                populate_Sat(".select_start");
-                populate_Sat(".select_end");
+                populate_start_Sat(".select_start");
+                populate_end_Sat(".select_end");
             }
             else if(day.match("^Sun")){
-                populate_Sun(".select_start");
-                populate_Sun(".select_end");
+                populate_start_Sun(".select_start");
+                populate_end_Sun(".select_end");
             }
             
             // 設置select中的預設option
@@ -1365,38 +1293,38 @@ $( document ).ready(function() {
             selected(".select_start", day);
             selected(".select_end", day);
             
-        }else{ // 有資料: 修改Modal
+        }else{ /*------修改課程Modal------*/
             
             var start = $(this).children("p.cell_start_classTime").text();//起始節次
             var end = $(this).children("p.cell_end_classTime").text();//結束節次
             
             if(start.match("^Mon")){ // 以"Mon"開頭
-                populate_Mon(".select_start");
-                populate_Mon(".select_end");
+                populate_start_Mon(".select_start");
+                populate_end_Mon(".select_end");
             }
             else if(start.match("^Tue")){
-                populate_Tue(".select_start");
-                populate_Tue(".select_end");
+                populate_start_Tue(".select_start");
+                populate_end_Tue(".select_end");
             }
             else if(start.match("^Wed")){
-                populate_Wed(".select_start");
-                populate_Wed(".select_end");
+                populate_start_Wed(".select_start");
+                populate_end_Wed(".select_end");
             }
             else if(start.match("^Thu")){
-                populate_Thu(".select_start");
-                populate_Thu(".select_end");
+                populate_start_Thu(".select_start");
+                populate_end_Thu(".select_end");
             }
             else if(start.match("^Fri")){
-                populate_Fri(".select_start");
-                populate_Fri(".select_end");
+                populate_start_Fri(".select_start");
+                populate_end_Fri(".select_end");
             }
             else if(start.match("^Sat")){
-                populate_Sat(".select_start");
-                populate_Sat(".select_end");
+                populate_start_Sat(".select_start");
+                populate_end_Sat(".select_end");
             }
             else if(start.match("^Sun")){
-                populate_Sun(".select_start");
-                populate_Sun(".select_end");
+                populate_start_Sun(".select_start");
+                populate_end_Sun(".select_end");
             }
             
             // 設置select中的預設option
@@ -1414,124 +1342,243 @@ $( document ).ready(function() {
             $(mClass+" [value="+day+"]").prop('selected', true);
         }
 
-        function populate_Mon(selector) {
+        function populate_start_Mon(selector) {
           $(selector).html(''); // 讓原有select options清空
           $(selector)
-            .append('<option value="Mon_1">Mon_1</option>')
-            .append('<option value="Mon_2">Mon_2</option>')
-            .append('<option value="Mon_3">Mon_3</option>')
-            .append('<option value="Mon_4">Mon_4</option>')
-            .append('<option value="Mon_noon">Mon_noon</option>')
-            .append('<option value="Mon_5">Mon_5</option>')
-            .append('<option value="Mon_6">Mon_6</option>')
-            .append('<option value="Mon_7">Mon_7</option>')
-            .append('<option value="Mon_8">Mon_8</option>')
-            .append('<option value="Mon_9">Mon_9</option>')
-            .append('<option value="Mon_A">Mon_A</option>')
-            .append('<option value="Mon_B">Mon_B</option>')
-            .append('<option value="Mon_C">Mon_C</option>')
+            .append('<option value="Mon_1">Mon_1 (08:00)</option>')
+            .append('<option value="Mon_2">Mon_2 (09:00)</option>')
+            .append('<option value="Mon_3">Mon_3 (10:00)</option>')
+            .append('<option value="Mon_4">Mon_4 (11:00)</option>')
+            .append('<option value="Mon_noon">Mon_noon (12:00)</option>')
+            .append('<option value="Mon_5">Mon_5 (13:00)</option>')
+            .append('<option value="Mon_6">Mon_6 (14:00)</option>')
+            .append('<option value="Mon_7">Mon_7 (15:00)</option>')
+            .append('<option value="Mon_8">Mon_8 (16:00)</option>')
+            .append('<option value="Mon_9">Mon_9 (17:00)</option>')
+            .append('<option value="Mon_A">Mon_A (18:00)</option>')
+            .append('<option value="Mon_B">Mon_B (19:00)</option>')
+            .append('<option value="Mon_C">Mon_C (20:00)</option>')
         }
-        function populate_Tue(selector) {
+        function populate_end_Mon(selector) {
           $(selector).html('');
           $(selector)
-            .append('<option value="Tue_1">Tue_1</option>')
-            .append('<option value="Tue_2">Tue_2</option>')
-            .append('<option value="Tue_3">Tue_3</option>')
-            .append('<option value="Tue_4">Tue_4</option>')
-            .append('<option value="Tue_noon">Tue_noon</option>')
-            .append('<option value="Tue_5">Tue_5</option>')
-            .append('<option value="Tue_6">Tue_6</option>')
-            .append('<option value="Tue_7">Tue_7</option>')
-            .append('<option value="Tue_8">Tue_8</option>')
-            .append('<option value="Tue_9">Tue_9</option>')
-            .append('<option value="Tue_A">Tue_A</option>')
-            .append('<option value="Tue_B">Tue_B</option>')
-            .append('<option value="Tue_C">Tue_C</option>')
+            .append('<option value="Mon_1">Mon_1 (08:50)</option>')
+            .append('<option value="Mon_2">Mon_2 (09:50)</option>')
+            .append('<option value="Mon_3">Mon_3 (10:50)</option>')
+            .append('<option value="Mon_4">Mon_4 (11:50)</option>')
+            .append('<option value="Mon_noon">Mon_noon (12:50)</option>')
+            .append('<option value="Mon_5">Mon_5 (13:50)</option>')
+            .append('<option value="Mon_6">Mon_6 (14:50)</option>')
+            .append('<option value="Mon_7">Mon_7 (15:50)</option>')
+            .append('<option value="Mon_8">Mon_8 (16:50)</option>')
+            .append('<option value="Mon_9">Mon_9 (17:50)</option>')
+            .append('<option value="Mon_A">Mon_A (18:50)</option>')
+            .append('<option value="Mon_B">Mon_B (19:50)</option>')
+            .append('<option value="Mon_C">Mon_C (20:50)</option>')
         }
-        function populate_Wed(selector) {
+        function populate_start_Tue(selector) {
           $(selector).html('');
           $(selector)
-            .append('<option value="Wed_1">Wed_1</option>')
-            .append('<option value="Wed_2">Wed_2</option>')
-            .append('<option value="Wed_3">Wed_3</option>')
-            .append('<option value="Wed_4">Wed_4</option>')
-            .append('<option value="Wed_noon">Wed_noon</option>')
-            .append('<option value="Wed_5">Wed_5</option>')
-            .append('<option value="Wed_6">Wed_6</option>')
-            .append('<option value="Wed_7">Wed_7</option>')
-            .append('<option value="Wed_8">Wed_8</option>')
-            .append('<option value="Wed_9">Wed_9</option>')
-            .append('<option value="Wed_A">Wed_A</option>')
-            .append('<option value="Wed_B">Wed_B</option>')
-            .append('<option value="Wed_C">Wed_C</option>')
+            .append('<option value="Tue_1">Tue_1 (08:00)</option>')
+            .append('<option value="Tue_2">Tue_2 (09:00)</option>')
+            .append('<option value="Tue_3">Tue_3 (10:00)</option>')
+            .append('<option value="Tue_4">Tue_4 (11:00)</option>')
+            .append('<option value="Tue_noon">Tue_noon (12:00)</option>')
+            .append('<option value="Tue_5">Tue_5 (13:00)</option>')
+            .append('<option value="Tue_6">Tue_6 (14:00)</option>')
+            .append('<option value="Tue_7">Tue_7 (15:00)</option>')
+            .append('<option value="Tue_8">Tue_8 (16:00)</option>')
+            .append('<option value="Tue_9">Tue_9 (17:00)</option>')
+            .append('<option value="Tue_A">Tue_A (18:00)</option>')
+            .append('<option value="Tue_B">Tue_B (19:00)</option>')
+            .append('<option value="Tue_C">Tue_C (20:00)</option>')
         }
-        function populate_Thu(selector) {
+        function populate_end_Tue(selector) {
           $(selector).html('');
           $(selector)
-            .append('<option value="Thu_1">Thu_1</option>')
-            .append('<option value="Thu_2">Thu_2</option>')
-            .append('<option value="Thu_3">Thu_3</option>')
-            .append('<option value="Thu_4">Thu_4</option>')
-            .append('<option value="Thu_noon">Thu_noon</option>')
-            .append('<option value="Thu_5">Thu_5</option>')
-            .append('<option value="Thu_6">Thu_6</option>')
-            .append('<option value="Thu_7">Thu_7</option>')
-            .append('<option value="Thu_8">Thu_8</option>')
-            .append('<option value="Thu_9">Thu_9</option>')
-            .append('<option value="Thu_A">Thu_A</option>')
-            .append('<option value="Thu_B">Thu_B</option>')
-            .append('<option value="Thu_C">Thu_C</option>')
+            .append('<option value="Tue_1">Tue_1 (08:50)</option>')
+            .append('<option value="Tue_2">Tue_2 (09:50)</option>')
+            .append('<option value="Tue_3">Tue_3 (10:50)</option>')
+            .append('<option value="Tue_4">Tue_4 (11:50)</option>')
+            .append('<option value="Tue_noon">Tue_noon (12:50)</option>')
+            .append('<option value="Tue_5">Tue_5 (13:50)</option>')
+            .append('<option value="Tue_6">Tue_6 (14:50)</option>')
+            .append('<option value="Tue_7">Tue_7 (15:50)</option>')
+            .append('<option value="Tue_8">Tue_8 (16:50)</option>')
+            .append('<option value="Tue_9">Tue_9 (17:50)</option>')
+            .append('<option value="Tue_A">Tue_A (18:50)</option>')
+            .append('<option value="Tue_B">Tue_B (19:50)</option>')
+            .append('<option value="Tue_C">Tue_C (20:50)</option>')
         }
-        function populate_Fri(selector) {
+        function populate_start_Wed(selector) {
           $(selector).html('');
           $(selector)
-            .append('<option value="Fri_1">Fri_1</option>')
-            .append('<option value="Fri_2">Fri_2</option>')
-            .append('<option value="Fri_3">Fri_3</option>')
-            .append('<option value="Fri_4">Fri_4</option>')
-            .append('<option value="Fri_noon">Fri_noon</option>')
-            .append('<option value="Fri_5">Fri_5</option>')
-            .append('<option value="Fri_6">Fri_6</option>')
-            .append('<option value="Fri_7">Fri_7</option>')
-            .append('<option value="Fri_8">Fri_8</option>')
-            .append('<option value="Fri_9">Fri_9</option>')
-            .append('<option value="Fri_A">Fri_A</option>')
-            .append('<option value="Fri_B">Fri_B</option>')
-            .append('<option value="Fri_C">Fri_C</option>')
+            .append('<option value="Wed_1">Wed_1 (08:00)</option>')
+            .append('<option value="Wed_2">Wed_2 (09:00)</option>')
+            .append('<option value="Wed_3">Wed_3 (10:00)</option>')
+            .append('<option value="Wed_4">Wed_4 (11:00)</option>')
+            .append('<option value="Wed_noon">Wed_noon (12:00)</option>')
+            .append('<option value="Wed_5">Wed_5 (13:00)</option>')
+            .append('<option value="Wed_6">Wed_6 (14:00)</option>')
+            .append('<option value="Wed_7">Wed_7 (15:00)</option>')
+            .append('<option value="Wed_8">Wed_8 (16:00)</option>')
+            .append('<option value="Wed_9">Wed_9 (17:00)</option>')
+            .append('<option value="Wed_A">Wed_A (18:00)</option>')
+            .append('<option value="Wed_B">Wed_B (19:00)</option>')
+            .append('<option value="Wed_C">Wed_C (20:00)</option>')
         }
-        function populate_Sat(selector) {
+        function populate_end_Wed(selector) {
           $(selector).html('');
           $(selector)
-            .append('<option value="Sat_1">Sat_1</option>')
-            .append('<option value="Sat_2">Sat_2</option>')
-            .append('<option value="Sat_3">Sat_3</option>')
-            .append('<option value="Sat_4">Sat_4</option>')
-            .append('<option value="Sat_noon">Sat_noon</option>')
-            .append('<option value="Sat_5">Sat_5</option>')
-            .append('<option value="Sat_6">Sat_6</option>')
-            .append('<option value="Sat_7">Sat_7</option>')
-            .append('<option value="Sat_8">Sat_8</option>')
-            .append('<option value="Sat_9">Sat_9</option>')
-            .append('<option value="Sat_A">Sat_A</option>')
-            .append('<option value="Sat_B">Sat_B</option>')
-            .append('<option value="Sat_C">Sat_C</option>')
+            .append('<option value="Wed_1">Wed_1 (08:50)</option>')
+            .append('<option value="Wed_2">Wed_2 (09:50)</option>')
+            .append('<option value="Wed_3">Wed_3 (10:50)</option>')
+            .append('<option value="Wed_4">Wed_4 (11:50)</option>')
+            .append('<option value="Wed_noon">Wed_noon (12:50)</option>')
+            .append('<option value="Wed_5">Wed_5 (13:50)</option>')
+            .append('<option value="Wed_6">Wed_6 (14:50)</option>')
+            .append('<option value="Wed_7">Wed_7 (15:50)</option>')
+            .append('<option value="Wed_8">Wed_8 (16:50)</option>')
+            .append('<option value="Wed_9">Wed_9 (17:50)</option>')
+            .append('<option value="Wed_A">Wed_A (18:50)</option>')
+            .append('<option value="Wed_B">Wed_B (19:50)</option>')
+            .append('<option value="Wed_C">Wed_C (20:50)</option>')
         }
-        function populate_Sun(selector) {
+        function populate_start_Thu(selector) {
           $(selector).html('');
           $(selector)
-            .append('<option value="Sun_1">Sun_1</option>')
-            .append('<option value="Sun_2">Sun_2</option>')
-            .append('<option value="Sun_3">Sun_3</option>')
-            .append('<option value="Sun_4">Sun_4</option>')
-            .append('<option value="Sun_noon">Sun_noon</option>')
-            .append('<option value="Sun_5">Sun_5</option>')
-            .append('<option value="Sun_6">Sun_6</option>')
-            .append('<option value="Sun_7">Sun_7</option>')
-            .append('<option value="Sun_8">Sun_8</option>')
-            .append('<option value="Sun_9">Sun_9</option>')
-            .append('<option value="Sun_A">Sun_A</option>')
-            .append('<option value="Sun_B">Sun_B</option>')
-            .append('<option value="Sun_C">Sun_C</option>')
+            .append('<option value="Thu_1">Thu_1 (08:00)</option>')
+            .append('<option value="Thu_2">Thu_2 (09:00)</option>')
+            .append('<option value="Thu_3">Thu_3 (10:00)</option>')
+            .append('<option value="Thu_4">Thu_4 (11:00)</option>')
+            .append('<option value="Thu_noon">Thu_noon (12:00)</option>')
+            .append('<option value="Thu_5">Thu_5 (13:00)</option>')
+            .append('<option value="Thu_6">Thu_6 (14:00)</option>')
+            .append('<option value="Thu_7">Thu_7 (15:00)</option>')
+            .append('<option value="Thu_8">Thu_8 (16:00)</option>')
+            .append('<option value="Thu_9">Thu_9 (17:00)</option>')
+            .append('<option value="Thu_A">Thu_A (18:00)</option>')
+            .append('<option value="Thu_B">Thu_B (19:00)</option>')
+            .append('<option value="Thu_C">Thu_C (20:00)</option>')
+        }
+        function populate_end_Thu(selector) {
+          $(selector).html('');
+          $(selector)
+            .append('<option value="Thu_1">Thu_1 (08:50)</option>')
+            .append('<option value="Thu_2">Thu_2 (09:50)</option>')
+            .append('<option value="Thu_3">Thu_3 (10:50)</option>')
+            .append('<option value="Thu_4">Thu_4 (11:50)</option>')
+            .append('<option value="Thu_noon">Thu_noon (12:50)</option>')
+            .append('<option value="Thu_5">Thu_5 (13:50)</option>')
+            .append('<option value="Thu_6">Thu_6 (14:50)</option>')
+            .append('<option value="Thu_7">Thu_7 (15:50)</option>')
+            .append('<option value="Thu_8">Thu_8 (16:50)</option>')
+            .append('<option value="Thu_9">Thu_9 (17:50)</option>')
+            .append('<option value="Thu_A">Thu_A (18:50)</option>')
+            .append('<option value="Thu_B">Thu_B (19:50)</option>')
+            .append('<option value="Thu_C">Thu_C (20:50)</option>')
+        }
+        function populate_start_Fri(selector) {
+          $(selector).html('');
+          $(selector)
+            .append('<option value="Fri_1">Fri_1 (08:00)</option>')
+            .append('<option value="Fri_2">Fri_2 (09:00)</option>')
+            .append('<option value="Fri_3">Fri_3 (10:00)</option>')
+            .append('<option value="Fri_4">Fri_4 (11:00)</option>')
+            .append('<option value="Fri_noon">Fri_noon (12:00)</option>')
+            .append('<option value="Fri_5">Fri_5 (13:00)</option>')
+            .append('<option value="Fri_6">Fri_6 (14:00)</option>')
+            .append('<option value="Fri_7">Fri_7 (15:00)</option>')
+            .append('<option value="Fri_8">Fri_8 (16:00)</option>')
+            .append('<option value="Fri_9">Fri_9 (17:00)</option>')
+            .append('<option value="Fri_A">Fri_A (18:00)</option>')
+            .append('<option value="Fri_B">Fri_B (19:00)</option>')
+            .append('<option value="Fri_C">Fri_C (20:00)</option>')
+        }
+        function populate_end_Fri(selector) {
+          $(selector).html('');
+          $(selector)
+            .append('<option value="Fri_1">Fri_1 (08:50)</option>')
+            .append('<option value="Fri_2">Fri_2 (09:50)</option>')
+            .append('<option value="Fri_3">Fri_3 (10:50)</option>')
+            .append('<option value="Fri_4">Fri_4 (11:50)</option>')
+            .append('<option value="Fri_noon">Fri_noon (12:50)</option>')
+            .append('<option value="Fri_5">Fri_5 (13:50)</option>')
+            .append('<option value="Fri_6">Fri_6 (14:50)</option>')
+            .append('<option value="Fri_7">Fri_7 (15:50)</option>')
+            .append('<option value="Fri_8">Fri_8 (16:50)</option>')
+            .append('<option value="Fri_9">Fri_9 (17:50)</option>')
+            .append('<option value="Fri_A">Fri_A (18:50)</option>')
+            .append('<option value="Fri_B">Fri_B (19:50)</option>')
+            .append('<option value="Fri_C">Fri_C (20:50)</option>')
+        }
+        function populate_start_Sat(selector) {
+          $(selector).html('');
+          $(selector)
+            .append('<option value="Sat_1">Sat_1 (08:00)</option>')
+            .append('<option value="Sat_2">Sat_2 (09:00)</option>')
+            .append('<option value="Sat_3">Sat_3 (10:00)</option>')
+            .append('<option value="Sat_4">Sat_4 (11:00)</option>')
+            .append('<option value="Sat_noon">Sat_noon (12:00)</option>')
+            .append('<option value="Sat_5">Sat_5 (13:00)</option>')
+            .append('<option value="Sat_6">Sat_6 (14:00)</option>')
+            .append('<option value="Sat_7">Sat_7 (15:00)</option>')
+            .append('<option value="Sat_8">Sat_8 (16:00)</option>')
+            .append('<option value="Sat_9">Sat_9 (17:00)</option>')
+            .append('<option value="Sat_A">Sat_A (18:00)</option>')
+            .append('<option value="Sat_B">Sat_B (19:00)</option>')
+            .append('<option value="Sat_C">Sat_C (20:00)</option>')
+        }
+        function populate_end_Sat(selector) {
+          $(selector).html('');
+          $(selector)
+            .append('<option value="Sat_1">Sat_1 (08:50)</option>')
+            .append('<option value="Sat_2">Sat_2 (09:50)</option>')
+            .append('<option value="Sat_3">Sat_3 (10:50)</option>')
+            .append('<option value="Sat_4">Sat_4 (11:50)</option>')
+            .append('<option value="Sat_noon">Sat_noon (12:50)</option>')
+            .append('<option value="Sat_5">Sat_5 (13:50)</option>')
+            .append('<option value="Sat_6">Sat_6 (14:50)</option>')
+            .append('<option value="Sat_7">Sat_7 (15:50)</option>')
+            .append('<option value="Sat_8">Sat_8 (16:50)</option>')
+            .append('<option value="Sat_9">Sat_9 (17:50)</option>')
+            .append('<option value="Sat_A">Sat_A (18:50)</option>')
+            .append('<option value="Sat_B">Sat_B (19:50)</option>')
+            .append('<option value="Sat_C">Sat_C (20:50)</option>')
+        }
+        function populate_start_Sun(selector) {
+          $(selector).html('');
+          $(selector)
+            .append('<option value="Sun_1">Sun_1 (08:00)</option>')
+            .append('<option value="Sun_2">Sun_2 (09:00)</option>')
+            .append('<option value="Sun_3">Sun_3 (10:00)</option>')
+            .append('<option value="Sun_4">Sun_4 (11:00)</option>')
+            .append('<option value="Sun_noon">Sun_noon (12:00)</option>')
+            .append('<option value="Sun_5">Sun_5 (13:00)</option>')
+            .append('<option value="Sun_6">Sun_6 (14:00)</option>')
+            .append('<option value="Sun_7">Sun_7 (15:00)</option>')
+            .append('<option value="Sun_8">Sun_8 (16:00)</option>')
+            .append('<option value="Sun_9">Sun_9 (17:00)</option>')
+            .append('<option value="Sun_A">Sun_A (18:00)</option>')
+            .append('<option value="Sun_B">Sun_B (19:00)</option>')
+            .append('<option value="Sun_C">Sun_C (20:00)</option>')
+        }
+        function populate_end_Sun(selector) {
+          $(selector).html('');
+          $(selector)
+            .append('<option value="Sun_1">Sun_1 (08:50)</option>')
+            .append('<option value="Sun_2">Sun_2 (09:50)</option>')
+            .append('<option value="Sun_3">Sun_3 (10:50)</option>')
+            .append('<option value="Sun_4">Sun_4 (11:50)</option>')
+            .append('<option value="Sun_noon">Sun_noon (12:50)</option>')
+            .append('<option value="Sun_5">Sun_5 (13:50)</option>')
+            .append('<option value="Sun_6">Sun_6 (14:50)</option>')
+            .append('<option value="Sun_7">Sun_7 (15:50)</option>')
+            .append('<option value="Sun_8">Sun_8 (16:50)</option>')
+            .append('<option value="Sun_9">Sun_9 (17:50)</option>')
+            .append('<option value="Sun_A">Sun_A (18:50)</option>')
+            .append('<option value="Sun_B">Sun_B (19:50)</option>')
+            .append('<option value="Sun_C">Sun_C (20:50)</option>')
         }
 
     });

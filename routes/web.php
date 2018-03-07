@@ -55,7 +55,7 @@ Route::get('/reserve', 'CourseController@index');
 //教室預約狀況(點選教室後)
 Route::get('/reserve/{roomname}', 'CourseController@show');
 //教室預約狀況(點選上下一週後)
-Route::get('/reserve/{roomname}/{weekfirst}', 'CourseController@showOtherWeek');
+Route::get('/reserve/{roomname}/{thisMonday}', 'CourseController@showOtherWeek');
 // //單筆excel
 // Route::post('/importExcel', 'CourseController@importExcel');
 // Route::get('/downloadExcel', 'CourseController@downloadExcel');

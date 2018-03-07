@@ -144,7 +144,7 @@ class CourseController extends Controller
     }
 
     //(點選上下一週後)
-    public function showOtherWeek($roomname, $weekfirst)
+    public function showOtherWeek($roomname, $thisMonday)
     {  
         $classrooms = Classroom::all();
 
@@ -152,7 +152,7 @@ class CourseController extends Controller
         $img = Classroom::where('roomname', '=', $roomname)->pluck('imgurl')->first();
 
         return view('button4_reserve.showSingleClass',[
-            'thisMonday' => $weekfirst,
+            'thisMonday' => $thisMonday,
             'classrooms'=> $classrooms,
             'currentClassroom'=> $roomname,    
             'results'=> $courses,

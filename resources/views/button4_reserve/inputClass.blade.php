@@ -24,6 +24,21 @@
         transition: 0.3s;
         background-color: #DDDDDD;
     }
+.submitButton{
+        margin-top:1%;
+        background-color: #FFF;
+        color: #0044BB;
+        border-color: #0044BB;
+        border-radius: 25px;
+        width: 80px;
+    }
+.submitButton:hover,
+    .submitButton:focus,
+    .submitButton:active    {
+        background-color: #0044BB;
+        color: #FFF;
+        border-color: #0044BB;
+    }
 </style>
 @stop
 
@@ -92,7 +107,7 @@
             <input type="text" class="form-control" name="teacher" required>
         </div>
         <div>
-            <button id="submit_btn" class="btn btn-primary" type="submit">送出</button>
+            <button id="submit_btn" class="btn btn-primary submitButton" type="submit">送出</button>
             <!-- <button type="button" class="btn btn-success " data-toggle="modal" data-target="#excelModal2">Excel匯入固定多筆資料 -->
     </button>
         </div>
@@ -195,8 +210,11 @@ $( document ).ready(function(){
           curDay = this.get('select', 'ddd');
 
           /* select option的text更新 */
-          $(".create_classTime").html(''); // 讓原有select options清空
-          populateDay(".create_classTime");
+          if(curDay){
+            $(".create_classTime").html(''); // 讓原有select options清空
+            populateStartDay(".select_start");
+            populateEndDay(".select_end");
+          } 
         }
     });
 
@@ -205,22 +223,39 @@ $( document ).ready(function(){
         formatSubmit: 'yyyy-mm-dd',
     });
 
-    function populateDay(selector) {
+    function populateStartDay(selector) {
         $(selector).html(''); // 讓原有select options清空
         $(selector)
-          .append('<option value="1">'+curDay+'_1'+'</option>')
-          .append('<option value="2">'+curDay+'_2'+'</option>')
-          .append('<option value="3">'+curDay+'_3'+'</option>')
-          .append('<option value="4">'+curDay+'_4'+'</option>')
-          .append('<option value="noon">'+curDay+'_noon'+'</option>')
-          .append('<option value="5">'+curDay+'_5'+'</option>')
-          .append('<option value="6">'+curDay+'_6'+'</option>')
-          .append('<option value="7">'+curDay+'_7'+'</option>')
-          .append('<option value="8">'+curDay+'_8'+'</option>')
-          .append('<option value="9">'+curDay+'_9'+'</option>')
-          .append('<option value="A">'+curDay+'_A'+'</option>')
-          .append('<option value="B">'+curDay+'_B'+'</option>')
-          .append('<option value="C">'+curDay+'_C'+'</option>')
+          .append('<option value="1">'+curDay+'_1'+' (08:00)</option>')
+          .append('<option value="2">'+curDay+'_2'+' (09:00)</option>')
+          .append('<option value="3">'+curDay+'_3'+' (10:00)</option>')
+          .append('<option value="4">'+curDay+'_4'+' (11:00)</option>')
+          .append('<option value="noon">'+curDay+'_noon'+' (12:00)</option>')
+          .append('<option value="5">'+curDay+'_5'+' (13:00)</option>')
+          .append('<option value="6">'+curDay+'_6'+' (14:00)</option>')
+          .append('<option value="7">'+curDay+'_7'+' (15:00)</option>')
+          .append('<option value="8">'+curDay+'_8'+' (16:00)</option>')
+          .append('<option value="9">'+curDay+'_9'+' (17:00)</option>')
+          .append('<option value="A">'+curDay+'_A'+' (18:00)</option>')
+          .append('<option value="B">'+curDay+'_B'+' (19:00)</option>')
+          .append('<option value="C">'+curDay+'_C'+' (20:00)</option>')
+    }
+    function populateEndDay(selector) {
+        $(selector).html(''); // 讓原有select options清空
+        $(selector)
+          .append('<option value="1">'+curDay+'_1'+' (08:50)</option>')
+          .append('<option value="2">'+curDay+'_2'+' (09:50)</option>')
+          .append('<option value="3">'+curDay+'_3'+' (10:50)</option>')
+          .append('<option value="4">'+curDay+'_4'+' (11:50)</option>')
+          .append('<option value="noon">'+curDay+'_noon'+' (12:50)</option>')
+          .append('<option value="5">'+curDay+'_5'+' (13:50)</option>')
+          .append('<option value="6">'+curDay+'_6'+' (14:50)</option>')
+          .append('<option value="7">'+curDay+'_7'+' (15:50)</option>')
+          .append('<option value="8">'+curDay+'_8'+' (16:50)</option>')
+          .append('<option value="9">'+curDay+'_9'+' (17:50)</option>')
+          .append('<option value="A">'+curDay+'_A'+' (18:50)</option>')
+          .append('<option value="B">'+curDay+'_B'+' (19:50)</option>')
+          .append('<option value="C">'+curDay+'_C'+' (20:50)</option>')
     }
 
 
