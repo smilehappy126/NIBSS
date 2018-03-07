@@ -378,10 +378,10 @@
                             @endforeach
                         </select>
                         <h2>借用項目：</h2>  
-                        <select id="myItem1" class="form-control , item"  name="item[]" onmouseover="selnum()"  required>
-                                
+                        <select id="myItem1" class="form-control , item"  name="item[]" onchange="selnum()"   required>
+                                <option disabled selected  label="請選擇借用物品"></option>
                              @foreach($items as $item)
-                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" class="{{ $item->usingnum }}" name="{{ $item->itemgroup }}" label="{{ $item->itemname }}">
+                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" class="{{ $item->usingnum }}" name="{{ $item->itemgroup }}" label="{{ $item->itemname }}" >
 
                                     </option>
                                     
@@ -526,16 +526,12 @@
     {
         var $I1 = $("#"+kind).find(":selected").val();
         $('#'+object).find('option').each(function(){
-           
-                if($(this).parent().is("span"))
-                {
-                    $(this).unwrap();
-                }
-            var x = $(this).attr("name");
-                if(x !== $I1)
-                {
-                    $(this).wrap("<span style='display:none'></span>");
-                }
+           $(this).toggle(false);
+           var x =  $(this).attr("name");
+           if(x == $I1)
+           {
+            $(this).toggle(true);
+           }
         });
 
     }
@@ -546,9 +542,9 @@
 
     {
 
-        var id = $("#" + object).find(":selected").attr("id");
+        var id = $('#' + object).find(":selected").attr("id");
         var g3 = parseInt(id, 10);
-        var choosenum = $("#" + object).find(":selected").attr("class");
+        var choosenum = $('#' + object).find(":selected").attr("class");
         var g4 = parseInt(choosenum, 10);
         var g5 = g3 - g4;
         document.getElementById('' + number).value= 0;
