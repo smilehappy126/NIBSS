@@ -372,17 +372,16 @@
                         <hr class="hr1" />
                         <h2>借用種類：</h2>
                         <select id="myGroup1" class="form-control ,itemgroup" width="auto" name="itemgroup" onchange="selitem()" >
-                                <option disabled selected>請選擇借用種類</option>
+                                <option disabled selected label="請選擇借用種類"></option>
                             @foreach($itemgroups as $itemgroup)
                                 <option value="{{ $itemgroup->groupname }}">{{ $itemgroup->groupname }}</option>
                             @endforeach
                         </select>
                         <h2>借用項目：</h2>  
-                        <select id="myItem1" class="form-control , item"  name="item[]" onchange="selnum()"  required>
-                                <option disabled selected>借用項目</option>
+                        <select id="myItem1" class="form-control , item"  name="item[]" onmouseover="selnum()"  required>
+                                
                              @foreach($items as $item)
-                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" class="{{ $item->usingnum }}" label="{{ $item->itemname }}">
-                                    {{ $item->itemgroup }}
+                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" class="{{ $item->usingnum }}" name="{{ $item->itemgroup }}" label="{{ $item->itemname }}">
 
                                     </option>
                                     
@@ -526,25 +525,27 @@
     function selitem()
     {
         var $I1 = $("#"+kind).find(":selected").val();
-        var $L2 = document.getElementById(''+ object).length;
-        var g2 = document.getElementById(''+ object);
-        for (var i = 0; i < $L2; i++) 
-        {
-            document.getElementById(''+ object).options[i].setAttribute("hidden", true);
-        }
-        for (var i = 0; i < $L2; i++) 
-        {
-            var x =g2.options[i].text;
-            if(x == $I1)
-            {
-                document.getElementById(''+ object).options[i].removeAttribute("hidden", true);
-            }
-        }       
-        
+        $('#'+object).find('option').each(function(){
+           
+                if($(this).parent().is("span"))
+                {
+                    $(this).unwrap();
+                }
+            var x = $(this).attr("name");
+                if(x !== $I1)
+                {
+                    $(this).wrap("<span style='display:none'></span>");
+                }
+        });
+
     }
 
-        function selnum()
+        
+    
+    function selnum()
+
     {
+
         var id = $("#" + object).find(":selected").attr("id");
         var g3 = parseInt(id, 10);
         var choosenum = $("#" + object).find(":selected").attr("class");
@@ -554,13 +555,15 @@
         $("#" + number).attr("max", g5);
         document.getElementById('' + using).value = g4;
     }
+    
     function limit()
     {
         
         var x = document.getElementById('' + number).value;
         var y = $("#" + number).attr("max");
         var z =parseInt(x, 10);
-        if (z>y) {
+        if (z>y) 
+        {
             document.getElementById('' + number).value = y;
             alert("已經超過可借用物品數量,最大值為：" + y);
         }        
