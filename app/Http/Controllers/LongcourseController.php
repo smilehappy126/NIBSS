@@ -51,15 +51,20 @@ class LongcourseController extends Controller
      */
     public function store(Request $request)
     {
-        
         $begin = new DateTime( $request->start_date );
         $end = new DateTime( $request->end_date );
-        $mondays = getIntervalMonday($begin, $end);
+
+        $dates = getIntervalDates($begin, $end); // 取每週間隔的日期
         
-        $day = getBeginDay($begin);
+        $mondays = array(); // 調整成星期一
+        foreach($dates as $date){
+          // echo getMonday($date) . "<br>";
+          array_push($mondays, getMonday($date));
+        }
+        
+        $day = getBeginDay($begin); // 取起始日期為星期幾
         
         foreach($mondays as $monday){
-
 
             /* 檢查節次是否重疊 */
             $query = Course::all()->where('roomname', $request->roomname)
@@ -71,9 +76,8 @@ class LongcourseController extends Controller
                     return redirect('inputClass/'.$request->roomname)
                         ->with('alert', '課堂節次有重複!')
                         ->with('weekFirst', $monday);
-                    }
                 }
-
+            }
 
             $course = new Course;
             $course->content = $request->content;
@@ -102,11 +106,15 @@ class LongcourseController extends Controller
                         foreach($value as $v){
                              $begin = new DateTime( $v['start_date'] );
                              $end = new DateTime( $v['end_date'] );
-                             $mondays = getIntervalMonday($begin, $end);
+                             $dates = getIntervalDates($begin, $end);
+                             $mondays = array();
+                             foreach($dates as $date){
+                                array_push($mondays, getMonday($date));
+                             }
                              $day = getBeginDay($begin);
-                            foreach ($mondays as $monday) {
-                            //start_date / end_date要是日期格式
-                            //英文字母需皆為小寫    
+                             foreach ($mondays as $monday) {
+                             //start_date / end_date要是日期格式
+                             //英文字母需皆為小寫    
                                 $insert[] = ['roomname' => $v['roomname'], 'weekFirst' => $monday, 'start_classtime' => $day . "_" .$v['start_classtime'], 'end_classtime' => $day . "_" .$v['end_classtime'], 'teacher' => $v['teacher'], 'content' => $v['content']];
                             }
                         }
@@ -195,58 +203,106 @@ class LongcourseController extends Controller
     }
 }
 
-function getIntervalMonday($begin, $end){  
-    /* 取區間日期的禮拜一
-    (當週任一天的禮拜一是幾號?) */
+// function getIntervalMonday($begin, $end){  
+//     /* 取區間日期的禮拜一
+//     (當週任一天的禮拜一是幾號?) */
     
+//     $beginString = $begin->format("Y-m-d");
+//     $endString = $end->format("Y-m-d");
+    
+//     // 讓起始日期&結束日期成為禮拜一
+//     if(date("w", strtotime($beginString)) == 1){
+//         $beginMon = strtotime($beginString);
+//     }else{
+//         $beginMon = strtotime('last monday', strtotime($beginString));
+//     }
+    
+//     // 結束日期+1天，是為了用DatePeriod的時候，尾巴沒包含
+//     if(date("w", strtotime($endString)) == 1){
+//         $ending = strtotime("+1 day", strtotime($endString));
+//     }else{
+//         //$endMon = strtotime('last monday', strtotime($endString));
+//         $ending = strtotime("last monday +1 day", strtotime($endString)); 
+        
+//     }
+    
+//     $beginMon = date("Y-m-d", $beginMon);
+//     // echo "begin Monday is " . $beginMon . "<br>";
+//     $beginMon = new DateTime($beginMon);
+    
+//     $ending = date("Y-m-d", $ending);
+//     // echo "endMon plus one day is " . $ending . "<br>";
+//     $ending = new DateTime($ending);
+    
+    
+//     $interval = new DateInterval('P1D');
+//     $period = new DatePeriod($beginMon, $interval, $ending);
+    
+//     $dates = array();// 區間內的所有日期
+//     $mondays = array(); // 區間內的禮拜一
+    
+//     // $dates陣列內放置$date(格式為"Y-m-d")
+//     foreach($period as $date){
+//         //$dates[] = $date->format("Y-m-d");
+//         array_push($dates, $date->format("Y-m-d"));
+//     }
+    
+//     // 列出日期區間為Monday的
+//     foreach($dates as $date){
+//         if(date("w", strtotime($date)) == 1){
+//             array_push($mondays, $date);
+//         }
+//     }
+    
+//     return $mondays;
+// }
+
+function getIntervalDates($begin, $end){
+    /* 輸入起始、結束日期(DateTime)，
+       回傳起始日期~結束日期之間，每週間隔的日期(即相同星期的日期)(String)。
+       ex: begin = 2018-03-07(星期三)
+           end = 2018-03-20
+           回傳(2018-03-07, 2018-03-14)
+       -----------------------
+       parameters
+          begin, end: DateTime
+       return
+          dates: String array
+       -----------------------
+    */
     $beginString = $begin->format("Y-m-d");
     $endString = $end->format("Y-m-d");
-    
-    // 讓起始日期&結束日期成為禮拜一
-    if(date("w", strtotime($beginString)) == 1){
-        $beginMon = strtotime($beginString);
-    }else{
-        $beginMon = strtotime('last monday', strtotime($beginString));
+
+    $beginT = strtotime($beginString); // unix time
+    $endT = strtotime($endString);
+
+    $dates = array();
+
+    $tmp = $beginT;
+    while($tmp <= $endT){
+        // echo date("Y-m-d", $tmp)."<br>";
+        array_push($dates, date("Y-m-d", $tmp));
+        $tmp = strtotime('+7 day', $tmp);
     }
-    
-    // 結束日期+1天，是為了用DatePeriod的時候，尾巴沒包含
-    if(date("w", strtotime($endString)) == 1){
-        $ending = strtotime("+1 day", strtotime($endString));
-    }else{
-        //$endMon = strtotime('last monday', strtotime($endString));
-        $ending = strtotime("last monday +1 day", strtotime($endString)); 
-        
+
+    return $dates;
+}
+
+function getMonday($dateString){
+    /* 輸入一個(Y-m-d)格式日期(String)，回傳當週週一日期(String)。
+       注意: 此"當週"如reserve頁面中課表所示，(一)(二)(三)(四)(五)(六)(日)為同一週。
+       -----------------------
+       parameters
+          date: String
+       return
+          dateMonday: String
+       -----------------------
+    */
+    if(date("w", strtotime($dateString)) != 1){
+      $dateMonday = date("Y-m-d", strtotime('last monday', strtotime($dateString)));
     }
-    
-    $beginMon = date("Y-m-d", $beginMon);
-    // echo "begin Monday is " . $beginMon . "<br>";
-    $beginMon = new DateTime($beginMon);
-    
-    $ending = date("Y-m-d", $ending);
-    // echo "endMon plus one day is " . $ending . "<br>";
-    $ending = new DateTime($ending);
-    
-    
-    $interval = new DateInterval('P1D');
-    $period = new DatePeriod($beginMon, $interval, $ending);
-    
-    $dates = array();// 區間內的所有日期
-    $mondays = array(); // 區間內的禮拜一
-    
-    // $dates陣列內放置$date(格式為"Y-m-d")
-    foreach($period as $date){
-        //$dates[] = $date->format("Y-m-d");
-        array_push($dates, $date->format("Y-m-d"));
-    }
-    
-    // 列出日期區間為Monday的
-    foreach($dates as $date){
-        if(date("w", strtotime($date)) == 1){
-            array_push($mondays, $date);
-        }
-    }
-    
-    return $mondays;
+
+    return $dateMonday;
 }
 
 function getBeginDay($begin){
