@@ -78,11 +78,6 @@
             <p class="errorMessage" id="err_startDate"></p>
         </div>
         <div class="form-group">
-            <label>課堂結束日期:</label>
-            <input id="end_date" class="end_pickadate form-control" type="text" name="end_date" placeholder="點選以選擇日期" data-value="" required>
-            <p class="errorMessage" id="err_endDate"></p>
-        </div>
-        <div class="form-group">
             <label>起始節次:</label>
             <select class="form-control select_start create_classTime" name="start_classTime">
                 <option disabled selected>請先選擇課堂起始日期</option>
@@ -97,7 +92,11 @@
         <div>
             <p class="errorMessage" id="err_classTime"></p>
         </div>
-
+        <div class="form-group">
+            <label>結束重複日期 (重複頻率:每週):</label>
+            <input id="end_date" class="end_pickadate form-control" type="text" name="end_date" placeholder="點選以選擇日期" data-value="" required>
+            <p class="errorMessage" id="err_endDate"></p>
+        </div>
         <div class="form-group">
             <label>內容:</label>
             <input type="text" class="form-control" name="content" required>
