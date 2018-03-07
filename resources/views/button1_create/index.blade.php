@@ -259,6 +259,7 @@
     <!-- novalidate 解決 An invalid form control with name='' is not focusable. -->
             <form action="{{ asset('/create') }}" method="post" id="form5" novalidate>
             {{ csrf_field() }}
+                
                 <ul class="nav nav-tabs">
                     <li class="active" id="L1"><a>Step1 借用人資料</a></li>
                     <li id="L2"><a>Step2 借用項目</a></li>
@@ -337,7 +338,7 @@
                     <div id="borrowClassroom">
                         <div id="classroom" style="display:none;"  >
                             <label><h2>授課教室：</h2></label>
-                            <select class="form-control" name="classroom" id=Sclassroom>
+                            <select class="form-control" name="classroom" id=Sclassroom required>
                                 <option disabled selected>請選擇教室</option>
                             @foreach($classrooms as $classroom)
                                 <option value="{{ $classroom->roomname }}">{{ $classroom->roomname }}</option>
@@ -346,8 +347,8 @@
                         </div>
 
                         <div id="keyselect" style="display:none;">
-                            <label><h2>鑰匙種類：</h2></label>
-                            <select class="form-control" name="key" id="Skey">
+                            <label><h2>鑰匙種類(必填)：</h2></label>
+                            <select class="form-control" name="key" id="Skey" required>
                                 <option disabled selected>請選擇鑰匙</option>
                                 <option value="一般鑰匙">一般鑰匙</option>
                                 <option value="備用鑰匙">備用鑰匙</option>
@@ -380,9 +381,11 @@
                         <select id="myItem1" class="form-control , item"  name="item[]" onchange="selnum()"  required>
                                 <option disabled selected>借用項目</option>
                              @foreach($items as $item)
-                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" label="{{ $item->itemname }}" class="{{ $item->usingnum }}" hidden="true">{{ $item->itemgroup }}
-                                    </option>
+                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" class="{{ $item->usingnum }}" label="{{ $item->itemname }}">
+                                    {{ $item->itemgroup }}
 
+                                    </option>
+                                    
                             @endforeach
 
                         </select>    
@@ -449,13 +452,12 @@
 
         document.getElementById('container1').style.display="none";
         document.getElementById('container2').style.display="inline";
-
+        $('html, body').scrollTop(0);
     }
 
     function selectroom()
     {
-        var $slc1
-            $slc1 = $(':radio[name="needClassroom"]:checked').val();
+        var $slc1 = $(':radio[name="needClassroom"]:checked').val();
         
         if($slc1 == "yes")
         {
@@ -481,8 +483,14 @@
 
     function next()
     {    
+        var $slc1 = $(':radio[name="needClassroom"]:checked').val();
         var $phone = document.getElementById('phone1').value ;
         var regExp = /^[0-9|-]{5,}/;
+
+        /*if($slc1 == "yes"){
+            $(':select[name="needClassroom"]:checked').val()
+            if()
+        }*/
 
         if(regExp.test($phone))
         
@@ -493,6 +501,7 @@
             $("#L2").addClass("active");
             $('#b1').attr('href','#menu1');
             $('#B3').attr('value','#menu1'); 
+            $('html, body').scrollTop(0);
         }
         else
         {
@@ -516,21 +525,22 @@
     }
     function selitem()
     {
-        var $I1 = $("#"+formid).find("select[name='itemgroup']").val();
+        var $I1 = $("#"+kind).find(":selected").val();
         var $L2 = document.getElementById(''+ object).length;
         var g2 = document.getElementById(''+ object);
         for (var i = 0; i < $L2; i++) 
         {
-            document.getElementById(''+ object).options[i].setAttribute("hidden", "true");
+            document.getElementById(''+ object).options[i].setAttribute("hidden", true);
         }
         for (var i = 0; i < $L2; i++) 
         {
             var x =g2.options[i].text;
             if(x == $I1)
             {
-                document.getElementById(''+ object).options[i].removeAttribute("hidden", "false");
+                document.getElementById(''+ object).options[i].removeAttribute("hidden", true);
             }
-        }
+        }       
+        
     }
 
         function selnum()
@@ -540,7 +550,7 @@
         var choosenum = $("#" + object).find(":selected").attr("class");
         var g4 = parseInt(choosenum, 10);
         var g5 = g3 - g4;
-        /*document.getElementById('' + number).value= 0;*/
+        document.getElementById('' + number).value= 0;
         $("#" + number).attr("max", g5);
         document.getElementById('' + using).value = g4;
     }
@@ -638,6 +648,7 @@ $(function()
     $("#L2").removeClass("active");
     $("#L1").addClass("active");
     $('#B2').attr('href','#home');
+    $('html, body').scrollTop(0);
     }
 
     function Previous2() {
@@ -647,6 +658,7 @@ $(function()
     $("#L3").removeClass("active");
     $("#L2").addClass("active");
     $('#B3').attr('href','#menu1');
+    $('html, body').scrollTop(0);
     }
 
     var $s1, $s2, $s3, $s4, $s5 , $s6 ; 
@@ -677,7 +689,7 @@ $(function()
            
 
 
-
+        $('html, body').scrollTop(0);
     }
     /*function send(){
             $("#L3").removeClass("active");

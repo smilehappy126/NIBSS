@@ -38,29 +38,23 @@ class ApplicationController extends Controller
     $num = $request->itemnum;
     $using = $request->usingnum;
     
-    $i=count($eq);
-    /*if($eq !== null){
-        $str_eq = implode(" , ",$eq);
-        $str_num = implode(" , ",$num);
-    }*/
     
     $dt = Carbon::now('Asia/Taipei');
     
-    for ($j=0 ; $j<$i ; $j++) 
-    { 
-    $newusing = $num[$j] + $using[$j];
-
+    $i=count($eq);
+    $j=0;
+    do{
     $application = new Miss;
     $application->name = $request->name;
     $application->class = $request->class;
     
-        if($request->item == null)
+        if($eq[$j] == null)
         {
             $application->item ='無';
             $application->itemnum = 0;
-            $request->usingnum = 0;
+            $using[$j] = 0;
         }
-        if($request->item !== null)
+        if($eq[$j] !== null)
         {
             $application->item =  $eq[$j];
             $application->itemnum = $num[$j];
@@ -71,30 +65,29 @@ class ApplicationController extends Controller
     $application->teacher = $request->teacher;
     $application->phone = $request->phone;
     $application->date = $dt;
-    // echo($application->date);
     $application->status = '待審核';
     $application->audit = '無';
     $application->note7 = $request->note7;
     $application->borrowat = $dt;
     $application->save();
     
-    $upusing=Item::where('itemname','=',$eq[$j]);      
-    $upusing->update(['usingnum'=>$newusing]);
+    if($using[$j] !== 0)
+    {
+        $newusing = $num[$j] + $using[$j];
+        $upusing=Item::where('itemname','=',$eq[$j]);      
+        $upusing->update(['usingnum'=>$newusing]);
     }
+    
+    $j++;
+    }while ($j < $i);
+     
+    
     $update=User::where('email','=',$request->email);      
     $update->update(['phone'=>$request->phone]);
     return redirect('/');
     }
     
     
-
-
-
-    // $socialaccount=SocialAccount::where('email','=',$request->email);
-    // $socialaccount->update(['phone'=>$request->phone])
-     //
- 	
-
 }
 
 
