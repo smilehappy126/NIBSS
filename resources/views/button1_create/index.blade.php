@@ -379,11 +379,12 @@
                         <h2>借用項目：</h2>  
                         <select id="myItem1" class="form-control , item"  name="item[]" onchange="selnum()"  required>
                                 <option disabled selected>借用項目</option>
-                            @foreach($items as $item)
-                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" label="{{ $item->itemname }}" class="{{ $item->usingnum }}" style="display:none;">{{ $item->itemgroup }}
+                             @foreach($items as $item)
+                                    <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" label="{{ $item->itemname }}" class="{{ $item->usingnum }}" hidden="true">{{ $item->itemgroup }}
                                     </option>
 
                             @endforeach
+
                         </select>    
                         <h2>借用數量：</h2>
                         <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5"  onkeyup="limit()" required>   
@@ -520,17 +521,18 @@
         var g2 = document.getElementById(''+ object);
         for (var i = 0; i < $L2; i++) 
         {
-            document.getElementById(''+ object).options[i].setAttribute("style", "display:none");
+            document.getElementById(''+ object).options[i].setAttribute("hidden", "true");
         }
         for (var i = 0; i < $L2; i++) 
         {
             var x =g2.options[i].text;
             if(x == $I1)
             {
-                document.getElementById(''+ object).options[i].removeAttribute("style", "display:none");
+                document.getElementById(''+ object).options[i].removeAttribute("hidden", "false");
             }
         }
     }
+
         function selnum()
     {
         var id = $("#" + object).find(":selected").attr("id");
