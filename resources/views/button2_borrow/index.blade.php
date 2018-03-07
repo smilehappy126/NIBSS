@@ -127,12 +127,14 @@
 	    	font-size: 13px;
 	    	font-family: Microsoft JhengHei;
 	    	font-weight: bolder;
+	    	color: #F5F5F5;
 	    	height: 30px;
-	    	width: 60%;
-	    	background-color: #99BBFF;
+	    	width: 100%;
+	    	background-color: #4169E1;
 	    }
 	    .note7button:hover{
-	    	background-color: #5599FF;
+	    	transition: 0.3s;
+	    	background-color: #483D8B;
 	    }
 	    #ModalEditButton{
         	background-color: #00FA9A;

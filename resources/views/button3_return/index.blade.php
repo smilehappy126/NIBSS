@@ -238,11 +238,11 @@
 	    	color: #F5F5F5;
 	    	height: 30px;
 	    	width: 100%;
-	    	background-color: #4169E1;
+	    	background-color: #008B00;
 	    }
 	    .returnbutton:hover{
 	    	transition: 0.3s;
-	    	background-color: #483D8B;
+	    	background-color: #008B45;
 	    }
     }
 /*End of Mobile CSS Section*/
@@ -474,7 +474,7 @@
 			   						$oldre_email = str_replace('@', '.', $re->email);
             						$re_email = str_replace('.', '', $oldre_email)
 			   						?>
-			   						<button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$re_email}}" style="width: 40%;">{{$re->name}}</button>
+			   						<button class="UserModalButton" data-toggle="modal" data-target="#UserModal{{$re_email}}" style="width: 50%;">{{$re->name}}</button>
 			   					</td>
 			   				@endif
 			   				@if(Auth::user()->level==='一般使用者')
@@ -562,7 +562,7 @@
 						<button id="note7SortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">備註</button>
 					</th>
 					<td class="TableContent" id="note7-{{$re->id}}" >
-						<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$re->id}}" style="width: 40%";>
+						<button class="note7button" type="button" data-toggle="modal" data-target="#Note{{$re->id}}" style="width: 50%";>
 							<span class="glyphicon glyphicon-pencil"></span>
 							備註
 						</button>
@@ -580,7 +580,7 @@
 						<button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
 					</th>
 					<td class="TableContent">
-					 	<button class="returnbutton" type="button" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}">
+					 	<button class="returnbutton" type="button" id="edit-message-{{ $re->id }}" data-toggle="modal" data-target="#myModal{{$re->id}}" style="width: 50%">
 					 		已歸還
 					 	</button>
 					 	</a>
