@@ -15,7 +15,7 @@ class returnController extends Controller
   public function index()
   {
     $users=User::all();
-    $res = Miss::where('status','=','已歸還')->orderBy('date','desc')->get();
+    $res = Miss::where('status','=','已歸還')->orderBy('returnat','desc')->get();
     $reasons = Reason::all();
     return view('button3_return.index',['res'=> $res,'users'=>$users,'reasons'=>$reasons]);
   }
