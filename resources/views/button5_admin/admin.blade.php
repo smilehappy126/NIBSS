@@ -250,7 +250,7 @@
         <!-- End of Search Modal -->
 
         <!-- Violation Modal -->
-        <div id="ViolationModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" style="opacity: 0.9;">
+        <div id="ViolationModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
 
                     <!-- Violation Modal content-->
@@ -286,11 +286,11 @@
                         <div class="modal-footer">
                               <div class="form-group">
                                     <button type="submit" class="btn btn-default" style="font-size: 20px; font-weight: bold;">變更</button>
+                                    </form>
                                     <button type="button" class="btn btn-default" style="font-size: 20px; font-weight: bold;" data-dismiss="modal">Close</button>
                               </div>
                         </div>
                         <!-- End of Modal Footer -->
-                                </form>
                     </div>
                     <!-- End of Violation Modal Conent -->
             </div>
