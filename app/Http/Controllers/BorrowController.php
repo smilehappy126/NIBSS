@@ -16,6 +16,7 @@ class BorrowController extends Controller
 	{
 		$miss = Miss::where('status','=','借用中')
                   ->orWhere('status','=','待審核')
+                  ->orderBy('borrowat','desc')
                   ->paginate(10);
     $number = Miss::where('status','=','借用中')
                   ->orWhere('status','=','待審核')
@@ -70,14 +71,20 @@ class BorrowController extends Controller
   //更新借用者資料
   public function userupdate(Request $rep)
     {
-      $update= User::where('email','=',$rep->useremail);
-      $update->update(['violation'=>$rep->violation]);
-      $reason=new Reason();
-      $reason->user = $rep->username;
-      $reason->phone= $rep->phone;
-      $reason->reason = $rep->reason;
-      $reason->creator = $rep->reasoncreator;
-      $reason->save();
+      $update= User::where('email','=',$rep->useremail)->first();
+      if(($rep->violation)<>($update->violation))
+      {
+          $update->update(['violation'=>$rep->violation]);
+          $reason=new Reason();
+          $reason->user = $rep->username;
+          $reason->phone = $rep->phone;
+          $reason->email = $rep->useremail;
+          $reason->reason = $rep->reason;
+          $reason->violation = $rep->violation;
+          $reason->creator = $rep->reasoncreator;
+          $reason->violationtime = Carbon::now('Asia/Taipei');
+          $reason->save();
+      }
       return redirect('/borrow');
     }
 

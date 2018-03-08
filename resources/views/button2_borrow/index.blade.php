@@ -741,7 +741,7 @@
                                                 <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}" disabled></th></tr>
                                                 <tr><th>電話 :</th> <th><input class="form-control" type="phone" value="{{ $user->phone }}" disabled></th></tr>
                                                 <tr><th>違規點數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}" min="0"></th></tr>
-                                                <tr><th>違規事由 :</th><th> <input  class="form-control" type="text" name="reason" required></th></tr>
+                                                <tr><th>違規事由 :</th><th> <input  class="form-control" id="reasonbox" type="text" name="reason" required></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
                                                         <input class="form-control" type="text" value="{{ $user->level }}" disabled></th>
@@ -751,6 +751,8 @@
                                             <!-- End of Edit Modal Table -->
                                             <input name="useremail" value="{{$user->email}}" hidden >
                                             <!-- ↑視為傳遞User email的變數 不會顯示在頁面上 -->
+                                            <input name="phone" value="{{$user->phone}}" hidden >
+                                            <!-- ↑視為傳遞User phone的變數 不會顯示在頁面上 -->
                                             <input name="username" value="{{$user->name}}" hidden >
                                             <!-- ↑視為傳遞User names的變數 不會顯示在頁面上 -->
                                             @if(Auth::check())

@@ -266,7 +266,7 @@
                 </tr>
             </table>
       </div>
-      <label style="font-family: Microsoft JhengHei;">※代表有備註</label>
+      <label class="PCsection" style="font-family: Microsoft JhengHei;">※代表有備註</label>
       
       <!-- Table Head -->
       <div class="TableTop">
@@ -739,7 +739,7 @@
                                                 <tr><th>信箱 :</th> <th><input  class="form-control" type="email" name="email" value="{{ $user->email }}" disabled></th></tr>
                                                 <tr><th>電話 :</th> <th><input class="form-control" type="phone" value="{{ $user->phone }}" disabled></th></tr>
                                                 <tr><th>違規點數 :</th><th> <input  class="form-control" type="number" name="violation" value="{{ $user->violation }}" min="0"></th></tr>
-                                                <tr><th>違規事由 :</th><th> <input  class="form-control" type="text" name="reason" required></th></tr>
+                                                <tr><th>違規事由 :</th><th> <input  class="form-control" id="reasonbox" type="text" name="reason" required></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
                                                         <input class="form-control" type="text" value="{{ $user->level }}" disabled></th>
@@ -964,6 +964,7 @@
 
 @section('js')
 <script>
+//表單排序
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("content");
@@ -1018,6 +1019,8 @@ function sortTable(n) {
     }
   }
 }
+
+
 </script>
 @stop
 
