@@ -367,7 +367,7 @@
                 </div>
  
                 <div id="menu1" class="tab-pane fade">
-                    <div id="myForm1" onmouseover="chooseid(this)">
+                    <div id="myForm1" onpointerover="chooseid(this)">
                         <br>
                         <hr class="hr1" />
                         <h2>借用種類：</h2>
@@ -524,9 +524,9 @@
     }
     function selitem()
     {
-        var $I1 = $("#"+kind).find(":selected").val();
         $('#'+object).find('option').each(function(){
            $(this).toggle(false);
+           var $I1 = $("#"+kind).find(":selected").val();
            var x =  $(this).attr("name");
            if(x == $I1)
            {
