@@ -16,6 +16,7 @@ class BorrowController extends Controller
 	{
 		$miss = Miss::where('status','=','借用中')
                   ->orWhere('status','=','待審核')
+                  ->orderBy('borrowat','desc')
                   ->paginate(10);
     $number = Miss::where('status','=','借用中')
                   ->orWhere('status','=','待審核')
