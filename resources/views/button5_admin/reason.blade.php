@@ -57,19 +57,18 @@
         font-weight: bold;
     }
     .EditButton{
+        border-width: 0px;
+        border-radius: 7px;
+        font-size: 13px;
         font-family: Microsoft JhengHei;
-        text-align: center;
-        font-size: 17px;
-        border-width: 1px;
-        border-radius: 40px;
-        width: 70px;
+        font-weight: bolder;
+        height: 30px;
+        width: 70%;
         background-color: #D8BFD8;
-        transition: 0.3s;
     }
     .EditButton:hover{
-        width: 100px;
-        background-color: antiquewhite;
         transition: 0.3s;
+        background-color: antiquewhite;
     }
     .searchUser{
         background-color: transparent;
@@ -136,19 +135,19 @@
         font-size: 20px;
     }
     .EditButton{
+        border-width: 0px;
+        border-radius: 7px;
+        font-size: 13px;
         font-family: Microsoft JhengHei;
-        text-align: center;
-        font-size: 14px;
-        border-width: 1px;
-        border-radius: 40px;
-        width: 70px;
+        font-weight: bolder;
+        color: #F5F5F5;
+        height: 30px;
+        width: 80%;
         background-color: #D8BFD8;
-        transition: 0.3s;
     }
     .EditButton:hover{
-        width: 100px;
-        background-color: antiquewhite;
         transition: 0.3s;
+        background-color: antiquewhite;
     }
     .resetButton{
         width:100px ;
@@ -196,7 +195,7 @@
 @stop
 
 @section('content')
-<div class="container" style=" padding-top: 0px;">
+<div class="container" style=" width: 90%; padding-top: 0px;">
   @if(Auth::check())
     @if((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     <!-- PC section -->
