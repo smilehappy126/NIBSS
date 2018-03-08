@@ -358,8 +358,8 @@
 				@foreach($res as $re)
 				<tr class="contentdata" id="tr-{{$re->id}}">
 					<td id="id-{{$re->id}}">{{$re->id}}</td>
-					<td id="date-{{$re->id}}">{{$re->borrowat}}</td>
-					<td id="date-{{$re->id}}">{{$re->returnat}}</td>
+					<td id="borrowdate-{{$re->id}}">{{$re->borrowat}}</td>
+					<td id="returndate-{{$re->id}}">{{$re->returnat}}</td>
 					<td id="class-{{$re->id}}">{{$re->class}}</td>
 					@if (Route::has('login'))
 						@if (Auth::check())
@@ -448,7 +448,7 @@
 	  				<th class="TableTop" style="text-align: center;">
 						<button id="dateSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">歸還日期</button>
 					</th>
-					<td class="TableContent" id="date-{{$re->id}}">
+					<td class="TableContent" id="returndate-{{$re->id}}">
 						{{$re->returnat}}
 					</td>
 				</tr>
