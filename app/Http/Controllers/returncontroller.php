@@ -36,7 +36,10 @@ class returnController extends Controller
       $update->update(['note7'=>$rep->note7]);
       if ($rep->status === '已歸還') {
         $update->update(['returnat'=>$rep->returnat]);
-      }elseif($rep->status==='借用中'){
+      }elseif($rep->status==='借用中')
+       //只有當物品不為空值，才會處理物品數量的扣減
+       if(($rep->item)<>null)
+      {
         $usingitem = Item::where('itemname','=',$rep->item)->first();
         $oldnum = $usingitem->usingnum;
         $newnum = $oldnum + $rep->itemnum;
