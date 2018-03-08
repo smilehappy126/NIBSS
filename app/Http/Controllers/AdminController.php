@@ -81,27 +81,36 @@ class AdminController extends Controller
         $update->update(['borrowat'=>$rep->date]);
         //若是由已歸還變更成借用中，借用中的物品數量會加回去
         if (($rep->oldstatus)==='已歸還') {
-          $usingitem = Item::where('itemname','=',$rep->item)->first();
-          $oldnum = $usingitem->usingnum;
-          $newnum = $oldnum + $rep->itemnum;
-          $usingitem->update(['usingnum'=>$newnum]);
+          if(($rep->item)<>null)
+          {
+            $usingitem = Item::where('itemname','=',$rep->item)->first();
+            $oldnum = $usingitem->usingnum;
+            $newnum = $oldnum + $rep->itemnum;
+            $usingitem->update(['usingnum'=>$newnum]);
+          }
         }
       }elseif (($rep->status)==='已歸還') {
         $update->update(['returnat'=>$rep->date]);
         // 若是由借用中變更成已歸還，借用中的物品數量會減去
         if (($rep->oldstatus)==='借用中') {
-          $usingitem = Item::where('itemname','=',$rep->item)->first();
-          $oldnum = $usingitem->usingnum;
-          $newnum = $oldnum - $rep->itemnum;
-          $usingitem->update(['usingnum'=>$newnum]);
+          if(($rep->item)<>null)
+          {
+            $usingitem = Item::where('itemname','=',$rep->item)->first();
+            $oldnum = $usingitem->usingnum;
+            $newnum = $oldnum - $rep->itemnum;
+            $usingitem->update(['usingnum'=>$newnum]);
+          }
         }
       }elseif (($rep->status)==='待審核') {
         //若是由已歸還變更成借用中，借用中的物品數量會加回去
         if (($rep->oldstatus)==='已歸還') {
-          $usingitem = Item::where('itemname','=',$rep->item)->first();
-          $oldnum = $usingitem->usingnum;
-          $newnum = $oldnum + $rep->itemnum;
-          $usingitem->update(['usingnum'=>$newnum]);
+          if(($rep->item)<>null)
+          {
+            $usingitem = Item::where('itemname','=',$rep->item)->first();
+            $oldnum = $usingitem->usingnum;
+            $newnum = $oldnum + $rep->itemnum;
+            $usingitem->update(['usingnum'=>$newnum]);
+          }
         }
       }
 
