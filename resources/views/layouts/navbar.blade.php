@@ -312,7 +312,7 @@
         @endif
         @if (Route::has('login'))
             @if(Auth::check())
-                @if( (Auth::user()->level)==='管理員')
+                @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
         <!-- PC版本 搜尋放左邊 -->
         <div class="PCSection">
             <li style="right: 350px; bottom:6px; position: absolute;"><button class="SearchButton" type="button" data-toggle="modal" data-target="#SearchModal">搜尋</button></li> 

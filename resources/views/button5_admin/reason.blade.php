@@ -140,7 +140,6 @@
         font-size: 13px;
         font-family: Microsoft JhengHei;
         font-weight: bolder;
-        color: #F5F5F5;
         height: 30px;
         width: 80%;
         background-color: #D8BFD8;
@@ -230,16 +229,25 @@
                       <button id="phoneSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">電話</button>
                   </th>
                   <th style="text-align: center;">
-                      <button id="reasonSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">違規原因</button>
+                      <button id="emailSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
                   </th>
                   <th style="text-align: center;">
-                      <button id="deletereasonSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">撤銷原因</button>
+                      <button id="reasonSortButton" type="button" onclick="sortTable(3)" style="border-radius: 100px; border: none; background-color: transparent;">違規原因</button>
                   </th>
                   <th style="text-align: center;">
-                      <button id="userviolationSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">違規點數</button>
+                      <button id="violationtimeSortButton" type="button" onclick="sortTable(4)" style="border-radius: 100px; border: none; background-color: transparent;">違規時間</button>
                   </th>
                   <th style="text-align: center;">
-                      <button id="creatorSortButton" type="button" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
+                      <button id="deletereasonSortButton" type="button" onclick="sortTable(5)" style="border-radius: 100px; border: none; background-color: transparent;">撤銷原因</button>
+                  </th>
+                  <th style="text-align: center;">
+                      <button id="offsettimeSortButton" type="button" onclick="sortTable(6)" style="border-radius: 100px; border: none; background-color: transparent;">撤銷時間</button>
+                  </th>
+                  <th style="text-align: center;">
+                      <button id="userviolationSortButton" type="button" onclick="sortTable(7)" style="border-radius: 100px; border: none; background-color: transparent;">違規點數</button>
+                  </th>
+                  <th style="text-align: center;">
+                      <button id="creatorSortButton" type="button" onclick="sortTable(8)" style="border-radius: 100px; border: none; background-color: transparent;">負責人</button>
                   </th>
                   @if ((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
                   <th style="text-align: center;">
@@ -256,8 +264,11 @@
               <tr>
                   <th style="text-align: center;">{{ $reason->user }}</th>
                   <th style="text-align: center;">{{ $reason->phone }}</th>
+                  <th style="text-align: center;">{{ $reason->email }}</th>
                   <th style="text-align: center;">{{ $reason->reason}}</th>
+                  <th style="text-align: center;">{{ $reason->violationtime }}</th>
                   <th style="text-align: center;">{{ $reason->deletereason}}</th>
+                  <th style="text-align: center;">{{ $reason->offsettime }}</th>
                   <th style="text-align: center;">{{$reason->violation}}</th>
                   <th style="text-align: center;">{{ $reason->creator }}</th>
                   @if ((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
@@ -317,6 +328,14 @@
               </tr>
               <tr>
                   <th style="text-align: center;" class="TableTitle">
+                      <button id="emailSortButton" type="button" onclick="sortTable(0)" style="border-radius: 100px; border: none; background-color: transparent;">信箱</button>
+                  </th>
+                  <th style="text-align: center;" class="TableContent">
+                    {{ $reason->email }}
+                  </th>
+              </tr>
+              <tr>
+                  <th style="text-align: center;" class="TableTitle">
                       <button id="reasonSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">違規原因</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
@@ -325,10 +344,26 @@
               </tr>
               <tr>
                   <th style="text-align: center;" class="TableTitle">
+                      <button id="reasonSortButton" type="button" onclick="sortTable(1)" style="border-radius: 100px; border: none; background-color: transparent;">違規時間</button>
+                  </th>
+                  <th style="text-align: center;" class="TableContent">
+                    {{ $reason->violationtime }}
+                  </th>
+              </tr>
+              <tr>
+                  <th style="text-align: center;" class="TableTitle">
                       <button id="deletereasonSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">撤銷原因</button>
                   </th>
                   <th style="text-align: center;" class="TableContent">
                     {{ $reason->deletereason }}
+                  </th>
+              </tr>
+              <tr>
+                  <th style="text-align: center;" class="TableTitle">
+                      <button id="deletereasonSortButton" type="button" onclick="sortTable(2)" style="border-radius: 100px; border: none; background-color: transparent;">撤銷時間</button>
+                  </th>
+                  <th style="text-align: center;" class="TableContent">
+                    {{ $reason->offsettime }}
                   </th>
               </tr>
               <tr>
@@ -399,7 +434,7 @@
                                                 <tr><th>違規原因 :</th> <th><input  class="form-control" type="text" name="reason" value="{{ $reason->reason }}"></th></tr>
                                                 <tr><th>撤銷原因 :</th> <th><input  class="form-control" type="text" name="deletereason" value="{{ $reason->deletereason }}"></th></tr>
                                                 <tr><th>違規點數 :</th> <th><input  class="form-control" type="number" min="0" name="violation" value="{{$reason->violation}}"></th></tr>
-                                                <tr><th>負責人 :</th><th> <input  class="form-control" type="text" name="creator" value="{{ $reason->creator }}"></th></tr>
+                                                <tr><th>負責人 :</th><th> <input  class="form-control" type="text" name="creator" value="{{ $reason->creator }}" disabled></th></tr>
                                             </table>
                                             <!-- End of Edit Modal Table -->
                                         </div>
@@ -449,7 +484,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 <form action="{{ asset ('/admin/searchReason')}}" method="post" style="width: 100%;">{{ csrf_field()}}
-                                    <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp</label>
+                                    <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp;</label>
                                     <input  class="searchcontent" name="searchname" id="searchname" type="text"  placeholder="請輸入..."  value="" style="width: 70%;" autofocus>
                             </div>    
                         </div>
@@ -491,8 +526,7 @@
 
 @section('js')
 <script>
-
-  
+//表單排序  
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("content");
@@ -547,6 +581,7 @@ function sortTable(n) {
     }
   }
 }
+
 </script>
 
 @stop

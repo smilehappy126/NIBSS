@@ -301,14 +301,16 @@ class AdminController extends Controller
     //編輯違規紀錄
     public function updateReasons(Request $rep, $id){
       $update = Reason::find($id);
-      $update->update(['phone'=>$rep->phone]);
-      $update->update(['reason'=>$rep->reason]);
-      $update->update(['deletereason'=>$rep->deletereason]);
-      $update->update(['creator'=>$rep->creator]);
-      $update->update(['violation'=>$rep->violation]);
-
-      $user = User::where('phone','=',$rep->phone);
-      $user->update(['violation'=>$rep->violation]);
+      if(($update->deletereason)<>'無資料')
+      {
+        $update->update(['phone'=>$rep->phone]);
+        $update->update(['reason'=>$rep->reason]);
+        $update->update(['deletereason'=>$rep->deletereason]);
+        $update->update(['violation'=>$rep->violation]);
+        $update->update(['offsettime'=>Carbon::now('Asia/Taipei')]);
+        $user = User::where('phone','=',$rep->phone);
+        $user->update(['violation'=>$rep->violation]);
+      }
       return redirect('/admin/reasons');
     }
     //搜尋違規紀錄
@@ -317,7 +319,7 @@ class AdminController extends Controller
                       ->orWhere('phone','like','%'.$rep->searchname.'%')
                       ->orWhere('reason','like','%'.$rep->searchname.'%')
                       ->orWhere('creator','like','%'.$rep->searchname.'%')
-                      ->get();
+                      ->paginate(10);
       return view('button5_admin.reason',['reasons'=>$reasons]);
     }
 }
