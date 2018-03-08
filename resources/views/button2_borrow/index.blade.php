@@ -346,7 +346,7 @@
 
 		<!-- Table Content -->
 		<div class="TableContent">
-			<table class="table" style="table-layout: fixed; text-align: center" >
+			<table class="table" id="content" style="table-layout: fixed; text-align: center" >
 				@foreach($miss as $mis)
 				<tr class="contentdata" id="tr-{{$mis->id}}">
 					<!-- 序號 -->
