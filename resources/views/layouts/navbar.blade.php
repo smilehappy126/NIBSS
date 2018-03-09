@@ -101,77 +101,53 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            .btn-outline {
+                background-color: inherit;
+                color: inherit;
+                transition: all .5s;
+                border-color: inherit;
+                border-radius: 25px;
+                padding-top: 3px;
+                padding-bottom: 4px;
+                padding-left: 8px;
+                padding-right: 8px;
+                font-weight: bold;
+            }
+            .brButton.btn-outline{
+                color: #D87093;
+                border-color: #D87093;
+            }
+            .brButton.btn-outline:hover{
+                color: #fff;
+                border-color:  transparent;
+                background-color: #F08080;
+            }
+            .LoginButton.btn-outline{
+                color: #4682B4;
+                border-color: #4682B4;
+            }
+            .LoginButton.btn-outline:hover{
+                color: #fff;
+                border-color:  transparent;
+                background-color: #B0C4DE;
+            }
+            .LogoutButton.btn-outline{
+                color:  #FF6347;
+                border-color:   #FF6347;
+            }
+            .LogoutButton.btn-outline:hover{
+                color: #fff;
+                border-color:  transparent;
+                background-color: #CD5C5C;
+            }
             .SearchButton{
-                transition: 0.3s;
-                cursor: pointer;
-                font-family: Microsoft JhengHei;
-                font-size: 20px;
-                font-weight: bolder;
-                border-width: 0px;
-                width: 100px;
-                height: 40px;
-                border-radius: 100px;
-                background-color: #78B7BB;
+               color: #78B7BB;
+                border-color: #78B7BB;
             }
             .SearchButton:hover{
-                transition: 0.3s;
-                width: 120px;
-                background-color: #3F7B70;
-            }
-            .LoginButton{
-                float: center;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 20px;
-                background-color: #B0C4DE;
-                width: 100px;
-                height: 40px;
-                border-radius: 100px;
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-            }
-            .LoginButton:hover{
-                background-color: #CCDDFF;
-                width:110px;
-                transition: 0.3s;
-            }
-            .LogoutButton{
-                float: center;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 20px;
-                background-color:#FFE4B5;
-                width: 100px;
-                height: 40px;
-                border-radius: 100px;
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-            }
-            .LogoutButton:hover{
-                background-color:#F4A460;
-                width:110px;
-                transition: 0.3s;
-            }
-            .brButton{
-                float: right;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 20px;
-                background-color:#CCCCFF;
-                width: 200px;
-                height: 40px;
-                border-radius: 100px; 
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-            }
-            .brButton:hover{
-                background-color: #E8CCFF;
-                width:210px;
-                transition: 0.3s;
-
+                color: #fff;
+                border-color:  transparent;
+                background-color: #8FBC8F;
             }
     }
     /*End of PC CSS Section*/
@@ -195,77 +171,53 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            .btn-outline {
+                background-color: inherit;
+                color: inherit;
+                transition: all .5s;
+                border-color: inherit;
+                border-radius: 25px;
+                padding-top: 3px;
+                padding-bottom: 4px;
+                padding-left: 8px;
+                padding-right: 8px;
+                font-weight: bold;
+            }
+            .brButton.btn-outline{
+                color: #D87093;
+                border-color: #D87093;
+            }
+            .brButton.btn-outline:hover{
+                color: #fff;
+                border-color:  transparent;
+                background-color: #F08080;
+            }
+            .LoginButton.btn-outline{
+                color: #4682B4;
+                border-color: #4682B4;
+            }
+            .LoginButton.btn-outline:hover{
+                color: #fff;
+                border-color:  transparent;
+                background-color: #B0C4DE;
+            }
+            .LogoutButton.btn-outline{
+                color:  #FF6347;
+                border-color:   #FF6347;
+            }
+            .LogoutButton.btn-outline:hover{
+                color: #fff;
+                border-color:  transparent;
+                background-color: #CD5C5C;
+            }
             .SearchButton{
-                transition: 0.3s;
-                cursor: pointer;
-                font-family: Microsoft JhengHei;
-                font-size: 20px;
-                font-weight: bolder;
-                border-width: 0px;
-                width: 80px;
-                height: 40px;
-                border-radius: 100px;
-                background-color: #78B7BB;
+               color: #78B7BB;
+                border-color: #78B7BB;
             }
             .SearchButton:hover{
-                transition: 0.3s;
-                width: 90px;
-                background-color: #3F7B70;
-            }
-            .LoginButton{
-                float: center;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 16px;
-                background-color: #B0C4DE;
-                width: 80px;
-                height: 40px;
-                border-radius: 100px;
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-            }
-            .LoginButton:hover{
-                background-color: #CCDDFF;
-                width:85px;
-                transition: 0.3s;
-            }
-            .LogoutButton{
-                float: center;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 16px;
-                background-color:#FFE4B5;
-                width: 80px;
-                height: 40px;
-                border-radius: 100px;
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-            }
-            .LogoutButton:hover{
-                background-color:#F4A460;
-                width:85px;
-                transition: 0.3s;
-            }
-            .brButton{
-                float: right;
-                font-family: Microsoft JhengHei;
-                font-weight: bolder;
-                font-size: 16px;
-                background-color:#CCCCFF;
-                width: 180px;
-                height: 40px;
-                border-radius: 100px; 
-                border-width: 0px;
-                transition: 0.3s;
-                cursor: pointer;
-            }
-            .brButton:hover{
-                background-color: #E8CCFF;
-                width:190px;
-                transition: 0.3s;
-
+                color: #fff;
+                border-color:  transparent;
+                background-color: #8FBC8F;
             }
         }
     /*End of Mobile CSS Section*/
@@ -293,16 +245,16 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         @if(Auth::check())
-        <li><a href="{{ url('/create') }}">新增申請單</a></li>
+        <li style="font-size: 18px; font-weight: bold;"><a href="{{ url('/create') }}">新增申請單</a></li>
         @endif  
-        <li><a href="{{ url('/borrow') }}">借用狀況</a></li>
-        <li><a href="{{ url('/return') }}">已歸還資料</a></li>
-        <li><a href="{{ url('/reserve') }}">教室預約狀況</a></li>
+        <li style="font-size: 18px; font-weight: bold;"><a href="{{ url('/borrow') }}">借用狀況</a></li>
+        <li style="font-size: 18px; font-weight: bold;"><a href="{{ url('/return') }}">已歸還資料</a></li>
+        <li style="font-size: 18px; font-weight: bold;"><a href="{{ url('/reserve') }}">教室預約狀況</a></li>
         <!-- 管理者模式 -->
         @if (Route::has('login'))
             @if(Auth::check())
                 @if( (Auth::user()->level)==='管理員')   
-                    <li>
+                    <li style="font-size: 18px; font-weight: bold;">
                         <a  style="color: rgb(255, 145, 145); font-family: Microsoft JhengHei;" href="{{ url('/admin') }}">管理者專區</a>
                     </li>
                 @endif
@@ -315,22 +267,22 @@
                 @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
         <!-- PC版本 搜尋放左邊 -->
         <div class="PCSection">
-            <li style="right: 350px; bottom:6px; position: absolute;"><button class="SearchButton" type="button" data-toggle="modal" data-target="#SearchModal">搜尋</button></li> 
+            <li style="right: 330px; bottom:6px; position: absolute;"><button class="btn-outline SearchButton" type="button" data-toggle="modal" data-target="#SearchModal">搜尋</button></li> 
         </div>
         <!-- Mobile版本 搜尋放左邊 -->
         <div class="MobileSection">
-            <li><button class="SearchButton" type="button" data-toggle="modal" data-target="#SearchModal">搜尋</button></li> 
+            <li><button class="btn-outline SearchButton" type="button" data-toggle="modal" data-target="#SearchModal">搜尋</button></li> 
         </div>
                @endif
             @endif
         @endif
         <!-- PC版本 書籍借用放中間 -->
         <div class="PCSection">
-            <li style="right: 134px; bottom:6px; position: absolute;"><button class="brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
+            <li style="right: 120px; bottom:6px; position: absolute;"><button class="btn-outline brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
         </div>
         <!-- Mobile版本 書籍借用放中間 -->
         <div class="MobileSection">
-            <li style="right: 100px; bottom:6px; position: absolute;"><button class="brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
+            <li style="right: 105px; bottom:6px; position: absolute;"><button class="btn-outline brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
         </div>
     <!-- PC版本登入登出 -->
         <!-- 登出登入按鍵 -->
@@ -339,7 +291,7 @@
                     @if (Auth::check())
                         <form action=" {{ asset('/logout') }}" method="post" >{{ csrf_field() }} 
                           <li class="dropdown-submenu" style="right: 20px; bottom:6px; position: absolute;">
-                            <button class="LogoutButton" type="submit">Logout </button>
+                            <button class="btn-outline LogoutButton" type="submit">Logout </button>
                           </li>  
                         </form>
                     @else
@@ -350,9 +302,9 @@
         @unless(Auth::check())
             <div class="LoginPanel PCSection">
                 <!-- Trigger the LoginModal with a button -->
-                <li style="right: 20px; bottom:6px; position: absolute;">
+                <li style="right: 35px; bottom:6px; position: absolute;">
                     <a>
-                        <button class="LoginButton" type="button" onclick="location.href='/signin'">Login</button>
+                        <button class="btn-outline LoginButton" type="button" onclick="location.href='/signin'">Login</button>
                     </a>
                 </li>
             </div>
@@ -366,7 +318,7 @@
                     @if (Auth::check())
                         <form action=" {{ asset('/logout') }}" method="post" >{{ csrf_field() }} 
                           <li class="dropdown-submenu" style="right: 10px; bottom: 6px; position: absolute;">
-                            <button class="LogoutButton" type="submit">Logout </button>
+                            <button class="btn-outline LogoutButton" type="submit">Logout </button>
                           </li>  
                         </form>
                     @endif
@@ -377,7 +329,7 @@
                 <!-- Trigger the LoginModal with a button -->
                 <li style="right: 10px; bottom:6px; position: absolute;">
                     <a>
-                        <button class="LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
+                        <button class="btn-outline LoginButton" type="button" data-toggle="modal" data-target="#LoginModal">Login</button>
                     </a>
                 </li>
             </div>
