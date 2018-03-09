@@ -447,8 +447,8 @@
                 @unless(Auth::check())
                 <br>
                 <div class="portaldiv">
-                    <!-- <button class="portalLogin" type="button" onclick="location.href='/signin'">Login via Portal</button> -->
-                    <button class="portalLogin" type="button" onclick="newlogin()">Login via Portal</button>
+                    <button class="portalLogin" type="button" onclick="location.href='/signin'">Login via Portal</button>
+                    <!-- <button class="portalLogin" type="button" onclick="newlogin()">Login via Portal</button> -->
                     <br><br>              
                     <!-- Trigger the Login modal with a button -->
                     <button class="emailLogin" data-toggle="modal" data-target="#LoginModal">Email Login</button>
