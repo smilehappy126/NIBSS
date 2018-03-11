@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Session\Store;
+use Session;
 
 class SessionTimeout {
 
