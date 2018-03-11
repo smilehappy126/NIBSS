@@ -282,7 +282,7 @@
         </div>
         <!-- Mobile版本 書籍借用放中間 -->
         <div class="MobileSection">
-            <li style="right: 105px; bottom:6px; position: absolute;"><button class="btn-outline brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
+            <li style="right: 100px; bottom:6px; position: absolute;"><button class="btn-outline brButton" type="button" onclick="location.href='http://140.115.80.30:81/phpbook/'">書籍借用與預約系統</button></li> 
         </div>
     <!-- PC版本登入登出 -->
         <!-- 登出登入按鍵 -->
