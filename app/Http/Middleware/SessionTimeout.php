@@ -29,8 +29,11 @@ class SessionTimeout {
             $this->session->forget('lastActivityTime');
             $cookie = cookie('intend', $isLoggedIn ? url()->current() : '/');
             $email = $request->user()->email;
+            Session::flush();
             auth()->logout();
-            return message('You had not activity in '.$this->timeout/60 .' minutes ago.', 'warning', 'login')->withInput(compact('email'))->withCookie($cookie);
+            return redirect('/');
+            // auth()->logout();
+            // return route('login')->withInput(['email'=>$email])->withCookie($cookie);
         }
         $isLoggedIn ? $this->session->put('lastActivityTime', time()) : $this->session->forget('lastActivityTime');
         return $next($request);

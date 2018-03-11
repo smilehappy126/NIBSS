@@ -84,7 +84,7 @@ class ApplicationController extends Controller
     
     $update=User::where('email','=',$request->email);      
     $update->update(['phone'=>$request->phone]);
-    return redirect('/');
+    return redirect('/borrow');
     }
     
     

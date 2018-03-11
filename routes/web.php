@@ -16,6 +16,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/auth/provider/callback', 'SigninController@callback');
     Route::get('/logout', 'SigninController@logout');
 });
+Route::group(['middleware' => 'timeout'], function () {
 //起始頁
 Route::get('/','MyLoginController@welcome');
 //登入驗證
@@ -122,3 +123,4 @@ Route::get('/logout', 'MyLoginController@logout');
 	Route::post('/admin/searchReason','AdminController@searchReason');
 
 Route::get('/home', 'MyLoginController@afterlogin')->name('home');
+});
