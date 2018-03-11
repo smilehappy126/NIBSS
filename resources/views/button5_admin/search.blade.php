@@ -585,7 +585,7 @@
           <!-- 編輯資料 -->
           @if (Route::has('login'))
               @if (Auth::check())
-                @if( (Auth::user()->level)==='管理員')
+                @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
           <tr>
               <th style="text-align: center;">
                 <button id="editSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
