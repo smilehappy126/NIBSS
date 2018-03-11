@@ -493,7 +493,7 @@
                             <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                         @if (Route::has('login'))
                             @if(Auth::check())
-                                @if( (Auth::user()->level)==='管理員')   
+                                @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')   
                                 <br>
                                 <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
                                 @endif
@@ -513,7 +513,7 @@
                             <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                         @if (Route::has('login'))
                             @if(Auth::check())
-                                @if( (Auth::user()->level)==='管理員')   
+                                @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')  
                                 <br>
                                 <button class="adminpage" type="button" onclick="location.href='/admin'">管理者專區</button>
                                 @endif
@@ -536,7 +536,7 @@
                             <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                         @if (Route::has('login'))
                             @if(Auth::check())
-                                @if( (Auth::user()->level)==='管理員')   
+                                @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')  
                             |<a  href="{{ url('/admin') }}">管理者專區</a>
                                 @endif
                             @endif
@@ -555,7 +555,7 @@
                             <a  href="{{ url('http://140.115.80.30:81/phpbook/') }}">書籍借用與預約系統</a>
                         @if (Route::has('login'))
                             @if(Auth::check())
-                                @if( (Auth::user()->level)==='管理員')   
+                                @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')   
                              <br>  <a  href="{{ url('/admin') }}">管理者專區</a>
                                 @endif
                             @endif

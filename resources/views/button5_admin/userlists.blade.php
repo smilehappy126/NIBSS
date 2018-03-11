@@ -339,7 +339,7 @@
                     {{ $user->level }}
                   </th>
               </tr>
-              @if((Auth::user()->level)==='管理員')
+              @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
               <tr>
                   <th style="text-align: center;" class="TableTitle">
                       <button id="levelSortButton" type="button" disabled style="border-radius: 100px; border: none; background-color: transparent;">修改資料</button>
@@ -390,16 +390,26 @@
                                                 <tr><th>違規點數 :</th><th> <input  class="form-control" type="number" name="violation" min="0" value="{{ $user->violation }}"></th></tr>
                                                 <tr><th>權限等級 :</th>
                                                     <th> 
-                                                        <select class="form-control" name="level" value="{{ $user->level }}" required>
-                                                            <!-- <option value="" disabled selected hidden></option> -->
+                                                        <!-- 當權限為工讀生時，工讀生不得更改管理者的權限 -->
+                                                        <select class="form-control" name="level" value="{{ $user->level }}" required @if(($user->level)==='管理員')
+                                                          @if(Auth::check())
+                                                          @if((Auth::user()->level)==='工讀生')
+                                                          disabled
+                                                          @endif
+                                                          @endif
+                                                          @endif>
                                                             <option value="管理員" @if(($user->level)==='管理員')selected @endif>管理員</option>
                                                             <option value="工讀生" @if(($user->level)==='工讀生')selected @endif>工讀生</option>
                                                             <option value="一般使用者" @if(($user->level)==='一般使用者') selected @endif>一般使用者</option>
                                                         </select>
                                                     </th>
                                                 </tr>
-                                                <input type="text" name="oldphone" value="{{$user->phone}}" style="display: none;">
+                                                <input type="text" name="oldphone" value="{{$user->phone}}" hidden>
                                                 <!-- ↑視為傳遞原本電話的變數 不會顯示在頁面上 -->
+                                                <input type="text" name="oldemail" value="{{$user->email}}" hidden>
+                                                <!-- ↑視為傳遞原本信箱的變數 不會顯示在頁面上 -->
+                                                <input type="text" name="authuser" value="{{Auth::user()->level}}" hidden>
+                                                 <!-- ↑視為傳遞當前使用者的變數， 不會顯示在頁面上 -->
                                             </table>
                                             <!-- End of Edit Modal Table -->
                                         </div>

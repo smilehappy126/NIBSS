@@ -213,7 +213,7 @@
           目前清單
         </div>
         @if(Auth::check())
-            @if(Auth::user()->level === '管理員')
+            @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
                 <div class="content" style="position: relative;">
                     <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
                         <tr class="TableHead">
