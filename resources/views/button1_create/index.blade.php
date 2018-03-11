@@ -53,7 +53,20 @@
         border-width: 0px;
         margin-top: 30px;
         margin-right: 10px;
-        transition: 0.3s;
+        cursor: pointer;
+    }   
+    .removeFormButton{
+        float:center;
+        font-family: Microsoft JhengHei;
+        font-weight: bolder;
+        font-size: 20px;
+        background-color: #B0C4DE;
+        width: 135px;
+        height: 40px;
+        border-radius: 100px;
+        border-width: 0px;
+        margin-top: 30px;
+        margin-right: 10px;
         cursor: pointer;
     }   
     }
@@ -129,13 +142,7 @@
     .optionRadio2{
         border-radius: 50%;
     }
-    /*上下一步按鈕*/
-    .nextButton{
-        margin-top:50px; 
-    }
-    .previousButton{
 
-    }
     /*新增刪除按鈕*/
     .phone_border{
         margin-bottom:20px;
@@ -165,7 +172,6 @@
         width: 15%;
         transition: 0.3s;
     }
-    }
     .removeFormButton{
         float:center;
         font-family: Microsoft JhengHei;
@@ -188,6 +194,9 @@
         width: 15%;
         transition: 0.3s;
     }
+
+    }
+    
     .hr1{   
         height:10px;
         border:none;
@@ -362,7 +371,7 @@
                         </div>
                     </div>
                     <div align="middle">
-                        <button type="button" class="addFormButton next1Button" onclick="next()" id="b1"" >下一步</button>
+                        <button type="button" class="addFormButton " onclick="next()" id="b1" >下一步</button>
                     </div>
                 </div>
  
@@ -391,7 +400,7 @@
                         <h2>借用數量：</h2>
                         <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5"  onkeyup="limit()" required>   
                     
-                        <input type="text" id="myUsing1"  name="usingnum[]" style="display:none;">
+                        <input type="text" id="myUsing1"  name="usingnum[]" style="display:none">
 
 
                     </div> 
@@ -401,14 +410,14 @@
 
             
                     <div>
-                        <button type="button" id="appendForm" class="addFormButton" onclick="appendForm()">點此借用更多</button>
+                        <button type="button" id="appendForm" class="addFormButton" onclick="appendForm()">借用更多</button>
                         
                     </div>   
             
                     <div>
-                        <button type="button" class="addFormButton next1Button" onclick="Previous1()" 
+                        <button type="button" class="addFormButton " onclick="Previous1()" 
                         id="B2">上一步</button>
-                        <button type="button" data-toggle="tab" class="removeFormButton next1Button" onclick="confirm()" 
+                        <button type="button" data-toggle="tab" class="removeFormButton " onclick="confirm()" 
                         id="b2">確定</button>
                     </div>
                 </div>
@@ -419,10 +428,10 @@
                     <h2>借用備註：</h2>
                         <input type="text"  class="form-control" id="note7" name="note7" placeholder="如有特殊需求請告知" required>
                     <div>
-                        <button type="button" class="addFormButton next1Button" onclick="Previous2()" 
+                        <button type="button" class="addFormButton " onclick="Previous2()" 
                         id="B3">上一步</button>
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                        <button type="button"  class="removeFormButton next1Button" id="b3" onclick="send()">送出申請</button>
+                        <button type="button"  class="removeFormButton " id="b3" onclick="send()">送出申請</button>
                     </div>
                 </div>
                     @if(Auth::check())
@@ -431,7 +440,6 @@
                     @endif
             </form>
         </div> 
-    </div>
     @endif
 </div>  
 
@@ -494,12 +502,13 @@
         if(regExp.test($phone))
         
         {
-            document.getElementById('home').style.display="none";
+            
             document.getElementById('menu1').style.display="inline";
+            document.getElementById('home').style.display="none";
             $("#L1").removeClass("active");
             $("#L2").addClass("active");
-            $('#b1').attr('href','#menu1');
-            $('#B3').attr('value','#menu1'); 
+            $("#home").removeClass("in active");
+            $("#menu1").addClass("in active");
             $('html, body').scrollTop(0);
         }
         else
@@ -524,13 +533,16 @@
     }
     function selitem()
     {
+        var $I1 = $("#"+kind).find(":selected").val();
+
         $('#'+object).find('option').each(function(){
            $(this).toggle(false);
-           var $I1 = $("#"+kind).find(":selected").val();
+           $(this).attr("disabled","disabled");
            var x =  $(this).attr("name");
            if(x == $I1)
            {
             $(this).toggle(true);
+            $(this).removeAttr("disabled","disabled");
            }
         });
 
@@ -603,7 +615,7 @@ $(function()
     $("[id=removeButton]").click(function(myform)
     {
         // 刪除當前的myForm表單並重置id
-        form.remove();
+        $(this).closest(form).remove();
         var myforms = $("[id^=myForm]");
         var newId = 1;
             myforms.each(function()
@@ -630,14 +642,7 @@ $(function()
             
         
         
-        /*if(formCount !== 1)
-        {
-            $("[id^=myForm]:last").remove();
-            formCount-=1;
-            if(formCount == 1){
-                document.getElementById('removeButton').style.display="none";
-            }
-       }*/
+       
     }); 
 });
     
@@ -646,7 +651,8 @@ $(function()
     document.getElementById('menu1').style.display="none";
     $("#L2").removeClass("active");
     $("#L1").addClass("active");
-    $('#B2').attr('href','#home');
+    $("#menu1").removeClass("in active");
+    $("#home").addClass("in active");
     $('html, body').scrollTop(0);
     }
 
@@ -656,15 +662,17 @@ $(function()
     document.getElementById('menu2').style.display="none";
     $("#L3").removeClass("active");
     $("#L2").addClass("active");
-    $('#B3').attr('href','#menu1');
+    $("#menu2").removeClass("in active");
+    $("#menu1").addClass("in active");
     $('html, body').scrollTop(0);
     }
 
     var $s1, $s2, $s3, $s4, $s5 , $s6 ; 
     
     function confirm(){
-        document.getElementById('menu1').style.display="none";
+
         document.getElementById('menu2').style.display="inline";
+        document.getElementById('menu1').style.display="none"; 
         $s5 = document.getElementById("username").value;
         $s6 = $("[id^=myForm]").size();
         $("#confirm").empty();
