@@ -325,7 +325,7 @@
              <!-- 編輯資料 -->
             @if (Route::has('login'))
               @if (Auth::check())
-                @if( (Auth::user()->level)==='管理員')
+                @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
               <th style="text-align: center;">
                 <button id="editSortButton" type="button" onclick="sortTable(12)"  style="border-radius: 100px; border: none; background-color: transparent;">編輯資料</button>
               </th>
@@ -377,7 +377,7 @@
             <td id="audit-{{$mis->id}}">{{$mis->audit}}</td>
             @if (Route::has('login'))
               @if (Auth::check())
-                @if( (Auth::user()->level)==='管理員')
+                @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
                   @if(($mis->status)==='借用中')
                   <td>
                     <button class="EditButton"  type="button" style="background-color: #5599FF;" data-toggle="modal" data-target="#myModal{{$mis->id}}">
@@ -492,7 +492,7 @@
           <!-- 電話 -->
             @if (Route::has('login'))
               @if (Auth::check())
-                @if ((Auth::user()->level)==='管理員')
+                @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
           <tr>
               <th style="text-align: center;"">
                 <button id="phoneSortButton" type="submit" disabled style="border-radius: 100px; border: none; background-color: transparent;">電話</button>

@@ -253,7 +253,7 @@
         <!-- 管理者模式 -->
         @if (Route::has('login'))
             @if(Auth::check())
-                @if( (Auth::user()->level)==='管理員')   
+                @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生') 
                     <li style="font-size: 18px; font-weight: bold;">
                         <a  style="color: rgb(255, 145, 145); font-family: Microsoft JhengHei;" href="{{ url('/admin') }}">管理者專區</a>
                     </li>
