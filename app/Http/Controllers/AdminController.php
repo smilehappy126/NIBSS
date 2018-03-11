@@ -35,10 +35,22 @@ class AdminController extends Controller
       $update->update(['email'=>$rep->email]);
       $update->update(['phone'=>$rep->phone]);
       $update->update(['violation'=>$rep->violation]);
-      $update->update(['level'=>$rep->level]);
+      //如果要求變更為管理員，使用者的權限必須為管理員
+      if (($rep->authuser)==='管理員') {
+        $update->update(['level'=>$rep->level]);
+      }else{
+        if (($rep->oldlevel)==='管理員') {
+          // Do Nothing
+        }else{
+          $update->update(['level'=>$rep->level]);
+        }
+      }
       // 更改使用者電話，借用資料記錄裡面一併更改
       $miss=Miss::where('phone','=',$rep->oldphone);
       $miss->update(['phone'=>$rep->phone]);
+      // 更改使用者信箱，借用資料記錄裡面一併更改
+      $miss=Miss::where('email','=',$rep->oldemail);
+      $miss->update(['email'=>$rep->email]);
       // 檢查違規紀錄中是否有此使用者，一併修改他的違規點數
       $reason = Reason::where('phone','=',$rep->phone);
       if(count($reason)==1){

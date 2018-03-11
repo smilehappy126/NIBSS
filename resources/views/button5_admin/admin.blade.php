@@ -97,7 +97,7 @@
           管理者專區
         </div>
         @if(Auth::check())
-    		@if(Auth::user()->level === '管理員')
+    		@if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     			<div class="content" style="position: relative;">
     				<table class="table" style="border: 0px;  table-layout: fixed; text-align: center;">
     					<tr>
@@ -136,7 +136,7 @@
     		@endif
     	@endif
     	
-    	@unless(Auth::user()->level === '管理員')
+    	@unless((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
     		<div class="content">
     			<label class="notice">只限管理員使用，請先登入!!!</label>
     		</div>
@@ -151,7 +151,7 @@
           管理者專區
         </div>
         @if(Auth::check())
-            @if(Auth::user()->level === '管理員')
+            @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
                 <div class="content" style="position: relative;">
                     <table class="table" style="border: 0px; height: 100%; table-layout: fixed; text-align: center;">
                         <tr>
@@ -193,7 +193,7 @@
             @endif
         @endif
         
-        @unless(Auth::user()->level === '管理員')
+        @unless((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
             <div class="content">
                 <label class="notice">只限管理員使用，請先登入!!!</label>
             </div>
