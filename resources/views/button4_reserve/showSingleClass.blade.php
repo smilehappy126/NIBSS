@@ -145,7 +145,37 @@
         color: #007acc;
         background-color: #CCDDFF;
         transition: 0.3s;
-    }   
+    }
+
+/* custom-menu */
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+    padding: 0;
+    font-family: Microsoft JhengHei;
+}
+
+/* Each of the items in the list */
+.custom-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+    list-style-type: none;
+    transition: all .3s ease;
+    user-select: none;
+}
+
+.custom-menu li:hover {
+    background-color: #DEF;
+}
+
 </style>
 @stop 
 
@@ -1119,6 +1149,19 @@ $nextString = date('Y-m-d',$next);
 <!--modal 要放哪: 放div container外面-->
 <!--div container好像沒包好?? 包好包滿才能work-->
 
+@if (Route::has('login'))
+    @if (Auth::check())
+        @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
+            
+            <span>
+                <ul class="custom-menu"></ul>
+            </span>
+
+        @endif
+    @endif
+@endif
+
+
 @endsection 
 
 @section('js')
@@ -1136,7 +1179,7 @@ var start=-1;
 var end=-1;
 
 var curId;
-
+var menuState = 0; // right click menu
 
 $( document ).ready(function() {
 
@@ -1172,7 +1215,8 @@ $( document ).ready(function() {
                         var form_delete = $("<form/>", 
                                          { action:"{{ asset('reserve/deleteCourse/'.$course->id) }}",
                                            method:"post",
-                                           class:"deleteCourse"
+                                           class:"deleteCourse",
+                                           id:"deleteCourse{{$course->id}}",
                                          }
                         );
                         form_delete.append( 
@@ -1189,11 +1233,11 @@ $( document ).ready(function() {
                                     value:"delete" }
                                )
                         );
-                        form_delete.append( 
-                             $("<button>刪除</button>", 
-                                  { type:"submit" }
-                               )
-                        );
+                        // form_delete.append( 
+                        //      $("<button>刪除</button>", 
+                        //           { type:"submit" }
+                        //        )
+                        // );
                         /* end */
 
                         //加入刪除課程按鈕至table
@@ -1217,37 +1261,56 @@ $( document ).ready(function() {
         @endif
     @endforeach
     
-
-    /* 按下課表內格子顯示cellModal */
-    $(".Curriculum").click(function() {
-        
+    var showModalHandler = function(){
         /* 有課程資料的Modal部分用foreach (每個課都有自己的modal，再去對應顯示) */
         
-          // 取得<td>中的課程id
-          var thisId = $(this).children("p.cell_id").text();
-        
-          if(thisId == ""){ // 沒資料: 進入新增課程Modal
-              $("#cellModal_create").modal("show");
-          }else{ // 有資料: 修改Modal
-              $("#cellModal"+thisId).modal("show");
-              curId = thisId;
-          }
-          
-          /* ps: 可以這樣取<td>內的資料 */
-//        var thisId = $(this).children("p.cell_id").text();
-//        var thisContent = $(this).children("p.cell_content").text();
-//        var thisTeacher = $(this).children("p.cell_teacher").text();
-//        var thisStart = $(this).children("p.cell_start_classTime").text();
-//        var thisEnd = $(this).children("p.cell_end_classTime").text();
+        // if right click menu is opened
+        if(menuState == 1){
+            return;
+        }
 
-    });
+        // 取得<td>中的課程id
+        var thisId = $(this).children("p.cell_id").text();
+
+        if(thisId == ""){ // 沒資料: 進入新增課程Modal
+          $("#cellModal_create").modal("show");
+        }else{ // 有資料: 修改Modal
+          $("#cellModal"+thisId).modal("show");
+          curId = thisId;
+        }
+    };
+
+    /* 按下課表內格子顯示cellModal */
+    $(".Curriculum").on("click", showModalHandler);
+//     $(".Curriculum").click(function() {
+        
+//         /* 有課程資料的Modal部分用foreach (每個課都有自己的modal，再去對應顯示) */
+        
+//           // 取得<td>中的課程id
+//           var thisId = $(this).children("p.cell_id").text();
+        
+//           if(thisId == ""){ // 沒資料: 進入新增課程Modal
+//               $("#cellModal_create").modal("show");
+//           }else{ // 有資料: 修改Modal
+//               $("#cellModal"+thisId).modal("show");
+//               curId = thisId;
+//           }
+          
+//           /* ps: 可以這樣取<td>內的資料 */
+// //        var thisId = $(this).children("p.cell_id").text();
+// //        var thisContent = $(this).children("p.cell_content").text();
+// //        var thisTeacher = $(this).children("p.cell_teacher").text();
+// //        var thisStart = $(this).children("p.cell_start_classTime").text();
+// //        var thisEnd = $(this).children("p.cell_end_classTime").text();
+
+//     });
     
     /* 刪除課程按鈕，阻止修改modal被呼叫 */
     $(".deleteCourse").click(function(){
         //終止事件傳導
         event.stopPropagation();
     });
-    
+
 
     /* 根據目前星期幾，顯示cellModal中不同的select option */
     $(".Curriculum").click(function() {
@@ -1624,7 +1687,96 @@ $( document ).ready(function() {
     });
     
 
-});
-</script>
+    /*------------right click menu------------*/
 
+    // Trigger action when the contexmenu is about to be shown
+    $(".Curriculum").bind("contextmenu", function(event) {
+        
+        // Avoid the real one
+        event.preventDefault();
+        
+        $(".custom-menu").css("top", event.pageY);
+        $(".custom-menu").css("left", event.pageX);
+
+        /* 放入右鍵目錄選項 */
+        $(".custom-menu").html('');
+        var thisId = $(this).children("p.cell_id").text();
+
+        if(thisId == ""){
+            return;
+        }else{    
+            $(".custom-menu").append("<li id='menu_first'>刪除單筆課程</li>");
+            $("#menu_first").attr("onclick", "deleteSingle("+thisId+");");
+            // $(".custom-menu").append("<li id='menu_second' onclick='deleteSeries();'>刪除課程系列</li>");
+        }
+
+        // Show contextmenu
+        // $(".custom-menu").finish().toggle(100);
+        menuState = 1;
+        $(".custom-menu").fadeIn(200, startFocusOut());
+        
+    });
+
+    function startFocusOut(){
+        $(document).on("click",function(){
+            $(".custom-menu").hide();        
+            menuState = 0;
+        });
+    }
+
+    function keyupListener(){
+        window.onkeyup = function(e){
+            if(e.keyCode === 27){
+                $(".custom-menu").hide();
+            }
+        };
+    }
+    function resizeListener(){
+        window.onresize = function(e){
+            $(".custom-menu").hide();
+        };
+    }
+    keyupListener();
+    resizeListener();
+        
+    // $(document).on("click", function (e) {
+        
+    //     // If the clicked element is not the menu
+    //     if (!$(e.target).parents(".custom-menu").length) {
+
+    //         // Hide it
+    //         $(".custom-menu").hide(100);
+    //         menuState = 0;
+    //     }
+  
+    // });
+
+    // If the menu element is clicked
+    // $(".custom-menu li").click(function(){
+
+    //     // This is the triggered action name
+    //     switch($(this).attr("data-action")) {
+            
+    //         // A case for each action. Your actions here
+    //         case "first": alert("刪除單筆課程"); break;
+    //         case "second": alert("刪除課程系列"); break;
+    //     }
+      
+    //     // Hide it AFTER the action was triggered
+    //     $(".custom-menu").hide(100);
+    // });
+    
+    /*------------end right click menu------------*/
+
+});
+
+function deleteSingle(id){
+    // alert("刪除單筆課程" + id);
+    $("#deleteCourse"+id).submit();
+}
+function deleteSeries(){
+    alert("刪除課程系列");
+}
+
+</script>
 @stop
