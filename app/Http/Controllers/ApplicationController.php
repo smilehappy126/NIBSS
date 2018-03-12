@@ -51,7 +51,7 @@ class ApplicationController extends Controller
         if($eq[$j] == null)
         {
             $application->item ='無';
-            $application->itemnum = 0;
+            $application->itemnum = null;
             $using[$j] = 0;
         }
         if($eq[$j] !== null)

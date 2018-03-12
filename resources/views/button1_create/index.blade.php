@@ -386,16 +386,21 @@
                                 <option value="{{ $itemgroup->groupname }}">{{ $itemgroup->groupname }}</option>
                             @endforeach
                         </select>
-                        <h2>借用項目：</h2>  
-                        <select id="myItem1" class="form-control , item"  name="item[]" onchange="selnum()"   required>
-                                <option disabled selected  label="請選擇借用物品"></option>
-                             @foreach($items as $item)
+
+                        <div style="display:none;">
+                        <select id=cloneItem>
+                            @foreach($items as $item)
                                     <option value="{{ $item->itemname }}" id="{{ $item->itemnum }}" class="{{ $item->usingnum }}" name="{{ $item->itemgroup }}" label="{{ $item->itemname }}" >
 
                                     </option>
                                     
                             @endforeach
+                        </select>
+                        </div>
 
+                        <h2>借用項目：</h2> 
+                        <select id="myItem1" class="form-control , item"  name="item[]" onchange="selnum()"  required>
+                                
                         </select>    
                         <h2>借用數量：</h2>
                         <input type="number" id="myNum1" class="form-control" name="itemnum[]" min="0" max="5"  onkeyup="limit()" required>   
@@ -531,11 +536,30 @@
                            .attr("id");
         
     }
+    
+        var clickCount = 1;
     function selitem()
     {
         var $I1 = $("#"+kind).find(":selected").val();
+        var select = $("#cloneItem").clone();
+        $("#"+object).find('option').remove();
+        $("#"+object).append($("<option></option>").attr("disabled", "disabled")
+                                                   .attr("value","0")
+                                                    .text("選擇借用物品"));
+        $(select).find('option').each(function(){
+        var x = $(this).attr("name");
+        if(x == $I1)
+        {
+            var options = $(this).clone();
+            $("#"+object).append(options);
+        }
+            $("#"+object).find('option').eq(0).prop("selected","true");
+            
+            
+        });
+        document.getElementById('' + number).value= 0;
 
-        $('#'+object).find('option').each(function(){
+        /*$('#'+object).find('option').each(function(){
            $(this).toggle(false);
            $(this).attr("disabled","disabled");
            var x =  $(this).attr("name");
@@ -544,7 +568,7 @@
             $(this).toggle(true);
             $(this).removeAttr("disabled","disabled");
            }
-        });
+        });*/
 
     }
 
@@ -559,7 +583,6 @@
         var choosenum = $('#' + object).find(":selected").attr("class");
         var g4 = parseInt(choosenum, 10);
         var g5 = g3 - g4;
-        document.getElementById('' + number).value= 0;
         $("#" + number).attr("max", g5);
         document.getElementById('' + using).value = g4;
     }
