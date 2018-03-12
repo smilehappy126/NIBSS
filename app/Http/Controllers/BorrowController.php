@@ -43,7 +43,7 @@ class BorrowController extends Controller
       if ($rep->status === '已歸還') 
       {
         $update->update(['returnat'=>Carbon::now('Asia/Taipei')]);
-        //只有當物品不為空值，才會處理物品數量的扣減
+        //當物品不為空值，處理物品數量的扣減
         if(($rep->item)<>null)
         {
           //若是物品從待審核或借用中 => 已歸還，借用中的物品數量減去
@@ -60,6 +60,15 @@ class BorrowController extends Controller
   //刪除借用資料
   public function delete(Request $rep, $id){
       $delete = Miss::find($id);
+      //當物品不為空值，處理物品數量的扣減
+      if(($delete->item)<>null)
+      {
+        //物品被刪除後，借用中的物品數量減去
+        $usingitem = Item::where('itemname','=',$delete->item)->first();
+        $oldnum = $usingitem->usingnum;
+        $newnum = $oldnum - $delete->itemnum;
+        $usingitem->update(['usingnum'=>$newnum]);
+        }
       $delete->delete();
 
       return redirect('/borrow');
