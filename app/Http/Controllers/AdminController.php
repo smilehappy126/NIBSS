@@ -61,6 +61,9 @@ class AdminController extends Controller
     //使用者清單的搜尋功能
     public function searchUser(Request $rep){
       $users=User::where('name','like','%'.$rep->searchname.'%')
+                  ->orWhere('level','like','%'.$rep->searchname.'%')
+                  ->orWhere('email','like','%'.$rep->searchname.'%')
+                  ->orWhere('phone','like','%'.$rep->searchname.'%')
               ->paginate(10);
       return view('button5_admin.userlists',['users'=>$users]);
     }
