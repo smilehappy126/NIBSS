@@ -9,7 +9,7 @@ use Session;
 class SessionTimeout {
 
     protected $session;
-    protected $timeout = 60;
+    protected $timeout = 180;
 
     public function __construct(Store $session){
         $this->session = $session;
