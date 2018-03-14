@@ -57,20 +57,20 @@
         font-weight: bold;
     }
     .contentData:hover{
-      background-color: #CCBBFF;
+        background-color: #CCBBFF;
     }
     .EditButton{
+        border-width: 0px;
+        border-radius: 7px;
+        font-size: 15px;
+        font-weight: bolder;
         font-family: Microsoft JhengHei;
-        text-align: center;
-        font-size: 17px;
-        border-width: 1px;
-        border-radius: 40px;
-        width: 70px;
+        font-weight: bolder;
+        height: 30px;
+        width: 100%;
         background-color: #D8BFD8;
-        transition: 0.3s;
     }
     .EditButton:hover{
-        width: 100px;
         background-color: antiquewhite;
         transition: 0.3s;
     }
@@ -139,17 +139,17 @@
         font-size: 20px;
     }
     .EditButton{
+        border-width: 0px;
+        border-radius: 7px;
+        font-size: 15px;
+        font-weight: bolder;
         font-family: Microsoft JhengHei;
-        text-align: center;
-        font-size: 14px;
-        border-width: 1px;
-        border-radius: 40px;
-        width: 70px;
+        font-weight: bolder;
+        height: 30px;
+        width: 100%;
         background-color: #D8BFD8;
-        transition: 0.3s;
     }
     .EditButton:hover{
-        width: 100px;
         background-color: antiquewhite;
         transition: 0.3s;
     }
@@ -218,7 +218,7 @@
             </th>
             <th style="text-align: right;">
                 <div class="searchUser">
-                    <button class="searchButton" id="searchButton" type="button" data-toggle="modal" data-target="#SearchModal">搜尋<span class="glyphicon glyphicon-chevron-right"></span></button>
+                    <button class="searchButton" id="searchButton" type="button" data-toggle="modal" data-target="#SearchUserModal">搜尋<span class="glyphicon glyphicon-chevron-right"></span></button>
                 </div>
             </th>
           </tr>
@@ -441,7 +441,7 @@
 
   <!-- ↓↓↓ Modal Section ↓↓↓ -->
     <!-- Search Modal -->
-        <div id="SearchModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1" style="opacity: 0.9;">
+        <div id="SearchUserModal" class="modal fade" role="dialog" aria-hidden="true" tabindex="-1">
             <div class="modal-dialog">
     <!-- Search Modal content-->
                 <div class="modal-content">
@@ -458,7 +458,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
-                                <form action="{{ asset ('/admin/searchUser')}}" method="post" style="width: 100%;">{{ csrf_field()}}
+                                <form id="9876543" action="{{ asset ('/admin/searchUser')}}" method="post" style="width: 100%;">{{ csrf_field()}}
                                     <label style="font-family: Microsoft JhengHei; height: 50px;font-size: 30px;">搜尋:&nbsp;</label>
                                     <input  class="searchcontent" name="searchname" id="searchname" type="text"  placeholder="請輸入名字..."  value="" style="width: 70%;" autofocus>
                             </div>    
@@ -480,7 +480,9 @@
             </div>
         </div>        
         <!-- End of Search Modal -->
+
 <!-- ↑↑↑ End of Modal Section ↑↑↑ -->
+
   @endif <!-- Auth::user()->level -->
   @unless((Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
   <div class="content">
