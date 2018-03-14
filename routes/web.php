@@ -50,7 +50,6 @@ Route::post('/return/reasonupdate','returncontroller@reasonupdate');
 
 
 
-
 //教室預約狀況(主畫面，教室列表)
 Route::get('/reserve', 'CourseController@index');
 //教室預約狀況(點選教室後)
@@ -68,12 +67,13 @@ Route::post('reserve/createCourse', 'CourseController@create');
 Route::post('/reserve/updateCourse/{id}','CourseController@update');
 //刪除課程資料
 Route::delete('reserve/deleteCourse/{id}','CourseController@destroy');
+//刪除課程系列
+Route::delete('reserve/deleteCourseSeries/{series_id}', 'LongcourseController@destroy');
 
 
 //新增教室資料
 Route::get('/newclassroom', 'ClassroomController@newClassroomPage');
 Route::post('/newclassroom/create', 'ClassroomController@store');
-
 //修改教室資料
 Route::get('/editclassroom', 'ClassroomController@editClassroomPage');
 Route::post('/editclassroom/{id}','ClassroomController@update');
@@ -82,11 +82,12 @@ Route::delete('/editclassroom/{classroom}','ClassroomController@destroy');
 
 //固定課程預約
 Route::get('/inputClass/{roomname}', 'LongcourseController@index');
-//新增多筆
 Route::post('/inputClass/save', 'LongcourseController@store');
 //固定課程excel
 Route::post('/inputClass/importExcel', 'LongcourseController@importExcel');
 Route::get('/longdownloadExcel', 'LongcourseController@downloadExcel');
+
+
 
 // Login驗證
 Auth::routes();

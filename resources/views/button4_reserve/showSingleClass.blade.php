@@ -311,6 +311,7 @@ $nextString = date('Y-m-d',$next);
             <td>0800 至 0850</td>
             <td class="Curriculum" id="Mon_1">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -318,6 +319,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_1">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -325,6 +327,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_1">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -332,6 +335,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_1">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -339,6 +343,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_1">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -346,6 +351,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_1">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -353,6 +359,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_1">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -364,6 +371,7 @@ $nextString = date('Y-m-d',$next);
             <td>0900 至 0950</td>
             <td class="Curriculum" id="Mon_2">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime" hidden></p>
@@ -371,6 +379,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_2">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -378,6 +387,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_2">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -385,6 +395,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_2">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -392,6 +403,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_2">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -399,6 +411,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_2">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -406,6 +419,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_2">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -417,6 +431,7 @@ $nextString = date('Y-m-d',$next);
             <td>1000 至 1050</td>
             <td class="Curriculum" id="Mon_3">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -424,6 +439,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_3">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -431,6 +447,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_3">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -438,6 +455,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_3">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -445,6 +463,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_3">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -452,6 +471,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_3">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -459,6 +479,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_3">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -470,6 +491,7 @@ $nextString = date('Y-m-d',$next);
             <td>1100 至 1150</td>
             <td class="Curriculum" id="Mon_4">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -477,6 +499,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_4">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -484,6 +507,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_4">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -491,6 +515,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_4">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -498,6 +523,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_4">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -505,6 +531,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_4">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -512,6 +539,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_4">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -523,6 +551,7 @@ $nextString = date('Y-m-d',$next);
             <td>1200 至 1250</td>
             <td class="Curriculum" id="Mon_noon">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -530,6 +559,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_noon">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -537,6 +567,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_noon">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -544,6 +575,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_noon">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -551,6 +583,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_noon">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -558,6 +591,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_noon">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -565,6 +599,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_noon">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -576,6 +611,7 @@ $nextString = date('Y-m-d',$next);
             <td>1300 至 1350</td>
             <td class="Curriculum" id="Mon_5">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -583,6 +619,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_5">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -590,6 +627,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_5">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -597,6 +635,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_5">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -604,6 +643,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_5">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -611,6 +651,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_5">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -618,6 +659,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_5">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -629,6 +671,7 @@ $nextString = date('Y-m-d',$next);
             <td>1400 至 1450</td>
             <td class="Curriculum" id="Mon_6">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -636,6 +679,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_6">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -643,6 +687,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_6">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -650,6 +695,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_6">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -657,6 +703,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_6">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -664,6 +711,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_6">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -671,6 +719,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_6">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -682,6 +731,7 @@ $nextString = date('Y-m-d',$next);
             <td>1500 至 1550</td>
             <td class="Curriculum" id="Mon_7">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -689,6 +739,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_7">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -696,6 +747,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_7">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -703,6 +755,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_7">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -710,6 +763,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_7">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -717,6 +771,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_7">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -724,6 +779,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_7">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -735,6 +791,7 @@ $nextString = date('Y-m-d',$next);
             <td>1600 至 1650</td>
             <td class="Curriculum" id="Mon_8">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -742,6 +799,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_8">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -749,6 +807,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_8">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -756,6 +815,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_8">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -763,6 +823,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_8">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -770,6 +831,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_8">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -777,6 +839,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_8">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -788,6 +851,7 @@ $nextString = date('Y-m-d',$next);
             <td>1700 至 1750</td>
             <td class="Curriculum" id="Mon_9">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -795,6 +859,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_9">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -802,6 +867,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_9">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -809,6 +875,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_9">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -816,6 +883,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_9">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -823,6 +891,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_9">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -830,6 +899,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_9">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -841,6 +911,7 @@ $nextString = date('Y-m-d',$next);
             <td>1800 至 1850</td>
             <td class="Curriculum" id="Mon_A">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -848,6 +919,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_A">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -855,6 +927,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_A">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -862,6 +935,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_A">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -869,6 +943,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_A">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -876,6 +951,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_A">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -883,6 +959,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_A">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -895,6 +972,7 @@ $nextString = date('Y-m-d',$next);
             <td>1900 至 1950</td>
             <td class="Curriculum" id="Mon_B">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -902,6 +980,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_B">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -909,6 +988,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_B">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -916,6 +996,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_B">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -923,6 +1004,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_B">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -930,6 +1012,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_B">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -937,6 +1020,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_B">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -949,6 +1033,7 @@ $nextString = date('Y-m-d',$next);
             <td>2000 至 2050</td>
             <td class="Curriculum" id="Mon_C">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -956,6 +1041,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Tue_C">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -963,6 +1049,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Wed_C">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -970,6 +1057,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Thu_C">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -977,6 +1065,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Fri_C">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -984,6 +1073,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sat_C">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -991,6 +1081,7 @@ $nextString = date('Y-m-d',$next);
             </td>
             <td class="Curriculum" id="Sun_C">
                 <p class="cell_id" hidden></p>
+                <p class="cell_seriesId" hidden></p>
                 <p class="cell_content"></p>
                 <p class="cell_teacher"></p>
                 <p class="cell_start_classTime hidden"></p>
@@ -1051,9 +1142,9 @@ $nextString = date('Y-m-d',$next);
                     </div>
                     <div class="form-group">
                         <label>教室: {{$currentClassroom}}</label>
-                        <input name="roomname" value="{{$currentClassroom}}" hidden>
                         <br>
                         <label>該週週一: {{$thisMonday}}</label>
+                        <input name="roomname" value="{{$currentClassroom}}" hidden>
                         <input name="weekFirst" value="{{$thisMonday}}" hidden>
                         <p class="errorMessage"></p>
                     </div> 
@@ -1114,10 +1205,16 @@ $nextString = date('Y-m-d',$next);
                         <label>結束時間</label>
                         <select class="form-control select_end modify_classTime" id="modify_end{{$course->id}}" name="end_classTime"></select>
                     </div>
+                    <hr>
                     <div class="form-group">
-                        <label>教室: {{$currentClassroom}}</label>
+                        <!-- <label>教室: {{$currentClassroom}}</label>
                         <br>
-                        <label>該週週一: {{$thisMonday}}</label>
+                        <label>該週週一: {{$thisMonday}}</label> -->
+                        <label>課程id: {{$course->id}}</label>
+                        <br>
+                        @if($course->seriesId != 0)
+                        <label>課程系列編號: {{$course->seriesId}}</label>
+                        @endif
                         <input name="roomname" value="{{$course->roomname}}" hidden>
                         <input name="weekFirst" value="{{$course->weekFirst}}" hidden>
                         <p class="errorMessage"></p>
@@ -1207,51 +1304,77 @@ $( document ).ready(function() {
             start = classTime_array.indexOf("{{$course->start_classTime}}");
             end = classTime_array.indexOf("{{$course->end_classTime}}");
     
-
             @if (Route::has('login'))
                 @if (Auth::check())
                     @if( (Auth::user()->level)==='管理員'||(Auth::user()->level)==='工讀生')
-                        /* for管理員: 刪除課程按鈕 */
-                        var form_delete = $("<form/>", 
+                        /* ----------刪除單筆課程form---------- */
+                        var form_deleteSingle = $("<form/>", 
                                          { action:"{{ asset('reserve/deleteCourse/'.$course->id) }}",
                                            method:"post",
                                            class:"deleteCourse",
                                            id:"deleteCourse{{$course->id}}",
                                          }
                         );
-                        form_delete.append( 
+                        form_deleteSingle.append( 
                             $("<input/>", 
                                  { type:"hidden",  
                                    name:"_token", 
                                    value:"{{csrf_token()}}" }
                              )
                         );
-                        form_delete.append( 
+                        form_deleteSingle.append( 
                              $("<input/>", 
                                   { type:"hidden", 
                                     name:"_method", 
                                     value:"delete" }
                                )
                         );
-                        // form_delete.append( 
+                        // form_deleteSingle.append( 
                         //      $("<button>刪除</button>", 
                         //           { type:"submit" }
                         //        )
                         // );
-                        /* end */
+                        /* ----------end 刪除單筆課程form---------- */
+                        /* ----------刪除課程系列form---------- */
+                        @if($course->seriesId != 0)
+                            var form_deleteSeries = $("<form/>", 
+                                         { action:"{{ asset('reserve/deleteCourseSeries/'.$course->seriesId) }}",
+                                           method:"post",
+                                           class:"deleteCourseSeries",
+                                           id:"deleteCourseSeries{{$course->seriesId}}",
+                                         }
+                            );
+                            form_deleteSeries.append( 
+                                $("<input/>", 
+                                     { type:"hidden",  
+                                       name:"_token", 
+                                       value:"{{csrf_token()}}" }
+                                 )
+                            );
+                            form_deleteSeries.append( 
+                                 $("<input/>", 
+                                      { type:"hidden", 
+                                        name:"_method", 
+                                        value:"delete" }
+                                   )
+                            );
+                        @endif
+                        /* ----------end 刪除課程系列form---------- */
 
-                        //加入刪除課程按鈕至table
-                        $("#"+classTime_array[end]).append(form_delete);
+                        // 刪除單筆課程按鈕加入至table
+                        $("#"+classTime_array[end]).append(form_deleteSingle);
+                        $("#"+classTime_array[end]).append(form_deleteSeries);
 
                     @endif
                 @endif
-             @endif
-    
+            @endif
+            /* ----------end 刪除單筆課程按鈕---------- */
     
             // 將資料放入<td>裡 
             for (i = start; i<=end; i++){
                 
                 $("#"+classTime_array[i]).children("p.cell_id").text("{{$course->id}}");
+                $("#"+classTime_array[i]).children("p.cell_seriesId").text("{{$course->seriesId}}");
                 $("#"+classTime_array[i]).children("p.cell_content").text("{{$course->content}}");
                 $("#"+classTime_array[i]).children("p.cell_teacher").text("{{$course->teacher}}");
                 $("#"+classTime_array[i]).children("p.cell_start_classTime").text("{{$course->start_classTime}}");
@@ -1296,20 +1419,21 @@ $( document ).ready(function() {
 //               curId = thisId;
 //           }
           
-//           /* ps: 可以這樣取<td>內的資料 */
-// //        var thisId = $(this).children("p.cell_id").text();
-// //        var thisContent = $(this).children("p.cell_content").text();
-// //        var thisTeacher = $(this).children("p.cell_teacher").text();
-// //        var thisStart = $(this).children("p.cell_start_classTime").text();
-// //        var thisEnd = $(this).children("p.cell_end_classTime").text();
+//     /* ps: 可以這樣取<td>內的資料 */
+       // var thisId = $(this).children("p.cell_id").text();
+       // var thisContent = $(this).children("p.cell_content").text();
+       // var thisTeacher = $(this).children("p.cell_teacher").text();
+       // var thisStart = $(this).children("p.cell_start_classTime").text();
+       // var thisEnd = $(this).children("p.cell_end_classTime").text();
 
 //     });
+
     
     /* 刪除課程按鈕，阻止修改modal被呼叫 */
-    $(".deleteCourse").click(function(){
-        //終止事件傳導
-        event.stopPropagation();
-    });
+    // $(".deleteCourse").click(function(){
+    //     //終止事件傳導
+    //     event.stopPropagation();
+    // });
 
 
     /* 根據目前星期幾，顯示cellModal中不同的select option */
@@ -1701,13 +1825,17 @@ $( document ).ready(function() {
         /* 放入右鍵目錄選項 */
         $(".custom-menu").html('');
         var thisId = $(this).children("p.cell_id").text();
+        var thisSeriesId = $(this).children("p.cell_seriesId").text();
 
         if(thisId == ""){
             return;
         }else{    
             $(".custom-menu").append("<li id='menu_first'>刪除單筆課程</li>");
             $("#menu_first").attr("onclick", "deleteSingle("+thisId+");");
-            // $(".custom-menu").append("<li id='menu_second' onclick='deleteSeries();'>刪除課程系列</li>");
+            if(thisSeriesId != 0){
+                $(".custom-menu").append("<li id='menu_second'>刪除課程系列</li>");
+                $("#menu_second").attr("onclick", "deleteSeries("+thisSeriesId+");");
+            }
         }
 
         // Show contextmenu
@@ -1774,8 +1902,9 @@ function deleteSingle(id){
     // alert("刪除單筆課程" + id);
     $("#deleteCourse"+id).submit();
 }
-function deleteSeries(){
-    alert("刪除課程系列");
+function deleteSeries(seriesId){
+    // alert("刪除課程系列"+seriesId);
+    $("#deleteCourseSeries"+seriesId).submit();
 }
 
 </script>
