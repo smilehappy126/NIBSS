@@ -1334,7 +1334,11 @@ $( document ).ready(function() {
                         //           { type:"submit" }
                         //        )
                         // );
+
+                        // 加入至table
+                        $("#"+classTime_array[end]).append(form_deleteSingle);
                         /* ----------end 刪除單筆課程form---------- */
+
                         /* ----------刪除課程系列form---------- */
                         @if($course->seriesId != 0)
                             var form_deleteSeries = $("<form/>", 
@@ -1358,12 +1362,10 @@ $( document ).ready(function() {
                                         value:"delete" }
                                    )
                             );
+                            // 加入至table
+                            $("#"+classTime_array[end]).append(form_deleteSeries);
                         @endif
                         /* ----------end 刪除課程系列form---------- */
-
-                        // 刪除單筆課程按鈕加入至table
-                        $("#"+classTime_array[end]).append(form_deleteSingle);
-                        $("#"+classTime_array[end]).append(form_deleteSeries);
 
                     @endif
                 @endif
