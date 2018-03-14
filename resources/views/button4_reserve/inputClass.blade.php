@@ -51,7 +51,7 @@
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Oops...出錯了!</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ session('alert') }}
         <br><br>
-        <label>重複課堂資訊:</label>
+        <label>請檢查撞堂位置，日期為:</label>
         <p>該週週一: {{ session('weekFirst') }}</p>
         <!-- <p>開始時間: </p>
         <p>結束時間: </p> -->

@@ -63,7 +63,13 @@ class LongcourseController extends Controller
         }
         
         $day = getBeginDay($begin); // 取起始日期為星期幾
+
+
+        /* seriesId 設定 */
+        $max_seriesId = Course::max('seriesId');
+        $this_seriesId = $max_seriesId + 1;
         
+
         foreach($mondays as $monday){
 
             /* 檢查節次是否重疊 */
@@ -74,10 +80,13 @@ class LongcourseController extends Controller
                 if( isOverlap($item->start_classTime, $item->end_classTime, 
                          $day . "_" . $request->start_classTime, $day . "_" . $request->end_classTime) ){
                     return redirect('inputClass/'.$request->roomname)
-                        ->with('alert', '課堂節次有重複!')
+                        ->with('alert', '課堂節次有重複! (課堂資料尚未寫入!)')
                         ->with('weekFirst', $monday);
                 }
             }
+        }
+
+        foreach($mondays as $monday){
 
             $course = new Course;
             $course->content = $request->content;
@@ -86,6 +95,7 @@ class LongcourseController extends Controller
             $course->end_classTime = $day . "_" . $request->end_classTime;
             $course->roomname = $request->roomname;
             $course->weekFirst = $monday;
+            $course->seriesId = $this_seriesId;
             $course->save();
         }
     
@@ -197,9 +207,17 @@ class LongcourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    //刪除課程系列
+    public function destroy($seriesId)
     {
-        //
+        $course = Course::where('seriesId', $seriesId)->first();
+        $roomname = $course->roomname;
+        $weekFirst = $course->weekFirst;
+
+        Course::where('seriesId', $seriesId)->delete();
+
+        return redirect('reserve/'.$roomname.'/'.$weekFirst);
     }
 }
 
@@ -300,6 +318,8 @@ function getMonday($dateString){
     */
     if(date("w", strtotime($dateString)) != 1){
       $dateMonday = date("Y-m-d", strtotime('last monday', strtotime($dateString)));
+    }else{
+        $dateMonday = date("Y-m-d", strtotime($dateString));
     }
 
     return $dateMonday;
