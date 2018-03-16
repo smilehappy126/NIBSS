@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Session\Store;
-use Session;
+// use Session;
 
 class SessionTimeout {
 
@@ -30,9 +30,10 @@ class SessionTimeout {
             $this->session->forget('lastActivityTime');
             $cookie = cookie('intend', $isLoggedIn ? url()->current() : '/');
             $email = $request->user()->email;
-            Session::flush();
+            // Session::flush();
             auth()->logout();
-            return redirect('/');
+            echo '<script> alert("請關閉網頁重新登入!"); </script>';
+            // return redirect('/');
             // auth()->logout();
             // return route('login')->withInput(['email'=>$email])->withCookie($cookie);
         }
